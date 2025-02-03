@@ -1,6 +1,6 @@
 {
   "$schema": "https://truv.com/swagger.json",
-  "name": "Starter Kit",
+  "name": "Truv docs",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
