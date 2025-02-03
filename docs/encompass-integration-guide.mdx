@@ -1,0 +1,146 @@
+---
+title: "Encompass® by ICE Mortgage Technology®"
+description: "Verify income and employment using Truv within the Encompass® by ICE Mortgage Technology® platform."
+---
+
+[Suggest Edits](/edit/encompass-integration-guide)
+
+# Overview
+
+Verify income, employment and assets within the Encompass® Partner Connect platform by ICE Mortgage Technology® platform. Truv is available in both Encompass® SmartClient and Encompass® LO Connect/Web.
+
+# Key Benefits
+
+* Leverage Truv products out-of-the-box.
+* Go live in days, no implementation required.
+* White label and customize Truv workflow with templates.
+* Minimize change management.
+* Gather all required data and documentation within Encompass® to accelerate loan process.
+
+# How it works
+
+1. Invites are sent to borrowers/co-borrowers to share their income, employment and asset information by connecting their payroll accounts or financial institutions using Truv.
+2. Once borrower connects their accounts, Truv reports are made available in the Encompass® eFolder along with relevant payroll documents as set up by your Encompass® admin (paystubs, W2, borrower reports - submitted to GSE's, employer level reports and order invoices)
+3. Connected accounts are monitored for new payroll documents, and new verification reports can be continuously generated throughout the mortgage loan origination process.
+
+# Encompass® Admin setup
+
+Follow the [step-by-step detailed Encompass® set up guide for utilizing Truv within the Encompass®](/docs/enable-truv-in-ice-encompass) platform. To begin with the setup, first choose the workflow that fits the needs of your organization. You have the option to choose from:
+
+1. Automated Service Ordering (ASO) within Encompass®
+2. Manual Ordering within Encompass®
+
+## 1. Encompass® Automated Service Ordering (ASO)
+
+Encompass® (desktop and web editions) offers support for automatic service orders (ASO) when a loan fulfills certain conditions. This is referred to as Automated Service Ordering or ASO. Any Encompass® Partner Connect, EPC integration can be configured by a lender administrator to submit automated orders. This powerful feature is designed to reduce the manual workload for lenders' personnel.
+
+Loans that do not meet the ASO conditions or criteria are automatically placed in Manual orders for loan personnel to review and place orders manually.
+
+![](/images/docs/dca44c734eed4c11ef33f35185bc3547d1501ac17ba52161b64381899e7114d9-Screenshot_2024-09-04_at_12.22.42_AM.png)
+
+Refer to the [detailed step-by-step ASO guide](/docs/automated-service-ordering-setup-guide) for configuring one time setup for Automated Service Ordering (ASO).
+
+## 2. Encompass® Manual set up
+
+With manual orders, leverage Truv UI within the Encompass® platform to place income, employment and asset verifications.
+
+![](/images/docs/f507950974e4e29f05ccc3686e5c0e627e38ab87b90ae7f4f37fb8a326a482a5-Screenshot_2024-09-11_at_7.01.13_PM.png)
+
+Refer to the [detailed step-by-step Manual guide](/docs/manual-verification-of-income-and-employment-voie-in-ice-encompass) for configuring Truv Manual ordering within Encompass®.
+
+<Info>
+  **Truv recommends the use of Automated Service Ordering(ASO)** to help lenders optimize resources, reduce costs and increase underwriting efficiency.
+
+  ASO is a one-time set up to further help eliminate duplicate orders and unnecessary verification orders.
+</Info>
+
+# Truv Coverage in Encompass
+
+Truv guides loan personnel to streamline the income and employment verification with insights on Truv coverage within Encompass® platform. The coverage is an employer level indication and provides a likelihood of success with Truv within Encompass®.
+
+![](/images/docs/5908d4c506b855fd291023508f455e72cec8628eb506f9d0178694ede795b32e-legends_1.png)
+
+# Truv Customization
+
+Truv allows clients to completely white label their experience
+
+* **White labeling using Truv Templates**
+  * Set up templates in Truv Dashboard to white label and customize the Encompass® experience weather its relevant to your business subsidiary or branches. This is a one time set up and can be used to customize your Branding, Notifications, Documents Returned, Fallback options, Truv Bridge.
+* **Encompass® Status updates customization**
+  * Truv allows to customize who receives updates on the loan application every step of the way. Encompass® lenders have an option to configure who receives status notifications and updates on every loan.
+* **Encompass® eFolder (Document Mapping)**
+  * Take control of your Encompass® eFolder experience and customize who can view various documents retrieved in your organization with Document Mapping functionality within Encompass®.
+
+Refer to the [detailed step-by-step Encompass customization guide](/docs/customize-truv-integration-with-ice-encompass) for configuring one time setup for Truv Manual ordering within Encompass®.
+
+# Verifying Income and Employment (VOIE) with Truv
+
+Once your one-time set up is completed, you can select a loan application and order from Truv in the `New Order` tab. Truv automatically pulls all the employers listed in the loan application so your team can order Income and Employment verifications.
+
+![](/images/docs/1d484c7c25296cf990893a926df2d83f49f835f87a07b7bb24d5bb0c5b7c858d-Screenshot_2024-09-12_at_8.27.54_PM.png)
+
+Refer to the [detailed step-by-step Encompass Ordering a verification guide](/docs/manual-verification-of-income-and-employment-voie-in-ice-encompass) for configuring one time setup for Truv Manual ordering within Encompass®.
+
+## Re-verification with Truv within Encompass®
+
+Truv provides you with the optionality to re-verify or refresh the data.
+
+* Navigate to the Truv Instance within Encompass®.
+
+* Once you have selected the loan select the order that you wish to re-verify.
+
+* Click on `Refresh the data` to proceed with the re-verification.
+
+  * Truv always does a backend refresh to pull the request verification.
+  * In some cases, Truv needs borrower to re-authenticate. In such cases, Truv notifies the borrower to re-authenticate into the specified employers.
+  * While ordering a re-verification you have the option to select a Employment only verification for the 10-day PCV or request a full Income and Employment re-verification.
+  * Truv also provides the optionality for your teams to select from current and prior employments for the borrower or co-borrower.
+  * All of the returned documents are automatically uploaded to the Encompass® eFolder based on your configurations.
+
+![](/images/docs/41f9f3e2ef7bd345a3ad105196ee19610ae7c1247d4359789ccbf788c27517c0-Screenshot_2024-09-12_at_8.16.00_PM.png)
+
+## Fannie Mae D1Certainity and Freddie Mac AIM Submissions
+
+Follow the steps outlined below to submit to Day 1 Certainty® or AIM through Encompass®:
+
+1. Select Truv Borrower Report that has been generated
+2. The **Report ID** from Truv's Borrower report will already be auto-populated in the Truv field.
+3. Truv generates a new report and an associated `Report ID `in the Truv's Borrower report on every re-verification whch is auto-populated in the Truv Fannie Mae and Freddie Mac fields.
+4. If for some reason the `Report ID `is not auto-populated, copy and paste the Reference # from Truv Borrower report into the Truv field.
+5. If a borrower and co-borrower are being submitted, their respective `Report ID `one after the other, separated by a comma with no space.
+
+Refer to the [detailed step-by-step guide to submit to GSE's for Truv](/docs/gse-certification-for-voie-with-truv) within Encompass®.
+
+# Overview of Truv within Encompass®
+
+Quick overview of Truv within ICE Encompass®.
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FYKP2zZgZVrw%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DYKP2zZgZVrw\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FYKP2zZgZVrw%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+For further assistance, please reach out to [\[email protected\]](/cdn-cgi/l/email-protection#44373134342b363004303631326a272b29) or your Customer Success Manager.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Key Benefits](#key-benefits)
+
+  * [How it works](#how-it-works)
+
+  * [Encompass® Admin setup](#encompass-admin-setup)
+
+    * [1. Encompass® Automated Service Ordering (ASO)](#1-encompass-automated-service-ordering-aso)
+    * [2. Encompass® Manual set up](#2-encompass-manual-set-up)
+
+  * [Truv Coverage in Encompass](#truv-coverage-in-encompass)
+
+  * [Truv Customization](#truv-customization)
+
+  * [Verifying Income and Employment (VOIE) with Truv](#verifying-income-and-employment-voie-with-truv)
+
+    * [Re-verification with Truv within Encompass®](#re-verification-with-truv-within-encompass)
+    * [Fannie Mae D1Certainity and Freddie Mac AIM Submissions](#fannie-mae-d1certainity-and-freddie-mac-aim-submissions)
+
+  * [Overview of Truv within Encompass®](#overview-of-truv-within-encompass)

@@ -1,0 +1,109 @@
+---
+title: "LodaSoft"
+description: "Leverage Truv's Verification of Income and Employment (VOI/E) solution within the Lodasoft point-of-sale system to efficiently access and verify borrower employment and income information from authenticated accounts."
+---
+
+[Suggest Edits](/edit/lodasoft-integration)
+
+# Overview
+
+Transform your loan verification process with our seamless Truv integration in Lodasoft. Get instant access to verified employment and income data directly from source payroll systems, helping you make faster, more confident lending decisions.
+
+# Key Benefits
+
+Our integration delivers immediate value by providing:
+
+* **Real-time verification** that eliminates manual documentation reviews and reduces processing time
+* **Source-verified employment and income data** that minimizes fraud risk and increases accuracy
+* **A streamlined borrower experience** with simple account connectivity and automated updates
+
+# How it Works
+
+The verification process integrates smoothly into your existing loan workflow:
+
+* When borrowers reach the income verification stage, they have the ability to connect their payroll accounts through Truv's secure interface. This gives you instant access to their verified employment and income details.
+* Your loan origination system automatically receives comprehensive Truv verification reports once accounts are connected. If borrowers skip the verification step initially, you can easily create tasks prompting them to complete it later.
+* The system continuously monitors connected accounts for new payroll information, ensuring you always have the most current verification data throughout the loan process.
+
+Truv in Lodasoft can be enabled in one of the two ways
+
+* Embedded Truv experience for all borrowers
+* Enable as a task or a To-do for borrowers
+* Both of the above, i.e, show embedded Truv experience and enable task workfow
+
+# Borrower Experience
+
+We've designed the process to be straightforward for borrowers. They can either:
+
+Verify their income directly through the dedicated verification section while completing their application Respond to automated task reminders in their to-do list to connect their accounts through Truv at their convenience
+
+The system guides them through each step, making it easy to provide the verification you need while maintaining security and control over their information. CopyRetryClaude can make mistakes. Please double-check responses.
+
+# Enable Truv in Lodasoft
+
+1. Navigate to **Admin** in your Lodasoft instance and select **System Level**.
+
+   ![](/images/docs/a9d5aab3f0aae14a94281f10edde89795b09b48116dd86c5024055cd0192f5a4-Screenshot_2025-01-06_at_5.22.36_PM.png) ![](/images/docs/a1666b86e78e8796b79121cfc6c43d4506c1346bf0191ea065eb60a1e93803f4-Screenshot_2025-01-06_at_5.22.43_PM.png)
+
+2. Navigate to **Integrations** and select **Income/Employment Verification (VOI/VOE)** tab.
+
+   ![](/images/docs/bd07157534741d760b90b7506318824ef54a162d517ee82f6f21fe0b9b335636-Screenshot_2025-01-06_at_5.22.48_PM.png) ![](/images/docs/29ee0c17d0fbafd61f18945846f9be0dc5ca5a4a88c15618eae03f22421fa1ad-Screenshot_2025-01-06_at_5.22.56_PM.png)
+
+3. Once here select **Create New** and select the **Truv** option from the dropdown for VOE/VOI Vendor. Once selected click on **Go** to ensure the selection has been saved.
+
+   ![](/images/docs/618c48bf8c219c4c7b3e1411311b84bfbfcb6b6ffb974a391e35239ed7062fd9-Screenshot_2025-01-06_at_5.23.03_PM.png)
+
+![](/images/docs/ff6ce4c2e79b4a60309f10c7e4746177675a3a7bf6e65a37bba1ada801129a4c-Screenshot_2025-01-06_at_5.23.13_PM.png) ![](/images/docs/0f568adc4aed79266aca9846c6570c9f981fc7d5e89b4ff8c035bd6dfdd567c8-Screenshot_2025-01-06_at_5.23.24_PM.png)
+
+# Launch with Truv in Lodasoft
+
+1. **Contact Lodasoft Customer Success**: Reach out to validate and complete the one-time admin setup for integrating Truv.
+
+2. **Enable Truv in Lodasoft:** Activate the Truv integration within your Lodasoft account.
+
+   1. **Ensure to copy credentials from Truv Dashboard**: Visit [Truv’s API Dashboard](https://dashboard.truv.com/app/home) and select API Keys. Copy the credential values from your environment using the Copy icon.
+
+      ![](/images/docs/e473201-124.png)
+
+   2. **Ensure Truv is enabled**: Navigate to **Admin -> System Level -> Integrations -> Income/Employment Verification** select **Truv** tile.
+
+      1. Add in the **Client ID from Truv Dashboard** to the **Client ID field in Lodasoft**.
+
+      2. Add in the **Secret from Truv Dashboard** to the **Access Key field in Lodasoft**.
+
+      3. Click **Save** to ensure the entries are saved.
+
+         ![](/images/docs/ae105e4b56828df0fa5a8cc054a276934db4a9109736baa5fbb4c649084538ab-Screenshot_2025-01-06_at_5.20.51_PM.png)
+
+   3. **Ensure to setup Webhooks in Truv Dashboard**: Lodasoft utilizes webhooks to listen to events on every order from Truv and get updated statuses.
+
+      1. Navigate to [Truv’s API Dashboard](https://dashboard.truv.com/app/home)-> Development Section -> Webhooks tab and add a URL for your environment. Each environment requires a specific and separate URL.
+
+         ![](/images/docs/2678d90a526e078692d0e3248768c3df5427bd51f2b56972b7aaaa738d7e2256-image_124.png)
+
+      2. Copy the URL's - [https://publicapi.lodasoft.com/api/truv/receive-event](https://publicapi.lodasoft.com/api/truv/receive-event) for both Sandbox and Production environment.
+
+      3. Ensure to select all the `Events` as shown in the image above.
+
+3. **Customize Templates:** Configure your verification templates in the Truv Dashboard.
+
+4. **Test in Sandbox Mode:** Familiarize yourself with the integration by testing in the Sandbox environment.
+
+5. **Obtain Production Access:** Complete the end-to-end setup with Truv and Lodasoft, and ensure successful submission to DU (Desktop Underwriter) and LPA (Loan Product Advisor) systems.
+
+6. **Go Live:** Launch the Truv integration within Lodasoft.
+
+You are now live with Truv within Lodasoft!!
+
+Refer to the [detailed step-by-step guide](/docs/launch-checklist-for-integrated-point-of-sale-pos) for a comprehensive walkthrough of launching Truv within Lodasoft.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Key Benefits](#key-benefits)
+  * [How it Works](#how-it-works)
+  * [Borrower Experience](#borrower-experience)
+  * [Enable Truv in Lodasoft](#enable-truv-in-lodasoft)
+  * [Launch with Truv in Lodasoft](#launch-with-truv-in-lodasoft)

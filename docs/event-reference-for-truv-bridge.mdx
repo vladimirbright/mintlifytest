@@ -1,0 +1,341 @@
+---
+title: "Events Reference"
+description: "View reference information for Truv Bridge callbacks, events, and errors."
+---
+
+[Suggest Edits](/edit/event-reference-for-truv-bridge)
+
+# Overview
+
+Truv Bridge provides payload responses with user interaction data. Find information for Truv Bridge responses below.
+
+* [Callbacks](#callbacks) - Responses for specific Truv Bridge actions
+* [Event data](#event-data) - Event type and payload descriptions
+* [Errors](#errors) - Truv Bridge error objects, types, and codes
+
+# Callbacks
+
+The functions in this table cover specific actions.
+
+| Callback  | Description                                                                                                                                      | Required |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| onSuccess | User has successfully connected to a payroll provider and closed Bridge, function expects two arguments, the public\_token and a metadata object | required |
+| onLoad    | Truv Bridge has finished loading                                                                                                                 | optional |
+| onEvent   | Specific event occurs with Truv Bridge, see [Event data](#event-data)                                                                            | optional |
+| onClose   | Truv Bridge closes                                                                                                                               | optional |
+
+# Event data
+
+The sections below cover values and descriptions for events within Truv Bridge.
+
+## onEvent types
+
+These event types are for specific actions occurring within Truv Bridge.
+
+| Event Type           | Event Payload                                   | Description                                                                                                        |
+| -------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| LOAD                 | None                                            | Truv Bridge module finished loading                                                                                |
+| OPEN                 | [CommonEventData](#commoneventdata)             | Truv Bridge is ready                                                                                               |
+| SCREEN\_VIEW         | [ScreenViewData](#screenviewdata)               | Truv Bridge screen viewed                                                                                          |
+| EMPLOYER\_SELECTED   | [EmployerSelectedData](#employerselecteddata)   | Employer or provider selected in Truv Bridge                                                                       |
+| DOC\_UPLOAD\_OPENED  | [CommonEventData](#commoneventdata)             | [Document Upload](/docs/ux-design-income-and-employment#document-upload) opened                                    |
+| DOCUMENTS\_UPLOADED  | [DocumentsUploadedData](#documentsuploadeddata) | Specific document types uploaded                                                                                   |
+| LINK\_CREATED        | [TaskData](#taskdata)                           | User logging in to their payroll provider as a new Link                                                            |
+| LOGIN\_COMPLETE      | [TaskData](#taskdata)                           | User successfully logged in to payroll provider                                                                    |
+| SUCCESS              | [TaskData](#taskdata)                           | User data successfully retrieved from payroll provider                                                             |
+| ERROR                | [ErrorData](#errordata)                         | Error during the payroll provider connection process                                                               |
+| UNSUPPORTED\_BROWSER | None                                            | Truv Bridge is not supported by the user's browser                                                                 |
+| CLOSE                | [CloseData](#closedata)                         | Truv Bridge closes                                                                                                 |
+| MANUAL\_DDS          | [ManualDDSData](#manualddsdata)                 | Manual DDS operation was successfully submitted                                                                    |
+| OAUTH\_OPENED        | [OAuthEventData](#oautheventdata)               | Sent when the user is redirected to a financial institution's login page, for assets and transactions product only |
+
+## CommonEventData
+
+The values in the table below are for general Truv Bridge use.
+
+| Name          | Type   | Description                                                     |
+| ------------- | ------ | --------------------------------------------------------------- |
+| bridge\_token | string | The bridge\_token value passed to **TruvBridge.init**           |
+| product\_type | string | Type of product, can be `undefined` if bridge\_token is expired |
+
+### CommonEventData example response
+
+View the JSON object sample response below for CommonEventData.
+
+<CodeGroup>
+  ```json json
+  {
+      "bridge_token": "b5cb1933e43043a792a9b337af5824e2",
+      "product_type": "income",
+  }
+  ```
+</CodeGroup>
+
+## ScreenViewData
+
+This table has data for the Truv Bridge screen events.
+
+| Name          | Type   | Description                                                                                                                                                                      |
+| ------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| view\_name    | string | Name of Truv Bridge screen viewed Possible values: `SELECT_EMPLOYER`, `PROVIDER_LIST`, `PROVIDER_LOGIN`, `PROVIDER_ORG_ID`, `ERROR`, `SUCCESS`, `DOC_UPLOAD`, `DOC_UPLOAD_TYPES` |
+| bridge\_token | string | Value for bridge\_token passed to `TruvBridge.init`                                                                                                                              |
+| product\_type | string | Type of product                                                                                                                                                                  |
+| doc\_type     | string | Applicable for only `DOC_UPLOAD` view name, type of documents to upload, can be `paystub`, `w2` or `f1099`                                                                       |
+
+<CodeGroup>
+  ```json json
+  {
+      "view_name": "PROVIDER_LOGIN",
+      "bridge_token": "b5cb1933e43043a792a9b337af5824e2",
+      "product_type": "income"
+  }
+  ```
+</CodeGroup>
+
+## EmployerSelectedData
+
+This data is for events during the employer or provider selection process.
+
+| Name          | Type   | Description                                                        |
+| ------------- | ------ | ------------------------------------------------------------------ |
+| bridge\_token | string | Value for bridge\_token  passed to `TruvBridge.init`               |
+| product\_type | string | Type of product                                                    |
+| employer      | object | Object with employer data, contains employer's name, can be `null` |
+| provider      | string | ID of the selected provider, can be `null`                         |
+
+### EmployerSelectedData example response
+
+The sample JSON object below is for EmployerSelectedData.
+
+<CodeGroup>
+  ```json json
+  {
+      "bridge_token": "b5cb1933e43043a792a9b337af5824e2",
+      "product_type": "income",
+      "employer": {
+          "name": "Facebook Demo"
+      },
+      "provider": "workday"
+  }
+  ```
+</CodeGroup>
+
+## DocumentsUploadedData
+
+The table below covers events from uploading documents.
+
+| Name          | Type   | Description                                                  |
+| ------------- | ------ | ------------------------------------------------------------ |
+| bridge\_token | string | Value for bridge\_token passed to `TruvBridge.init`          |
+| product\_type | string | Type of product                                              |
+| doc\_type     | string | Type of document uploaded, can be `paystub`, `w2` or `f1099` |
+
+### DocumentsUploadedData example response
+
+The JSON object below is a sample response.
+
+<CodeGroup>
+  ```json json
+  {
+      "bridge_token": "b5cb1933e43043a792a9b337af5824e2",
+      "product_type": "income",
+      "doc_type": "paystub"
+  }
+  ```
+</CodeGroup>
+
+## TaskData
+
+The values in the table below cover events from Tasks.
+
+| Name          | Type   | Description                                                                                                                |
+| ------------- | ------ | -------------------------------------------------------------------------------------------------------------------------- |
+| public\_token | string | Value for public\_token exchanged for access\_token                                                                        |
+| task\_id      | string | Unique identifier to use Link when attempting to retrieve payroll data*NOTE: include identifier value for support tickets* |
+| bridge\_token | string | Value for bridge\_token passed to `TruvBridge.init`                                                                        |
+| product\_type | string | Type of product                                                                                                            |
+| employer      | object | Employer data object, contains employer's name, may be `undefined` for `admin` product type                                |
+| provider\_id  | string | Unique identifier for selected provider                                                                                    |
+
+### TaskData example response
+
+View the JSON object below for a sample response.
+
+<CodeGroup>
+  ```json json
+  {
+      "public_token": "d80ec8255dc54c5eb7cc03ac05d18ebd",
+      "task_id": "2b0e7a7dec1d47678fec4e02af621cc0",
+      "bridge_token": "b5cb1933e43043a792a9b337af5824e2",
+      "product_type": "income",
+      "provider_id": "adp",
+      "employer": {
+        "name": "Facebook Demo"
+      }
+  }
+  ```
+</CodeGroup>
+
+## ErrorData
+
+Values in the table below are responses for errors.
+
+| Name          | Type                                                  | Description                                                                                                                                                         |
+| ------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| error         | [Error](/docs/event-reference-for-truv-bridge#errors) | See [Errors](/docs/event-reference-for-truv-bridge#errors) section for reference                                                                                    |
+| public\_token | string                                                | Associated public\_token to connection attempt*NOTE: This field is only available if the error returned is associated to a public\_token.*                          |
+| task\_id      | string                                                | Unique identifier associated with attempt to use Link to retrieve payroll data*NOTE: Include this identifier when opening a support ticket for additional support.* |
+| bridge\_token | `string`                                              | Value for bridge\_token passed to **TruvBridge.init**                                                                                                               |
+| product\_type | `string`                                              | Type of the product                                                                                                                                                 |
+
+<CodeGroup>
+  ```json json
+  {
+      "error": {
+          "error_code": "LOGIN_ERROR",
+          "error_message": "Username or password is incorrect",
+          "error_type": "LINK_ERROR"
+      },
+      "public_token": "d80ec8255dc54c5eb7cc03ac05d18ebd",
+      "task_id": "5ad1938450c54024bbc967a3a7dc9020",
+      "bridge_token": "b5cb1933e43043a792a9b337af5824e2",
+      "product_type": "income"
+  }
+  ```
+</CodeGroup>
+
+## CloseData
+
+This value is for the Truv Bridge closing.
+
+| Name     | Type     | Description                                                                                         |
+| -------- | -------- | --------------------------------------------------------------------------------------------------- |
+| employer | `object` | Object with employer data, contains employer's name, can be `undefined` if no employer was selected |
+
+<CodeGroup>
+  ```json json
+  {
+     "employer": {
+          "name": "Facebook Demo"
+      }
+  }
+  ```
+</CodeGroup>
+
+## ManualDDSData
+
+The table below covers events from a manual DDS operation.
+
+| Name        | Type   | Description                                                                                                                   |
+| ----------- | ------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| action      | string | Type of operation, can be `EMAIL`, `DOWNLOAD`, `SHARE` or `EXTERNAL_FLOW` (if enabled).                                       |
+| depositType | string | Type of deposit selected in the Truv Bridge, can be `entire`, `percent` or `amount`. Not provided for `EXTERNAL_FLOW` action. |
+
+<CodeGroup>
+  ```json json
+  {
+      "depositType": "entire",
+      "action": "EMAIL"
+  }
+  ```
+</CodeGroup>
+
+## OAuthEventData
+
+The table below covers events when OAuth is initiated to a financial institution's login page.
+
+| Name          | Type   | Description                                                            |
+| ------------- | ------ | ---------------------------------------------------------------------- |
+| bridge\_token | string | Value for bridge\_token passed to **TruvBridge.init**                  |
+| product\_type | string | Type of the product                                                    |
+| task\_id      | string | Unique identifier associated with attempt to use Link to retrieve data |
+| provider\_id  | string | Unique identifier for selected provider                                |
+| url           | string | URL the user is redirected to                                          |
+
+<CodeGroup>
+  ```json json
+  {
+      "bridge_token": "b5cb1933e43043a792a9b337af5824e2",
+      "product_type": "assets",
+      "provider_id": "truv_bank_oauth",
+      "task_id": "5ad1938450c54024bbc967a3a7dc9020",
+      "url": "https://www.truv.com/oauth-login.html?provider_id=truv_bank_oauth&bridge_token=b5cb1933e43043a792a9b337af5824e2&task_id=5ad1938450c54024bbc967a3a7dc9020&token=eb18f867490347a497f36f43bec39043"
+  }
+  ```
+</CodeGroup>
+
+# Errors
+
+Below view the error codes for Truv Bridge. Truv Bridge values return as a callback.
+
+<CodeGroup>
+  ```json json
+  {
+      "error": {
+          "error_code": "LOGIN_ERROR",
+          "error_message": "Username or password is incorrect",
+          "error_type": "LINK_ERROR"
+      }
+  }
+  ```
+</CodeGroup>
+
+<Info>
+  Design your user experience to notify your users of login errors when connecting to payroll.
+</Info>
+
+## Error object
+
+The table below contains information about the error objects.
+
+| Name                        | Type   | Description                                                                                  |
+| --------------------------- | ------ | -------------------------------------------------------------------------------------------- |
+| [error\_type](#error-types) | string | Unique code describing type of error that occurred                                           |
+| [error\_code](#error-codes) | string | Unique code indicating error that occurred, for more see [Error codes section](#error-codes) |
+| error\_message              | string | Description of the error that occurred                                                       |
+
+## Error types
+
+This data is for error type values.
+
+* `LINK_ERROR` - Generic error type has occurred
+
+## Error codes
+
+These codes provide descriptions for the error.
+
+* `ERROR` - Generic error occurred
+* `LINK_EXISTS` - User's account is already connected
+* `LOGIN_ERROR` - Incorrect username, password, or both
+* `MFA_ERROR` - Invalid input for the multi-factor authentication
+* `NO_DATA` - User account has no data
+* `UNAVAILABLE` - Payroll provider is unreachable at the time of connection
+
+![](/images/docs/2f2b5c8-97.png)
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Callbacks](#callbacks)
+
+  * [Event data](#event-data)
+
+    * [onEvent types](#onevent-types)
+    * [CommonEventData](#commoneventdata)
+    * [ScreenViewData](#screenviewdata)
+    * [EmployerSelectedData](#employerselecteddata)
+    * [DocumentsUploadedData](#documentsuploadeddata)
+    * [TaskData](#taskdata)
+    * [ErrorData](#errordata)
+    * [CloseData](#closedata)
+    * [ManualDDSData](#manualddsdata)
+    * [OAuthEventData](#oautheventdata)
+
+  * [Errors](#errors)
+
+    * [Error object](#error-object)
+    * [Error types](#error-types)
+    * [Error codes](#error-codes)

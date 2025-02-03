@@ -1,0 +1,155 @@
+---
+title: "Manual Verification of Income and Employment (VOIE) in ICE Encompass®"
+description: "Manually ordering Guide within Encompass® (SmartClient/Desktop and web editions)"
+---
+
+[Suggest Edits](/edit/manual-verification-of-income-and-employment-voie-in-ice-encompass)
+
+# Overview
+
+Follow the steps below when an administrator sets Truv up with Encompass®. This section helps you submit an income and employment verification request using Truv within Encompass® using Orders.
+
+## Step 1: Select All Services
+
+Go to **PIPELINE** tab -> open the loan file -> select **Services**, then **All Services**.
+
+![](/images/docs/91761f6c74b22556fa74b3b8eb618bc413853b41417d8d6ac4fea10186f554a7-image.png)
+
+## Step 2: Select Truv Service
+
+Select **Order** under **Verifications** and select **Truv - Verification of Income/Employment**, then select **Next**.
+
+![](/images/docs/25a67fc5da0f601b4d17b718d6fc924bf47cb3c8436e3a6fa1e8100e1a5412c9-image.png)
+
+## Step 3: Create Order
+
+Complete the email address and phone number fields.
+
+* Select an email address for the borrower to receive an email notification from Truv.
+
+* Select a phone number for the borrower to receive an SMS notification from Truv.
+  * Including a borrower's email and phone number to result in higher conversions. Confirm your borrower's consent before including email and phone number for Orders.
+
+* Under the **Status updates** column header is an optional field. You can enter additional email addresses for contacts who will receive status update email notifications from Truv.
+  * Email addresses for the Loan Officer and Loan Processor roles in Encompass can be added by default to receive email status updates, in addition to the order creator, reach out to Truv support for setup assistance.
+
+* Select product type, **Employment history** for VOE or **Income and Employment** for VOIE.
+
+  * Select up to 5 employers for VOE.
+  * Select 5 employers for VOIE. Both **Income and Employment** for this product type are verified.
+
+* Under **Action**, select the **Create Order** checkbox.
+
+![](/images/docs/d52c52d-122.png)
+
+## Step 4: Submit an Order
+
+Select **Submit**. The next page is for [Managing reports](#managing-reports). This covers all **Order statuses** and updates for Truv in Encompass.
+
+<Check>
+  You'll redirect to the transaction list, and the borrower receives an email with a link to verify Income and Employment instantly.
+</Check>
+
+Customize Order expiration using the Truv Dashboard. Go to **Settings**, then **Branding**, `Field Name: link_expiry`. The Order will expire and the status is marked as `Expired` in Orders. Borrowers then cannot use the generated link to complete the verification.
+
+The status column reflects the all associated status updates. If an Order has multiple employments, borrowers receive email reminders. Email reminder frequency is every 24 hours for three business days by default. The option to unsubscribe is also available.
+
+<Info>
+  Unverified employers appear as `Pending` status.
+</Info>
+
+# Managing reports
+
+The **Order statuses** tab covers the options to refresh, download, and cancel reports.
+
+![](/images/docs/7bd8cad-123.png)
+
+## Re-verification or Refresh the data
+
+Truv provides you with the optionality to re-verify or refresh the data. Refresh completed VOE or VOIE reports with today’s income and employment information. Select the **Refresh the data** action to initiate the request. After submitting, the status changes to `Pending`. The new report with updated data is available when complete.
+
+To order a re-verification complete the below steps:
+
+* Navigate to the Truv Instance within Encompass®.
+
+* Once you have selected the loan select the order that you wish to re-verify.
+
+* Click on `Refresh the data` to proceed with the re-verification.
+
+  * Truv always does a backend refresh to pull the request verification.
+  * In some cases, Truv needs borrower to re-authenticate. In such cases, Truv notifies the borrower to re-authenticate into the specified employers.
+  * While ordering a re-verification you have the option to select a Employment only verification for the 10-day PCV or request a full Income and Employment re-verification.
+  * Truv also provides the optionality for your teams to select from current and prior employments for the borrower or co-borrower.
+  * All of the returned documents are automatically uploaded to the Encompass® eFolder based on your configurations.
+
+![](/images/docs/41f9f3e2ef7bd345a3ad105196ee19610ae7c1247d4359789ccbf788c27517c0-Screenshot_2024-09-12_at_8.16.00_PM.png)
+
+## Download the reports
+
+View completed VOE or VOIE reports by selecting **Download** button on the **Order statuses** tab. If the order request includes multiple employments, separate PDFs are generated.
+
+<Info>
+  If the borrower needs to verify multiple employments, the status will remain `pending` until all employers are verified. The PDF Truv report, including the Report ID, will only be generated once the entire Truv Order is completed, expired, or cancelled.
+</Info>
+
+## Partial Verifications
+
+If the borrower does not verify all employments and the order is expired or cancelled, Truv will generate a report with a Report ID for the verified employer(s).
+
+## Cancel an Order
+
+Ordered requests can be cancelled by selecting **Cancel order** button. This is only possible after an Order is created and in `Pending` status. Completed and expired orders cannot be cancelled.
+
+## Fannie Mae D1Certainity and Freddie Mac AIM Submissions
+
+Follow the steps outlined below to submit to Day 1 Certainty® or AIM through Encompass®:
+
+1. Select Truv Borrower Report that has been generated
+2. The **Report ID** from Truv's Borrower report will already be auto-populated in the Truv field.
+3. Truv generates a new report and an associated `Report ID `in the Truv's Borrower report on every re-verification whch is auto-populated in the Truv Fannie Mae and Freddie Mac fields.
+4. If for some reason the `Report ID `is not auto-populated, copy and paste the Reference # from Truv Borrower report into the Truv field.
+5. If a borrower and co-borrower are being submitted, their respective `Report ID `one after the other, separated by a comma with no space.
+
+Refer to the [detailed step-by-step guide to submit to GSE's for Truv](/docs/gse-certification-for-voie-with-truv) within Encompass®.
+
+# Loan officer/Processor experience with Truv within ICE Encompass®
+
+Watch the video below for a basic overview of the borrower’s workflow within ICE Encompass®.
+
+## ICE Encompass SmartClient Experience
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FE6FSHLeRPqg%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DE6FSHLeRPqg\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FE6FSHLeRPqg%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+## ICE Encompass Web/ LO Connect Experience
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F-eXTXM7AY8E%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D-eXTXM7AY8E\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F-eXTXM7AY8E%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+# Support
+
+Need help? Email [\[email protected\]](/cdn-cgi/l/email-protection#1a696f6a6a75686e5a6e686f6c34797577) or contact Truv through your dashboard.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+    * [Step 1: Select All Services](#step-1-select-all-services)
+    * [Step 2: Select Truv Service](#step-2-select-truv-service)
+    * [Step 3: Create Order](#step-3-create-order)
+    * [Step 4: Submit an Order](#step-4-submit-an-order)
+
+  * [Managing reports](#managing-reports)
+
+    * [Re-verification or Refresh the data](#re-verification-or-refresh-the-data)
+    * [Download the reports](#download-the-reports)
+    * [Partial Verifications](#partial-verifications)
+    * [Cancel an Order](#cancel-an-order)
+    * [Fannie Mae D1Certainity and Freddie Mac AIM Submissions](#fannie-mae-d1certainity-and-freddie-mac-aim-submissions)
+
+  * [Loan officer/Processor experience with Truv within ICE Encompass®](#loan-officerprocessor-experience-with-truv-within-ice-encompass)
+
+    * [ICE Encompass SmartClient Experience](#ice-encompass-smartclient-experience)
+    * [ICE Encompass Web/ LO Connect Experience](#ice-encompass-web-lo-connect-experience)
+
+  * [Support](#support)

@@ -1,64 +1,429 @@
 {
-  "$schema": "https://truv.com/swagger.json",
-  "name": "Truv docs",
-  "logo": {
-    "dark": "https://files.readme.io/6dcc4ae-Truv_Docs.svg",
-    "light": "https://files.readme.io/6dcc4ae-Truv_Docs.svg"
-  },
-  "favicon": "/favicon.svg",
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Truv",
+  "logo": "/images/6dcc4ae-Truv_Docs.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
+    "primary": "#2c64e3",
+    "light": "#2c64e3",
+    "dark": "#2c64e3"
   },
-  "lauyout": "topnav",
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
-  "api": {
-    "baseUrl": "https://prod.truv.com/"
-  },
-  "openapi": "https://prod.truv.com/swagger.json",
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.truv.com"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
-  ],
+  "favicon": "/e81bf23-favicon.ico",
   "navigation": [
     {
-      "group": "API Documentation",
+      "group": "Get started",
       "pages": [
-        "api-reference/"
+        "docs/quickstart-guide",
+        {
+          "group": "Quickstart Guide",
+          "pages": [
+            "docs/quickstart-guide",
+            "docs/demo-apps"
+          ]
+        },
+        "docs/testing"
+      ]
+    },
+    {
+      "group": "Platform",
+      "pages": [
+        "docs/basics",
+        {
+          "group": "Truv Bridge",
+          "pages": [
+            "docs/truv-bridge",
+            "docs/bridge-home",
+            "docs/bridge-implementation",
+            "docs/customization",
+            "docs/deeplinking",
+            "docs/update-mode",
+            "docs/event-reference-for-truv-bridge"
+          ]
+        },
+        {
+          "group": "Orders",
+          "pages": [
+            "docs/orders-guide",
+            "docs/embedded-orders"
+          ]
+        },
+        {
+          "group": "Dashboard",
+          "pages": [
+            "docs/dashboard",
+            "docs/customization-templates"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Solutions",
+      "pages": [
+        "docs/income-and-employment",
+        {
+          "group": "Income and Employment Verification",
+          "pages": [
+            "docs/income-and-employment",
+            "docs/embedding-truv-in-your-workflow",
+            "docs/ux-design-income-and-employment",
+            {
+              "group": "Implementing Income and Employment Verification Solutions",
+              "pages": [
+                "docs/implementation-income-and-employment",
+                "docs/launch-checklist-voie",
+                "docs/using-multiple-data-sources-for-voie"
+              ]
+            },
+            "docs/payroll-income-verification",
+            "docs/voie-using-financial-accounts",
+            "docs/implementing-income-and-employment-document-processing",
+            "docs/integrating-tax-returns",
+            "docs/data-scoping-income-and-employment",
+            "docs/gse-certification-for-voie-with-truv"
+          ]
+        },
+        {
+          "group": "Employment History",
+          "pages": [
+            "docs/employment-history",
+            "docs/embedding-truv-voe-in-your-workflow",
+            "docs/ux-design-employment-history",
+            "docs/implementation-employment",
+            "docs/integrating-document-processing-employment",
+            "docs/data-scoping-employment-history"
+          ]
+        },
+        {
+          "group": "Direct Deposit Switch",
+          "pages": [
+            "docs/direct-deposit-switch",
+            "docs/embedding-truv-direct-deposit-switch-in-your-workflow",
+            "docs/ux-design-direct-deposit-switch",
+            "docs/implementation-direct-deposit-switch"
+          ]
+        },
+        {
+          "group": "Paycheck Linked Lending",
+          "pages": [
+            "docs/paycheck-linked-loans",
+            "docs/embedding-paycheck-linked-loans-in-your-workflow",
+            "docs/ux-design-paycheck-linked-loans",
+            "docs/implementation-paycheck-linked-loans"
+          ]
+        },
+        {
+          "group": "Insurance Verification",
+          "pages": [
+            "docs/insurance-verification",
+            "docs/embedding-truv-insurance-verification-in-your-workflow",
+            "docs/ux-design-insurance-verification",
+            "docs/implementation-insurance-verification",
+            "docs/data-scoping-insurance-verification"
+          ]
+        },
+        {
+          "group": "Financial Account Aggregation",
+          "pages": [
+            "docs/bank-aggregation",
+            "docs/scoping-bank-aggregation",
+            "docs/designing-the-bank-aggregation-ux",
+            "docs/implementing-bank-aggregation-solution",
+            "docs/verification-of-assets",
+            "docs/data-reference-for-bank-aggregation"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "docs/truv-loan-origination-systems",
+        {
+          "group": "Loan Origination Systems Integrations",
+          "pages": [
+            "docs/truv-loan-origination-systems",
+            {
+              "group": "Encompass® by ICE Mortgage Technology®",
+              "pages": [
+                "docs/encompass-integration-guide",
+                "docs/enable-truv-in-ice-encompass",
+                "docs/customize-truv-integration-with-ice-encompass",
+                "docs/automated-service-ordering-setup-guide",
+                "docs/manual-verification-of-income-and-employment-voie-in-ice-encompass",
+                "docs/document-upload-income-calculation-aim-check",
+                "docs/wholesale-and-correspondent-lender-support"
+              ]
+            },
+            "docs/dark-matter-empower-integration-guide",
+            "docs/byte-software-integration-guide",
+            "docs/launch-checklist-for-integrated-loan-origination-systems",
+            "docs/implementation-with-a-custom-loan-origination-system-guide"
+          ]
+        },
+        {
+          "group": "Point-of-Sale Integrations",
+          "pages": [
+            "docs/truv-point-of-sale-integrations",
+            {
+              "group": "nCino (fka SimpleNexus)",
+              "pages": [
+                "docs/ncino-simplenexus-integration-guide",
+                "docs/simplenexus-notiifcations-workflow-integration-guide"
+              ]
+            },
+            "docs/besmartee-integration-guide",
+            "docs/floify-integration-guide",
+            "docs/lenderlogix-integration-guide",
+            "docs/lodasoft-integration",
+            "docs/launch-checklist-for-integrated-point-of-sale",
+            "docs/implementation-of-truv-with-custom-point-of-sale-system"
+          ]
+        },
+        {
+          "group": "Background Screening Platforms",
+          "pages": [
+            "docs/background-screening-platforms-integration-guide",
+            "docs/tazworks-integration-guide",
+            "docs/launch-checklist-for-integrated-screening-platforms"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Overview",
+      "pages": [
+        "reference/introduction",
+        "reference/postman-1",
+        "reference/api-keys-rotation"
+      ]
+    },
+    {
+      "group": "Platform Management",
+      "pages": [
+        "reference/data-structure",
+        "reference/connection-lifecycle",
+        {
+          "group": "Webhooks",
+          "pages": [
+            "reference/webhooks-api",
+            "reference/webhook-event-descriptions"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "User Flow Endpoints",
+      "pages": [
+        "reference/users",
+        {
+          "group": "Users",
+          "pages": [
+            "reference/users"
+          ]
+        },
+        {
+          "group": "Bridge Token",
+          "pages": [
+            "reference/bridge-token"
+          ]
+        },
+        {
+          "group": "Companies and Data Providers",
+          "pages": [
+            "reference/companies-and-data-providers"
+          ]
+        },
+        {
+          "group": "Account Links",
+          "pages": [
+            "reference/account-links",
+            "reference/links"
+          ]
+        },
+        {
+          "group": "Orders",
+          "pages": [
+            "reference/orders-api",
+            "reference/orders-1"
+          ]
+        },
+        {
+          "group": "Data Refresh",
+          "pages": [
+            "reference/data-refresh"
+          ]
+        },
+        {
+          "group": "Customization Templates",
+          "pages": [
+            "reference/customization-templates-api"
+          ]
+        },
+        {
+          "group": "Webhooks",
+          "pages": [
+            "reference/webhooks-1"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "User reports",
+      "pages": [
+        "reference/voie-reports",
+        {
+          "group": "VOIE Reports",
+          "pages": [
+            "reference/voie-reports"
+          ]
+        },
+        {
+          "group": "VOA Reports",
+          "pages": [
+            "reference/voa-reports"
+          ]
+        },
+        {
+          "group": "Income Insights Reports",
+          "pages": [
+            "reference/income-insights-reports"
+          ]
+        },
+        {
+          "group": "DDS Reports",
+          "pages": [
+            "reference/dds-reports"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "income and Employment",
+      "pages": [
+        "reference/employment",
+        {
+          "group": "Employment",
+          "pages": [
+            "reference/employment",
+            "reference/employment-1"
+          ]
+        },
+        {
+          "group": "Identity",
+          "pages": [
+            "reference/identity",
+            "reference/identity-1"
+          ]
+        },
+        {
+          "group": "Shifts",
+          "pages": [
+            "reference/shifts",
+            "reference/webhooks-3"
+          ]
+        },
+        {
+          "group": "Pay Statements",
+          "pages": [
+            "reference/pay-statements",
+            "reference/pay-statements-webhook"
+          ]
+        },
+        {
+          "group": "Tax Documents",
+          "pages": [
+            "reference/tax-documents"
+          ]
+        },
+        {
+          "group": "Reports",
+          "pages": [
+            "reference/reports"
+          ]
+        },
+        {
+          "group": "Uploaded Documents",
+          "pages": [
+            "reference/uploaded-documents"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Direct Deposit Switching",
+      "pages": [
+        "reference/bank-accounts",
+        {
+          "group": "Bank Accounts",
+          "pages": [
+            "reference/bank-accounts",
+            "reference/bank-accounts-1"
+          ]
+        },
+        {
+          "group": "Deposit Switch Reports",
+          "pages": [
+            "reference/deposit-switch-reports"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Insurance",
+      "pages": [
+        "reference/insurance-reports",
+        {
+          "group": "Insurance Reports",
+          "pages": [
+            "reference/insurance-reports"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Financial Accounts",
+      "pages": [
+        "reference/accounts",
+        {
+          "group": "Accounts",
+          "pages": [
+            "reference/accounts"
+          ]
+        },
+        {
+          "group": "Transactions",
+          "pages": [
+            "reference/transactions"
+          ]
+        },
+        {
+          "group": "Income Report",
+          "pages": [
+            "reference/income-report"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Scoring Attributes",
+      "pages": [
+        "reference/scoring-attributes-report",
+        {
+          "group": "Report",
+          "pages": [
+            "reference/scoring-attributes-report"
+          ]
+        }
       ]
     }
   ],
-  "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
-  }
+  "tabs": [
+    {
+      "name": "Guides",
+      "url": "/docs"
+    },
+    {
+      "name": "API Reference",
+      "url": "/reference"
+    }
+  ]
 }

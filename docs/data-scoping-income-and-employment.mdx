@@ -1,0 +1,497 @@
+---
+title: "Data Reference for Income and Employment"
+description: "View the reference data for verification, employment, employer, income, and employee identity information in an income and employment report."
+---
+
+[Suggest Edits](/edit/data-scoping-income-and-employment)
+
+# Overview
+
+The sections below cover each of the data values and configurations for income and employment reports. Use the [Retrieve an income and employment report endpoint](/reference/income_verification) to collect the data.
+
+# Data Structure
+
+* [Example Report](#example-report)
+* [Verification Metadata](#verification-data)
+* [Income and Employment data](#employment-and-income-data)
+* [Company](#company)
+* [Profile](#profile)
+* [Annual income summary](#annual-income-summary)
+* [Statements](#statements)
+* [Earnings from statements](#earnings)
+* [Deductions form statements](#deductions)
+* [Bank accounts and pay allocations](#bank-accounts)
+* [Summary report in PDF](#downloading-pdf-reports)
+
+# Field Customization
+
+In your [Dashboard](/docs/dashboard), select specific data fields for your API response. Mandatory fields are grayed out and can't be disabled. View the example below.
+
+![](/images/docs/79cb6de-56.png)
+
+# Example report
+
+The JSON sample below contains a comprehensive response.
+
+<CodeGroup>
+  ```json json
+  {
+    "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "status": "new",
+    "completed_at": "2021-04-06 11:30:00+00:00",
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "tracking_info": "user123456",
+    "refresh_status": "new",
+    "employments": [
+      {
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "job_title": "PR associate",
+        "job_type": "F",
+        "start_date": "2018-01-01",
+        "end_date": "2019-08-24",
+        "external_last_updated": "2019-08-24",
+        "original_hire_date": "2017-06-21",
+        "is_active": false,
+        "dates_from_statements": false,
+        "derived_fields": [
+          "is_active"
+        ],
+        "missing_data_fields": [
+          "w2s"
+        ],
+        "profile": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "middle_initials": "K",
+          "ssn": "123456789",
+          "email": "[email protected]",
+          "date_of_birth": "1992-03-03",
+          "home_address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210"
+          }
+        },
+        "company": {
+          "name": "Facebook Demo",
+          "address": {
+            "street": "1 Hacker Way",
+            "city": "Menlo Park",
+            "state": "CA",
+            "zip": "94025"
+          },
+          "phone": "6503087300"
+        },
+        "income": "70000.00",
+        "income_unit": "YEARLY",
+        "pay_rate": "2153.60",
+        "pay_frequency": "M",
+        "manager_name": "Jenny McDouglas",
+        "statements": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "pay_date": "2018-05-15",
+            "net_pay": "11500.32",
+            "net_pay_ytd": "31980.64",
+            "gross_pay": "13900.11",
+            "gross_pay_ytd": "49200.00",
+            "bonus": "100.00",
+            "commission": "12000.00",
+            "hours": "40.00",
+            "basis_of_pay": "S",
+            "period_start": "2018-05-01",
+            "period_end": "2018-05-15",
+            "regular": "1695.11",
+            "regular_ytd": "23000.00",
+            "bonus_ytd": "1000.00",
+            "commission_ytd": "24000.00",
+            "overtime": "45.00",
+            "overtime_ytd": "500.00",
+            "other_pay": "60.00",
+            "other_pay_ytd": "700.00",
+            "earnings": [
+              {}
+            ],
+            "earnings_ytd": [
+              {}
+            ],
+            "deductions": [
+              {}
+            ],
+            "deductions_ytd": [
+              {}
+            ],
+            "md5sum": "03639d6a6624f69a54a88ea90bd25e9d",
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/paystub_sample.pdf"
+          }
+        ],
+        "annual_income_summary": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "year": 2018,
+            "regular": "23000.00",
+            "bonus": "1000.00",
+            "commission": "24000.00",
+            "overtime": "500.00",
+            "other_pay": "700.00",
+            "net_pay": "31980.64",
+            "gross_pay": "49200.00"
+          }
+        ],
+        "bank_accounts": [
+          {
+            "account_number": "1234567890",
+            "routing_number": "123456789",
+            "account_name": "My Bank",
+            "account_type": "C",
+            "deposit_type": "A",
+            "deposit_value": "200.00",
+            "bank_name": "TD Bank"
+          }
+        ],
+        "annual_salary": "70000.00",
+        "hourly_salary": "36.40",
+        "w2s": [
+          {
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/W2_sample.pdf",
+            "md5sum": "f65e30c39124ad707ac4b3aeaee923a7",
+            "year": 2020
+          }
+        ]
+      }
+    ],
+    "provider": "adp"
+  }
+  ```
+</CodeGroup>
+
+# Verification data
+
+The data below relates to income and employment verification. Truv has two endpoints for the retrieval of the VOIE report.
+
+### [VOIE Report for a Link](/reference/reports)
+
+| Attribute       | Type             | Description                                                                                                                                                   |
+| --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | string           | Unique ID of the report                                                                                                                                       |
+| status          | string           | Task status from [Connection Lifecycle](/reference/connection-lifecycle)                                                                                      |
+| completed\_at   | string           | Timestamp of completed report                                                                                                                                 |
+| finished\_at    | string           | Time when report was finished                                                                                                                                 |
+| access\_token   | string           | access\_token for a Link to payroll provider                                                                                                                  |
+| tracking\_info  | string           | Provided string value when `bridge_token` was created                                                                                                         |
+| is\_suspicious  | boolean          | Flag to indicate if the data from the source is suspicious. For example: Fraud detected in uploaded documents or SSN of the user does not match with the data |
+| provider        | string           | User connected payroll provider                                                                                                                               |
+| data\_source    | string           | Source of data`payroll` - Payroll provider parsing`docs` - User-uploaded documents                                                                            |
+| pdf\_report     | uri              | Employer verification report in PDF format                                                                                                                    |
+| refresh\_status | string           | Status of most recent refresh task                                                                                                                            |
+| employments     | array of objects | List of employer data, see [Employments](#employments)                                                                                                        |
+
+### [VOIE Report for a User](/reference/voie-reports)
+
+| Attribute       | Type             | Description                                           |
+| --------------- | ---------------- | ----------------------------------------------------- |
+| report\_id      | string           | Unique ID of the report                               |
+| created\_at     | string           | Timestamp when the report was created                 |
+| completed\_at   | string           | Timestamp of completed report                         |
+| links           | array of objects | List of employment links, see [Links](#links)         |
+| tracking\_info  | string           | Provided string value when `bridge_token` was created |
+| provider        | string           | User connected payroll provider                       |
+| refresh\_status | string           | Status of most recent refresh task                    |
+| employments     | array of objects | List of payroll provider employments received         |
+
+### Links
+
+The information in this table is for values in the Links object.
+
+| Attribute      | Type             | Description                                            |
+| -------------- | ---------------- | ------------------------------------------------------ |
+| id             | string           | Unique identifier of the most recent data pull         |
+| link\_id       | string           | Unique identifier of the link                          |
+| tracking\_info | string           | Additional optional identifier passed by user          |
+| provider       | string           | Data provider ID                                       |
+| employments    | array of objects | List of employee data, see [Employments](#employments) |
+
+# Employment and income data
+
+## Employments
+
+The Employments object contains the values and descriptions below.
+
+| Attribute                                         | Type                       | Description                                                                                                                                                   |
+| ------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                                                | string                     | Unique ID for an employment                                                                                                                                   |
+| job\_title                                        | string (nullable)          | Employee's job title                                                                                                                                          |
+| job\_type                                         | string (nullable)          | Type of employment recorded in payroll provider:`F` - Full Time`P` - Part Time`S` - Seasonal`D` - Daily (per diem)`C` - Contract                              |
+| start\_date                                       | string(date)               | Date when employment started                                                                                                                                  |
+| end\_date                                         | string(date) (nullable)    | Date when employment ended                                                                                                                                    |
+| external\_last\_updated                           | string(date) (nullable)    | Date of last update from payroll provider for employment data                                                                                                 |
+| original\_hire\_date                              | string(date) (nullable)    | Date when employee was originally hired                                                                                                                       |
+| is\_active                                        | boolean (nullable)         | Status of active employment                                                                                                                                   |
+| dates\_from\_statements                           | boolean (nullable)         | Status of employee's hire and termination dates from first and last pay statements **(Deprecated)**                                                           |
+| derived\_fields                                   | object (nullable)          | Array of derived fields                                                                                                                                       |
+| missing\_data\_fields                             | object (nullable)          | List of missing data fields in the payroll API response                                                                                                       |
+| income                                            | string(decimal) (nullable) | Income amount not including commission or bonuses. The annual amount will be displayed for salaried individuals.                                              |
+| income\_unit                                      | string (nullable)          | Pay interval for `income`:`YEARLY` - Annual`MONTHLY` - Monthly`WEEKLY` - Weekly`DAILY` - Daily`HOURLY` - Hourly                                               |
+| pay\_frequency                                    | string (nullable)          | Pay frequency:`M` - Monthly`SM` - Semi-Monthly`BW` - Bi-Weekly`W` - Weekly                                                                                    |
+| pay\_rate                                         | string(decimal) (nullable) | Amount paid per pay cycle for salaried individuals. For hourly workers, refer to the `income` and `income_unit` fields for the corresponding pay information. |
+| manager\_name                                     | string (nullable)          | Direct supervisor's name                                                                                                                                      |
+| [company](#company)                               | object (nullable)          | Employer information                                                                                                                                          |
+| [profile](#profile)                               | object (nullable)          | Identity information                                                                                                                                          |
+| [annual\_income\_summary](#annual-income-summary) | object (nullable)          | Annual income summary from last pay stub of the year                                                                                                          |
+| [statements](#statements)                         | object (nullable)          | List of paystubs found in the payroll account                                                                                                                 |
+| [w2s](#w2s)                                       | object (nullable)          | List of W-2 forms found in the payroll account                                                                                                                |
+| [bank\_accounts](#bank-accounts)                  | object (nullable)          | List of bank accounts linked to the payroll account and allocations for direct deposit                                                                        |
+| gse\_accepted                                     | Boolean                    | Status of provider eligibility from Fannie Mae Desktop Underwriter (only applies to [VOIE Report for a User](/reference/users_reports))                       |
+
+# Company
+
+This table covers information about employers within our payroll provider records.
+
+| Attribute           | Type              | Description                    |
+| ------------------- | ----------------- | ------------------------------ |
+| name                | string            | Employer name                  |
+| [address](#address) | object            | Employer address.              |
+| phone               | string (nullable) | Employer phone number          |
+| ein                 | string (nullable) | Employer Identification Number |
+
+Truv will try to normalize address to a standard form, but in some rare cases (less than 0.1%), components could be returned as-is from the data provider. E.g. state might be returned as 'California' instead of 'CA'.
+
+# Profile
+
+The table below is a summary of personal employee information from the payroll provider.
+
+| Attribute                 | Type                     | Description                                                |
+| ------------------------- | ------------------------ | ---------------------------------------------------------- |
+| id                        | string                   | ID of the object                                           |
+| created\_at               | string                   | Person's identity info was retrieved first time (ISO 8601) |
+| updated\_at               | string                   | Person's identity info was retrieved last time (ISO 8601)  |
+| first\_name               | string                   | First name                                                 |
+| last\_name                | string                   | Last name                                                  |
+| full\_name                | string                   | Full name                                                  |
+| middle\_initials          | string (nullable)        | Middle initials                                            |
+| ssn                       | string (nullable)        | Social security number (Full or last 4 digits)             |
+| email                     | string(email) (nullable) | Personal or work email address                             |
+| date\_of\_birth           | string(date) (nullable)  | Date of birth                                              |
+| [home\_address](#address) | object                   | Home address                                               |
+
+## Address
+
+The values in this table are for the address object.
+
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| street    | string | Street      |
+| city      | string | City        |
+| state     | string | State       |
+| zip       | string | Zip         |
+| country   | string | Country     |
+
+# Annual income summary
+
+The values below are from the annual income summary from the last pay stub of the year.
+
+| Attribute  | Type                       | Description              |
+| ---------- | -------------------------- | ------------------------ |
+| id         | string                     | Unique ID                |
+| year       | integer                    | Year                     |
+| regular    | string(decimal) (nullable) | Regular salary           |
+| bonus      | string(decimal) (nullable) | Bonuses                  |
+| commission | string(decimal) (nullable) | Commissions              |
+| overtime   | string(decimal) (nullable) | Overtime                 |
+| other\_pay | string(decimal) (nullable) | All other type of income |
+| gross\_pay | string(decimal) (nullable) | Gross income             |
+| net\_pay   | string(decimal) (nullable) | Net income               |
+
+# Statements
+
+The table below covers pay stub information.
+
+| Attribute                 | Type                        | Description                                                                                                              |
+| ------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| id                        | string                      | Unique ID                                                                                                                |
+| check\_number             | string (nullable)           | External ID of pay stub from payroll provider                                                                            |
+| pay\_date                 | string(date)                | Pay Date                                                                                                                 |
+| period\_start             | string(date) (nullable)     | Period start                                                                                                             |
+| period\_end               | string(date) (nullable)     | Period end                                                                                                               |
+| basis\_of\_pay            | string (nullable)           | Basis of pay:`S` - Salary`H` - Hourly`D` - Daily`W` - Weekly                                                             |
+| hours                     | string (nullable)           | Number of hours worked this pay period                                                                                   |
+| gross\_pay                | string(decimal) (nullable)  | Gross pay                                                                                                                |
+| gross\_pay\_ytd           | string(decimal) (nullable)  | Gross pay year to date                                                                                                   |
+| net\_pay                  | string(decimal) (nullable)  | Net pay                                                                                                                  |
+| net\_pay\_ytd             | string(decimal) (nullable)  | Net pay year to date                                                                                                     |
+| regular                   | string(decimal) (nullable)  | Regular pay                                                                                                              |
+| regular\_ytd              | string(decimal) (nullable)  | Regular pay year to date                                                                                                 |
+| bonus                     | string(decimal) (nullable)  | Bonuses                                                                                                                  |
+| bonus\_ytd                | string(decimal) (nullable)  | Bonuses year to date                                                                                                     |
+| commission                | string(decimal) (nullable)  | Commissions                                                                                                              |
+| commission\_ytd           | string(decimal) (nullable)  | Commission year to date                                                                                                  |
+| overtime                  | string(decimal) (nullable)  | Overtime pay                                                                                                             |
+| overtime\_ytd             | string(decimal) (nullable)  | Overtime pay year to date                                                                                                |
+| other\_pay                | string(decimal) (nullable)  | Sum of all other types of income                                                                                         |
+| other\_pay\_ytd           | string(decimal) (nullable)  | Year to date sum of all other types of income                                                                            |
+| [earnings](#earnings)     | object (nullable)           | Earnings for this pay cycle by type                                                                                      |
+| earnings\_ytd             | string (nullable)           | Earnings year to date by type                                                                                            |
+|      name                 | string (nullable)           | Earnings name                                                                                                            |
+|      amount               | string (nullable)           | Earnings amount value                                                                                                    |
+|      category             | string (nullable)           | Title of category Supported categories: regular, bonus, commission, overtime, other\_pay                                 |
+|      rate                 | string (nullable)           | Pay rate for a specified earnings name                                                                                   |
+|      units                | string (nullable)           | Number of hours worked for a specified earnings name                                                                     |
+| [deductions](#deductions) | object (nullable)           | Deductions for this pay cycle by type                                                                                    |
+| deductions\_ytd           | object (nullable)           | Deductions year to date by type                                                                                          |
+|      amount               | string (decimal) (nullable) | Deductions amount value                                                                                                  |
+|      category             | string (nullable)           | Title of category Supported categories: memo, medicare, retirement, socialsec, federal, state, garnishment, local, other |
+|      name                 | string (nullable)           | Deductions name                                                                                                          |
+| md5sum                    | string(string) (nullable)   | Computed MD5 hash value from file content                                                                                |
+| file                      | string(uri) (nullable)      | Content-type format specified link to pay stub file                                                                      |
+| derived\_fields           | object (nullable)           | Array of derived fields                                                                                                  |
+| missing\_data\_fields     | object (nullable)           | List of missing data fields in the payroll API response                                                                  |
+
+## Sample pay stub
+
+The image file below is an example document for an individual pay stub.
+
+# Earnings
+
+This field contains a statement object with an array of all earnings information.
+
+| Attribute | Type                        | Description                                                                              |
+| --------- | --------------------------- | ---------------------------------------------------------------------------------------- |
+| name      | string (nullable)           | Earnings name                                                                            |
+| amount    | string (decimal) (nullable) | Earnings amount value                                                                    |
+| category  | string (nullable)           | Title of category Supported categories: regular, bonus, commission, overtime, other\_pay |
+| rate      | string (nullable)           | Pay rate for a specified earnings name                                                   |
+| units     | string (nullable)           | Number of hours worked for a specified earnings name                                     |
+
+## Earnings response
+
+The sample below is a JSON response for earnings.
+
+<CodeGroup>
+  ```json json
+  [
+    {
+      "name": "Regular",
+      "amount": "38072.00",
+      "category": "regular",
+      "rate": null,
+      "units": null
+    },
+    {
+      "name": "Bonus",
+      "amount": "10000.00",
+      "category": "bonus"
+    },
+    {
+      "name": "Overtime",
+      "amount": "60.58",
+      "category": "overtime",
+      "rate": "30.29",
+      "units": "2"
+     }
+  ]
+  ```
+</CodeGroup>
+
+# Deductions
+
+This field contains a statement object with an array of all deductions information.
+
+| Attribute | Type                        | Description                                                                                                              |
+| --------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| amount    | string (decimal) (nullable) | Deductions amount value                                                                                                  |
+| category  | string (nullable)           | Title of category Supported categories: memo, medicare, retirement, socialsec, federal, state, garnishment, local, other |
+| name      | string (nullable)           | Deductions name                                                                                                          |
+
+## Deductions response
+
+The JSON response below contains examples of deductions.
+
+<CodeGroup>
+  ```json json
+  [
+    {
+      "amount": "127.01",
+      "category": "socialsec",
+      "name": "Social Security Tax"
+    },
+    {
+      "amount": "46.23",
+      "category": "state",
+      "name": "VA State Income Tax"
+    },
+    {
+      "amount": "29.70",
+      "category": "medicare",
+      "name": "Medicare Tax"
+    }
+  ]
+  ```
+</CodeGroup>
+
+# W2s
+
+The values in this table are for the W-2s object field.
+
+| Attribute               | Type    | Description                                                     |
+| ----------------------- | ------- | --------------------------------------------------------------- |
+| file                    | uri     | Link to W2 report file, format is specified in the content-type |
+| md5sum                  | string  | MD5 hash value computed based on file content                   |
+| year                    | integer | Year                                                            |
+| wages                   | string  | Wages, tips, other compensation (Section 1)                     |
+| federal\_tax            | string  | Federal income tax withheld (Section 2)                         |
+| social\_security\_wages | string  | Social security wages (Section 3)                               |
+| social\_security\_tax   | string  | Social security tax withheld (Section 4)                        |
+| medicare\_wages         | string  | Medicare wages (Section 5)                                      |
+| medicare\_tax           | string  | Medicare tax withheld (Section 6)                               |
+| gross\_pay              | string  | Gross pay                                                       |
+
+## W2 example
+
+The image below is a sample W-2 form.
+
+# Bank accounts
+
+This field covers bank account information from connected payroll accounts. It also includes direct deposit allocations for each.
+
+| Attribute       | Type                       | Description                                                                                            |
+| --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------ |
+| account\_number | string                     | Account number                                                                                         |
+| routing\_number | string (nullable)          | Routing number                                                                                         |
+| account\_name   | string (nullable)          | User friendly account name                                                                             |
+| bank\_name      | string (nullable)          | Bank name                                                                                              |
+| account\_type   | string (nullable)          | Account type:`C` - Checking account`S` - Savings account                                               |
+| deposit\_type   | string (nullable)          | Deposit type:`E` - Entire paycheck`P` - Percentage of the paycheck`A` - Fixed amount from the paycheck |
+| deposit\_value  | string(decimal) (nullable) | Deposit value                                                                                          |
+
+# Downloading PDF Reports
+
+When users connect successfully, Truv automatically generates reports. These are available for users to download from the dashboard or through the API.
+
+![](/images/docs/fd22027-pdfreport.png "pdfreport.png")
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Data Structure](#data-structure)
+  * [Field Customization](#field-customization)
+  * [Example report](#example-report)
+  * [Verification data](#verification-data)
+  * [Employment and income data](#employment-and-income-data)
+    * [Employments](#employments)
+  * [Company](#company)
+  * [Profile](#profile)
+    * [Address](#address)
+  * [Annual income summary](#annual-income-summary)
+  * [Statements](#statements)
+    * [Sample pay stub](#sample-pay-stub)
+  * [Earnings](#earnings)
+    * [Earnings response](#earnings-response)
+  * [Deductions](#deductions)
+    * [Deductions response](#deductions-response)
+  * [W2s](#w2s)
+    * [W2 example](#w2-example)
+  * [Bank accounts](#bank-accounts)
+  * [Downloading PDF Reports](#downloading-pdf-reports)

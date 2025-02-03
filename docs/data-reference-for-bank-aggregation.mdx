@@ -1,0 +1,466 @@
+---
+title: "Data Reference for Financial Account Aggregation"
+description: "View the reference data for verifying identity, accounts, transactions, and asset information."
+---
+
+[Suggest Edits](/edit/data-reference-for-bank-aggregation)
+
+# Overview
+
+The sections below cover each of the data values for identity and transactions endpoints. Use the [transactions endpoint](/reference/link-bank-data-transactions) and [identity endpoint](/reference/identity) to collect the data.
+
+# Data structure
+
+* [Identity](#identity-data)
+* [Accounts data](#accounts-data)
+* [Transactions data](#transactions-data)
+
+# Example responses
+
+The JSON samples below contain a set of comprehensive responses.
+
+### Identity
+
+The response below covers identification values.
+
+<CodeGroup>
+  ```json JSON
+  {
+    "id": "383cac95017d451ba0e353684c521c66",
+    "first_name": "John",
+    "last_name": "Doe",
+    "full_name": "John Doe",
+    "middle_initials": null,
+    "email": "[email protected]",
+    "ssn": null,
+    "date_of_birth": null,
+    "home_address": {
+      "zip": "94062",
+      "city": "Redwood City",
+      "state": "CA",
+      "street": "35 Dry Ridge Rd",
+      "country": "US"
+    }
+  }
+  ```
+</CodeGroup>
+
+### Accounts and transactions
+
+These values contain information for the user's accounts and transactions.
+
+<CodeGroup>
+  ```json json
+  {
+    "count": 10,
+    "next": "https://prod.truv.com/v1/link/0000000000/transactions?page=2",
+    "previous": "https://prod.truv.com/v1/link/0000000000/transactions?page=1",
+    "accounts": [
+      {
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "created_at": "2022-05-04T11:30:00Z",
+        "updated_at": "2022-05-04T12:00:00Z",
+        "type": "CHECKING",
+        "subtype": "",
+        "mask": "6789",
+        "nickname": "My account",
+        "balances": {
+          "currency_code": "USD",
+          "balance": "100.00"
+        }
+      }
+    ],
+    "transactions": [
+      {
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "created_at": "2022-05-04T11:30:00Z",
+        "updated_at": "2022-05-04T12:00:00Z",
+        "account_id": "68a7e80942ce4ad58a93f70ce411549a",
+        "external_id": "external_key_243901",
+        "amount": "100.00",
+        "currency_code": "USD",
+        "check_number": "123456",
+        "categories": [
+          "Transfer"
+        ],
+        "description": "Some transaction",
+        "status": "POSTED",
+        "type": "DEBIT",
+        "posted_at": "2022-05-04T11:30:00Z",
+        "transacted_at": "2022-05-04T11:30:00Z",
+        "memo": "",
+        "merchant_category_code": 5967,
+        "location": {
+          "latitude": "13.45",
+          "longitude": "12.34"
+        }
+      }
+    ]
+  }
+  ```
+</CodeGroup>
+
+# Identity data
+
+The table below is a summary of personal employee information from the payroll provider.
+
+| Name             | Type                     | Description                                   |
+| ---------------- | ------------------------ | --------------------------------------------- |
+| first\_name      | string                   | First name                                    |
+| last\_name       | string                   | Last name                                     |
+| middle\_initials | string (nullable)        | Middle initials                               |
+| ssn              | string (nullable)        | Social Security Number, full or last 4 digits |
+| email            | string(email) (nullable) | Personal or work email address                |
+| date\_of\_birth  | string(date) (nullable)  | Date of birth                                 |
+| home\_address    | object (nullable)        | Home address                                  |
+| street           | string (nullable)        | Street                                        |
+| city             | string (nullable)        | City                                          |
+| state            | string (nullable)        | State                                         |
+| zip              | string (nullable)        | Zip code                                      |
+
+# Accounts data
+
+This field covers bank account information from connected bank accounts.
+
+| Name               | Type              | Description                                                                                                                                                                                                                                                                                                                          |
+| ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id                 | string            | Unique ID for the account                                                                                                                                                                                                                                                                                                            |
+| created\_at        | string            | Timestamp of when account data was pulled                                                                                                                                                                                                                                                                                            |
+| updated\_at        | string            | Date and time for when account was most recently updated                                                                                                                                                                                                                                                                             |
+| external\_id       | string (nullable) | Unique identifier for account at the financial Institution                                                                                                                                                                                                                                                                           |
+| type               | string (nullable) | General or parent type of the account                                                                                                                                                                                                                                                                                                |
+| subtype            | string (nullable) | Account’s subtype, example `PLAN_401_K`, `MONEY_MARKET`, or `HOME_EQUITY`                                                                                                                                                                                                                                                            |
+| mask               | string            | Last 4 digits of the account number associated with the account                                                                                                                                                                                                                                                                      |
+| nickname           | string (nullable) | User friendly account name                                                                                                                                                                                                                                                                                                           |
+| currency\_code     | string (nullable) | Three-character ISO 4217 currency code                                                                                                                                                                                                                                                                                               |
+| balance            | string (nullable) | Current account balance,`PENDING` transactions may not be updated with the current balance. Asset-type accounts (`CHECKING`, `SAVINGS`, `INVESTMENT`) may have a negative balance if they are marked as overdraft. Debt-type accounts (`CREDIT_CARD`, `LOAN`, `LINE_OF_CREDIT`, `MORTGAGE`) may have a negative balance if overpaid. |
+| available\_balance |                   | Balance available in asset accounts, such as checking and savings, `PENDING` transactions may not be updated with the current balance. All account types have a positive value for `available_balance` as determined from the `balance` field.                                                                                       |
+| credit\_limit      | string (nullable) | Credit limit associated with the account                                                                                                                                                                                                                                                                                             |
+
+## Account types and subtypes
+
+The tables below contain valid fields and groups for the user's account.
+
+| Parent types                                                  |
+| ------------------------------------------------------------- |
+| ANY (not provided by data partner or invalid number provided) |
+| CHECKING                                                      |
+| SAVINGS                                                       |
+| LOAN                                                          |
+| CREDIT\_CARD                                                  |
+| INVESTMENT                                                    |
+| LINE\_OF\_CREDIT                                              |
+| MORTGAGE                                                      |
+| PROPERTY                                                      |
+| CASH                                                          |
+| INSURANCE                                                     |
+| PREPAID                                                       |
+| CHECKING\_LINE\_OF\_CREDIT                                    |
+
+| Subtype                                        | Parent type |
+| ---------------------------------------------- | ----------- |
+| MONEY\_MARKET                                  | SAVINGS     |
+| CERTIFICATE\_OF\_DEPOSIT                       | SAVINGS     |
+| AUTO                                           | LOAN        |
+| STUDENT                                        | LOAN        |
+| SMALL\_BUSINESS                                | LOAN        |
+| PERSONAL                                       | LOAN        |
+| PERSONAL\_WITH\_COLLATERAL                     | LOAN        |
+| HOME\_EQUITY                                   | LOAN        |
+| PLAN\_401\_K                                   | INVESTMENT  |
+| PLAN\_403\_B                                   | INVESTMENT  |
+| PLAN\_529                                      | INVESTMENT  |
+| IRA                                            | INVESTMENT  |
+| ROLLOVER\_IRA                                  | INVESTMENT  |
+| ROTH\_IRA                                      | INVESTMENT  |
+| TAXABLE                                        | INVESTMENT  |
+| NON\_TAXABLE                                   | INVESTMENT  |
+| BROKERAGE                                      | INVESTMENT  |
+| TRUST                                          | INVESTMENT  |
+| UNIFORM\_GIFTS\_TO\_MINORS\_ACT                | INVESTMENT  |
+| PLAN\_457                                      | INVESTMENT  |
+| PENSION                                        | INVESTMENT  |
+| EMPLOYEE\_STOCK\_OWNERSHIP\_PLAN               | INVESTMENT  |
+| SIMPLIFIED\_EMPLOYEE\_PENSION                  | INVESTMENT  |
+| SIMPLE\_IRA                                    | INVESTMENT  |
+| BOAT                                           | LOAN        |
+| POWERSPORTS                                    | LOAN        |
+| RV                                             | LOAN        |
+| HELOC                                          | LOAN        |
+| PLAN\_ROTH\_401\_K                             | INVESTMENT  |
+| FIXED\_ANNUITY                                 | INVESTMENT  |
+| VARIABLE\_ANNUITY                              | INVESTMENT  |
+| VEHICLE\_INSURANCE                             | INSURANCE   |
+| DISABILITY                                     | INSURANCE   |
+| HEALTH                                         | INSURANCE   |
+| LONG\_TERM\_CARE                               | INSURANCE   |
+| PROPERTY\_AND\_CASUALTY                        | INSURANCE   |
+| UNIVERSAL\_LIFE                                | INSURANCE   |
+| TERM\_LIFE                                     | INSURANCE   |
+| WHOLE\_LIFE                                    | INSURANCE   |
+| ACCIDENTAL\_DEATH\_AND\_DISMEMBERMENT          | INSURANCE   |
+| VARIABLE\_UNIVERSAL\_LIFE                      | INSURANCE   |
+| HSA                                            | INVESTMENT  |
+| TAX\_FREE\_SAVINGS\_ACCOUNT                    | INVESTMENT  |
+| INDIVIDUAL                                     | INVESTMENT  |
+| REGISTERED\_RETIREMENT\_INCOME\_FUND           | INVESTMENT  |
+| CASH\_MANAGEMENT\_ACCOUNT                      | INVESTMENT  |
+| EMPLOYEE\_STOCK\_PURCHASE\_PLAN                | INVESTMENT  |
+| REGISTERED\_EDUCATION\_SAVINGS\_PLAN           | INVESTMENT  |
+| PROFIT\_SHARING\_PLAN                          | INVESTMENT  |
+| UNIFORM\_TRANSFER\_TO\_MINORS\_ACT             | INVESTMENT  |
+| PLAN\_401\_A                                   | INVESTMENT  |
+| SARSEP\_IRA                                    | INVESTMENT  |
+| FIXED\_ANNUITY\_TRADITIONAL\_IRA               | INVESTMENT  |
+| VARIABLE\_ANNUITY\_TRADITIONAL\_IRA            | INVESTMENT  |
+| SEPP\_IRA                                      | INVESTMENT  |
+| INHERITED\_TRADITIONAL\_IRA                    | INVESTMENT  |
+| FIXED\_ANNUITY\_ROTH\_IRA                      | INVESTMENT  |
+| VARIABLE\_ANNUITY\_ROTH\_IRA                   | INVESTMENT  |
+| INHERITED\_ROTH\_IRA                           | INVESTMENT  |
+| COVERDELL                                      | INVESTMENT  |
+| ADVISORY\_ACCOUNT                              | INVESTMENT  |
+| BROKERAGE\_MARGIN                              | INVESTMENT  |
+| CHARITABLE\_GIFT\_ACCOUNT                      | INVESTMENT  |
+| CHURCH\_ACCOUNT                                | INVESTMENT  |
+| CONSERVATORSHIP                                | INVESTMENT  |
+| CUSTODIAL                                      | INVESTMENT  |
+| DEFINED\_BENEFIT\_PLAN                         | INVESTMENT  |
+| DEFINED\_CONTRIBUTION\_PLAN                    | INVESTMENT  |
+| EDUCATIONAL                                    | INVESTMENT  |
+| ESTATE                                         | INVESTMENT  |
+| EXECUTOR                                       | INVESTMENT  |
+| GROUP\_RETIREMENT\_SAVINGS\_PLAN               | INVESTMENT  |
+| GUARANTEED\_INVESTMENT\_CERTIFICATE            | INVESTMENT  |
+| HRA                                            | INVESTMENT  |
+| INDEXED\_ANNUITY                               | INVESTMENT  |
+| INVESTMENT\_CLUB                               | INVESTMENT  |
+| IRREVOCABLE\_TRUST                             | INVESTMENT  |
+| JOINT\_TENANTS\_BY\_ENTIRITY                   | INVESTMENT  |
+| JOINT\_TENANTS\_COMMUNITY\_PROPERTY            | INVESTMENT  |
+| JOINT\_TENANTS\_IN\_COMMON                     | INVESTMENT  |
+| JOINT\_TENANTS\_WITH\_RIGHTS\_OF\_SURVIVORSHIP | INVESTMENT  |
+| KEOUGH\_PLAN                                   | INVESTMENT  |
+| LIFE\_INCOME\_FUND                             | INVESTMENT  |
+| LIVING\_TRUST                                  | INVESTMENT  |
+| LOCKED\_IN\_RETIREMENT\_ACCOUNT                | INVESTMENT  |
+| LOCKED\_IN\_RETIREMENT\_INVESTMENT\_FUND       | INVESTMENT  |
+| LOCKED\_IN\_RETIREMENT\_SAVINGS\_ACCOUNT       | INVESTMENT  |
+| MONEY\_PURCHASE\_PLAN                          | INVESTMENT  |
+| PARTNERSHIP                                    | INVESTMENT  |
+| PLAN\_409\_A                                   | INVESTMENT  |
+| PLAN\_ROTH\_403\_B                             | INVESTMENT  |
+| REGISTERED\_DISABILITY\_SAVINGS\_PLAN          | INVESTMENT  |
+| REGISTERED\_LOCKED\_IN\_SAVINGS\_PLAN          | INVESTMENT  |
+| REGISTERED\_PENSION\_PLAN                      | INVESTMENT  |
+| REGISTERED\_RETIREMENT\_SAVINGS\_PLAN          | INVESTMENT  |
+| REVOCABLE\_TRUST                               | INVESTMENT  |
+| ROTH\_CONVERSION                               | INVESTMENT  |
+| SOLE\_PROPRIETORSHIP                           | INVESTMENT  |
+| SPOUSAL\_IRA                                   | INVESTMENT  |
+| SPOUSAL\_ROTH\_IRA                             | INVESTMENT  |
+| TESTAMENTARY\_TRUST                            | INVESTMENT  |
+| THRIFT\_SAVINGS\_PLAN                          | INVESTMENT  |
+| INHERITED\_ANNUITY                             | INVESTMENT  |
+| CORPORATE\_ACCOUNT                             | INVESTMENT  |
+| LIMITED\_LIABILITY\_ACCOUNT                    | INVESTMENT  |
+
+# Transactions
+
+The table below covers transaction history for the connected bank accounts.
+
+| Name                     | Type              | Description                                                                                        |
+| ------------------------ | ----------------- | -------------------------------------------------------------------------------------------------- |
+| id                       | string            | Unique ID for the transaction                                                                      |
+| created\_at              | string            | Timestamp of when transaction was retrieved                                                        |
+| updated\_at              | string            | Date and time at when transaction was most recently updated                                        |
+| account\_id              | string            | Unique ID for the account where transaction occurred                                               |
+| external\_id             | string (nullable) | Unique identifier of transaction at the financial institution                                      |
+| amount                   | string (nullable) | Transaction amount                                                                                 |
+| currency\_code           | string (nullable) | Three-character ISO 4217 currency code                                                             |
+| check\_number            | string (nullable) | Check number associated with transaction                                                           |
+| categories               | string            | Transaction category, [view the complete Transaction category list below](#transaction-categories) |
+| description              | string            | Original description of transaction as provided by data provider                                   |
+| status                   | string            | Transaction status, either `POSTED` or `PENDING`                                                   |
+| type                     | string            | Transaction type of transaction, either `CREDIT` or `DEBIT`                                        |
+| posted\_at               | string            | Date and time transaction posted to the account                                                    |
+| transacted\_at           | string            | Date and time transaction took place                                                               |
+| memo                     | string (nullable) | Additional transaction description                                                                 |
+| merchant\_category\_code | Integer           | ISO 18245 transaction category code                                                                |
+| location                 | object            | Location where transaction occurred, contains latitude and longitude                               |
+
+### Transaction categories
+
+The list below contains all valid transaction categories.
+
+* Auto & Transport
+
+  * Auto Insurance
+  * Auto Payment
+  * Gas
+  * Parking
+  * Public Transportation
+  * Service & Parts
+
+* Bills & Utilities
+
+  * Domain Names
+  * Fraud Protection
+  * Home Phone
+  * Hosting
+  * Internet
+  * Mobile Phone
+  * Television
+  * Utilities
+
+* Business Services
+
+  * Advertising
+  * Legal
+  * Office Supplies
+  * Printing
+  * Shipping
+
+* Education
+
+  * Books & Supplies
+  * Student Loan
+  * Tuition
+
+* Entertainment
+
+  * Amusement
+  * Arts
+  * Movies & DVDs
+  * Music
+  * Newspapers & Magazines
+
+* Fees & Charges
+
+  * ATM Fee
+  * Banking Fee
+  * Finance Charge
+  * Late Fee
+  * Service Fee
+  * Trade Commissions
+
+* Financial
+
+  * Financial Advisor
+  * Life Insurance
+
+* Food & Dining
+
+  * Alcohol & Bars
+  * Coffee Shops
+  * Fast Food
+  * Groceries
+  * Restaurants
+
+* Gifts & Donations
+
+  * Charity
+  * Gift
+
+* Health & Fitness
+
+  * Dentist
+  * Doctor
+  * Eyecare
+  * Gym
+  * Health Insurance
+  * Pharmacy
+  * Sports
+
+* Home
+
+  * Furnishings
+  * Home Improvement
+  * Home Insurance
+  * Home Services
+  * Home Supplies
+  * Lawn & Garden
+  * Mortgage & Rent
+
+* Income
+
+  * Bonus
+  * Interest Income
+  * Paycheck
+  * Reimbursement
+  * Rental Income
+  * Returned Purchase
+
+* Investments
+
+  * Buy
+  * Deposit
+  * Dividend & Cap Gains
+  * Sell
+  * Withdrawal
+
+* Kids
+
+  * Allowance
+  * Baby Supplies
+  * Babysitter & Daycare
+  * Child Support
+  * Kids Activities
+  * Toys
+
+* Personal Care
+
+  * Hair
+  * Laundry
+  * Spa & Massage
+
+* Pets
+
+  * Pet Food & Supplies
+  * Pet Grooming
+  * Veterinary
+
+* Shopping
+
+  * Books
+  * Clothing
+  * Hobbies
+  * Sporting Goods
+
+* Taxes
+
+  * Federal Tax
+  * Local Tax
+  * Property Tax
+  * Sales Tax
+  * State Tax
+
+* Transfer
+
+  * Credit Card Payment
+  * Transfer for Cash Spending
+  * Mortgage Payment
+
+* Travel
+
+  * Air Travel
+  * Hotel
+  * Rental Car & Taxi
+  * Vacation
+
+* Uncategorized
+
+  * Cash
+  * Check
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Data structure](#data-structure)
+  * [Example responses](#example-responses)
+  * [Identity data](#identity-data)
+  * [Accounts data](#accounts-data)
+    * [Account types and subtypes](#account-types-and-subtypes)
+  * [Transactions](#transactions)

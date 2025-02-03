@@ -1,0 +1,44 @@
+---
+title: "Data Refresh"
+description: "Stay up to date on changes to user account data with Data Refreshes."
+---
+
+[Suggest Edits](/edit/update-mode)
+
+# Overview
+
+Retrieve and refresh data from existing Links using [Data Refresh](/reference/data-refresh) endpoints. Requests to these endpoints initiate data refresh activity for connected accounts. Using Data Refresh, users avoid repeating credential authentication steps. Webhooks and the [Retrieve a data refresh status](/reference/refresh_task) endpoint also provides information on Task status.
+
+<Info>
+  Refresh status may result in an error state if a user has changed their password or their session has expired.
+</Info>
+
+## Session timing
+
+Users logging into a web service creates a session. With Truv, payroll systems determine the session duration when connecting. Data refreshes automatically during any active session.
+
+## Authentication issues
+
+Data refresh issues may result from authentication. View the table below for troubleshooting.
+
+| Issue                                 | Description                                                                                                                                                         | Endpoint response                                                                                                                               |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Change in login credentials**       | Username or password has changed                                                                                                                                    | [Retrieve a data refresh status](/reference/refresh_task)`/refresh/tasks/{task_id}/` returns a `login_error` value for `status` field           |
+| **Multi-factor authentication error** | Truv processes multi-factor authentication (MFA) questions without user response, or MFA scenarios with unique code provided by an authenticator app, email, or SMS | [Retrieve a data refresh status](/reference/refresh_task) `/refresh/tasks/{task_id}/` endpoint returns `mfa_error` value for the `status` field |
+
+### Resolving with re-authentication
+
+For `login_error` or `mfa_error` status values, prompt users with re-authentication. This allows users to reconnect to and validate payroll provider information.
+
+Use the [Create a bridge token](/reference/users_tokens) endpoint to create a new bridge\_token value. With a new `bridge_token` value, initialize Truv Bridge for the user. This prompts the applicant to re-authenticate and grant access to the most recent data from the payroll provider. When the Truv Bridge callback returns successfully, all of the most recent data becomes available to Truv endpoints.
+
+![](/images/docs/55ee9af-96.png)
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+    * [Session timing](#session-timing)
+    * [Authentication issues](#authentication-issues)

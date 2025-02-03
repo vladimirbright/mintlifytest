@@ -1,0 +1,78 @@
+---
+title: "Payroll Income Verification"
+description: "Suggest Edits"
+---
+
+<Info>
+  For implementations using Truv Order functionality, refer to the [Verification using Truv Orders](/docs/orders-guide) documentation.
+</Info>
+
+## Overview
+
+Payroll Income allows you to instantly verify employment details and income information, including the information available on a paystub, from a user-connected payroll account. Payroll Income supports approximately 90% of the US workforce, including gig income workers.
+
+## Integration Process
+
+1. **Create User Token** Call [`/user/`](/reference/users_create) to create a `user_id` that will represent the end user interacting with your application. This step only needs to be done once per end user. If you are using multiple Income data sources, do not repeat this step when switching to a different Income data source.
+
+2. **Generate a Bridge Token** Call [`/users/{user_id}/tokens/`](/reference/users_tokens) with the following parameters:
+
+   1. `user_id`: Provide the user\_id from /user/ .
+   2. `product_type`: Use `"income"`.
+   3. `data_sources`: Specify `["payroll"]` to connect exclusively to payroll. To enable fallback options, include additional `data_sources` such as `"docs"` and/or `"financial_accounts"` in the list.
+      <Info>
+        When including `"docs"` in the `data_sources`, the first and last name must be completed when creating the `user_id` in step 1.
+      </Info>
+   4. (Optional) `tracking_info`: To add a unique identifier from an internal system to identify a Truv transaction, enter it in the provided field.
+
+3. **Client-Side Setup** On the client side, create an instance of the Truv Bridge using the `bridge_token`. For more details, see [Implementing Truv Bridge](/docs/bridge-implementation).
+
+4. **Callbacks** Listen to the `onSuccess` and `onEvent` callbacks, which will trigger once the user completes the Truv Bridge session. More info [here](/docs/event-reference-for-truv-bridge#callbacks).
+
+5. **Listen for Webhooks** Listen for the `task-status-updated` webhook, which provides the status of the login attempt and indicates when the data is ready to be retrieved once the `status` is set to `done`. The `data_source` will specify the income source of the task. Use the `user_id` and `link_id` to trigger the corresponding income information retrieval. More info [here](/reference/webhooks-api).
+
+6. **Retrieve Income and/or Employment Data** Call [`/users/{user_id}/reports/`](/reference/users_reports) for user-specific report, [`/links/{link_id}/income/report/`](/reference/income_verification) for link specific income details or [`/links/{link_id}/employment/report/`](/reference/employment_verification) for employment-only details.
+
+<Info>
+  To obtain a [user-specific report](/reference/users_get_report) in PDF format, append the `?fmt=pdf` suffix when accessing the report using the `user_id` and the `report_id`. The `report_id` is provided when the [user-specific report](/reference/users_reports) is created.
+</Info>
+
+### Payroll Income Refresh
+
+On-demand [Payroll Income Refresh](/reference/data-refresh) enables the request for updated information from a previously connected payroll account.
+
+To trigger a refresh, call `/refresh/tasks/` and specify the `access_token` of the original successful connection to refresh.
+
+* If the refresh is successful, a `task-status-updated` webhook with `"status": "done"` will be received. The next time `/links/{link_id}/income/report/` or `/users/{user_id}/reports/` is called, updated data will be provided.
+* If the refresh is unsuccessful, a `task-status-updated` webhook with a status indicating a [Task error](/reference/connection-lifecycle#task-errors) will be received.
+  * To resolve this failure state, send the user through a Refresh Truv Bridge via `/users/{user_id}/tokens/` by including the `access_token`. Once the user completes the Refresh process, and a `task-status-updated` webhook with a`"status": "done"` will be sent if the retry is successful.
+
+### Download Original Documents
+
+To download PDF versions of the original payroll documents that were parsed when obtaining payroll data, use the `"file"` attribute returned by `/links/{link_id}/income/report/` or `/users/{user_id}/reports/`. The `"file"` attribute can be found inside the `statements` and `w2s` objects. Truv returns all PDFs provided by the payroll system.
+
+### Testing Payroll Income
+
+Income can be tested in Sandbox using Truv's [Testing](/docs/testing#all) credentials. Here are some login examples:
+
+* Happy path: username: `goodlogin`, password: `goodpassword`, SSN: `991-91-9991`
+* Login Error: username: `error.user`, password: `login_error`
+* Multiple employers: username: `multiple.employments`, password: `goodpassword`
+
+## Next Steps
+
+If you're ready to launch to Production, see the [Launch checklist](/docs/launch-checklist-copy-2).
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Integration Process](#integration-process)
+
+    * [Payroll Income Refresh](#payroll-income-refresh)
+    * [Download Original Documents](#download-original-documents)
+    * [Testing Payroll Income](#testing-payroll-income)
+
+  * [Next Steps](#next-steps)

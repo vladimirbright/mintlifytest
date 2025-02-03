@@ -1,0 +1,765 @@
+---
+title: "Quickstart Guide"
+description: "The Quickstart covers the entire workflow from setting up Truv Bridge to retrieving data with the API."
+---
+
+[Suggest Edits](/edit/quickstart-guide)
+
+# Introduction
+
+Welcome to Truv! This guide assists in quickly integrating Truv’s Income and Employment verification API into an application. Follow the steps below to get started.
+
+<Info>
+  For no-code solutions, use the [Truv Postman Collection](/reference/postman-1) to get started with Truv's API.
+</Info>
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+* A [Truv account](https://truv.com/get-api-keys/) and access to the [Truv Dashboard](https://dashboard.truv.com).
+* Truv [API keys](https://dashboard.truv.com/app/development/keys), accessible via the Truv Dashboard.
+* [Truv GitHub Quickstart](https://github.com/truvhq/quickstart).
+
+Sign up for Truv through the Dashboard and collect your API keys. Store these securely.
+
+### API Keys
+
+API keys are located under the Development section of the Truv Dashboard.
+
+| Key          | Description                      | Example                                            |
+| ------------ | -------------------------------- | -------------------------------------------------- |
+| `client_id`  | Private identifier for the team  | `dd21ca23c12142b6a0970b1e0afeXXXX`                 |
+| `access_key` | Private key for each environment | `sandbox-a57b3109f1f4a8b3f2ebbc1c526950f17954XXXX` |
+
+<Warning>
+  Keep the Client ID and Access Key secure. They provide access to sensitive information.
+</Warning>
+
+### Environments
+
+Truv supports three environments:
+
+* **Sandbox**: For development with test credentials, unlimited requests, and free.
+* **Development**: For testing integration with live credentials, includes 50 free successful tasks.
+* **Production**: For your production environment, all successful tasks are billed.
+
+<Info>
+  Contact [\[email protected\]](/cdn-cgi/l/email-protection#7b080e0b0b14090f3b0f090e0d55181416) for assistance at any step.
+</Info>
+
+# Configuring the App
+
+After obtaining the API keys, run the [Quickstart from Truv's GitHub](https://github.com/truvhq/quickstart) on a local machine. [Truv's GitHub page](https://github.com/truvhq) has examples in various languages.
+
+* [NodeJS](https://github.com/truvhq/quickstart/tree/master/node)
+* [Python](https://github.com/truvhq/quickstart/tree/master/python)
+* [Ruby](https://github.com/truvhq/quickstart/tree/master/ruby)
+* [C#](https://github.com/truvhq/quickstart/blob/master/c-sharp)
+* [Go](https://github.com/truvhq/quickstart/tree/master/golang)
+
+For mobile platforms, use the Quickstart apps for [iOS](https://github.com/truvhq/quickstart-ios) and [Android](https://github.com/truvhq/quickstart-android).
+
+## Step 1: Set Up Your Development Environment
+
+Clone the Truv Quickstart repository to get started quickly.
+
+<CodeGroup>
+  ```coffeescript Unix
+  # Clone the Quickstart repository
+  git clone https://github.com/truvhq/quickstart.git
+
+  # Open Quickstart
+  cd quickstart
+
+  # Create .env file 
+  make env
+
+  # Update the values in .env file by adding in your Client ID and Sandbox Access key. 
+  # API_CLIENT_ID=<Your Client ID here>
+  # API_SECRET=<Your Access key here>
+
+  # Also, in .env uncomment the line with API_PRODUCT_TYPE that you want to use
+  # API_PRODUCT_TYPE=employment
+  # API_PRODUCT_TYPE=income
+  # API_PRODUCT_TYPE=deposit_switch
+  # API_PRODUCT_TYPE=pll
+  # API_PRODUCT_TYPE=admin
+
+  # Run the make script for your coding language
+  make python_local
+  ```
+
+  ```coffeescript Docker
+  # Clone the Quickstart repository
+  git clone https://github.com/citadelid/quickstart.git
+
+  # Open Quickstart in your coding language
+  cd quickstart/python
+
+  # Copy the .env.example file to a new file in the same directory and name it .env. 
+  cp .env.example .env
+
+  # Update the values adding in the your Client ID and Sandbox Access key. 
+  #API_CLIENT_ID=<Your Client ID here>
+  #API_SECRET=<Your Access key here>
+  # Uncomment the line with API_PRODUCT_TYPE that you want to use
+  #API_PRODUCT_TYPE=employment
+
+  #Run the make script for your coding language
+  make python_docker
+  ```
+
+  ```coffeescript Swift
+  /*
+  Clone the Quickstart repository:
+  git clone https://github.com/truvhq/quickstart-ios.git
+
+  Open Quickstart:
+  cd quickstart-ios
+
+  Create constants file:
+  touch truv-quickstart/Constants.swift
+  */
+  import Foundation
+
+  var TruvClientID = "<client_id>"
+  var TruvClientSecret = "<access_key>"
+  var TruvAPIUrl = "https://prod.truv.com/v1/"
+  var TruvProductType = "<employment or income>"
+
+  /*
+  Open the project in XCode and run the app
+  */
+  ```
+
+  ```coffeescript Kotlin
+  /*
+  Clone the Quickstart repository:
+  git clone https://github.com/truvhq/quickstart-android.git
+
+  Open Quickstart:
+  cd quickstart-android
+
+  Create constants file:
+  touch local.properties
+  */
+
+  truvClientId="<client_id>"
+  truvSecret="<access_key>"
+  truvApiUrl="https://prod.truv.com/v1/"
+  truvProductType="<employment or income>"
+
+  /*
+  Open the project in Android Studio and run the app
+  */
+  ```
+</CodeGroup>
+
+Your app will run at `http://localhost:5001`. iOS and Android mobile apps launch in Xcode or Android Studio, respectively.
+
+Visit localhost and log in with Sandbox credentials as indicated on [Truv's Testing page](/docs/testing/)
+
+## Step 2: Generate a Link Token
+
+Most API requests interact with a Link, a Truv term for a connection to a payroll, insurance, tax, or financial provider. For example, a connection to a payroll provider of one employer is generally associated with one Link.
+
+With the Quickstart configured, the next step is to create a Link to a provider in the Sandbox environment. Open the Quickstart app on localhost, click the **Connect** button, and select any employer. Use the Sandbox credentials to simulate a successful login.
+
+## Sandbox Credentials
+
+Use the sandbox credentials below to simulate a successful login:
+
+| Username  | Password     | SSN         |
+| --------- | ------------ | ----------- |
+| goodlogin | goodpassword | 991-91-9991 |
+
+**MFA Use Case**
+
+| Username  | Password | SSN         | MFA code |
+| --------- | -------- | ----------- | -------- |
+| goodlogin | mfa      | 991-91-9991 | 12345    |
+
+Once the credentials are entered and the next screen appears, a successful Link is created. After the successful connection, the next page within the Quickstart describes the steps to retrieve the requested data points. The following section will explain what happened and how the Quickstart works.
+
+## How It Works
+
+The Truv workflow covers your application, Truv Bridge, your server, and the Truv API. The steps below explain the communication between each component.
+
+1. The application uses the `bridge_token` to make a request to your server.
+2. Your server makes a POST request with the user information to the Truv API.
+3. After the API processes the exchange, your application then prompts the user to connect payroll information in Truv Bridge.
+4. When successful, Truv Bridge returns the required credentials to your application.
+5. During this step, your server monitors webhook events from the Truv API.
+6. With the `public_token`, your application makes an exchange to your server and the Truv API for access.
+7. After your server collects the appropriate credentials, it can complete the request to get data from the Truv API.
+
+### Summary of Sequence Diagram
+
+The chart below is an overview of the steps in the process.
+
+![Process Diagram](/images/docs/b5eb835-small-Image_103_1.png)
+
+### Requesting a Bridge Token
+
+The `bridge_token` is the initial value required to authenticate the app with Truv Bridge. This is a temporary, single-use token for a user. When creating a new user, a request should be made to the "Create a bridge token" endpoint to obtain the `bridge_token` value.
+
+<Info>
+  The `bridge_token` is temporary and expires after 6 hours.
+</Info>
+
+<CodeGroup>
+  ```python python
+  def create_user(self, **kwargs) -> dict:
+      logging.info("TRUV: Requesting new user from https://prod.truv.com/v1/users/")
+      payload = {
+          "external_user_id": f"qs-{uuid4().hex}",
+          "first_name": "John",
+          "last_name": "Johnson",
+          "email": "[email protected]",
+          **kwargs,
+      }
+      return self.post("users/", json=payload)
+
+  def create_user_bridge_token(self, user_id: str) -> dict:
+      logging.info(
+          "TRUV: Requesting user bridge token from https://prod.truv.com/v1/users/{user_id}/tokens"
+      )
+      logging.info("TRUV: User ID - %s", user_id)
+
+      payload = {
+          "product_type": self.product_type,
+          "tracking_info": "1338-0111-A",
+      }
+
+      if self.product_type in ["deposit_switch", "pll"]:
+          payload["account"] = {
+              "account_number": "16002600",
+              "account_type": "checking",
+              "routing_number": "12345678",
+              "bank_name": "Example Bank",
+          }
+
+          if self.product_type == "pll":
+              payload["account"].update(
+                  {
+                      "deposit_type": "amount",
+                      "deposit_value": "100",
+                  }
+              )
+      return self.post(f"users/{user_id}/tokens/", json=payload)
+  ```
+
+  ```c JavaScript
+  const BASE_URL = 'https://prod.truv.com/v1';
+  const PRODUCT_TYPE = 'deposit_switch'; 
+
+  async function createUser(options = {}) {
+    console.log("TRUV: Requesting new user from https://prod.truv.com/v1/users/");
+    
+    const payload = {
+      external_user_id: `qs-${crypto.randomUUID()}`,
+      first_name: "John",
+      last_name: "Johnson",
+      email: "[email protected]",
+      ...options
+    };
+
+    try {
+      const response = await fetch(`${BASE_URL}/users/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  }
+
+  async function createUserBridgeToken(userId) {
+    if (!userId) {
+      throw new Error('userId is required');
+    }
+
+    console.log(`TRUV: Requesting user bridge token from ${BASE_URL}/users/${userId}/tokens`);
+    console.log("TRUV: User ID - ", userId);
+
+    const payload = {
+      product_type: PRODUCT_TYPE,
+      tracking_info: "1338-0111-A",
+    };
+
+    if (PRODUCT_TYPE === "deposit_switch" || PRODUCT_TYPE === "pll") {
+      payload.account = {
+        account_number: "16002600",
+        account_type: "checking",
+        routing_number: "12345678",
+        bank_name: "Example Bank",
+      };
+
+      if (PRODUCT_TYPE === "pll") {
+        payload.account = {
+          ...payload.account,
+          deposit_type: "amount",
+          deposit_value: "100",
+        };
+      }
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}/users/${userId}/tokens/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      console.error('Error creating bridge token:', error);
+      throw error;
+    }
+  }
+  ```
+
+  ```c Go
+  func createUser() (string, error) {
+  	log.Println("TRUV: Requesting new user from https://prod.truv.com/v1/users/")
+  	uniqueNumber := time.Now().UnixNano() / (1 << 22)
+  	userRequest := UserRequest{
+  		ExternalUserId: fmt.Sprintf("qs-%d", uniqueNumber),
+  		FirstName:      "John",
+  		LastName:       "Johnson",
+  		Email:          "[email protected]",
+  	}
+  	userJson, _ := json.Marshal(userRequest)
+  	request, err := getRequest("users/", "POST", userJson)
+  	if err != nil {
+  		return "", err
+  	}
+  	client := &http.Client{}
+  	res, err := client.Do(request)
+  	if err != nil {
+  		return "", err
+  	}
+
+  	defer res.Body.Close()
+
+  	user := UserResponse{}
+  	err = json.NewDecoder(res.Body).Decode(&user)
+
+  	return user.UserId, nil
+  }
+
+  func createUserBridgeToken(userId string) (string, error) {
+  	log.Println("TRUV: Requesting user bridge token from https://prod.truv.com/v1/users/{user_id}/tokens")
+  	log.Printf("TRUV: User ID - %s\n", userId)
+  	productType := os.Getenv("API_PRODUCT_TYPE")
+  	bridgeTokenRequest := BridgeTokenRequest{
+  		ProductType:  productType,
+  		TrackingInfo: "1338-0111-A",
+  	}
+  	if productType == "pll" || productType == "deposit_switch" {
+  		account := AccountRequest{
+  			AccountNumber: "1600200",
+  			AccountType:   "checking",
+  			RoutingNumber: "123456789",
+  			BankName:      "TD Bank",
+  		}
+  		if productType == "pll" {
+  			account.DepositType = "amount"
+  			account.DepositValue = "1"
+  		}
+  		bridgeTokenRequest.Account = &account
+  	}
+  	bridgeJson, _ := json.Marshal(bridgeTokenRequest)
+  	request, err := getRequest(fmt.Sprintf("users/%s/tokens/", userId), "POST", bridgeJson)
+  	if err != nil {
+  		return "", err
+  	}
+  	client := &http.Client{}
+  	response, err := client.Do(request)
+  	if err != nil {
+  		return "", err
+  	}
+
+  	defer response.Body.Close()
+  	data, _ := ioutil.ReadAll(response.Body)
+  	return (string(data)), nil
+  }
+  ```
+</CodeGroup>
+
+### Initializing Truv Bridge
+
+Users authenticate their payroll accounts through Truv Bridge. After obtaining the `bridge_token`, this value is used to initialize the Bridge. Truv Bridge is a client-side module that handles the authentication process and is available as a drop-in for web clients, iOS, and Android platforms.
+
+In the Quickstart app, the Bridge module is implemented on the web using a JavaScript integration triggered from client-side code. The front-end application runs **TruvBridge.init** to pass the `bridge_token` from the back-end, and assigns callback functions as required. Refer to the code sample below for more details.
+
+<CodeGroup>
+  ```javascript javascript
+  const bridge = TruvBridge.init({
+    bridgeToken: bridgeToken.bridge_token,
+    onLoad: function() { console.log('Bridge loaded'); },
+    onSuccess: function(public_token, meta) { console.log('Success:', public_token); },
+    onEvent: function(event_type, payload) { console.log('Event:', event_type); },
+    onClose: function() { console.log('Bridge closed'); }
+  });
+  window.bridge = bridge;
+  ```
+</CodeGroup>
+
+### Submitting Credentials for Public Token
+
+Truv Bridge provides a `public_token` value after a user submits their credentials through the onSuccess callback. The JavaScript code below demonstrates the `public_token` exchange between the client-side code and the server.
+
+<CodeGroup>
+  ```javascript javascript
+  onSuccess: async function (token) {
+    console.log('token: ', token);
+    successClosing = true;
+    const content = document.querySelector('.spinnerContainer');
+    content.classList.remove('hidden');
+    let verificationInfo;
+    try {
+      verificationInfo = await apiRequests.getVerificationInfoByToken(token);
+    } catch(e) {
+      console.error(e);
+      content.classList.add('hidden');
+      return;
+    }
+    content.classList.add('hidden');
+    if (!verificationInfo.length) {
+      return;
+    }
+  },
+  onClose: function () {
+    console.log('closed');
+    if (successClosing !== true) {
+      renderEmploymentHistory([{ company: { address: {} } }]);
+    }
+  },
+  ```
+</CodeGroup>
+
+<Info>
+  The `public_token` is temporary and expires after 6 hours.
+</Info>
+
+### Server Side Exchanges
+
+The Quickstart application accesses the server to [Retrieve a link token](/reference#retrieve-link-token) for the `access_token` and `link_id`. These two values are essential for identifying a Link and are required as arguments for Truv API endpoints. Similar to other important values, the `access_token` and `link_id`, along with the `user_id` should be stored in a secure and private location when making API requests.
+
+The code samples below demonstrate the server actions.
+
+<CodeGroup>
+  ```python python
+  def get_access_token(self, public_token: str) -> dict:
+      logging.info(
+          "TRUV: Exchanging a public_token for an access_token from https://prod.truv.com/v1/link-access-tokens"
+      )
+      logging.info("TRUV: Public Token - %s", public_token)
+
+      return self.post(
+          "link-access-tokens/",
+          json={
+              "public_token": public_token,
+          },
+      )
+  ```
+
+  ```Text JavaScript
+  const getAccessToken = async (public_token) => {
+    console.log('TRUV: Exchanging a public_token for an access_token from https://prod.truv.com/v1/link-access-tokens');
+    console.log(`TRUV: Public Token - ${public_token}`);
+    const body = JSON.stringify({
+      public_token: public_token,
+    });
+    const responseBody = await sendRequest('link-access-tokens/', { body });
+    return responseBody;
+  };
+  ```
+
+  ```Text Go
+  func getAccessToken(public_token string) (string, error) {
+  	log.Println("TRUV: Exchanging a public_token for an access_token from https://prod.truv.com/v1/link-access-tokens")
+  	log.Printf("TRUV: Public Token - %s\n", public_token)
+  	publicToken := PublicTokenRequest{PublicToken: public_token}
+  	jsonPublicToken, _ := json.Marshal(publicToken)
+  	accessToken := AccessTokenResponse{}
+  	request, err := getRequest("link-access-tokens/", "POST", jsonPublicToken)
+  	if err != nil {
+  		return "", err
+  	}
+  	client := &http.Client{}
+  	res, err := client.Do(request)
+  	if err != nil {
+  		return "", err
+  	}
+
+  	defer res.Body.Close()
+  	err = json.NewDecoder(res.Body).Decode(&accessToken)
+  	if err != nil {
+  		return "", err
+  	}
+  	return accessToken.AccessToken, nil
+  }
+  ```
+</CodeGroup>
+
+## Making API Requests
+
+Now that the Link flow and token exchange process have been covered, the next step is to use the link\_id to retrieve information about the consumer. As an example, consider the `[/links/{link_id}/income/report](https://docs.truv.com/reference/income_verification)` API call, which retrieves basic information about the consumer’s income and employment. This call is straightforward and uses the `link_id` as a single argument.
+
+<CodeGroup>
+  ```python python
+  def get_income_info_by_link_id(self, link_id: str) -> dict:
+      logging.info(
+        	"TRUV: Requesting income report data from https://prod.truv.com/v1/links/:link_id/income/report"
+      )
+      logging.info("TRUV: Link ID - %s", link_id)
+
+      return self.get(f"links/{link_id}/income/report")
+  ```
+
+  ```c JavaScript
+  const getIncomeInfoByLinkId = async (link_id) => {
+    console.log(
+      'TRUV: Requesting income verification data from https://prod.truv.com/v1/links/:link_id/income/report',
+    );
+    console.log(`TRUV: Link ID - ${link_id}`);
+    return await sendRequest('links/${link_id}/income/report', { method: "GET" });
+  };
+  ```
+
+  ```coffeescript Go
+  func getIncomeInfoByLinkId(link_id string) (string, error) {
+    log.Println("TRUV: Requesting income verification data from https://prod.truv.com/v1/links/:link_id/income/report")
+  	log.Printf("TRUV: Link ID - %s\n", link_id)
+    request, err := getRequest(fmt.Sprintf("links/%s/income/report", link_id), "GET", nil)
+  	if err != nil {
+  		return "", err
+  	}
+    
+  	client := &http.Client{}
+  	res, err := client.Do(request)
+  	if err != nil {
+  		return "", err
+  	}
+
+  	defer res.Body.Close()
+  	data, _ := ioutil.ReadAll(res.Body)
+  	return string(data), nil
+  }
+  ```
+</CodeGroup>
+
+### Example response data
+
+This JSON object is a sample payload for the income and employment report request.
+
+<CodeGroup>
+  ```json json
+  {
+    "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "status": "new",
+    "completed_at": "2021-04-06 11:30:00+00:00",
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "tracking_info": "user123456",
+    "refresh_status": "new",
+    "employments": [
+      {
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "job_title": "PR associate",
+        "job_type": "F",
+        "start_date": "2018-01-01",
+        "end_date": "2019-08-24",
+        "external_last_updated": "2019-08-24",
+        "original_hire_date": "2017-06-21",
+        "is_active": false,
+        "dates_from_statements": false,
+        "derived_fields": [
+          "is_active"
+        ],
+        "missing_data_fields": [
+          "w2s"
+        ],
+        "profile": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "middle_initials": "K",
+          "ssn": "123456789",
+          "email": "[email protected]",
+          "date_of_birth": "1992-03-03",
+          "home_address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210"
+          }
+        },
+        "company": {
+          "name": "Facebook Demo",
+          "address": {
+            "street": "1 Hacker Way",
+            "city": "Menlo Park",
+            "state": "CA",
+            "zip": "94025"
+          },
+          "phone": "6503087300"
+        },
+        "income": "70000.00",
+        "income_unit": "YEARLY",
+        "pay_frequency": "M",
+        "manager_name": "Jenny McDouglas",
+        "statements": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "pay_date": "2018-05-15",
+            "net_pay": "11500.32",
+            "net_pay_ytd": "31980.64",
+            "gross_pay": "13900.11",
+            "gross_pay_ytd": "49200.00",
+            "bonus": "100.00",
+            "commission": "12000.00",
+            "hours": "40.00",
+            "basis_of_pay": "S",
+            "period_start": "2018-05-01",
+            "period_end": "2018-05-15",
+            "regular": "1695.11",
+            "regular_ytd": "23000.00",
+            "bonus_ytd": "1000.00",
+            "commission_ytd": "24000.00",
+            "overtime": "45.00",
+            "overtime_ytd": "500.00",
+            "other_pay": "60.00",
+            "other_pay_ytd": "700.00",
+            "earnings": [
+              {}
+            ],
+            "earnings_ytd": [
+              {}
+            ],
+            "deductions": [
+              {}
+            ],
+            "deductions_ytd": [
+              {}
+            ],
+            "md5sum": "03639d6a6624f69a54a88ea90bd25e9d",
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/paystub_sample.pdf"
+          }
+        ],
+        "annual_income_summary": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "year": 2018,
+            "regular": "23000.00",
+            "bonus": "1000.00",
+            "commission": "24000.00",
+            "overtime": "500.00",
+            "other_pay": "700.00",
+            "net_pay": "31980.64",
+            "gross_pay": "49200.00"
+          }
+        ],
+        "bank_accounts": [
+          {
+            "account_number": "1234567890",
+            "routing_number": "123456789",
+            "account_name": "My Bank",
+            "account_type": "C",
+            "deposit_type": "A",
+            "deposit_value": "200.00",
+            "bank_name": "TD Bank"
+          }
+        ],
+        "annual_salary": "70000.00",
+        "hourly_salary": "36.40",
+        "w2s": [
+          {
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/W2_sample.pdf",
+            "md5sum": "f65e30c39124ad707ac4b3aeaee923a7",
+            "year": 2020
+          }
+        ]
+      }
+    ],
+    "provider": "adp"
+  }
+
+   
+  ```
+</CodeGroup>
+
+## Next Steps
+
+Congratulations! You've successfully integrated Truv's Income and Employment API. For more advanced features and detailed API documentation, visit our [API Reference](/reference).
+
+### Product guides
+
+Learn more about our products through the guides below.
+
+* [Income and Employment](/docs/income-and-employment), VOIE
+* [Employment History](/docs/employment-history), VOE
+* [Direct Deposit Switch](/docs/direct-deposit-switch), DDS
+* [Paycheck Linked Loans](/docs/paycheck-linked-loans), PLL
+
+### Mobile integrations
+
+For mobile integrations of Truv, learn more about getting started through the [Bridge SDK ](/docs/bridge-home).
+
+### Demo applications
+
+[Our sample apps page](/docs/demo-apps) has additional examples, including real-world use cases.
+
+* [Swift](https://github.com/truvhq/demo-ios)
+* [Kotlin](https://github.com/truvhq/demo-android)
+* [React Native](https://github.com/truvhq/demo-react-native)
+* [Flutter](https://github.com/truvhq/demo-flutter)
+
+### Additional Resources
+
+* [API Reference](/reference)
+* [SDK Documentation](/docs/bridge-home)
+* [Postman Collection](/reference/postman-1)
+
+For any issues or support, contact us at [\[email protected\]](/cdn-cgi/l/email-protection#9deee8ededf2efe9dde9efe8ebb3fef2f0).
+
+***
+
+What’s Next
+
+Learn more about other products, such as verifying income and employment and other guides and check out our Postman Collection as well.
+
+* [Income and Employment Overview](/docs/income-and-employment)
+* [Embedding Truv in your Workflow](/docs/embedding-truv-in-your-workflow)
+* [Postman Collection](/reference/postman-1)
+
+* [Table of Contents](#)
+
+* * [Introduction](#introduction)
+    * [Prerequisites](#prerequisites)
+
+  * [Configuring the App](#configuring-the-app)
+
+    * [Step 1: Set Up Your Development Environment](#step-1-set-up-your-development-environment)
+    * [Step 2: Generate a Link Token](#step-2-generate-a-link-token)
+    * [Sandbox Credentials](#sandbox-credentials)
+    * [How It Works](#how-it-works)
+    * [Making API Requests](#making-api-requests)
+    * [Next Steps](#next-steps)

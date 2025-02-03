@@ -1,0 +1,131 @@
+---
+title: "Floify"
+description: "Leverage Truv's Verification of Income and Employment (VOI/E) solution within the Floify point-of-sale system to efficiently access and verify borrower employment and income information from authenticated accounts."
+---
+
+[Suggest Edits](/edit/floify-integration-guide)
+
+# Overview
+
+Truv's integration with Floify streamlines the verification process by allowing users to quickly access and authenticate employment and income details. This integration ensures that all borrower data is sourced from reliable accounts, enhancing the accuracy and speed of your decision-making.
+
+# Key Benefits
+
+* **Efficient Verification**: Easily verify employment and income details
+* **Reliable Data**: Obtain accurate information and necessary documentation from trusted sources.
+* **Accelerated Process**: Speed up the verification process for faster, more informed decisions.
+
+# How it works
+
+During the pre-application stage, borrowers or co-borrowers will be prompted to connect their payroll accounts and share their income and employment information through Truv.
+
+1. **Borrower Connection**: Borrowers link their payroll accounts using Truv.
+2. **Report Generation**: Once accounts are connected, Truv generates verification reports. These reports, along with relevant payroll documents (e.g., pay stubs, W-2s, employer reports), are available in the Loan Origination System (LOS), such as Encompass®, and are added to the eFolder.
+3. **Ongoing Monitoring**: Connected accounts are continuously monitored for new payroll documents, allowing for the generation of updated verification reports throughout the mortgage loan origination process.
+
+# Floify Set up Guide
+
+## Company Dashboard
+
+1. **Access Company Settings:**
+
+   * Go to the **Company Dashboard** and select **Company Settings**.
+
+   ![](/images/docs/0421784ee2f30c5e066911fc0fed08e719c7c422a65a3b7eae15aeca2eec8d47-Screenshot_2024-09-10_at_2.59.36_AM.png)
+
+2. **Integrations Tab:**
+
+   * Click on the **Integrations** tab.
+
+   ![](/images/docs/bd1e506ab525d154bea1a761a392174ae53efeeb4834c6e2b59fdd605e56320b-Screenshot_2024-09-10_at_2.59.42_AM.png)
+
+3. **Edit Truv Integration:**
+
+   * Locate the **Truv Integration** section and choose **Edit Truv Integration**.
+
+   ![](/images/docs/b55059e00e627eeb24f63ee63677642dee3a8488ed3bddf4b3c10c2175d075cd-Screenshot_2024-09-10_at_2.59.50_AM.png)
+
+4. **Enable VOE/I:**
+
+   * Check the box to **Enable Verification of Employment and Income (VOE/I)** through Truv
+
+   ![](/images/docs/76f31b7c61002e4004cab924e12c814726a92c7c4f3761c64f36787abb01c8b6-Screenshot_2024-09-10_at_2.59.57_AM.png)
+
+5. **Enter Credentials:**
+
+   * Input the **Client ID** and **Production Key** provided by Truv.
+
+   ![](/images/docs/4773478ebce3b3d4bdd51eb61cb7ca700105d45a77fc6e0c21c0fd2e0b2bc0c4-Screenshot_2024-09-10_at_3.00.04_AM.png)
+
+## Team Dashboard
+
+1. **Access Team Settings:**
+
+   * Navigate to the **Team Dashboard** and select **Team Settings**.
+
+   ![](/images/docs/c835adb30e1e0f6901fc8b10ccbd9e7dca37ac06df3f5c25f5627a45217c5b30-Screenshot_2024-09-10_at_3.00.11_AM.png)
+
+2. **Edit Apply Now Settings:**
+
+   * Go to **Apply Now > Edit Apply Now General Settings**.
+
+   ![](/images/docs/a21bdec1eff51a1667e20d11ce2e87917284e0d3fce846129e94838b9a07784b-Screenshot_2024-09-10_at_3.00.18_AM.png)
+
+3. **Enable VOE/I:**
+
+   * Check the box to Enable verification of employment and income (VOE/I):
+
+   ![](/images/docs/9f7a3c29520c272d5960b7e48a9d97cef037131c9a17645074e247d41797743b-Screenshot_2024-09-10_at_3.00.26_AM.png)
+
+4. **Select Truv**
+
+   * Choose **Truv** from the dropdown menu and click **Save**.
+
+   ![](/images/docs/16087fa83378d1b8ad3939db29fef4d76f00a4a28698264d3d0432163b5ecef9-Screenshot_2024-09-10_at_3.00.33_AM.png)
+
+# Borrower Workflow using Truv in Floify
+
+Borrowers will enter their employment and income details, then proceed to the **Verify Income** section of their application to link their accounts and/or upload relevant documents. All connected data, including manually uploaded files and any tax documents pulled from their payroll system, will seamlessly integrate into the loan process for review.
+
+For a quick overview of the borrower’s workflow, watch the video below:
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FzDt_yeWaJ28%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DzDt_yeWaJ28\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FzDt_yeWaJ28%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+# Launch with Truv in Floify
+
+1. **Contact Customer Success:**&#x52;each out to your customer success team at Floify to confirm your one-time admin setup.
+
+2. **Enable Truv:**&#x41;ctivate Truv within Floify.
+
+3. **Customize Templates:**&#x43;onfigure your templates in the Truv Dashboard. Please ensure to add 2 for Product types `Income and employment`. Ensure to follow the below naming conventions for the Truv templates-
+
+   1. **Floify\_template\_employers\_without\_benefit**
+
+   2. **Floify\_template\_with\_payroll\_only**
+
+      ![](/images/docs/58c0ee01a7d368cbad4af75a707d8d922cba806b2991178879faad1c3d8d3173-Screenshot_2025-01-10_at_12.56.20_PM.png)
+
+4. **Test in Sandbox Mode:**&#x54;est the integration in Sandbox mode to get acquainted with Truv.
+
+5. **Go Live:**&#x4F;btain Production access and integrate Truv with Floify for end-to-end processing. Ensure submission to DU (Desktop Underwriter) and LPA (Loan Product Advisor) systems is configured. You are now live with Truv within Floify.
+
+Refer to the [detailed step-by-step guide](/docs/launch-checklist-for-integrated-point-of-sale-pos) to launch Truv within Floify.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Key Benefits](#key-benefits)
+
+  * [How it works](#how-it-works)
+
+  * [Floify Set up Guide](#floify-set-up-guide)
+
+    * [Company Dashboard](#company-dashboard)
+    * [Team Dashboard](#team-dashboard)
+
+  * [Borrower Workflow using Truv in Floify](#borrower-workflow-using-truv-in-floify)
+
+  * [Launch with Truv in Floify](#launch-with-truv-in-floify)

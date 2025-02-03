@@ -1,0 +1,407 @@
+---
+title: "Implementing Insurance Verification Solutions"
+description: "The guide below covers configuring and connecting your users in your Truv Insurance Verification workflow."
+---
+
+[Suggest Edits](/edit/implementation-insurance-verification)
+
+# Overview
+
+Use the steps in the guide below to integrate Truv Insurance Verification in your application.
+
+# Summary of the sequence diagram
+
+The diagram below shows an overview of token and data exchanges. The sequence covers your application, Truv Bridge, your server and backend, as well as the Truv API. View the [Steps section](#steps) to get started.
+
+1. Request a `bridge_token` value from your backend.
+2. On your backend server, create a user and request a bridge token from Truv's API.
+3. Initialize Truv Bridge in your application and pass the `bridge_token` to **TruvBridge.init**.
+4. When a user successfully connects their account, it generates a `public_token`. Truv Bridge hands off the `public_token` to the client through the **onSuccess** callback.
+5. After the connection status changes, webhook events begin to arrive.
+6. Exchange the temporary `public_token` for a permanent `link_id`.
+7. Make an API request to Truv to get the data.
+
+![](/images/docs/d37e8ed-small-Image_103_Insurance.png)
+
+## Authentication
+
+<Info>
+  Requests to Truv APIs *must use HTTPS with TLS 1.2v encryption or higher*.
+</Info>
+
+All API requests require the `X-Access-Client-Id` and `X-Access-Secret` headers. These contain your **Client ID** and **Access secret**. These values are in your [Truv Dashboard](https://dashboard.truv.com/app/development/keys).
+
+<Warning>
+  The **Client ID** and **Access secret** may allow access to sensitive information. Store these in a secure and private place.
+</Warning>
+
+For API requests, the base URL `https://prod.truv.com/v1/` is the same in each environment. Update the access key with the prefixes below for use with their respective environments.
+
+* `sandbox`
+* `dev`
+* `prod`
+
+## Steps
+
+The steps below cover each action for setting up your Truv workflow.
+
+### 1. Create a User and request a Bridge Token
+
+Create a [User](/reference/users) in the Truv backend to link different data providers. See the sample cURL request below.
+
+<CodeGroup>
+  ```curl cURL
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "external_user_id": "12345",
+       "first_name": "John",
+       "last_name": "Doe",
+       "email": "[email protected]",
+       "phone": "+14155554193",
+       "ssn": "222233333"
+  }
+  '
+  ```
+</CodeGroup>
+
+<Warning>
+  The Truv backend only allows a single user for each account in your system. However, a User may have connected with multiple Bridge Tokens and data providers. Store Truv’s User ID and related information in your database.
+</Warning>
+
+Create a [Bridge Token](/reference/bridge-token) for the User and include `product_type = insurance` in the configuration. View the cURL sample below.
+
+<CodeGroup>
+  ```curl curl
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "insurance",
+       "tracking_info": "any data for tracking current connection"
+  }
+  '
+  ```
+</CodeGroup>
+
+### 2. Initiate Truv Bridge
+
+Using the Bridge Token, initialize the Truv Bridge in your user interface. Follow the example below and pass the [Bridge Token](/reference/bridge-token) to **TruvBridge.init**.
+
+<CodeGroup>
+  ```html html
+  <script src="https://cdn.truv.com/bridge.js"></script>
+  <script>
+    // Step 2 - Call your back end to retrieve a bridge_token from truv
+    const bridgeToken = <%= Value returned by API call to acquire bridge_token %>
+
+    // Step 3 - Initialize Bridge
+    const bridge = TruvBridge.init({
+          bridgeToken: bridgeToken.bridge_token,
+      })
+  </script>
+  ```
+</CodeGroup>
+
+### 3. Test Credentials
+
+Test your implementation using sample credentials. Refer to [Testing](/docs/testing) or view the sample usernames and passwords below.
+
+| Username   | Password        | Description                                                         |
+| ---------- | --------------- | ------------------------------------------------------------------- |
+| goodlogin  | goodpassword    | Single-factor authentication happy flow                             |
+| error.user | login\_error    | Incorrect login and password                                        |
+| error.user | mfa\_error      | Issue with multi-factor authentication                              |
+| error.user | account\_locked | Locked account. Needs to be unlocked via insurance provider         |
+| error.user | no\_data        | No data found in the insurance account                              |
+| error.user | unavailable     | Insurance provider is going through maintenance and isn't available |
+| any        | any             | Login error                                                         |
+
+### 4. Exchange tokens
+
+When Users connect their accounts successfully, it creates a `public_token`. The Bridge hands off the `public_token` to the client. This uses the **onSuccess** callback after a user has successfully created a Link.
+
+<Info>
+  The `public_token` expires after six hours.
+</Info>
+
+Exchange the temporary` public_token` for a permanent `link_id` with the [Exchange Tokens endpoint](/reference/link_exchange_token_flow). The `public_token` is invalidated after exchanging for a `link_id`. View the sample JSON values below.
+
+<CodeGroup>
+  ```json json
+  {
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "link_id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "link_hash": "bc917458a3da4b2c8cc8282aa1707aaa"
+  }
+  ```
+</CodeGroup>
+
+### 5. Monitor webhooks
+
+[Webhooks](/docs/webhooks) to your server can help monitor and notify you of Task status changes. Use `link_id` or `task_id` to match the webhook events with Link connections.
+
+<CodeGroup>
+  ```json json
+  {
+      "webhook_id": "609a82aab21e4d9ba2569f35e9e8f26a",
+      "event_type": "task-status-updated",
+      "updated_at": "2021-04-26T13:02:20.369267+00:00",
+      "task_id": "67f2924530564282bbaf6d27655e94a4",
+      "link_id": "64f8e374949c4b769706028022626bf1",
+      "product": "insurance",
+      "tracking_info": "27266f35-bb54-44c3-8905-070641a0c0aa",
+      "status": "login"
+  }
+  ```
+</CodeGroup>
+
+### 6. Retrieve data
+
+Use the permanent `access_token` to generate an [Insurance Report](/reference/insurance_report). The JSON data below contains a sample payload.
+
+<CodeGroup>
+  ```json json
+  {
+    "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "status": "done",
+    "finished_at": "2021-04-06T11:30:00Z",
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "tracking_info": "user123456",
+    "insurance": {
+      "policies": [
+        {
+          "id": "53c5ce0d-fb79-4f1c-bc27-32181b368fc7",
+          "policy_type": "AUTO",
+          "name": "AUTO AU192837",
+          "description": "Effective 11/03/2021 - 11/03/2022",
+          "carrier_policy_number": "HO132654",
+          "effective_date": "2021-11-03T00:00:00Z",
+          "expiry_date": "2021-11-03T00:00:00Z",
+          "renewal_date": "2021-11-03T00:00:00Z",
+          "canceled_date": "2021-11-03T00:00:00Z",
+          "total_premium_cents": "150319",
+          "deductible_cents": 0,
+          "carrier_name": "progressive",
+          "status": "ACTIVE",
+          "dwellings": [
+            {
+              "id": "b7a53a67-7266-42b6-a20e-97e8fc723bbc",
+              "address": {
+                "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                "country": "US",
+                "street": "344 Clinton St, Apartment 3D",
+                "city": "Brooklyn",
+                "state": "NY",
+                "zip": "11231"
+              },
+              "coverages": [
+                {
+                  "name": "COMPREHENSIVE",
+                  "premium_cents": 18514,
+                  "per_person_limit_cents": 0,
+                  "per_incident_limit_cents": 0,
+                  "deductible_cents": 50000,
+                  "is_declined": true,
+                  "id": "b9087b71-c1b1-482d-be9f-92a2cf81fbb3"
+                }
+              ]
+            }
+          ],
+          "vehicles": [
+            {
+              "id": "26a4ce3a-0b9f-4c3d-96c0-1c76529e3b52",
+              "year": 2010,
+              "make": "CHEVROLET",
+              "model": "Camaro",
+              "series": "ZL1",
+              "series2": "string",
+              "type": "PASSENGER CAR",
+              "annual_mileage": 26000,
+              "vin": "1G1FK1R62J0158884",
+              "purchase_date": "2010-10-02T12:00:00.000Z",
+              "is_removed": true,
+              "lien_holder": "Manhattan Bank",
+              "garaging_address": {
+                "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                "country": "US",
+                "street": "344 Clinton St, Apartment 3D",
+                "city": "Brooklyn",
+                "state": "NY",
+                "zip": "11231"
+              },
+              "lien_holder_address": {
+                "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                "country": "US",
+                "street": "344 Clinton St, Apartment 3D",
+                "city": "Brooklyn",
+                "state": "NY",
+                "zip": "11231"
+              },
+              "coverages": [
+                {
+                  "name": "COMPREHENSIVE",
+                  "premium_cents": 18514,
+                  "per_person_limit_cents": 0,
+                  "per_incident_limit_cents": 0,
+                  "deductible_cents": 50000,
+                  "is_declined": true,
+                  "id": "111da3f8-20b0-4839-81d7-6473437e493e",
+                  "per_day_limit_cents": 0,
+                  "per_mile_premium_tenth_of_cents": 0
+                }
+              ],
+              "drivers": [
+                {
+                  "id": "8857f648-c6ce-44df-8fa4-78eee16e9bb4",
+                  "first_name": "John",
+                  "middle_name": "Joseph",
+                  "last_name": "Doe",
+                  "drivers_license": "SUP1234012",
+                  "drivers_license_state": "DC",
+                  "date_of_birth_str": "05/03/1988",
+                  "gender": "MALE",
+                  "marital_status": "SINGLE",
+                  "relationship_to_insured": "INSURED",
+                  "is_excluded": true
+                }
+              ]
+            }
+          ],
+          "commercial_named_insureds": [
+            {
+              "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "name": "Sample Business LLC",
+              "form_of_business": "INDIVIDUAL",
+              "gl_code": "10010",
+              "sic_code": "6411",
+              "naics_code": "524210",
+              "fein": "123456789",
+              "ssn": "123456789",
+              "is_primary": true,
+              "address": {
+                "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                "country": "US",
+                "street": "344 Clinton St, Apartment 3D",
+                "city": "Brooklyn",
+                "state": "NY",
+                "zip": "11231"
+              }
+            }
+          ],
+          "claims": [
+            {
+              "id": "",
+              "dwelling_id": "",
+              "vehicle_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "driver_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "carrier_claim_identifier": "string",
+              "date_occurred": "2022-11-20T21:26:48.908Z",
+              "type": "WIND_AND_HAIL_DAMAGE",
+              "status": "OPEN",
+              "date_closed": "2022-05-03T00:00:00Z",
+              "payout_cents": 180111,
+              "representative_name": "string",
+              "representative_phone": "string",
+              "representative_email": "string",
+              "address": {
+                "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                "country": "US",
+                "street": "344 Clinton St, Apartment 3D",
+                "city": "Brooklyn",
+                "state": "NY",
+                "zip": "11231"
+              }
+            }
+          ],
+          "loss_events": [
+            {
+              "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+              "date_of_occurrence": "2022-05-03T00:00:00Z",
+              "date_of_claim": "2022-05-03T00:00:00Z",
+              "type": "BURGLARY_AND_THEFT",
+              "amount_paid_cents": 123323,
+              "amount_reserved_cents": 0,
+              "is_subrogation": true,
+              "is_claim_open": true
+            }
+          ],
+          "documents": [
+            {
+              "id": "55ad7bb6-f5a3-4ebf-91fb-2802391eb261",
+              "title": "11-03-2021 - Auto - Automobile Policy Renewal Declarations",
+              "document_type": "INSURANCE_APPLICATION",
+              "date_added": "2022-05-03T00:00:00Z",
+              "file": "https://truv-statements.s3.amazonaws.com/insurance/example_file"
+            }
+          ]
+        }
+      ],
+      "drivers": [
+        {
+          "id": "8857f648-c6ce-44df-8fa4-78eee16e9bb4",
+          "first_name": "John",
+          "middle_name": "Joseph",
+          "last_name": "Doe",
+          "drivers_license": "SUP1234012",
+          "drivers_license_state": "DC",
+          "date_of_birth_str": "05/03/1988",
+          "gender": "MALE",
+          "marital_status": "SINGLE",
+          "relationship_to_insured": "INSURED"
+        }
+      ],
+      "driving_records": [
+        {
+          "id": "da9d46ad-8ddb-4b4b-bc7e-7a381a738f7d",
+          "driver_id": "da9d46ad-8ddb-4b4b-bc7e-7a381a738f7c",
+          "incident_date": "2021-04-23T00:00:00.000Z",
+          "incident_type": "ACCIDENT",
+          "violation_type": "MOVING",
+          "is_at_fault": true
+        }
+      ]
+    },
+    "provider": "progressive",
+    "identity": {
+      "id": "48427a36d43c4d5aa6324bc06c692456",
+      "created_at": "2022-06-07T15:00:00Z",
+      "updated_at": "2022-06-31T15:00:00Z",
+      "first_name": "John",
+      "last_name": "Doe",
+      "full_name": "John Doe",
+      "middle_initials": "K",
+      "email": "[email protected]",
+      "ssn": "123456789",
+      "date_of_birth": "1992-03-03",
+      "home_address": {
+        "street": "1 Morgan Ave",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zip": "90210",
+        "country": "US"
+      }
+    }
+  }
+  ```
+</CodeGroup>
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Summary of the sequence diagram](#summary-of-the-sequence-diagram)
+
+    * [Authentication](#authentication)
+    * [Steps](#steps)

@@ -1,0 +1,186 @@
+---
+title: "Orders"
+description: "Users connect their account information using Orders, personalized landing pages with Truv."
+---
+
+[Suggest Edits](/edit/orders-guide)
+
+# Overview
+
+With Truv, an Order is a custom landing page for your users. Users connect their accounts to their providers when they use Orders. Send personalized invitations to your users through email or phone. Orders are a simple process for contacting your users for next steps.
+
+![](/images/docs/fa1b10e-image_29.png)
+
+Orders provide an interactive solution using our interface and UX tools. They let you contact your users and prompt them to complete their provider details.
+
+# Creating an Order
+
+Create Orders using the Truv Dashboard, the API, or both. Each section below covers these ways to create Orders for your users.
+
+## Using your dashboard
+
+In the [Orders section of your dashboard](https://dashboard.truv.com/app/usage/orders), click on **Create order** to get started. Select one of the products and fill in the user’s information in the fields. Only first and last name inputs are mandatory.
+
+![](/images/docs/48f53c0-60.png)
+
+With Truv, decide to send a notification or generate a unique link. Send an email or SMS with that link directly to your users.
+
+![](/images/docs/3abac0c-Preview.png)
+
+<Info>
+  Over 75% of users complete Order requests within the first five hours. Include phone numbers in Orders to improve responsiveness and conversion through outreach.
+</Info>
+
+## Using the API
+
+The [Orders API reference page](/reference/orders-2) contains all the endpoints for managing the personal landing pages. Navigate your users experience with the data from pending or completed Orders.
+
+### Integration Process
+
+1. **Create an Order**
+
+   1. Call [`/orders/`](/reference/orders_create) to create a new order with the following parameters:
+
+      1. **Required fields**
+
+         1. `products`: Insert the product(s) desired. For income specify `["income"]`, and add additional products to the list, if any.
+
+         2. `first_name` & `last_name`: Enter the first and last name of the applicant
+
+         3. For Direct Deposit Switch (DDS) - the fields are located under the `account` object inside the `employers` object:
+
+            1. `account_number` & `routing_number`: Enter the account information where the income data should be directed to.
+            2. `bank_name`: Enter the bank name of the corresponding bank.
+
+      2. **Optional fields**
+
+         1. `SSN`: Enter the last 4 digits or all 9 digits of the Social Security Number if you'd like Truv to check if the SSN matches that from the payroll system.
+         2. `email` & `phone`: Enter either email and/or mobile phone number for Truv to send the Truv notification to the applicant. If you leave this section blank, you would need to retrieve the Truv verification link from the JSON response under `"share_url"`.
+            <Info>
+              Truv will not be able to send any notifications if both email and phone number are left blank.
+            </Info>
+         3. `employers`: Enter the company\_name if the applicant's employment information is known. This will ensure that only the requested employments are verified. If left blank, the applicant would need to select the employer(s) manually.
+
+2. **Retrieve an Order**
+   1. 1. Call the [Retrieve an order](/reference/orders_read) endpoint to fetch the details of an existing order. This ensures access to the latest order information.
+
+3. **Refresh Order Data**
+   1. 1. To request updated information for an existing order, use the [Create a data refresh order](/reference/orders_create_refresh_order) endpoint. This allows the order data to be refreshed and kept up-to-date.
+
+### Webhooks
+
+Listen for the `order-status-updated` webhook, which provides the status of the Truv Order and indicates when the data is ready to be retrieved once the `status` is set to `completed`. The `data_source` will specify the income source of the Order. Use the `order_id`,`user_id` and `link_id` to trigger the corresponding income information retrieval. More info [here](/reference/orders-1#order-status-change).
+
+**Webhook Setup** Subscribe to Truv webhooks by navigating to the [Webhooks section](/reference/orders-1) of the dashboard and entering the URL endpoint for receiving updates.
+
+## Upload Orders using your dashboard
+
+In the [Orders section of your dashboard](https://dashboard.truv.com/app/usage/orders), click on **Upload order** to get started. Select one of the products from the Product Type list and associated Templates if applicable.
+
+![](/images/docs/300294d-126.png)
+
+Download sample CSV provided and fill it out with all of the order details. When you are ready, drag and drop the file in your dashboard or click the Choose File button and select the CSV with the borrowers details to continue with order creation.
+
+![](/images/docs/c847552-image.png)
+
+<Info>
+  Audit your CSV file to ensure all the borrower details are accurately filled out. Truv recommends to add borrower email and sms so that orders are successfully created on submission.
+
+  The flow prompts with any errors if mandatory fields are empty. Ensure that all mandatory fields are filled out accurately before uploading the file to reduce errors.
+</Info>
+
+# Managing Orders
+
+In your dashboard, view and manage your Orders under the Usage section.
+
+## Usage detail summary
+
+On the Orders page in your dashboard, you can create and view historical details. Search and filter for specific Orders using the table.
+
+![](/images/docs/bdfcfb4-62.png)
+
+## Order status
+
+The bullet points below cover the user’s Order status.
+
+* **pending** - Truv is processing the applicant’s information
+* **sent** - Order email or SMS is on its way to applicant
+* **completed** - Applicant has completed request for action
+* **error** - Notification issue
+* **canceled** - Order is no longer requested
+* **expired** - Order is past expiration date, no longer valid
+* **skipped** - Applicant has exited Order before completing request for action
+* **no data** - Provider has no data\*
+
+<Info>
+  \*View the Task Details for more information and additional explanation.
+</Info>
+
+# Customization
+
+Personalize the text your users receive from emails and SMS messages. Customizations are available for your users’ landing pages. You can use the [Customization templates in Truv dashboard](/reference/customization-templates#order-flow-customization-templates) or [Create a customization template endpoint](/reference/v1_templates_create) for additional options.
+
+# Notifications
+
+Truv has Order links available within the dashboard or through the API for your own notification system as well.
+
+<Info>
+  Using both email address and SMS messaging together improves Order success rates from opening to completion.
+</Info>
+
+# Reminders
+
+The Truv notification system has a default reminder setting of 72 hours. For each day after, Truv sends an email reminder. You can customize expiration time and reminder schedule within your dashboard.
+
+# Orders for verifications
+
+Orders are simple solutions to verify provider information from your users. These use a secure and straightforward user interface and you can customize the branding for a seamless integration. The integrations below apply to VOIE, VOE, and Insurance Verification. Learn more about these options using the guide below.
+
+* [Loan Origination Systems Integrations](/docs/truv-loan-origination-systems)
+
+## TazWorks and Accio Data platforms
+
+TazWorks and Accio Data now integrate with Truv for our customers. Truv helps to submit employment history requests for CRAs and background screeners. Use Truv’s verification workflow directly with these integrations for complete employment history requests.
+
+* [TazWorks Admin User Guide](/docs/tazworks-admin-user-guide)
+* [Request a demo for Accio Data](https://truv.com/request-a-demo/)
+
+You can also submit Orders using the TazWorks and Accio Data platforms. On your dashboard, check and monitor all Orders from these integrations.
+
+## Encompass
+
+With Encompass, you can submit income and employment requests through the Truv verification processes. Help loan officers and processors manage submissions from future and existing borrowers.
+
+Truv’s Encompass integration lets customers retrieve, refresh, and store aggregate reports in the Encompass eFolder. Support your users throughout the mortgage loan origination process.
+
+* [Encompass Admin User Guide](/docs/encompass-admin-user-guide)
+
+You can also find and submit Orders using Encompass as well as manage them in your dashboard.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Creating an Order](#creating-an-order)
+
+    * [Using your dashboard](#using-your-dashboard)
+    * [Using the API](#using-the-api)
+    * [Upload Orders using your dashboard](#upload-orders-using-your-dashboard)
+
+  * [Managing Orders](#managing-orders)
+
+    * [Usage detail summary](#usage-detail-summary)
+    * [Order status](#order-status)
+
+  * [Customization](#customization)
+
+  * [Notifications](#notifications)
+
+  * [Reminders](#reminders)
+
+  * [Orders for verifications](#orders-for-verifications)
+
+    * [TazWorks and Accio Data platforms](#tazworks-and-accio-data-platforms)
+    * [Encompass](#encompass)

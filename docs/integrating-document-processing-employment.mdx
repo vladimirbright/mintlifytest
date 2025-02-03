@@ -1,0 +1,163 @@
+---
+title: "Integrating Document Processing"
+description: "This guide covers adding document processing to your integration."
+---
+
+[Suggest Edits](/edit/integrating-document-processing-employment)
+
+# Overview
+
+These document processing strategies help you collect user documents. With this solution, users upload document files. These files are then processed for the raw data as user information. The two points below cover common reasons for using document processing.
+
+* Back up plan for unsuccessful payroll connection attempts or user data isn't processed
+  * Refer to [Designing the Employment History UX](/docs/ux-design-employment-history) guide for more on [uploading documents](/docs/ux-design-employment-history#uploading-documents) as a fallback solution
+* Standalone solution to process user data from input and upload
+
+# Configuring your document processing
+
+The points below cover user information to collect when integrating your document processing solution.
+
+* Document type required, such as `paystubs`, `W2`, and `1099`
+* Number of documents required for each type
+* Applicant `first_name` and `last_name`
+
+![](/images/docs/eb76c4b-small-113.png)
+
+In addition, you can add a specific message for your users displayed in Truv Bridge. [Contact Truv](/cdn-cgi/l/email-protection#70030500001f020430040205065e131f1d) for additional configuration settings.
+
+![](/images/docs/a148432-small-52f7f4d-7.png)
+
+## Bridge Token specifications
+
+When creating a [Bridge Token](/reference/bridge-token) for the User, document upload requires additional values in the request. Include the `product_type = employment` and `data_sources = ["docs"]` in the configuration from the cURL sample below.
+
+<CodeGroup>
+  ```curl curl
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "employment",
+       "data_sources": ["docs"],
+       "tracking_info": "any data for tracking current transaction"
+  }
+  '
+  ```
+</CodeGroup>
+
+## Example response
+
+The JSON data below contains a sample report payload when including document uploads.
+
+<CodeGroup>
+  ```json json
+  {
+    "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "status": "new",
+    "finished_at": "2021-04-06T11:30:00Z",
+    "completed_at": "2021-04-06 11:30:00+00:00",
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "tracking_info": "user123456",
+    "refresh_status": "new",
+    "employments": [
+      {
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "is_active": false,
+        "job_title": "PR associate",
+        "job_type": "F",
+        "start_date": "2018-01-01",
+        "original_hire_date": "2017-06-21",
+        "end_date": "2022-06-16",
+        "external_last_updated": "2022-06-16",
+        "dates_from_statements": false,
+        "derived_fields": [
+          "is_active"
+        ],
+        "missing_data_fields": [
+          "w2s"
+        ],
+        "manager_name": "Jenny McDouglas",
+        "profile": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "middle_initials": "K",
+          "email": "[email protected]",
+          "ssn": "123456789",
+          "date_of_birth": "1992-03-03",
+          "home_address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210",
+            "country": "US"
+          }
+        },
+        "company": {
+          "name": "Facebook Demo",
+          "address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210",
+            "country": "US"
+          },
+          "phone": "6503087300"
+        }
+      }
+    ],
+    "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+    "provider": "doc_upload",
+    "data_source": "docs"
+  }
+  ```
+</CodeGroup>
+
+# Testing document upload solutions
+
+When implementing VOE in your workflow for document uploads, use the [Testing](/docs/testing) to try different scenarios within the sandbox. The sections below provide PDFs to upload and test various scenarios.
+
+## Document processing testing
+
+When Integrating Document Processing in your workflow, the PDF downloads in the list below cover different scenarios for sandbox use.
+
+Upload the documents for testing different sandbox response results. Pay statements and tax documents return data when successful. Unsuccessful uploads respond with status updates.
+
+* Successful documents - [Most recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/most.recent.paystub.pdf), [Next recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/next.recent.paystub.pdf), [First paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/first.paystub.pdf), [W2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/w2.pdf)
+
+## Suspicious document detection
+
+Documents from uploads may have fraudulent, consistent, or unacceptable data. When encountering these issues, mark specific instances for review. Prevent malicious activity with additional analysis and attention.
+
+View the table below for various scenarios and PDF examples.
+
+| Scenario                                     | Description                                   | Downloads                                                                                                                                                                                                                                                                                         |
+| -------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tampered documents                           | Information is falsified or manipulated       | [Tampered 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f1.paystub.pdf), [Tampered 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f2.paystub.pdf), [Tampered 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f3.paystub.pdf)    |
+| Different Social Security Numbers            | Personal information is inconsistent          | [SSN 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn1.paystub.pdf), [SSN 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn2.paystub.pdf), [SSN 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn3.paystub.pdf)             |
+| Different company names                      | Company information is inconsistent           | [Company 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn1.paystub.pdf), [Company 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn2.paystub.pdf), [Company 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn3.paystub.pdf)    |
+| Different applicant names                    | Personal information is inconsistent          | [Applicant 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p1.paystub.pdf), [Applicant 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p2.paystub.pdf), [Applicant 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p3.paystub.pdf) |
+| Documents without data, or with invalid data | Information is missing or unable to be parsed | [No data 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd1.paystub.pdf), [No data 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd2.paystub.pdf), [No data 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd3.paystub.pdf)    |
+
+<Info>
+  Test scenarios use the file name to return results. Testing ignores the file contents when in the sandbox.
+</Info>
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Configuring your document processing](#configuring-your-document-processing)
+
+    * [Bridge Token specifications](#bridge-token-specifications)
+    * [Example response](#example-response)
+
+  * [Testing document upload solutions](#testing-document-upload-solutions)
+
+    * [Document processing testing](#document-processing-testing)
+    * [Suspicious document detection](#suspicious-document-detection)

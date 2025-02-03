@@ -1,0 +1,75 @@
+---
+title: "BeSmartee"
+description: "Utilize Truv’s Verification of Income and Employment (VOI/E) solution seamlessly within the BeSmartee point-of-sale system for efficient and accurate borrower data verification."
+---
+
+[Suggest Edits](/edit/besmartee-integration-guide)
+
+# Overview
+
+Integrating Truv with BeSmartee allows you to instantly access and verify borrowers' employment and income details from authenticated sources. This integration enhances the accuracy and speed of the verification process, facilitating quicker loan decisions.
+
+# Key Benefits
+
+* **Fast Verification**: Quickly verify employment and income information.
+* **Reliable Data**: Access accurate data from trusted sources.
+* **Efficient Processing**: Streamline the verification process for faster decision-making.
+
+# How it works
+
+During the pre-application phase, borrowers or co-borrowers are prompted to connect their payroll accounts using the Verify Income section of their loan application via Truv. Here’s how the process unfolds:
+
+1. **Connect Payroll Accounts**: Borrowers link their payroll accounts through Truv to share their income and employment details.
+2. **Access Reports**: Once accounts are connected, Truv reports are made available in your chosen Loan Origination System (LOS).
+3. **Task Management**: If the Verify Income step is skipped, you can set up tasks for borrowers or co-borrowers to complete this verification later.
+4. **Ongoing Monitoring**: Connected accounts are continuously monitored for new payroll documents, allowing for up-to-date verification reports throughout the loan origination process.
+
+# Borrower Workflow using Truv in BeSmartee
+
+Borrowers will enter their employment and income information and use the **"Verify Income"** section of the application. Alternatively, they will receive tasks in their TO-DO list prompting them to connect their accounts using Truv.
+
+For a brief overview of this workflow, watch the video below:
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FSLDzqylL6ys%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DSLDzqylL6ys\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FSLDzqylL6ys%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+# Launch with Truv in BeSmartee
+
+1. **Contact BeSmartee Customer Success**: Reach out to validate and complete the one-time admin setup for integrating Truv.
+
+2. **Enable Truv in BeSmartee:** Activate the Truv integration within your BeSmartee account.
+
+   1. **Ensure to copy credentials from Truv Dashboard**. Visit [Truv’s API Dashboard](https://dashboard.truv.com/app/home) and select API Keys. Copy the credential values from your environment using the Copy icon.
+
+      ![](/images/docs/e473201-124.png)
+
+   2. **Ensure to setup Webhooks in Truv Dashboard**. BeSmartee utilizes these webhooks to listen to events on every order from Truv and get updated statuses.
+
+      1. Ask your BeSmartee Customer Success representative to provide the Sandbox and Production URL that need to be added to the Truv Dashboard.
+
+      2. Once you have retrieved the URL's for both Sandbox and Production environment.
+
+      3. Navigate to [Truv’s API Dashboard](https://dashboard.truv.com/app/home)-> Development Section -> Webhooks tab and add a URL for your environment. Each environment requires a specific and separate URL.
+
+         ![](/images/docs/f474bc5e904c210258c76daf4b8c6c82f0de3776a4c1bfc8f92767a20eec4ac5-image_123.png)
+
+3. **Customize Templates:** Configure your verification templates in the Truv Dashboard.
+
+4. **Test in Sandbox Mode:** Familiarize yourself with the integration by testing in the Sandbox environment.
+
+5. **Obtain Production Access:** Complete the end-to-end setup with Truv and BeSmartee, and ensure successful submission to DU (Desktop Underwriter) and LPA (Loan Product Advisor) systems.
+
+6. **Go Live:** Launch the Truv integration within BeSmartee.
+
+You are now live with Truv within BeSmartee!!
+
+Refer to the [detailed step-by-step guide](/docs/launch-checklist-for-integrated-point-of-sale-pos) for a comprehensive walkthrough of launching Truv within BeSmartee.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Key Benefits](#key-benefits)
+  * [How it works](#how-it-works)
+  * [Borrower Workflow using Truv in BeSmartee](#borrower-workflow-using-truv-in-besmartee)
+  * [Launch with Truv in BeSmartee](#launch-with-truv-in-besmartee)

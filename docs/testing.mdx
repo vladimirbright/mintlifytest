@@ -1,0 +1,228 @@
+---
+title: "Testing"
+description: "Explore Truv use cases with the emulator in different sandbox scenarios."
+---
+
+[Suggest Edits](/edit/testing)
+
+# Overview
+
+Test and try out various scenarios using Truv. These features require no code for you to run. Get started with these sample integration solutions.
+
+The emulator lets you view the Truv experience as a user. Each sandbox scenario offers a user context and situation for specific workflows. Simulate Truv integrations and use cases with the information from the sections below.
+
+# Truv Emulator
+
+Access the Truv Emulator through the [Truv Dashboard](https://dashboard.truv.com/app/home). This is a simulation of the Truv workflow. Experience Truv as a user and navigate different workflows and situations.
+
+At the top, you can toggle **Sandbox mode** for testing various user scenarios. Additionally, the test scenarios are also available in **Production mode** with providers such as **Truv Payroll Provider**, **Truv Bank**, and **Truv Insurance Provider**, which can be accessed through the search function. View the [Sandbox scenarios section](#sandbox-scenarios) for additional details.
+
+![](/images/docs/10038aa8fa499987baaac8e633ec51b1f03bbe0f76cb3c6cece87069b5f6f513-image.png)
+
+Learn more about the Truv Dashboard in the guides below.
+
+* [Dashboard](/docs/dashboard)
+* [Basics](/docs/basics)
+
+# Sandbox scenarios
+
+Truv offers testing with our products with different user scenarios. The credentials below let you preview various user journeys. Use these values as login information to proceed with the scenario. In case you want to provide a SSN for an applicant, you have to use the SSN attached to the particular credentials scenario.
+
+## Supported scenarios and credentials
+
+Test unique user scenarios with the appropriate credentials. View the available scenarios for the Truv products below. Each section describes the eligible credentials for the supported products.
+
+### All
+
+Every Truv product is eligible for testing the scenarios in this section. Use the table below for the appropriate credentials for testing each scenario.
+
+* [Income and Employment](/docs/income-and-employment) (VOIE)
+* [Employment History](/docs/employment-history) (VOE)
+* [Direct Deposit Switch](/docs/direct-deposit-switch) (DDS)
+* [Paycheck Linked Loans](/docs/paycheck-linked-loans) (PLL)
+* [Insurance Verification](/docs/insurance-verification)
+
+| Username                | Password         | SSN           | Scenario                                                                                                              | Sample Reports                                                                          |
+| ----------------------- | ---------------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `any`                   | `any`            |               | Login Error                                                                                                           |                                                                                         |
+| `goodlogin`             | `goodpassword`   | `991-91-9991` | Successful login with complete data returned. Choose Social Security Administration provider for benefits recipients. | [pdf](https://truv.com/wp-content/uploads/2025/01/report-goodlogin.pdf?v=1)             |
+| `goodlogin.weekly`      | `goodpassword`   | `991-91-9991` | Similar to `goodlogin` but with a weekly pay frequency.                                                               | [pdf](https://truv.com/wp-content/uploads/2025/01/report-goodlogin.weekly.pdf?v=1)      |
+| `goodlogin.semimonthly` | `goodpassword`   | `991-91-9991` | Similar to `goodlogin` but with a semi-monthly pay frequency.                                                         | [pdf](https://truv.com/wp-content/uploads/2025/01/report-goodlogin.semimonthly.pdf?v=1) |
+| `goodlogin.monthly`     | `goodpassword`   | `991-91-9991` | Similar to `goodlogin` but with a monthly pay frequency.                                                              | [pdf](https://truv.com/wp-content/uploads/2025/01/report-goodlogin.monthly.pdf?v=1)     |
+| `goodlogin`             | `mfa`            | `991-91-9991` | Multi-factor authentication login, use code `12345`*NOTE: Using any other code results in an MFA error.*              |                                                                                         |
+| `goodlogin`             | `longcheck`      | `991-91-9991` | Successful login with additional wait time for completion, about 30 seconds                                           |                                                                                         |
+| `firsttimeborrower`     | `goodpassword`   | `991-91-9991` | Successful login with complete data returned for Alice Firstimer as per Fannie Mae standard.                          | [pdf](https://truv.com/wp-content/uploads/2025/01/report-firsttimeborrower.pdf?v=1)     |
+| `fannie-test.case4`     | `goodpassword`   | `666-00-6666` | Successful login with complete data returned for Pitt Rock, Jr. as per Fannie Mae standard.                           | [pdf](https://truv.com/wp-content/uploads/2025/01/report-fannie-test.case4_.pdf?v=1)    |
+| `fannie-test.case5`     | `goodpassword`   | `999-60-6666` | Successful login with complete data returned for Suzi Builder as per Fannie Mae standard.                             | [pdf](https://truv.com/wp-content/uploads/2025/01/report-fannie-test.case5_.pdf?v=1)    |
+| `fannie-test.case6`     | `goodpassword`   | `999-40-5000` | Successful login with complete data returned for John Homeowner as per Fannie Mae standard.                           | [pdf](https://truv.com/wp-content/uploads/2025/01/report-fannie-test.case6_.pdf?v=1)    |
+| `fannie-test.case7`     | `goodpassword`   | `999-42-2345` | Successful login with complete data returned for Lucky Knowscore as per Fannie Mae standard.                          | [pdf](https://truv.com/wp-content/uploads/2025/01/report-fannie-test.case7_.pdf?v=1)    |
+| `goodlogin`             | `mfa_captcha`    | `991-91-9991` | Captcha question is asked, use `9M4BP`to pass the check                                                               |                                                                                         |
+| `goodlogin`             | `mfa_select`     | `991-91-9991` | Multi-factor authentication login with verification method selection. Use any method and `12345` code                 |                                                                                         |
+| `goodlogin`             | `no_data`        |               | No data found in the provider account                                                                                 |                                                                                         |
+| `error.user`            | `login_error`    |               | Incorrect login and password                                                                                          |                                                                                         |
+| `error.user`            | `mfa_error`      |               | Issue with multi-factor authentication                                                                                |                                                                                         |
+| `error.user`            | `account_locked` |               | Locked account, requires provider unlock                                                                              |                                                                                         |
+| `error.user`            | `unavailable`    |               | Provider is going through maintenance and isn't available                                                             |                                                                                         |
+| `error.user`            | `error`          |               | Generic login error                                                                                                   |                                                                                         |
+
+### Native login via mobile SDKs
+
+Native logins in mobile SDKs in sandbox environment are available when using `Truv payroll provider`. Native login for other providers work in production mode only.
+
+### Refreshes
+
+Data refreshes will automatically succeed if the `goodlogin/goodpassword` credential combination is used. To test for a failed refresh, use the `goodlogin/mfa` credential combination from the initial verification. This will result in the refresh having the `mfa_error` status.
+
+### Additional login fields
+
+Providers may also use specific fields for login information. The points below cover these credentials for testing successful scenarios in Truv. These are the same scenarios as the `goodlogin` credentials from the table above.
+
+* Phone number - `(111)111-1111`
+* Email - `[email protected]`
+
+### VOIE, VOE, DDS, PLL
+
+These four products are available for testing the credentials below. Insurance Verification isn’t supported at this time for these scenarios. Use the values in this table for the products, VOIE, VOE, DDS, and PLL.
+
+| Username                | Password       | SSN         | Scenario                                           |
+| ----------------------- | -------------- | ----------- | -------------------------------------------------- |
+| `wronglogin`            | `wrongpwd`     |             | Page under construction                            |
+| `fulltime`              | `goodpassword` | `2211`      | Full time salesperson                              |
+| `hourly.part-time`      | `goodpassword` | `666382548` | Hourly part-time worker                            |
+| `partial.data`          | `goodpassword` | `2222`      | Partial data returned, payroll provider incomplete |
+| `military`              | `goodpassword` | `9988`      | Military MyPay data                                |
+| `error.user`            | `config_error` |             | Incorrect organization ID, failed data import      |
+| `multiple.employments`  | `goodpassword` |             | Multiple employments with different employers      |
+| `multiple.employments2` | `goodpassword` | `7740`      | Multiple employments with the same employer        |
+| `nonactive`             | `goodpassword` | `1890`      | Employment with an `end_date` value                |
+| `unemployment`          | `goodpassword` | `9988`      | Unemployment benefits with weekly pay frequency    |
+
+### VOIE and VOE
+
+The credentials below are eligible for both VOIE and VOE products. The values below are for the supported scenarios.
+
+| Username          | Password       | Scenario                                       |
+| ----------------- | -------------- | ---------------------------------------------- |
+| `goodlogin.shift` | `goodpassword` | Gig worker, including earned wage access (EWA) |
+
+### VOIE (Retirement, Disability and Veterans Benefits)
+
+Retirement Benefits, Disability Benefits and Veterans Benefits test scenarios for the VOIE product are available. Retirement and Disability Benefits scenarios will return a sample Social Security Administration Benefits Verification Letter instead of a paystub. Veteran Benefits will return a VA Benefit Summary Letter if Veteran Affairs provider is selected or a retirement paystub if DFAS myPay provider is selected.
+
+Once the Truv bridge opens, search for the desired benefit type, select a login method and use the successful login `goodlogin` and `goodpassword` credentials.
+
+### Insurance Verification
+
+The credentials below are eligible for Insurance Verification product.
+
+| Username     | Password              | Scenario                                                                                                   |
+| ------------ | --------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `goodlogin`  | `optionless_mfa`      | Multi-factor authentication login without option selection, submit code `12345` for successful scenario    |
+| `goodlogin`  | `good_commercial`     | Successful login with commercial policies                                                                  |
+| `goodlogin`  | `good_flood`          | Successful login with flood and home policies                                                              |
+| `goodlogin`  | `good_expensive`      | Successful login with dwelling coverage premiums more than 2.45x of `goodpassword`                         |
+| `goodlogin`  | `good_underinsured`   | Successful login with higher home Coverage A limit                                                         |
+| `goodlogin`  | `good_home`           | Successful login with home policy only                                                                     |
+| `goodlogin`  | `good_auto`           | Successful login with auto policy only                                                                     |
+| `goodlogin`  | `good_partial_auto`   | Successful login with auto and home policies, auto policy is partial                                       |
+| `goodlogin`  | `good_landlord`       | Successful login with landlord policy                                                                      |
+| `goodlogin`  | `good_no_policies`    | Successful login with no policies or policy-related data, returns profile-related data                     |
+| `goodlogin`  | `good_complete`       | Successful login with different combinations of policies, vehicles, dwellings, coverages, and endorsements |
+| `goodlogin`  | `adams`               | Successful login with realistic flood and home policies, static data matches PDF dec pages                 |
+| `goodlogin`  | `good_mortgagee`      | Successful replacement of the first mortgagee on the policy                                                |
+| `error.user` | `account_unactivated` | Error case with locked account. Requires provider account activation.                                      |
+
+## Native reset for authentication
+
+Truv Sandbox supports authentication reset workflows in supported implementations. Follow the process below.
+
+1. Enter values in requested fields
+2. Use `goodlogin` credentials for verification during MFA
+
+### Multi-factor authentication and re-verification
+
+For the embedded Truv flow and Orders, borrowers may be required to go through MFA during authentication. The re-verification during an automated refresh could also require MFA and could fail as a result. For Orders, the borrower would receive a notification to re-verify. For the embedded flow, you would need to implement the appropriate steps to contact the end-user.
+
+In order to test this scenario, please use MFA credentials in the original verification and trigger a data refresh via Truv's API.
+
+For additional troubleshooting, view the [Data Refresh](/docs/update-mode#authentication-issues) guide for more information. For Orders, please use the [Data Refresh endpoint](/docs/orders_create_refresh_order) within [Orders](/docs/orders-api).
+
+## Payroll data source testing
+
+The Truv products below collecting payroll data have their own supported testing connections. View the [Supported companies for testing section](#supported-companies-for-testing) when using payroll as a data source in the supported sandbox environments.
+
+* [Income and Employment](/docs/income-and-employment) (VOIE)
+* [Employment History](/docs/employment-history) (VOE)
+* [Direct Deposit Switch](/docs/direct-deposit-switch) (DDS)
+* [Paycheck Linked Loans](/docs/paycheck-linked-loans) (PLL)
+
+### Supported companies for testing
+
+The list below contains the available information for Mapping. These companies return a `company_mapping_id` value for integration.
+
+* **Facebook** - Workday
+* **Bank of America** - Company with single sign on
+* **Kroger** - Custom integration
+* **Fannie Mae** - ADP
+* **Freddie Mac** - Workday
+
+<Info>
+  In the emulator, only sandbox companies have the correct `company_mapping_id` value. Production environments have all valid mapping information values for many large US-based organizations and data providers.
+</Info>
+
+## Document processing testing
+
+When testing for [Integrating Document Processing](/docs/implementing-income-and-employment-document-processing), the PDF downloads in the list below cover different scenarios for sandbox use.
+
+Upload the documents for testing different sandbox response results. Pay statements and tax documents return data when successful. Unsuccessful uploads respond with status updates. Users and applicants require both `first_name` and `last_name` values for testing.
+
+* Successful documents - [Most recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/most.recent.paystub.pdf), [Next recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/next.recent.paystub.pdf), [First paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/first.paystub.pdf), [W2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/w2.pdf)
+* 1099 tax forms - [1099-DIV](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099div.pdf), [1099-G](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099g.pdf), [1099-INT](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099int.pdf), [1099-MISC](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099misc.pdf), [1099-NEC](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099nec.pdf), [1099-R](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099r.pdf), [SSA-1099](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssa1099.pdf)
+
+<Info>
+  For 1099 tax documents, Truv supports parsing for formatting from any year after 2021. This includes the following 1099 forms.
+
+  * 1099-DIV, 1099-G, 1099-INT, 1099-MISC, 1099-NEC, 1099-R
+</Info>
+
+### Suspicious document detection
+
+Documents from uploads may have fraudulent, consistent, or unacceptable data. When encountering these issues, mark specific instances for review. Prevent malicious activity with additional analysis and attention.
+
+View the table below for various scenarios and PDF examples.
+
+| Scenario                                     | Description                                   | Downloads                                                                                                                                                                                                                                                                                         |
+| -------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tampered documents                           | Information is falsified or manipulated       | [Tampered 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f1.paystub.pdf), [Tampered 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f2.paystub.pdf), [Tampered 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f3.paystub.pdf)    |
+| Different Social Security Numbers            | Personal information is inconsistent          | [SSN 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn1.paystub.pdf), [SSN 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn2.paystub.pdf), [SSN 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn3.paystub.pdf)             |
+| Different company names                      | Company information is inconsistent           | [Company 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn1.paystub.pdf), [Company 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn2.paystub.pdf), [Company 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn3.paystub.pdf)    |
+| Different applicant names                    | Personal information is inconsistent          | [Applicant 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p1.paystub.pdf), [Applicant 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p2.paystub.pdf), [Applicant 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p3.paystub.pdf) |
+| Documents without data, or with invalid data | Information is missing or unable to be parsed | [No data 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd1.paystub.pdf), [No data 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd2.paystub.pdf), [No data 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd3.paystub.pdf)    |
+
+<Info>
+  Test scenarios use the file name to return results. Testing ignores the file contents when in the sandbox.
+</Info>
+
+***
+
+What’s Next
+
+View more information about getting started with Truv from the guides below.
+
+* [Quickstart](/docs/quickstart-guide)
+* [Dashboard](/docs/dashboard)
+* [Truv Bridge](/docs/truv-bridge)
+* [Orders](/docs/orders-guide)
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Truv Emulator](#truv-emulator)
+
+  * [Sandbox scenarios](#sandbox-scenarios)
+
+    * [Supported scenarios and credentials](#supported-scenarios-and-credentials)
+    * [Native reset for authentication](#native-reset-for-authentication)
+    * [Payroll data source testing](#payroll-data-source-testing)
+    * [Document processing testing](#document-processing-testing)

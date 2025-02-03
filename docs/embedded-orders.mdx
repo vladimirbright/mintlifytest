@@ -1,0 +1,518 @@
+---
+title: "Embedded Orders"
+description: "Use this guide to embed orders in your platform workflow."
+---
+
+[Suggest Edits](/edit/embedded-orders)
+
+# Overview
+
+Follow the step-by-step guide below to use Truv Orders in your application for income and employment verification and other products
+
+# Summary of sequence diagram
+
+The diagram below shows the overview of token and data exchanges. The sequence covers your application, Truv Bridge, your server and backend, as well as the Truv API. View [the Steps section](#steps) to get started.
+
+1. Create an `order` from your backend. In the response there will be a `bridge_token` to initiate the Truv Bridge.
+2. Initialize Truv Bridge in your application and pass the `bridge_token` to **TruvBridge.init**.
+3. Listen to the **onSuccess** and **onClose** callbacks from the order page to learn when a user has completed connecting their accounts.
+4. After the connections are initiated, webhook events begin to arrive.
+5. Make an API request to retrieve the order and fetch the data and reports.
+
+![](/images/docs/8c6f85d-image_64.png)
+
+<Info />
+
+## Authentication
+
+<Info>
+  Requests to Truv APIs *must use HTTPS with TLS 1.2v encryption or higher*.
+</Info>
+
+All API requests require the `X-Access-Client-Id` and `X-Access-Secret` headers. These contain your **Client ID** and **Access secret**. These values are in your [Truv Dashboard](https://dashboard.truv.com/app/development/keys).
+
+<Warning>
+  The **Client ID** and **Access secret** may allow access to sensitive information. Store these in a secure and private place.
+</Warning>
+
+For API requests, the base URL `https://prod.truv.com/v1/` is the same in each environment. Update the access key with the prefixes below for use with their respective environments.
+
+* `sandbox`
+* `dev`
+* `prod`
+
+## Steps
+
+The steps below cover each action for setting up your Truv workflow.
+
+### 1. Create an Order and a Bridge Token
+
+Create an [Order](/reference/orders-api) in the Truv backend to link different data providers. See the sample cURL request below.
+
+<CodeGroup>
+  ```curl cURL
+  curl --request POST \
+       --url https://prod.truv.com/v1/orders/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "ssn": "991919991"
+    "products": [
+      "income"
+    ]
+  }
+  '
+  ```
+</CodeGroup>
+
+Retrieve a `bridge_token` from the API response. View the response sample below:
+
+<CodeGroup>
+  ```curl curl
+  {
+    "id": "39aa1486ccca4bc19cda071ffc1ba392",
+    "products": [
+      "income"
+    ],
+    "first_name": "John",
+    "last_name": "Doe",
+    "user_id": "99dd17074ac94aa9ace2621d657c7610",
+    "bridge_token": "e4100fccdae94691b4414c7306220c06",
+  ...
+  }
+  ```
+</CodeGroup>
+
+### 2. Initiate Truv Bridge
+
+Using the Bridge Token, initialize the Truv Bridge in your user interface. Follow the example below and pass the [Bridge Token](/reference/bridge-token) to **TruvBridge.init**.
+
+<CodeGroup>
+  ```html html
+  <script src="https://cdn.truv.com/bridge.js"></script>
+  <script>
+    // Step 2 - Call backend to retrieve a bridge_token from Truv
+    const bridgeToken = <%= Value returned by API call to create an order %>
+
+    // Step 3 - Initialize Bridge
+    const bridge = TruvBridge.init({
+          isOrder: true,
+          bridgeToken: bridgeToken,
+      })
+  </script>
+  ```
+</CodeGroup>
+
+#### Callbacks
+
+The functions in this table cover specific actions.
+
+| Callback  | Description                                                                | Required |
+| --------- | -------------------------------------------------------------------------- | -------- |
+| onLoad    | Truv Bridge has finished loading order page                                | optional |
+| onEvent   | Truv Bridge received an event from order page or connection widget         | optional |
+| onClose   | Truv Bridge closed the order page                                          | optional |
+| onSuccess | User has successfully connected all accounts and clicked 'I'm done' button | optional |
+
+Payload format for the events:
+
+<CodeGroup>
+  ```Text onEvent
+  {
+     "type": "LOAD",
+     "source": "order" | "bridge"
+     "payload": {}, // Only present for source=bridge
+  }
+  ```
+</CodeGroup>
+
+For all supported event types and payloads refer to [Event Reference For Truv Bridge](/docs/event-reference-for-truv-bridge)
+
+### 3. Test Credentials
+
+Test your implementation using sample credentials. Refer to [Testing](/docs/testing) or view the sample usernames and passwords below.
+
+| Username             | Password     | Description                                   |
+| -------------------- | ------------ | --------------------------------------------- |
+| goodlogin            | goodpassword | Full time current employment                  |
+| hourly.part-time     | goodpassword | Hourly part-time worker                       |
+| multiple.employments | goodpassword | Multiple employments with different employers |
+
+### 4. Monitor webhooks
+
+[Webhooks](/docs/webhooks) to your server can help monitor and notify you of any connection attempts with Task status changes. Use `user_id`to match the webhook events with a specific order.
+
+<CodeGroup>
+  ```json json
+  {
+    "webhook_id": "17a80437ce23411dbfd656694d19a8c6",
+    "event_type": "task-status-updated",
+    "event_created_at": "2024-07-11T21:43:08.073930Z",
+    "product": "income",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "data_source": "payroll",
+    "task_id": "871fef2e79ea444ea2019c8845305d31",
+    "tracking_info": null,
+    "status": "parse",
+    "template_id": null,
+    "updated_at": "2024-07-11T21:43:08.075540+00:00"
+  }
+  ```
+</CodeGroup>
+
+Once the user finishes connecting all their accounts the order level webhooks will be initiated:
+
+<CodeGroup>
+  ```json json
+  {
+    "webhook_id": "0aac461e7b774a38a72fd9c7c0eef8ee",
+    "event_type": "order-status-updated",
+    "event_created_at": "2024-07-11T21:40:48.424610Z",
+    "product": "income",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "data_source": "payroll",
+    "order_id": "ddd192646b3c48be96651a0ff25cef85",
+    "order_number": "4138538",
+    "employer_id": "d7166cffbfef4bd6a9e830cf5508e615",
+    "status": "completed",
+    "template_id": null,
+    "updated_at": "2024-07-11T21:40:48.424655+00:00"
+  }
+  ```
+</CodeGroup>
+
+### 5. Retrieve data
+
+Use the permanent `order_id` to retrieve [order details](/reference/orders_read) which will contain the data from *all linked accounts* and have a specific `voie_report_id` report ID which is [accepted by GSE](/docs/gse-certification-for-voie-with-truv) (Fannie Mae and Freddie Mac)
+
+The JSON data below contains a sample payload.
+
+<CodeGroup>
+  ```json json
+  {
+    "id": "39aa1486ccca4bc19cda071ffc1ba392",
+    "products": [
+      "income"
+    ],
+    "source": "floify",
+    "order_number": "1534332",
+    "custom_field": "string",
+    "first_name": "John",
+    "last_name": "Doe",
+    "user_id": "99dd17074ac94aa9ace2621d657c7610",
+    "bridge_token": "e4100fccdae94691b4414c7306220c06",
+    "share_url": "https://cdn.truv.com/employment.html?bridge_token=63b4af88facb40e48f517c1e8c7abdf4&order_group_id=39aa1486ccca4bc19cda071ffc1ba392",
+    "created_at": "2021-04-21T21:45:14.418542Z",
+    "updated_at": "2021-04-21T21:45:14.418542Z",
+    "canceled_at": "2021-04-22T21:45:14.418542Z",
+    "expired_at": "2021-04-24T21:45:14.418542Z",
+    "is_expired": true,
+    "initial_order": "f5dc0239e2094dbc90ab2edc1918a9df",
+    "refresh_order": "9b96606355b94e8abff8ed8d75aa2027",
+    "employers": [
+      {
+        "id": "ad9f14440d624ec3b0f66e81e44518c7",
+        "product_type": "income",
+        "status": "pending",
+        "suborder_number": "133982343355",
+        "created_at": "2021-04-21T22:12:59.346109Z",
+        "bridge_token": "e4100fccdae94691b4414c7306220c06",
+        "link_id": "e4100fccdae94691b4414c7306220c06",
+        "access_token": "e4100fccdae94691b4414c7306220c06",
+        "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+        "data_source": "payroll",
+        "provider": {
+          "id": "truv_api",
+          "name": "Sandbox Provider",
+          "logo_url": "https://citadelid-resources.s3.us-west-2.amazonaws.com/providers/truv-blue.svg"
+        },
+        "is_suspicious": true,
+        "start_date": "2019-08-24",
+        "end_date": "2019-11-27",
+        "company_name": "Facebook Demo",
+        "company_address": {
+          "street": "1 Hacker Way",
+          "city": "Menlo Park",
+          "state": "CA",
+          "zip": "94025"
+        },
+        "company_domain": "facebook.com",
+        "employments": [
+          {
+            "income": "70000.00",
+            "income_unit": "YEARLY",
+            "pay_rate": "6500.00",
+            "pay_frequency": "M",
+            "statements": [
+              {
+                "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+                "check_number": "29205182",
+                "pay_date": "2018-05-15",
+                "net_pay": "11500.32",
+                "net_pay_ytd": "31980.64",
+                "gross_pay": "13900.11",
+                "gross_pay_ytd": "49200.00",
+                "bonus": "100.00",
+                "commission": "12000.00",
+                "hours": "40.00",
+                "basis_of_pay": "S",
+                "period_start": "2018-05-01",
+                "period_end": "2018-05-15",
+                "regular": "1695.11",
+                "regular_ytd": "23000.00",
+                "other_pay_ytd": "700.00",
+                "bonus_ytd": "1000.00",
+                "commission_ytd": "24000.00",
+                "overtime": "45.00",
+                "overtime_ytd": "500.00",
+                "other_pay": "60.00",
+                "earnings": [
+                  {
+                    "name": "Regular",
+                    "amount": "1935.77",
+                    "category": "regular",
+                    "rate": null,
+                    "units": null
+                  },
+                  {
+                    "name": "Overtime",
+                    "amount": "60.58",
+                    "category": "overtime",
+                    "rate": "30.29",
+                    "units": "2"
+                  }
+                ],
+                "earnings_ytd": [
+                  {
+                    "name": "Regular",
+                    "amount": "1935.77",
+                    "category": "regular",
+                    "rate": null,
+                    "units": null
+                  },
+                  {
+                    "name": "Overtime",
+                    "amount": "60.58",
+                    "category": "overtime",
+                    "rate": "30.29",
+                    "units": "2"
+                  }
+                ],
+                "deductions": [
+                  {
+                    "name": "Social Security Tax",
+                    "amount": "127.01",
+                    "category": "socialsec"
+                  },
+                  {
+                    "name": "VA State Income Tax",
+                    "amount": "46.23",
+                    "category": "state"
+                  },
+                  {
+                    "name": "Medicare Tax",
+                    "amount": "29.7",
+                    "category": "medicare"
+                  }
+                ],
+                "deductions_ytd": [
+                  {
+                    "name": "Social Security Tax",
+                    "amount": "127.01",
+                    "category": "socialsec"
+                  },
+                  {
+                    "name": "VA State Income Tax",
+                    "amount": "46.23",
+                    "category": "state"
+                  },
+                  {
+                    "name": "Medicare Tax",
+                    "amount": "29.7",
+                    "category": "medicare"
+                  }
+                ],
+                "md5sum": "03639d6a6624f69a54a88ea90bd25e9d",
+                "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/paystub_sample.pdf",
+                "derived_fields": [
+                  "basis_of_pay"
+                ],
+                "missing_data_fields": [
+                  "earnings_ytd"
+                ]
+              }
+            ],
+            "annual_income_summary": [
+              {
+                "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+                "year": 2018,
+                "regular": "23000.00",
+                "bonus": "1000.00",
+                "commission": "24000.00",
+                "overtime": "500.00",
+                "other_pay": "700.00",
+                "net_pay": "31980.64",
+                "gross_pay": "49200.00"
+              }
+            ],
+            "bank_accounts": [
+              {
+                "account_number": "1234567890",
+                "routing_number": "123456789",
+                "account_name": "My Bank",
+                "account_type": "C",
+                "deposit_type": "A",
+                "deposit_value": "200.00",
+                "bank_name": "TD Bank"
+              }
+            ],
+            "w2s": [
+              {
+                "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/W2_sample.pdf",
+                "md5sum": "f65e30c39124ad707ac4b3aeaee923a7",
+                "year": 2020,
+                "wages": "900.50",
+                "federal_tax": "75.01",
+                "social_security_wages": "900.50",
+                "social_security_tax": "56.30",
+                "medicare_wages": "900.50",
+                "medicare_tax": "13.15",
+                "gross_pay": "18211.48"
+              }
+            ],
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "is_active": false,
+            "job_title": "PR associate",
+            "job_type": "F",
+            "start_date": "2018-01-01",
+            "original_hire_date": "2017-06-21",
+            "end_date": "2024-07-16",
+            "external_last_updated": "2024-07-16",
+            "dates_from_statements": false,
+            "derived_fields": [
+              "is_active"
+            ],
+            "missing_data_fields": [
+              "w2s"
+            ],
+            "manager_name": "Jenny McDouglas",
+            "profile": {
+              "id": "48427a36d43c4d5aa6324bc06c692456",
+              "created_at": "2022-06-07T15:00:00Z",
+              "updated_at": "2022-06-31T15:00:00Z",
+              "first_name": "John",
+              "last_name": "Doe",
+              "full_name": "John Doe",
+              "middle_initials": "K",
+              "email": "[email protected]",
+              "ssn": "123456789",
+              "date_of_birth": "1992-03-03",
+              "home_address": {
+                "street": "1 Morgan Ave",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip": "90210",
+                "country": "US"
+              }
+            },
+            "company": {
+              "name": "Facebook Demo",
+              "address": {
+                "street": "1 Morgan Ave",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip": "90210",
+                "country": "US"
+              },
+              "phone": "6503087300",
+              "ein": "12-345678"
+            }
+          }
+        ]
+      }
+    ],
+    "insurance": {
+      "id": "ad9f14440d624ec3b0f66e81e44518c7",
+      "product_type": "insurance",
+      "status": "pending",
+      "suborder_number": "133982343355",
+      "created_at": "2021-04-21T22:12:59.346109Z",
+      "bridge_token": "e4100fccdae94691b4414c7306220c06",
+      "link_id": "e4100fccdae94691b4414c7306220c06",
+      "access_token": "e4100fccdae94691b4414c7306220c06",
+      "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+      "data_source": "insurance",
+      "provider": {
+        "id": "truv_api",
+        "name": "Sandbox Provider",
+        "logo_url": "https://citadelid-resources.s3.us-west-2.amazonaws.com/providers/truv-blue.svg"
+      },
+      "is_suspicious": true,
+      "provider_id": "geico"
+    },
+    "manager": {
+      "email": "[email protected]",
+      "name": "John Doe"
+    },
+    "financial_accounts": [
+      {
+        "id": "ad9f14440d624ec3b0f66e81e44518c7",
+        "product_type": "transactions",
+        "status": "pending",
+        "suborder_number": "133982343355",
+        "created_at": "2021-04-21T22:12:59.346109Z",
+        "bridge_token": "e4100fccdae94691b4414c7306220c06",
+        "link_id": "e4100fccdae94691b4414c7306220c06",
+        "access_token": "e4100fccdae94691b4414c7306220c06",
+        "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+        "data_source": "financial_accounts",
+        "provider": {
+          "id": "truv_api",
+          "name": "Sandbox Provider",
+          "logo_url": "https://citadelid-resources.s3.us-west-2.amazonaws.com/providers/truv-blue.svg"
+        },
+        "is_suspicious": true
+      }
+    ],
+    "loan": {
+      "loan_number": "MUUT220700012",
+      "originator_name": "John Doe",
+      "originator_email": "[email protected]",
+      "loan_processor_name": "John Doe",
+      "loan_processor_email": "[email protected]"
+    },
+    "template_id": "9b96606355b94e8abff8ed8d75aa2027",
+    "voie_report_id": "b19c454a98594b4084b71e3b62873d29",
+    "voa_report_id": "b19c454a98594b4084b71e3b62873d29",
+    "aim_check_report_id": "FM-1234-39aa1486ccca4bc19cda071ffc1ba392"
+  }
+  ```
+</CodeGroup>
+
+# Data Refresh and Re-verification
+
+Data refresh order can be created using [Order Refresh](/reference/orders_create_refresh_order) endpoint.
+
+<Info>
+  Depending on the payroll system, user authentication may expire. For multi-factor authentication or one-time passcode (OTP) configurations, [users may need to re-authenticate ](/docs/update-mode#handling-data-refresh-authentication-issues)before data refresh can continue.
+</Info>
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Summary of sequence diagram](#summary-of-sequence-diagram)
+
+    * [Authentication](#authentication)
+    * [Steps](#steps)
+
+  * [Data Refresh and Re-verification](#data-refresh-and-re-verification)

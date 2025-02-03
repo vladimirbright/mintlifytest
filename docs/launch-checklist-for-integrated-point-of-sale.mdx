@@ -1,0 +1,82 @@
+---
+title: "Launch Checklist for Integrated Point-of-Sale (POS)"
+description: "Use the launch checklist in one of the Truv Integrated Point-of-Sale platforms"
+---
+
+[Suggest Edits](/edit/launch-checklist-for-integrated-point-of-sale)
+
+# Overview
+
+The Launch Checklist is designed to guide you through the process of integrating Truv’s verification services into your Point-of-Sale System(POS).
+
+It outlines the key steps for setup, configuration, activation, testing, and post-launch activities to ensure a seamless integration. Use this guide to develop and launch an integration using Truv in your Point-of-Sale systems.
+
+# Milestone 1: Setup POS
+
+## One-Time Admin Setup:
+
+* Reach out to your Point-of-Sale (POS) Customer Success Team for the one time admin set up
+* Enable Truv as a verification service in the POS of your choice.
+* Configure the service and authorize users.
+* Add or enable authorized users to access Truv.
+* Input Truv API credentials into the POS.
+
+## Configure Truv Settings in POS:
+
+* Ensure Truv webhooks are configured.
+* Activate the Truv service in POS.
+* Allow to show **Pending Tasks** to borrowers/co-borrowers for when they skip the verification step.
+
+# Milestone 2: Customize & test
+
+## Add Templates in Truv Dashboard
+
+* Customize branding, returned documents- number of paystubs and W2.
+* Enable Truv's document upload as a fallback.
+* Ensure to  **retrieve entitlements from the respective LOS**to write into **Truv's D1C and LPA report id** field.
+
+Refer to the [detailed step-by-step guide to set up templates](/docs/customization-templates) in Truv Dashboard.
+
+## Testing in a Sandbox Environment:
+
+* Input Truv Sandbox API keys, Client ID & Secret
+* Create test orders for verification of income and employment (VOIE) and verification of employment (VOE).
+* Verify successful report generation and document upload.
+* Ensure Truv Borrower Report is generated for VOIE and VOE.
+* Ensure all retrieved documents are pushed into LOS in the designated folders.
+
+Refer to the [various sandbox credentials](/docs/testing#sandbox-scenarios) based on product type to test in sandbox mode.
+
+## Get Production Access:
+
+* Set up a demo with the Truv team to review implementation and run tests.
+* Obtain Truv production API keys and input to your POS.
+* Test integration in production with `Truv Sandbox Payroll Provider`
+* Ensure submission to Fannie Mae DU and Freddie Mac LPA systems from LOS.
+
+Use the [Fannie Mae test credentials](/docs/testing#supported-scenarios-and-credentials) to test end-to-end on production.
+
+# Conclusion
+
+Voila! Congrats you can now go-live and launch in production.
+
+For further assistance, please reach out to [\[email protected\]](/cdn-cgi/l/email-protection#8ffcfaffffe0fdfbcffbfdfaf9a1ece0e2) or your Customer Success Manager.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Milestone 1: Setup POS](#milestone-1-setup-pos)
+
+    * [One-Time Admin Setup:](#one-time-admin-setup)
+    * [Configure Truv Settings in POS:](#configure-truv-settings-in-pos)
+
+  * [Milestone 2: Customize & test](#milestone-2-customize--test)
+
+    * [Add Templates in Truv Dashboard](#add-templates-in-truv-dashboard)
+    * [Testing in a Sandbox Environment:](#testing-in-a-sandbox-environment)
+    * [Get Production Access:](#get-production-access)
+
+  * [Conclusion](#conclusion)

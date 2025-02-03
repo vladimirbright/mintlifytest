@@ -1,0 +1,184 @@
+---
+title: "Integrating Verification of Assets"
+description: "Verification of Assets (VOA) provides frictionless experience to connect bank accounts and verify assets"
+---
+
+[Suggest Edits](/edit/verification-of-assets)
+
+# Overview
+
+Asset verification using consumer-permissioned financial account access is a seamless method for confirming user information. Institutions and stakeholders can review assets with no need for physical documentation.
+
+Consumers can grant access to allow direct viewing into financial holdings. This approach is helpful for a variety of use cases, including those below.
+
+* Mortgage approvals - Lenders determining an applicant's financial situation, down payment capabilities, and overall creditworthiness
+* Personal loans - Institutions gauging borrower assets as part of risk evaluation
+* Wealth Management - Financial advisors navigating strategies based on comprehensive view of client holdings
+* Rentals and leasing - Landlords verifying potential tenant financial health and security deposit capabilities
+* Large purchases - Dealerships or sellers verifying payment capability for goods, such as vehicles or high-end electronics
+
+Direct access to verified asset data simplifies verification processes. Transactions are more transparent, resulting in higher trust, reduced fraud, and faster decision-making.
+
+# Configuring Verification of Assets (VOA)
+
+Truv simplifies connecting your users to their financial institution. Users can select their bank or credit union in Truv Bridge from the list of most popular financial institutions. They can also look for their financial institution in the search field at the top of the screen.
+
+![](/images/docs/efb530c-109.png)
+
+Verification is instant when compared to wait times for other solutions. With this benefit, improve your conversion rates when guiding users connecting their accounts.
+
+## Bridge token specification
+
+Verification of Assets requires additional request values. This occurs when creating a [Bridge Token](/reference/bridge-token) for the user. Include the `product_type = assets` in the configuration from the cURL sample below.
+
+<CodeGroup>
+  ```curl curl
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "assets",
+       "tracking_info": "any data for tracking current connection"
+  }
+  '
+  ```
+</CodeGroup>
+
+# Endpoints
+
+View more information about the available endpoints for VOA reports below. The [VOA Reports](/reference/voa-reports) reference page has details on the attributes and responses.
+
+* [Create an assets report](/reference/assets-report-create)
+* [Retrieve an assets report](/reference/assets-report-retrieve)
+
+# Example response
+
+The JSON below contains information from the VOA response.
+
+<CodeGroup>
+  ```json VOA Report
+  {
+    "report_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "created_at": "2022-05-04T11:30:00Z",
+    "completed_at": "2022-05-04T12:00:00Z",
+    "days_requested": 61,
+    "borrower": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "external_user_id": "12345",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "[email protected]",
+      "phone": "+14155554193",
+      "ssn": "222233333",
+      "created_at": "2022-05-04T11:30:00Z",
+      "updated_at": "2022-05-04T12:00:00Z"
+    },
+    "links": [
+      {
+        "link_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "tracking_info": "string",
+        "provider": "string",
+        "identities": [
+          {
+            "id": "48427a36d43c4d5aa6324bc06c692456",
+            "created_at": "2022-06-07T15:00:00Z",
+            "updated_at": "2022-06-31T15:00:00Z",
+            "first_name": "John",
+            "last_name": "Doe",
+            "full_name": "John Doe",
+            "middle_initials": "K",
+            "email": "[email protected]",
+            "ssn": "123456789",
+            "date_of_birth": "1992-03-03",
+            "home_address": {
+              "street": "1 Morgan Ave",
+              "city": "Los Angeles",
+              "state": "CA",
+              "zip": "90210",
+              "country": "US"
+            }
+          }
+        ],
+        "accounts": [
+          {
+            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "created_at": "2022-05-04T11:30:00Z",
+            "updated_at": "2022-05-04T12:00:00Z",
+            "type": "string",
+            "subtype": "string",
+            "mask": "string",
+            "routing_number": "55999876",
+            "nickname": "string",
+            "days_available": 0,
+            "balances": {
+              "currency_code": "string",
+              "balance": "string",
+              "available_balance": "string",
+              "credit_limit": "string"
+            },
+            "transactions": [
+              {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "external_id": "string",
+                "amount": "string",
+                "currency_code": "string",
+                "check_number": "string",
+                "categories": [
+                  "string"
+                ],
+                "description": "string",
+                "status": "POSTED",
+                "type": "DEBIT",
+                "transacted_at": "2022-05-04T12:00:00Z",
+                "merchant_category_code": 0,
+                "ending_daily_balance": "string"
+              }
+            ],
+            "owners": [
+              {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "full_name": "string",
+                "email": "[email protected]",
+                "phone": "string",
+                "address": {
+                  "street": "1 Morgan Ave",
+                  "city": "Los Angeles",
+                  "state": "CA",
+                  "zip": "90210",
+                  "country": "US"
+                }
+              }
+            ],
+            "summary": {
+              "avg_30": "string",
+              "avg_60": "string",
+              "avg_90": "string",
+              "currency_code": "string"
+            }
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "avg_30": "string",
+      "avg_60": "string",
+      "avg_90": "string",
+      "currency_code": "string"
+    }
+  }
+  ```
+</CodeGroup>
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Configuring Verification of Assets (VOA)](#configuring-verification-of-assets-voa)
+    * [Bridge token specification](#bridge-token-specification)
+  * [Endpoints](#endpoints)
+  * [Example response](#example-response)

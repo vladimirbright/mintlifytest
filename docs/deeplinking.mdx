@@ -1,0 +1,40 @@
+---
+title: "Deeplinking"
+description: "Streamline the process for your users with supportive actions in links."
+---
+
+[Suggest Edits](/edit/deeplinking)
+
+# Overview
+
+Truv lets you deeplink throughout your user’s experience for a simplified workflow. Deeplinks use values from the bridge\_token process to move your user forward.
+
+## Bypass user input
+
+Use deeplinking to move your users more quickly through the process. Deeplinks save time as users won’t need to search for their employer or provider. Follow the sections below for more information.
+
+### Employer selection screen
+
+When you have your user's employer information before they start, use the [Search companies endpoint](/reference/company_mapping). This lets you retrieve a `company_mapping_id` value for your [Bridge Token](/reference/users_tokens). Passing the mapped company information as a deeplink lets users skip the employer selection screen.
+
+### Provider selection screen
+
+With the user's payroll provider information, you can have users start at the appropriate login screen. Pass the `provider_id` value during the [Bridge Token ](/reference/users_tokens)request to skip the provider selection screen.
+
+<Info>
+  All providers from the [List all data providers endpoint](/reference/providers-list) are supported.
+</Info>
+
+# Testing
+
+Explore deeplinks in Truv with inputs for `company_mapping_id` or `provider_id` in [Emulator](https://dashboard.truv.com/app/emulator). Select additional settings to test out the configurations.
+
+![](/images/docs/4620d2e-95.png)
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+    * [Bypass user input](#bypass-user-input)
+  * [Testing](#testing)

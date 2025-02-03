@@ -1,0 +1,108 @@
+---
+title: "TazWorks"
+description: "Instantly verify employment history for US employees from within the TazWorks platform."
+---
+
+[Suggest Edits](/edit/tazworks-integration-guide)
+
+# Overview
+
+Truv helps Consumer Reporting Agencies (CRAs) and processors submit employment history verification requests for applicants. Now with TazWorks, customers use Truv’s verification workflow directly in TazWorks to complete employment history verification requests. The integration can also use Orders to contact users for their provider information.
+
+# Key Benefits
+
+* **Efficient Verification**: Easily verify employment history details
+* **Reliable Data**: Obtain accurate information and necessary documentation from trusted sources.
+* **Accelerated Process**: Speed up the verification process for faster, more informed decisions.
+
+# Setup Guide for TazWorks Administrators
+
+The steps below cover each part of setting Truv up on TazWorks using administrator privileges.
+
+1. Navigate to **Admin** → **Vendors** → **Manage Interface Settings**.
+   1. Enter the Truv credentials under the **Data Providers** tab. Confirm the vendor is enabled on the back end with support.
+
+![TazWorks user interface in the data provider tab with Truv credentials.](/images/docs/0b72649-TazWorks_Admin_1_1.png)
+
+2. Navigate to **Admin** → **Vendors** → **Manage Vendors**.
+
+   1. Add a new vendor and enter the basic vendor information. Select **Save**.
+   2. Select the **Searches** tab at the top, then select all searches that apply to the vendor.
+   3. Navigate each search option and select **Embedded Interface**. Select Truv from the **Data Provider** dropdown and select **Save**.
+
+![Manage vendor tab with search selection tool using embedded interface preferences.](/images/docs/8f6b47b-TazWorks_Admin_1_2.png)
+
+3. Navigate to **Admin** → **Vendors** → **Manage Vendor Routing**. Select **Employment Verification**, select **Add** and then **Save**.
+
+![](/images/docs/33bc590-TazWorks_Admin_1_3.png)
+
+![](/images/docs/cd6b57f-TazWorks_Admin_1_3_2.png)
+
+![](/images/docs/7f21913-TazWorks_Admin_1_4.png)
+
+<Check>
+  You can start placing verification orders!
+</Check>
+
+# Ordering verifications with Truv on TazWorks
+
+The steps below are a walkthrough for configuring verifications with the TazWorks integration. The TazWorks integration uses Orders from Truv for contacting users to connect to their provider.
+
+1. Log into Tazworks, go to **Order**, then **New Order**, select **Client and Product**.
+
+1. Select **Employment Verification**, then select **Next** to proceed with the order submission.
+2. Complete all required fields. Including an applicant’s email and phone number to result in higher conversions. Confirm your applicant's consent before including email and phone number.
+3. Fill in the applicant’s current address and zip code, then select **Next**.
+4. Mark the employment status of the applicant and complete the employer details. Set **May We Contact This Employer?** to **No**, then select **Next** to proceed with the order submission.
+5. Select **Complete Order**.
+
+![](/images/docs/641c2b1-TazWorks_Admin_2_6.png)
+
+<Check>
+  Email and SMS messages guide the applicant to complete the verification using the Truv widget.
+</Check>
+
+# Monitoring Truv Verification Status
+
+After the applicant completes the verification, go to **Workspace**, then **Vendor summary**, then search Truv. Select the link under the Vendor column. Find results under the **Employer-provided information** section.
+
+Orders must be in `Pending Review` status for retrieval. Find verification data under **Employer-Provided Information**. If the applicant successfully completed the request using the Truv widget, the **New Dispatched Order** state changes to `Pending Review`.
+
+![](/images/docs/3508fa7-TazWorks_Admin_3_1.png)
+
+# Managing reports
+
+After the applicant has completed the verification, view and download results as a PDF. Navigate to **Workspace**, **Vendor summary**, then **Truv**. Search for the application, select the applicant name, then **Results**. Select **View** or **Print to download as PDF** to continue.
+
+![](/images/docs/675d031-TazWorks_Admin_4_1.png)
+
+## Managing order expirations and missing emails
+
+### Expired Orders
+
+Expired orders have a status of `Pending Review`.
+
+### Missing Email in application
+
+If an order is submitted without the applicant’s email, then you’ll see a status of `ERROR` and the Name value as `EMAIL, MISSING`. Select **Vendor** as **Truv** under the **Workplace** tab, then **Vendor Summary**. When you select `EMAIL, MISSING`, find the error message as a Warning.
+
+![](/images/docs/c1d5318-TazWorks_Admin_5_1.png)
+
+Refer to the [detailed step-by-step guide ](/docs/launch-checklist-for-integrated-screening-platforms)for a comprehensive walkthrough of launching Truv within BeSmartee.
+
+# Support
+
+Need help? Email [\[email protected\]](/cdn-cgi/l/email-protection#b3c0c6c3c3dcc1c7f3c7c1c6c59dd0dcde) or contact Truv through your dashboard.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Key Benefits](#key-benefits)
+  * [Setup Guide for TazWorks Administrators](#setup-guide-for-tazworks-administrators)
+  * [Ordering verifications with Truv on TazWorks](#ordering-verifications-with-truv-on-tazworks)
+  * [Monitoring Truv Verification Status](#monitoring-truv-verification-status)
+  * [Managing reports](#managing-reports)
+    * [Managing order expirations and missing emails](#managing-order-expirations-and-missing-emails)
+  * [Support](#support)

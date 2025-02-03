@@ -1,0 +1,91 @@
+---
+title: "Tax Returns Income"
+description: "This guide covers adding tax return processing for income and employment verification."
+---
+
+[Suggest Edits](/edit/integrating-tax-returns)
+
+# Configuring Tax Returns collection
+
+Create successful experiences for your users with a high quality introduction page for Tax Returns product. Users can verify income and connect to their tax preparation software from the start. Provide context for next steps highlighting your users’ privacy and security.
+
+Verification can be instant compared to the wait time for IRS tax returns and documents such as 4506-C. With this benefit, improve your conversion rates when guiding users connecting their accounts.
+
+Configure your introduction page to your users on top of Truv’s widget templates. Provide additional context and guidance as needed for a successful user experience.
+
+![](/images/docs/c134d94-124.png)
+
+Truv simplifies connecting your users to their tax preparation software providers. Users can select their tax preparation provider from the list in Truv Bridge.
+
+![](/images/docs/e858f0d-125.png)
+
+## Bridge Token specifications
+
+Document uploading for collecting tax returns requires additional request values. This occurs when creating a [Bridge Token](/reference/bridge-token) for the user. Include the `product_type = income` and `data_sources = ["tax"]` in the configuration from the cURL sample below.
+
+<CodeGroup>
+  ```curl curl
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "income",
+       "data_sources": ["tax"],
+       "tracking_info": "any data for tracking current transaction"
+  }
+  '
+  ```
+</CodeGroup>
+
+## Example response
+
+The JSON data below contains a sample payload from the [List all tax documents](/reference/tax-documents-list) endpoint.
+
+<CodeGroup>
+  ```json json
+  [
+    {
+      "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+      "document_type": "F1040",
+      "document_subtype": "",
+      "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/tax_sample.pdf",
+      "md5sum": "24d7e80942ce4ad58a93f70ce4115f5c",
+      "year": 2019
+    }
+  ]
+  ```
+</CodeGroup>
+
+# Testing integrations
+
+When implementing VOIE in your workflow for Tax Returns, use the credentials below to try different scenarios within the sandbox.
+
+| Username        | Password       | SSN           | Scenario                                     |
+| --------------- | -------------- | ------------- | -------------------------------------------- |
+| `goodlogin.tax` | `goodpassword` | `991-91-9991` | Successful login with complete data returned |
+
+The table below covers the credentials available for testing error scenarios.
+
+| Username     | Password         | Scenario                                     |
+| ------------ | ---------------- | -------------------------------------------- |
+| `error.user` | `login_error`    | Incorrect login and password                 |
+| `error.user` | `mfa_error`      | Issue with multi-factor authentication       |
+| `error.user` | `account_locked` | Locked account, requires provider unlock     |
+| `error.user` | `no_data`        | No data found in provider account            |
+| `error.user` | `unavailable`    | Provider is not available, maintenance issue |
+| `error.user` | `error`          | Generic login error                          |
+
+***
+
+* [Table of Contents](#)
+
+* * [Configuring Tax Returns collection](#configuring-tax-returns-collection)
+
+    * [Bridge Token specifications](#bridge-token-specifications)
+    * [Example response](#example-response)
+
+  * [Testing integrations](#testing-integrations)

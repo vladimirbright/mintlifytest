@@ -1,0 +1,366 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# Pay Statements
+
+View information from pay statements such as dates, gross pay, net pay, and earnings with deductions.
+
+# Overview
+
+The pay statement endpoints return a list of pay statements with attribute object breakdowns. The statement is related to the `link_id` from Truv's Income and Employment API.
+
+# Attributes
+
+The table below covers the values for pay statements.
+
+| Attribute             | Type             | Description                                                                                    |
+| --------------------- | ---------------- | ---------------------------------------------------------------------------------------------- |
+| id                    | string           | Unique ID of selected statement                                                                |
+| check\_number         | string           | External ID of pay stub from payroll provider                                                  |
+| pay\_date             | date             | Pay date                                                                                       |
+| net\_pay              | string           | Net pay                                                                                        |
+| net\_pay\_ytd         | string           | Net pay year to date                                                                           |
+| gross\_pay            | string           | Gross pay                                                                                      |
+| gross\_pay\_ytd       | string           | Gross pay year to date                                                                         |
+| bonus                 | string           | Bonus amount                                                                                   |
+| commission            | string           | Commission amount                                                                              |
+| hours                 | string           | Total work hours during a pay period                                                           |
+| basis\_of\_pay        | string           | Basis of pay, includes three types of pay plans`S` - Salary`H` - Hourly`D` - Daily`W` - Weekly |
+| period\_start         | date             | Pay period start                                                                               |
+| period\_end           | date             | Pay period end                                                                                 |
+| regular               | string           | Regular salary                                                                                 |
+| regular\_ytd          | string           | Regular salary year to date                                                                    |
+| other\_pay\_ytd       | string           | All other pay forms year to date                                                               |
+| bonus\_ytd            | string           | Bonus year to date                                                                             |
+| commission\_ytd       | string           | Commission year to date                                                                        |
+| overtime              | string           | Overtime pay                                                                                   |
+| overtime\_ytd         | string           | Overtime pay year to date                                                                      |
+| other\_pay            | string           | Other pay                                                                                      |
+| earnings              | array of objects | Earnings for pay cycle by type                                                                 |
+| earnings\_ytd         | array of objects | Earnings year to date                                                                          |
+| deductions            | array of objects | Deductions for the pay cycle by type                                                           |
+| deductions\_ytd       | array of objects | Deductions by type year to date                                                                |
+| md5sum                | string           | MD5 hash value computed based on file content                                                  |
+| file                  | url              | Link to pay stub file (up to 2048 characters long)                                             |
+| derived\_fields       | array of strings | Array of derived fields                                                                        |
+| missing\_data\_fields | array of strings | List of missing data fields from payroll response                                              |
+
+# Endpoints
+
+View the available endpoints for pay statements below.
+
+* [List all statements](/reference/link-statements)
+* [Retrieve a statement](/reference/retrieve-statement)
+
+# Example response
+
+The JSON below is a sample response from the endpoint.
+
+<CodeGroup>
+  ```json json
+  {
+    "id": "970c13c479b14f41b0b6a991ee8819f6",
+    "pay_date": "2021-10-22",
+    "net_pay": "1515.61",
+    "net_pay_ytd": "35398.31",
+    "gross_pay": "2153.85",
+    "gross_pay_ytd": "45500.00",
+    "bonus": null,
+    "commission": null,
+    "hours": "80.00",
+    "basis_of_pay": "S",
+    "period_start": "2021-10-03",
+    "period_end": "2021-10-16",
+    "regular": "2153.85",
+    "regular_ytd": "42000.00",
+    "bonus_ytd": "500.00",
+    "commission_ytd": null,
+    "overtime": null,
+    "overtime_ytd": null,
+    "other_pay": null,
+    "other_pay_ytd": "3000.00",
+    "earnings": [
+      {
+        "name": "Regular",
+        "category": "regular",
+        "amount": "2153.85",
+        "rate": "2153.85",
+        "units": "72.00"
+      }
+    ],
+    "earnings_ytd": [
+      {
+        "name": "Regular",
+        "category": "regular",
+        "amount": "42000.00",
+        "rate": null,
+        "units": null
+      },
+      {
+        "name": "Spot Award",
+        "category": "other_pay",
+        "amount": "3000.00",
+        "rate": null,
+        "units": null
+      },
+      {
+        "name": "Bonus",
+        "category": "bonus",
+        "amount": "500.00",
+        "rate": null,
+        "units": null
+      }
+    ],
+    "deductions": [
+      {
+        "name": "Blue Ash Income Tax",
+        "amount": "-26.94",
+        "category": "local"
+      },
+      {
+        "name": "Medicare Tax",
+        "amount": "-31.25",
+        "category": "medicare"
+      },
+      {
+        "name": "CA State Income Tax",
+        "amount": "-54.68",
+        "category": "state"
+      },
+      {
+        "name": "Social Security Tax",
+        "amount": "-133.63",
+        "category": "socialsec"
+      },
+      {
+        "name": "Federal Income Tax",
+        "amount": "-154.37",
+        "category": "federal"
+      },
+      {
+        "name": "401K Dollars",
+        "amount": "-237.37",
+        "category": "retirement"
+      }
+    ],
+    "deductions_ytd": [
+      {
+        "name": "Federal Income Tax",
+        "amount": "3639.64",
+        "category": "federal"
+      },
+      {
+        "name": "Social Security Tax",
+        "amount": "3090.03",
+        "category": "socialsec"
+      },
+      {
+        "name": "401K Dollars",
+        "amount": "2148.46",
+        "category": "retirement"
+      },
+      {
+        "name": "CA State Income Tax",
+        "amount": "1275.75",
+        "category": "state"
+      },
+      {
+        "name": "Medicare Tax",
+        "amount": "722.67",
+        "category": "medicare"
+      },
+      {
+        "name": "Blue Ash Income Tax",
+        "amount": "623.01",
+        "category": "local"
+      },
+      {
+        "name": "Exp Repay",
+        "amount": "-1397.87",
+        "category": "benefit"
+      }
+    ],
+    "md5sum": null,
+    "file": null,
+    "derived_fields": [],
+    "missing_data_fields": [],
+    "check_number": null
+  }
+  ```
+</CodeGroup>

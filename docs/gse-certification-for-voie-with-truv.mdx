@@ -1,0 +1,67 @@
+---
+title: "GSE certification for VOIE with Truv"
+description: "Use verification of income and employment and share reports with government sponsored enterprises."
+---
+
+[Suggest Edits](/edit/gse-certification-for-voie-with-truv)
+
+# Overview
+
+Truv Verification of Income and Employment (VOIE) now supports government sponsored enterprise (GSE) connectivity. Simplify your users’ experience and easily create [VOIE Reports](/reference/voie-reports) from the users' employment and income information that can be integrated with Fannie Mae’s DU Validation Service and Freddie Mac's AIM.
+
+# User reports
+
+Truv's reports have been integrated with Fannie Mae’s [DU Validation Service](https://singlefamily.fanniemae.com/applications-technology/desktop-underwriter-validation-service) and Freddie Mac's [Asset and Income Modeler (AIM)](https://sf.freddiemac.com/tools-learning/loan-advisor/our-solutions/aim-asset-income-modeler).
+
+Truv's vendor ID is **Truv**.
+
+## Integration Process
+
+After the borrower successfully completes the VOIE process, Truv generates reports that can be retrieved by Fannie Mae and Freddie Mac using the Report ID. Upon data refresh, new reports with corresponding new Report IDs are generated. Each new Report ID must be provided to Fannie Mae and Freddie Mac to access the latest data. Subsequent VOE flows also lead to new reports being created.
+
+The Report ID is present in Truv's [VOIE Reports](/reference/voie-reports) as highlighted below.
+
+![](/images/docs/3bf753f-Report_ID.png)
+
+1. **Retrieve the VOIE Report ID**
+
+   1. For Truv implementations using the `bridge_token`, call `users/{user_id}/reports/` to retrieve the `report_id`. More information [here](/reference/voie-reports).
+   2. For implementations using Truv Orders, call `orders/{id}/` using the `order_id` to retrieve the `voie_report_id`. More information [here](/reference/orders_read).
+      <Info>
+        Ensure the borrower has successfully completed verifications of all requested employments before retrieving the `report_id`or `voie_report_id`, otherwise, there is a risk of receiving only partial DU or AIM validation.
+      </Info>
+
+2. **Retrieve the User PDF Report**
+   1. Call `users/{user_id}/reports/{report_id}/?fmt=pdf` to retrieve the report in PDF format. Change the suffix to `fmt=json` to get the JSON response. More information [here](/reference/users_get_report).
+
+3. **Sandbox Testing**
+
+   1. Use Fannie Mae's standard credentials from Truv's [Testing page](/docs/testing#all) to test the GSE use case.
+
+      * First and last name: `Alice Firstimer`
+      * Username: `firsttimeborrower`
+      * Password: `goodpassword`
+      * SSN: `991-91-9991`
+
+## Encompass
+
+For our [Encompass](/docs/encompass-by-ice-mortgage-technology) clients, Truv's Report ID would be available in the Encompass **Loan: GSE Additional Provider Data** screen as **Truv (Bor, CoBorr)**, highlighted below.
+
+![](/images/docs/6d68e12-image_1.png)
+
+### Integration Process for Encompass
+
+To pass Truv's Report ID to Encompass, use the following Encompass fields:
+
+* **Fannie Mae's DU (D1C) and Freddie Mac's AIM**: Write the Report ID to Encompass FieldID `GSEVENDOR.X50`. If there is a borrower and a coborrower the corresponding Report ID should be comma separated: `borrower_report_id,coborrower_report_id`.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [User reports](#user-reports)
+
+    * [Integration Process](#integration-process)
+    * [Encompass](#encompass)

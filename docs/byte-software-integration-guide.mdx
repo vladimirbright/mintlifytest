@@ -1,0 +1,164 @@
+---
+title: "BYTE Software"
+description: "Byte Software allows for seamless income and employment verification through Truv."
+---
+
+[Suggest Edits](/edit/byte-software-integration-guide)
+
+# Overview
+
+Byte Software integrates effortlessly with Truv to provide fast, efficient income and employment verifications. Streamline your verification process in just a few steps, all within your loan origination platform.
+
+# Key Benefits
+
+* **Seamless Integration**: Truv integrates directly into BYTE Software, enabling a smooth transition from loan origination to verification.
+* **Fast and Accurate Verifications**: Automate income and employment verifications, ensuring quick turnaround times and reducing errors.
+* **Efficient Workflow**: Keep the entire verification process within BYTE Software to minimize disruptions and maximize efficiency.
+* **Customization Options**: White-labeling and workflow customization allow you to adapt the solution to your branding and operational needs.
+* **Minimized Change Management**: No need for complex implementation—Truv’s solution is ready to use, reducing the burden on your IT team.
+
+# How it works
+
+The Truv integration within BYTE Software allows you to leverage automated employment and income verification directly in your existing workflow. Here’s how it works:
+
+1. **Application Submission**: Operations team can initiate and submit the loan application through BYTE Software.
+2. **Request Verification**: Simply navigate to the Truv verification section and input the necessary information for the applicant.
+3. **Borrower Notification**: Borrowers are notified via email and text, specified in the loan application to complete the requested verifications. The borrower experience is completely customized through the Truv Dashboard -> Templates. Borrower is required to authenticate into the employers requested to complete the verification.
+4. **Automated Data Retrieval**: Once borrower completes the requested verification. Truv retrieves the income and employment data from connected payroll systems and the data retrieved is automatically populated in BYTE Software, allowing for a seamless continuation of the loan process.
+
+# Enabling the Integration
+
+To enable the integration between BYTE Software and Truv:
+
+1. **Access Integration Settings**: Log in to BYTE Software and navigate to the **Settings** menu.
+
+2. **Locate Truv Integration**: Under the integration options, locate **Truv** and select it.
+
+   1. **Authorize Integration**:
+
+      1. **Enable Truv in BYTE:** Activate the Truv integration within your BYTE account.
+
+         1. **Ensure to copy credentials from Truv Dashboard**. Visit [Truv’s API Dashboard](https://dashboard.truv.com/app/home) and select API Keys. Copy the credential values from your environment using the Copy icon.
+
+            ![](/images/docs/e473201-124.png)
+
+         2. Copy `Client ID` from **Truv** in to **API Key for Testing** in BYTE
+
+            ![](/images/docs/55117b029226363fd66ed846f0bb0a9541ac3426763d239476cffca7cbfb1168-Screenshot_2024-12-19_at_11.07.26_AM.png)
+
+         3. **Client Secret ID** in BYTE , paste the **Secret** from Truv dashboard ( `sandbox-….`)
+
+         4. When going to production: Add the **Secret** from Truv dashboard in **Client secret id** in BYTE (`prod-…….`)
+
+         5. `Client ID` from Truv Dashboard needs to be added into the **API Key for Production** in BYTE.
+
+      **NOTE:** This is a KNOWN bug and BYTE team is working to fix it.
+
+3. **Save and Confirm**: Save the settings, and confirm that the integration is enabled. Once complete, Truv will be available as an option for income and employment verifications.
+
+# Ordering a Verification
+
+With Byte Software, you has the option to either auto-run or place orders manually via the Byte interface.
+
+## Auto-run
+
+Once the integration is enabled, follow these steps to order a verification:
+
+1. **Open Loan Application**: Access the relevant loan application in BYTE Software.
+
+2. **Navigate to Verifications**: In the application details, navigate to **Interfaces ->Verifications** section.
+
+   ![](/images/docs/3ef3fde003d4acbd7b7f3edc8e0b36818dba87188ee2325bc70d81ae66e08b65-Screenshot_2024-10-01_at_3.24.19_PM.png)
+
+3. **Select Truv Verification**: Select **Truv** as the provider.
+
+   ![](/images/docs/24243cf2d65c6406c2c048de011c18ae84f25304e72be49debcfb55a9f0502a9-Screenshot_2024-10-01_at_3.25.01_PM.png)
+
+4. **Auto run options**: Once Truv is selected, Click on the **Defaults** to set the auto start options.
+
+   ![](/images/docs/65592d8cfe495374ee99c05cd929356c8b85ace573594274713952c36b52c7a2-Screenshot_2024-10-01_at_3.26.49_PM.png)
+
+5. Set the following Auto run conditions:
+
+   1. **Auto Start Product Type** to Income for Income and employment Verification
+   2. **Auto Start Reverify Product Type**to Employment for Employment Verification or 10 day PCV
+
+   ![](/images/docs/8ed1154cc0eb5362fee73dfe33a32dae0607d33ebbd4275c68ad6219e831a88d-Screenshot_2024-10-01_at_3.26.35_PM.png)
+
+6. Now set the conditions when the auto run gets triggered
+
+   1. Select Loan Statuses to **In Processing** or submit auto-runs for re-verifications when Loan Statuses is **Clear to Close**
+
+   ![](/images/docs/0f9da782fd922b445f74c71dcb84868cc879f2a7bcc31e26c11fa9a5894eef81-Screenshot_2024-10-01_at_3.22.23_PM.png)
+
+## Manual ordering
+
+Once the integration is enabled, follow these steps to order a verification:
+
+1. **Open Loan Application**: Access the relevant loan application in BYTE Software.
+
+2. **Navigate to Verifications**: In the application details, navigate to **Interfaces ->Verifications** section.
+
+   ![](/images/docs/3ef3fde003d4acbd7b7f3edc8e0b36818dba87188ee2325bc70d81ae66e08b65-Screenshot_2024-10-01_at_3.24.19_PM.png)
+
+3. **Select Truv Verification**: Select **Truv** as the provider.
+
+   ![](/images/docs/27dff68209171e921b2f49880670db21f74eae598175f1cfc873c59a6d638341-Screenshot_2024-10-01_at_3.25.01_PM.png)
+
+4. **Input Applicant Information**: Fill in the necessary details, such as the applicant’s name, employer, and any additional information requested.
+
+   ![](/images/docs/5739a47cae55a3ac36c87b30026ab47a0634c9446d6d3b18121416d9df7114b9-Screenshot_2024-10-01_at_3.25.20_PM.png)
+
+   1. Select co-borrowers from the **Borrower drop down**.
+
+   2. Select the **Product Type** as **Income** to place Income and Employment verification and **Employment** for Employment only verification or 10-day PCV.
+
+      ![](/images/docs/daa640ff5b18009850ee0084806b8f1bc6623319531b66f13acc2d8dbc418f55-Screenshot_2024-10-01_at_3.25.36_PM.png)
+
+   3. All the employers are listed under the **Employer Name**, you have the option to select or unselect employers before placing an order.
+
+   4. If its a **Current employer** it will be listed as **Y** in the **Is Current** column against the employer name. The similar behavior applies to **Self employed** status.
+
+   5. You can click on **Status** and the Status messages will be listed under the Status Messages.
+
+   6. If Order is **Pending**, you may go ahead and **Cancel** or click on **Add Employer or Other Income** button.
+
+   ![](/images/docs/3adc39e350a75a36f1d7df56ec77aa84c2c6cfc9fe8140b5dd3313d4aa0ea513-Screenshot_2024-10-01_at_8.25.24_PM.png)
+
+5. **Submit the Request**: Submit the request, and Truv will automatically begin retrieving income and employment data.
+
+# Retrieving Reports and Documents
+
+To retrieve reports and documents after ordering a verification:
+
+1. **Access Completed Verifications**: Once Truv has completed the verification, you’ll receive a notification within BYTE Software.
+2. **View Verification Details**: Go to the **Verifications** section of the loan application and click on the completed Truv verification.
+3. **Download Reports**: You can view and download the verification report, which includes detailed information on the applicant's income and employment.
+4. **Attach to Application**: Attach the report directly to the loan application for easy access during underwriting.
+
+# Overview of Truv within Byte Software
+
+Below is a quick overview of Truv within Byte Software encompassing the auto-run and manual ordering workflows
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWDps4NAQ6lA%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWDps4NAQ6lA\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FWDps4NAQ6lA%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Key Benefits](#key-benefits)
+
+  * [How it works](#how-it-works)
+
+  * [Enabling the Integration](#enabling-the-integration)
+
+  * [Ordering a Verification](#ordering-a-verification)
+
+    * [Auto-run](#auto-run)
+    * [Manual ordering](#manual-ordering)
+
+  * [Retrieving Reports and Documents](#retrieving-reports-and-documents)
+
+  * [Overview of Truv within Byte Software](#overview-of-truv-within-byte-software)

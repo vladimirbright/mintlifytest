@@ -1,0 +1,207 @@
+---
+title: "Running AIM Check via Automated Service Ordering (ASO)"
+description: "Setup Document Upload - Income Calculation (AIM Check) to run via Automated Service Ordering (ASO)"
+---
+
+[Suggest Edits](/edit/document-upload-income-calculation-aim-check)
+
+# Overview
+
+Lenders using Truv can enable AIM Check from Freddie Mac to be eligible to receive Rep & Warrant relief for the accuracy of the income calculation using paystubs and W2s submitted by the borrower. This guide will walk lenders through the process to setup AIM Check via Automated Service Ordering (ASO) in Encompass.
+
+* AIM Check via Automated Service Ordering (ASO) in Encompass: ✅ **Supported**
+* AIM Check via Manual Ordering in Encompass: ❌ **Not yet supported**
+
+To learn more about the benefits of this product, check the Freddie Mac’s resource: [https://learn.sf.freddiemac.com/tutorials/loan-advisor/aim4iued-dgtz-pstub-w2/story.html](https://learn.sf.freddiemac.com/tutorials/loan-advisor/aim4iued-dgtz-pstub-w2/story.html)
+
+# Setup overview
+
+To enable AIM Check with Truv, follow the below steps:
+
+1. Reach out to Truv Implementation to request enabling AIM Check
+2. Configure the Custom Field data type
+3. Map Truv’s aim\_check\_available to the Custom Field
+4. Configure Automation Rules
+5. Configure Workflow Rules
+
+## Step 1: Reach out to Truv Implementation to request enabling AIM Check
+
+1. Notify your Truv Implementation point of contact that you would like to enable Truv’s AIM Check solution in Encompass.
+
+## Step 2: Configure the Custom Field data type
+
+In Steps 2-3, we will be setting up a Custom Field in Encompass for Truv to indicate which borrowers AIM Check is available for (aim\_check\_available). In this step we will pick an unused Custom Field in Encompass and set the correct data type for the indicator.
+
+**Configure the Custom Field data type**
+
+1. Go to Encompass Smart Client, then navigate to Encompass → Settings → Loan Setup → Loan Custom Fields
+
+   1. Select an unused Custom Field from the list (NONE in the Format column) and update the formatting as follows, we will use **CUST01FV**
+
+      1. **Description**: Truv aim check report availability
+      2. **Format**: STRING
+      3. **Max Length**: 1000
+
+      ![](/images/docs/bea64cbea272f1cf4661f79a0b393344872dacf294228c95f1e02b94b51dce16-image.png)
+
+      <Warning>
+        We will use **CUST01FV** as an example for the rest of this setup, if you need to use a different Custom Field just replace **CUST01FV** in this guide with your field.
+      </Warning>
+
+## Step 3: Map Truv’s aim\_check\_available to the Custom Field
+
+**Map Truv’s indicator (*aim\_check\_available*) to the Custom Field configured in Step 2**
+
+1. Go to [https://encompass.ice.com/admin](https://encompass.ice.com/admin), then navigate to **Services** → **Services Management**
+2. Find **Truv - Verification or Income/Employment**, then click the three dots on the bottom right of the panel and select **Field Mapping**
+
+![](/images/docs/5a7c2e26d8a2d503a963b1e8ae4fff84109c947fa0d79e09629e4f0a87bbdd83-image.png)
+
+3. On the Field Mapping page, select **Add Another** and enter the following options, then press **Save**
+
+   1. **Encompass Field ID**: CUST01FV
+      1. Note: if you used a different Custom Field in Step 2 it should be used here
+   2. **Mapping Type**: Maps Between
+   3. **Provider Field Name**: aim\_check\_available
+
+![](/images/docs/73aac3899cd6fe7d43d321483d6ebc1dddb57ede79d99bb295e5fb973e4e2f12-image.png)
+
+<Check>
+  A Custom Field configured in your Encompass instance that will map to Truv's indicator for which borrowers AIM Check is available for (aim\_check\_available). It should have the string data type.
+</Check>
+
+## Step 4: Configure Automation Rules
+
+**Setup a Service Rule to be triggered by Workflow Rules**
+
+1. Go to [https://encompass.ice.com/admin/services/servicesmanagement](https://encompass.ice.com/admin/services/servicesmanagement)
+2. Navigate to **Services Management** → **Automation Rules** → **Verifications** → **Add**
+
+![](/images/docs/ba6be02a57cf071a42a05e4d692ce37d8b94d8c7d9e1ede1a18d9653905de940-image.png)
+
+3. On the **Add Verifications Rule** page
+
+   1. Add a **Rule Name**
+   2. Select **Run the first matched order**
+   3. Add a new Service Order (continued in next section in guide)
+   4. Once the new Service Order is added (next section), turn the Verifications rule to **Active:** **On** at the top right of the page
+   5. Click **Save**
+
+![](/images/docs/744609692e30a8960ce09d0d44a5748369b72f8ffa0fed45a66ff2aa89f18dbe-image.png)
+
+**Create a new Service Order**
+
+1. Select **Add** in the Service Orders section
+
+   1. Find **Provider:** Truv - Verification of Income/Employment
+   2. Press **Create**
+
+2. On the **Add Service Order** page
+
+   1. Set **Evaluation Level:** Individual Level
+
+   2. Add a **Service Order Name**
+
+   3. Configure **Borrower Settings → Automated Readiness Conditions**
+
+      1. Set **Automated Readiness Conditions** for Borrower by copying and pasting the below conditions
+      2. Press **Validate** and look for a **Validation Successful** confirmation to ensure no errors
+
+   4. Configure **Co-Borrower Settings → Automated Readiness Conditions**
+
+      1. Set **Automated Readiness Conditions** for Co-borrower by copying and pasting the below conditions
+      2. Press **Validate** and look for a **Validation Successful** confirmation to ensure no errors
+
+***Borrower Readiness Conditions***
+
+```
+([4000] <> "" AND [4002] <> "" AND  [GSEVENDOR.X43] = "" AND [65].Length > 4 AND [CUST01FV].Contains( "," & [4000] & " " & [4002] & "," ) )
+```
+
+***Co-Borrower Readiness Conditions***
+
+```
+([4004] <> "" AND [4006] <> "" AND  [GSEVENDOR.X44] = "" AND [97].Length > 4 AND [CUST01FV].Contains( "," & [4004] & " " & [4006] & "," ) )
+```
+
+<Warning>
+  If you used a different Custom Field than **CUST01FV** in Step 2, it should be used in the above Automated Readiness Condition for Borrower and Co-Borrower
+</Warning>
+
+![](/images/docs/604f845b8994d303d0c0c6bee99e156c2da7930a48ed04fd83e3eec6415c9f72-image.png)
+
+**Create and assign a new Automated Option**
+
+1. On the **Add Service Order** page, go to the **Automated Options** section and at the top right, click **Add**
+2. On the **Create an automated option** page, set an **Automated option name**
+3. Select the **Product type**: Income Analysis
+4. Click **Save**
+
+![](/images/docs/80d4ed710c420efb34fd3a9f7d05ec29f37732956a06a098f4de5b16e103ff59-image.png)
+
+5. Assign the new Automated Option to both the **Borrower** and **Co-Borrower**.
+6. Turn the Service Order to **Active: On** at the top right of the page (this will not cause the rule to start triggering yet)
+7. Press **Continue**
+
+<Check>
+  An Automated Service Ordering rule that will check whether each borrower has a first name, last name, SSN, if AIM Check is available for them, and if we have successfully run AIM Check yet or not. It will be enabled in the final step when we setup Workflow Rules.
+</Check>
+
+## Step 5: Configure Workflow Rules
+
+**Setup a new Workflow Rule**
+
+1. Go to [https://encompass.ice.com/admin/workflowrulessetup/rules](https://encompass.ice.com/admin/workflowrulessetup/rules) (**Workflow Management → Workflow Rules)**
+2. Select **New Rule** at the top right of the page
+
+![](/images/docs/9f22a908a7e086c4c88b296de94e9fcf11941bdf20004d8bfc7eef1c1e480dc2-image.png)
+
+3. On the **New Rule** page
+
+   1. Add a rule **Name**
+
+   2. Set **Priority**: Normal
+
+   3. Set **When is this rule effective?** based on the date cutoff for when you’d like this to be applicable to loan files or applications.
+
+   4. Set **Triggering Event**: Service Order Fulfilled
+
+      1. **Service Category**: Verifications
+      2. **Provider**: Truv - Verification of Income/Employment
+
+![](/images/docs/85e7fbfc5e601521d078aba8e5537153f09413e6a9d843b1ab3da46728506dcd-image.png)
+
+4. On **Conditions** tab
+   1. Add which loan **Channels** AIM Check should be added too
+
+![](/images/docs/51885aeadf1e560327edc6a46069bccf0f670cc2fc92d9b47c572aa2d7117501-image.png)
+
+5. On **Result** tab
+
+   1. Set **Resulting action**: Order Service
+   2. Press **Add**
+   3. Find the **Select Service Rule** setting at the bottom of the page and add the Service Rule that was setup in Step 4
+
+6. Set the rule to **Active**: On at the top right of the page
+
+7. Click **Save**
+
+![](/images/docs/021ac9f6b2176de4cb49b66367531be1303dccaa7f18e3bb17bdc66285ec422f-image.png)
+
+<Check>
+  An Automated Service Ordering workflow rule that will run when the initial Truv Verification is fulfilled. Once the initial VOI is run from Truv, if the borrowers meet the criteria in Step 4, Encompass will automatically download the AIM Check Report from Truv into the eFolder.
+</Check>
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Setup overview](#setup-overview)
+
+    * [Step 1: Reach out to Truv Implementation to request enabling AIM Check](#step-1-reach-out-to-truv-implementation-to-request-enabling-aim-check)
+    * [Step 2: Configure the Custom Field data type](#step-2-configure-the-custom-field-data-type)
+    * [Step 3: Map Truv’s aim\_check\_available to the Custom Field](#step-3-map-truvs-aim_check_available-to-the-custom-field)
+    * [Step 4: Configure Automation Rules](#step-4-configure-automation-rules)
+    * [Step 5: Configure Workflow Rules](#step-5-configure-workflow-rules)

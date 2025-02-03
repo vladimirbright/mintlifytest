@@ -1,0 +1,170 @@
+---
+title: "Data Reference for Employment History"
+description: "View the data reference information for an employment history report."
+---
+
+[Suggest Edits](/edit/data-scoping-employment-history)
+
+# Overview
+
+The sections below cover each of the data values and configurations for an employment history report. Use the [Retrieve an employment history report endpoint](/reference/employment_verification) to collect the data.
+
+# Data structure
+
+* [Verification Metadata](#verification-data)
+* [Employment](#employment-data)
+* [Employer](#employer-data)
+* [Identity](#identity-data)
+
+# Field Customization
+
+In the [Dashboard](/docs/dashboard), select specific data fields for your API response. Mandatory fields are grayed out and can't be disabled. View the example below.
+
+![](/images/docs/35facc1-56.png)
+
+# Example report
+
+The JSON sample below contains a comprehensive response.
+
+<CodeGroup>
+  ```json JSON
+  {
+    "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "status": "new",
+    "completed_at": "2021-04-06 11:30:00+00:00",
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "tracking_info": "user123456",
+    "employments": [
+      {
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "job_title": "PR associate",
+        "job_type": "F",
+        "start_date": "2018-01-01",
+        "end_date": "2019-08-24",
+        "external_last_updated": "2019-08-24",
+        "original_hire_date": "2017-06-21",
+        "is_active": false,
+        "dates_from_statements": false,
+        "derived_fields": [
+          "is_active"
+        ],
+        "missing_data_fields": [
+          "w2s"
+        ],
+        "profile": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "middle_initials": "K",
+          "ssn": "123456789",
+          "email": "[email protected]",
+          "date_of_birth": "1992-03-03",
+          "home_address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210"
+          }
+        },
+        "company": {
+          "name": "Facebook Demo",
+          "address": {
+            "street": "1 Hacker Way",
+            "city": "Menlo Park",
+            "state": "CA",
+            "zip": "94025"
+          },
+          "phone": "6503087300"
+        }
+      }
+    ],
+    "provider": "adp"
+  }
+  ```
+</CodeGroup>
+
+# Verification data
+
+The data below refers to employment verification.
+
+| Name            | Type   | Description                                                                  |
+| --------------- | ------ | ---------------------------------------------------------------------------- |
+| id              | string | Unique ID of the report                                                      |
+| status          | string | Task status from the [Connection Lifecycle](/reference/connection-lifecycle) |
+| completed\_at   | string | Timestamp of completed report                                                |
+| access\_token   | string | Payroll provider Link access\_token                                          |
+| tracking\_info  | string | String value provided when generating `bridge_token`                         |
+| refresh\_status | string | Status of most recent refresh task                                           |
+| provider        | string | User connected payroll provider                                              |
+| employments     | object | List of employments from payroll provider                                    |
+
+# Employment data
+
+This table covers payroll provider records for employment.
+
+| Name                      | Type                    | Description                                                                                                                      |
+| ------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| id                        | string                  | Unique ID for an employment                                                                                                      |
+| job\_title                | string (nullable)       | Employee's job title                                                                                                             |
+| job\_type                 | string (nullable)       | Type of employment recorded in payroll provider:`F` - Full Time`P` - Part Time`S` - Seasonal`D` - Daily (per diem)`C` - Contract |
+| start\_date               | string(date)            | Date of employment start                                                                                                         |
+| end\_date                 | string(date) (nullable) | Date of employment end                                                                                                           |
+| external\_last\_updated   | string(date) (nullable) | Date of last updated employment data from payroll provider                                                                       |
+| original\_hire\_date      | string(date) (nullable) | Date when employee was originally hired                                                                                          |
+| is\_active                | boolean (nullable)      | Status of active employment                                                                                                      |
+| dates\_from\_statements   | boolean (nullable)      | Status of determining employee's dates of hire or termination is from first and last pay statements                              |
+| derived\_fields           | object (nullable)       | Array of derived fields                                                                                                          |
+| missing\_data\_fields     | object (nullable)       | List of missing payroll API response data fields                                                                                 |
+| [company](#employer-data) | object (nullable)       | Employer information                                                                                                             |
+| [profile](#identity-data) | object (nullable)       | Identity information                                                                                                             |
+
+# Employer data
+
+The data below is for payroll provider information for employers.
+
+| Name    | Type              | Description           |
+| ------- | ----------------- | --------------------- |
+| name    | string            | Employer name         |
+| address | object (nullable) | Employer address      |
+| street  | string (nullable) | Employer street       |
+| city    | string (nullable) | Employer city         |
+| state   | string (nullable) | Employer state        |
+| zip     | string (nullable) | Employer zip code     |
+| phone   | string (nullable) | Employer phone number |
+
+# Identity data
+
+The table below covers the employee's personal information found from the payroll provider.
+
+| Name             | Type                     | Description                                   |
+| ---------------- | ------------------------ | --------------------------------------------- |
+| first\_name      | string                   | First name                                    |
+| last\_name       | string                   | Last name                                     |
+| middle\_initials | string (nullable)        | Middle initials                               |
+| ssn              | string (nullable)        | Social security number, full or last 4 digits |
+| email            | string(email) (nullable) | Personal or work email address                |
+| date\_of\_birth  | string(date) (nullable)  | Date of birth                                 |
+| home\_address    | object (nullable)        | Home address                                  |
+| street           | string (nullable)        | Street                                        |
+| city             | string (nullable)        | City                                          |
+| state            | string (nullable)        | State                                         |
+| zip              | string (nullable)        | Zip code                                      |
+
+# Downloadable PDF Report
+
+When users connect successfully, Truv automatically generates reports. These are available for users to download from the dashboard or through the API.
+
+![](/images/docs/4d53670-74.png "74.png")
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Data structure](#data-structure)
+  * [Field Customization](#field-customization)
+  * [Example report](#example-report)
+  * [Verification data](#verification-data)
+  * [Employment data](#employment-data)
+  * [Employer data](#employer-data)
+  * [Identity data](#identity-data)
+  * [Downloadable PDF Report](#downloadable-pdf-report)

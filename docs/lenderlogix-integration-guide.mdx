@@ -1,0 +1,122 @@
+---
+title: "LenderLogix"
+description: "Use Truv's Verification of Income and Employment (VOI/E) solution within the LenderLogix LiteSpeed point-of-sale system to gain rapid access to verified employment and income data, enabling fast, accurate loan decisions."
+---
+
+[Suggest Edits](/edit/lenderlogix-integration-guide)
+
+# Overview
+
+Truv's integration with LenderLogix LiteSpeed provides instant access to borrowers' employment and income details directly from verified payroll accounts. This integration enables quick and accurate verification within seconds, enhancing the speed and efficiency of decision-making.
+
+# Key Benefits
+
+* **Instant Verification**: Quickly verify employment and income details.
+* **Reliable Data**: Access trustworthy information from reputable payroll providers.
+* **Streamlined Process**: Improve underwriting efficiency and decision-making speed.
+
+# How it works
+
+During the loan application process, once borrowers or co-borrowers have submitted their information, they are prompted to connect their payroll accounts through Truv by clicking **Verify Employment**.
+
+1. **Borrower Connects Accounts**: Borrowers are guided to securely link their payroll accounts.
+2. **Truv Generates Reports**: Verification reports are automatically generated and made available in all leading Loan Origination Systems (LOS), such as Encompass®. Reports, including pay stubs, W-2s, and borrower-level documents, are added to the Encompass eFolder, along with other payroll documents.
+3. **Ongoing Monitoring**: Connected payroll accounts are monitored for updates, allowing new reports to be generated throughout the loan process.
+
+# LenderLogix Setup Guide
+
+To get started, contact your **LenderLogix Customer Success Manager** to let them know that you would like to enable the **Truv LiteSpeed integration** on your account.
+
+## Step 1: Copy Truv Client ID and Key
+
+The first step in this one time set-up process will be collaborating to securely retrieve your Truv account's API Client ID and Production (or Sandbox) Secret value.
+
+1. **Login to your Truv Dashboard** : Access your Truv Dashboard.
+
+2. **Navigate to API Keys**:
+
+   1. Go to the [API Keys](https://dashboard.truv.com/app/development/keys) tab in Truv Dashboard.
+   2. Copy the **Client ID** and **Secret** for the right environment.
+
+3. **Input Credentials in LiteSpeed**: Enter the Client ID and Secret into the appropriate fields in your LiteSpeed account.
+
+![](/images/docs/0b8c90a65ced2f37859ecb8336d12af372f59ee09e61f3083dedd872c6fdc61d-Screenshot_2024-09-13_at_11.12.25_PM.png)
+
+<Info>
+  Ensure you select the correct environment (Production or Sandbox) for your setup.
+</Info>
+
+## Step 2: Copy Truv Template ID
+
+Once your LiteSpeed account has the Truv API credentials assigned you are now ready to configure the Truv Templates that you'd like to use on your LiteSpeed account.
+
+1. **Login to your Truv Dashboard** : Access your Truv Dashboard.
+2. **Access the Templates Tab**: In the Truv Dashboard, go t to the [Templates](https://dashboard.truv.com/app/customization/templates) tab.
+3. **Select Your Template**: Choose the template you’d like to use in LiteSpeed, and copy the **Template ID** value.
+
+![](/images/docs/504d3597980552bf09f8bebc65de3e54a36c1c82c89a9a44c11404b569ae7e53-Screenshot_2024-09-13_at_11.12.17_PM.png)
+
+<Info>
+  Each branch using LiteSpeed can use unique white labeled Truv templates, increasing borrower trust as they login to their employers.
+</Info>
+
+## Step 3: Add Truv Template IDs to LenderLogix LiteSpeed
+
+Now, add template IDs into your LenderLogix LiteSpeed account
+
+1. **Log in to LiteSpeed**: Access your LenderLogix LiteSpeed account.
+2. **Advanced LiteSpeed Settings**: Navigate to the\*Advanced LiteSpeed Settings\*\* page.
+3. **Add Template ID**: Paste the **Truv Template ID** into the appropriate field and **Save your settings**.
+
+Truv integration is now configured for your LiteSpeed account.
+
+![](/images/docs/0cbe98243e1ddd8e56d34b598d457831cb6d74baa7d0c94f68c10e58677694cc-Screenshot_2024-09-13_at_11.06.37_PM.png)
+
+## Step 4: Needs List Truv Employment Update
+
+Once a new LiteSpeed application is received, applicants will see a task on their **Needs List** to verify their employment and income.
+
+![](/images/docs/4938be5d68d1776200c1390cb9c765cdd1ec43c991980b08a58aaf67e86a58c9-Screenshot_2024-09-13_at_11.06.50_PM.png)
+
+Borrowers and co-borrowers can complete the verification process by connecting their accounts through Truv. After verification, the loan officer and other configured recipients will receive notifications (via text or email) that the process is complete. Truv documents will be added to the Encompass eFolder on the loan.
+
+# Borrower Workflow using Truv in LenderLogix
+
+Borrowers will upload their employment and income details in the **Upload Documents** section of the loan application and will be prompted to connect their payroll accounts via Truv.
+
+For a quick overview of this process, check out the video below:
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FAlUm1H9mIEA%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DAlUm1H9mIEA\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FAlUm1H9mIEA%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+# Launch with Truv in LenderLogix
+
+1. **Coordinate with LenderLogix Customer Success**: Validate your one-time admin setup.
+2. **Enable Truv in LiteSpeed**: Turn on the Truv integration in your LiteSpeed account.
+3. **Customize Templates**: Configure your templates in the Truv Dashboard.
+4. **Test in Sandbox Mode**: Ensure the integration is functioning as expected by testing in the Sandbox environment.
+5. **Go Live**: Once everything is verified, go live with the integration in Production. The verification data will be submitted to DU (Desktop Underwriter) and LPA (Loan Product Advisor) systems for loan decisioning.
+
+You are now live with Truv within LenderLogix.
+
+Refer to the [detailed step-by-step guide](/docs/launch-checklist-for-integrated-point-of-sale-pos) to launch Truv within LenderLogix.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Key Benefits](#key-benefits)
+
+  * [How it works](#how-it-works)
+
+  * [LenderLogix Setup Guide](#lenderlogix-setup-guide)
+
+    * [Step 1: Copy Truv Client ID and Key](#step-1-copy-truv-client-id-and-key)
+    * [Step 2: Copy Truv Template ID](#step-2-copy-truv-template-id)
+    * [Step 3: Add Truv Template IDs to LenderLogix LiteSpeed](#step-3-add-truv-template-ids-to-lenderlogix-litespeed)
+    * [Step 4: Needs List Truv Employment Update](#step-4-needs-list-truv-employment-update)
+
+  * [Borrower Workflow using Truv in LenderLogix](#borrower-workflow-using-truv-in-lenderlogix)
+
+  * [Launch with Truv in LenderLogix](#launch-with-truv-in-lenderlogix)

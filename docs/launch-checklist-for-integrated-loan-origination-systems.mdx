@@ -1,0 +1,94 @@
+---
+title: "Launch Checklist for Integrated Loan Origination Systems (LOS)"
+description: "Use the launch checklist in one of the Truv Integrated LOS platforms"
+---
+
+[Suggest Edits](/edit/launch-checklist-for-integrated-loan-origination-systems)
+
+# Overview
+
+The Launch Checklist is designed to guide you through the process of integrating Truv’s verification services into your Loan Origination System (LOS). It outlines the key steps for setup, configuration, activation, testing, and post-launch activities to ensure a seamless integration. Use this guide to develop and launch an integration using Truv in your Loan Origination System.
+
+# Milestone 1: Setup LOS
+
+## One-Time Admin Setup:
+
+* Enable Truv as a verification service in LOS.
+* Configure the service and authorize users.
+* Add or enable authorized users to access Truv.
+* Input Truv API credentials into the LOS.
+
+## Configure Truv Settings in LOS:
+
+* Set options for automatic, auto-trigger, auto-run vs. manual order creation.
+* Configure additional documents mapping folder.
+* Configure custom settings like employment data updates and SMS notifications.
+* Activate the Truv service in LOS.
+
+# Milestone 2: Customize & test
+
+## Add Templates in Truv Dashboard
+
+* Customize branding, email, SMS, landing page verbiage.
+* Customize number of paystubs and W2 returned.
+* Add template for employment only i.e re-verifications or 10-day PCV.
+* Configure order expiration settings in Truv Dashboard.
+* Set up email notifications for order or status updates.
+
+Refer to the [detailed step-by-step guide to set up templates](/docs/customization-templates) in Truv Dashboard.
+
+## Testing in a Sandbox Environment:
+
+* Input Truv Sandbox API keys, Client ID & Secret
+* Create test orders for verification of income and employment (VOIE) and verification of employment (VOE).
+* Verify successful report generation and document upload.
+* Ensure Truv Borrower Report is generated for VOIE and VOE.
+
+Refer to the [various sandbox credentials](/docs/testing#sandbox-scenarios) based on product type to test in sandbox mode.
+
+## Get Production Access:
+
+* Set up a demo with the Truv team to review implementation and run tests.
+* Obtain Truv production API keys and input to your LOS.
+* Test integration in production with `Truv Sandbox Payroll Provider`
+* Ensure submission to Fannie Mae DU and Freddie Mac LPA systems.
+
+Use the [Fannie Mae test credentials](/docs/testing#supported-scenarios-and-credentials) to test end-to-end on production.
+
+# Milestone 3: Drive adoption
+
+## Document your workflows:
+
+* Attend Truv’s "Train the Trainer" work hours or set up a call with your customer success manager.
+
+* Develop internal documentation and co-branded FAQs using Truv assets.
+
+  * Create internal documentation on how to use Truv within your LOS.
+  * Create quick links for commonly asked questions by borrowers.
+
+## Train your team:
+
+* Conduct user training for loan officers and processors.
+* Create internal documentation on how to use Truv within your LOS.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Milestone 1: Setup LOS](#milestone-1-setup-los)
+
+    * [One-Time Admin Setup:](#one-time-admin-setup)
+    * [Configure Truv Settings in LOS:](#configure-truv-settings-in-los)
+
+  * [Milestone 2: Customize & test](#milestone-2-customize--test)
+
+    * [Add Templates in Truv Dashboard](#add-templates-in-truv-dashboard)
+    * [Testing in a Sandbox Environment:](#testing-in-a-sandbox-environment)
+    * [Get Production Access:](#get-production-access)
+
+  * [Milestone 3: Drive adoption](#milestone-3-drive-adoption)
+
+    * [Document your workflows:](#document-your-workflows)
+    * [Train your team:](#train-your-team)

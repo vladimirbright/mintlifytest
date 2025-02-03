@@ -1,0 +1,312 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# Report
+
+View more information about scoring attribute reports.
+
+# Attributes
+
+The table below covers information from the report response.
+
+| Attribute            | Type             | Description                                                                                                                                                                                                                                                                                                                          |
+| -------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| report\_id           | string           | Unique guid generated by scoring attributes API for identifying report                                                                                                                                                                                                                                                               |
+| source\_guid         | string           | Only applicable for refresh reports and existing customer refresh reports, new customer reports return `null`, unique guid of prior Scoring Attributes report for customer, returns most recent successful report for customers with multiple reports, the Refresh Report endpoint uses this report’s transactions as starting point |
+| refresh              | Boolean          | Status of refresh report                                                                                                                                                                                                                                                                                                             |
+| lender\_reference    | string           | Value for lender to identify report request, e.g. loan application number                                                                                                                                                                                                                                                            |
+| customer\_identifier | string           | Customer-level unique identifier, *NOTE: Do not use personally identifiable information such as SSN or government ID numbers.*                                                                                                                                                                                                       |
+| purpose              | string           | Purpose of report, valid values are below:`decisioning` - FCRA credit decisioning`verification` - Non-FCRA underwriting verifications`analytics` - Retroactive reports for analytical purposes only                                                                                                                                  |
+| status               | string           | Terminal statuses are:`success`, `failed`, `data_import_error` A status of `processing` indicates that the report is still being processed. An additional call should be made to the GET endpoint until a terminal status is returned.                                                                                               |
+| cutoff\_date         | string           | Latest date of financial activity included in report, typically set to current date or application date, date is in the past for retro-scored reports                                                                                                                                                                                |
+| created\_at          | string           | Date and time of report request                                                                                                                                                                                                                                                                                                      |
+| updated\_at          | string           | Date and time of report update                                                                                                                                                                                                                                                                                                       |
+| alerts               | array of objects | Values present when notifying lender of specific conditions, conditions do not prevent report completion, see [Alerts object](#alerts-object)                                                                                                                                                                                        |
+| scores               | array of objects | Generic or custom scores, only report purpose-applicable scores are returned                                                                                                                                                                                                                                                         |
+| metrics              | array of objects | See [Metrics object](#metrics-object)                                                                                                                                                                                                                                                                                                |
+| derived\_incomes     | array of objects | See [Derived incomes object](#derived-incomes-object)                                                                                                                                                                                                                                                                                |
+
+## Alerts object
+
+The alerts object contains the values and descriptions below.
+
+| Attribute   | Type    | Description                                                                                                                                                                                                                                                                                                                                                                           |
+| ----------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| alert\_code | integer | Integer indicating alert type, see `message` field for valid values                                                                                                                                                                                                                                                                                                                   |
+| message     | string  | Message describing alert condition, valid values and alert codes below`1 `- `No consistent income sources present``2` - `No consistent payment streams present``3` - `Short transaction history``4` - `Low transaction activity``5` - `Unable to calculate daily balances for all accounts``6` - `Accounts with stale ending balances are present``7` - `Low ratio of debit activity` |
+
+## Scores object
+
+This table covers values within the scores object.
+
+| Attribute | Type   | Description        |
+| --------- | ------ | ------------------ |
+| name      | string | Model name         |
+| version   | float  | Model version      |
+| value     | string | Scaled score value |
+
+## Metrics object
+
+The values in this table are for the metrics object of the company.
+
+| Attribute    | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name         | string | Metric name, not including period of time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| time\_period | string | Abbreviation for time period of metric, valid values below:`1m_l0` - Last month`2m_l0` - Last 2 months`3m_l0` - Last 3 months`4m_l0` - Last 4 months`6m_l0` - Last 6 months`1w_l0` - Last week`2w_l0` - Last 2 weeks`2m_l2` - 2 months (2 month delay)`2m_l4` - 2 months (4 month delay)`4m_l2` - 4 months (2 month delay)`1m_l1` - 1 month (1 month delay)`2w_l2` - 2 weeks (2 week delay)`0m_l0` - Current snapshot`0m_l2` - Snapshot from 2 months ago`0m_l4` - Snapshot from 4 months ago`lftm` - Lifetime`2m_to_1m` - Change from 2 months ago to current month`3m_to_1m` - Change from 3 months ago to current month |
+| short\_name  | string | Abbreviated form of metric name combined with time period                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| unit         | string | Measurement type for metric, valid fields `dollars`, `percent`, `boolean`, `count`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| value        | number | Numeric value of metric, can contain null values, `null` is not `0` and must be properly parsed For amounts, returns dollar value with decimals indicating cents, such as `2.99` For percentages, returns an integer, for example 5% is `5` For Booleans, `True` is represented as `1` and `False` is represented as `0` For `counts` such as number of consistent payments, returns integers                                                                                                                                                                                                                              |
+
+## Derived incomes object
+
+View the table below for information from the derived incomes object.
+
+| Attribute            | Type   | Description                                                                                                                                                                                                                                                                  |
+| -------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| description          | string | Normalized description for derived income stream, for sensitive information within description, such as health information, description returns as `REDACTED`                                                                                                                |
+| frequency            | string | Frequency of income stream, possible values are `monthly`, `semi_monthly`, `bi_weekly`, `weekly`                                                                                                                                                                             |
+| days                 | array  | Day or days of week or month for recurring deposits For `monthly` and `semi-monthly` frequencies, returns day of the month and `-1` indicates end of month For `weekly` and `bi_weekly` frequencies, returns day of week where `1` indicates Monday and `7` indicates Sunday |
+| formatted\_frequency | string | Frequency combined with recurrence days                                                                                                                                                                                                                                      |
+| months               | number | Longest period income stream has been recurring from report date Income streams are only evaluated on whole months and 2, 3, 4 and 6 month intervals                                                                                                                         |
+| average\_amount      | double | Average amount of each deposit in covered monthly interval                                                                                                                                                                                                                   |
+| monthly\_amount      | double | Projected monthly amount based on average amount and occurrence frequency                                                                                                                                                                                                    |
+
+# Endpoints
+
+Use the endpoints below to get information on reports for scoring attributes.
+
+* [Create a scoring attributes report](/reference/post_v1-scoring-attributes-reports)
+* [Retrieve a scoring attributes report](/reference/get_v1-scoring-attributes-reports-report-id)
+
+# Example response
+
+The sample below is a JSON response for the endpoint.
+
+<CodeGroup>
+  ```json json
+  {
+    "report_id": "string",
+    "source_guid": "2f918810e4b911edb5ea0242ac120002",
+    "refresh": true,
+    "lender_reference": "appl-1234",
+    "customer_identifier": "cust-9999",
+    "purpose": "decisioning",
+    "status": "success",
+    "cutoff_date": "2021-03-31T00:00:00.000Z",
+    "created_at": "2022-03-16 12:56:15 -0700",
+    "updated_at": "2022-03-16 12:56:17 -0700",
+    "alerts": [
+      {
+        "alert_code": 1,
+        "message": "No consistent income sources present"
+      }
+    ],
+    "scores": [
+      {
+        "name": "Overdraft Risk Score",
+        "version": 1,
+        "value": 750
+      }
+    ],
+    "metrics": [
+      {
+        "name": "derived_nsf_fee_amount",
+        "time_period": "2m_l0",
+        "short_name": "drvd_nsf_fee_amt_2m_l0",
+        "unit": "dollars",
+        "value": 23.99
+      }
+    ],
+    "derived_incomes": [
+      {
+        "description": "direct deposit from xyz company",
+        "frequency": "semi_monthly,",
+        "days": [
+          15,
+          -1
+        ],
+        "formatted_frequency": "Semi-Monthly (15, eom)",
+        "months": 3,
+        "average_amount": 475.99,
+        "monthly_amount": 1003.21
+      }
+    ]
+  }
+  ```
+</CodeGroup>

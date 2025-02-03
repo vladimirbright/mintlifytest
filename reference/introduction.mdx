@@ -1,0 +1,348 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# Introduction
+
+Welcome to Truv’s API developer documentation! Here you'll find everything you need to integrate with Truv.
+
+# Overview
+
+This documentation covers API Reference sections and pages with details and descriptions.
+
+For questions, email [\[email protected\]](/cdn-cgi/l/email-protection#374442474758454377434542411954585a) or chat with us in the [Dashboard](https://dashboard.truv.com).
+
+## Supported environments
+
+Truv supports the following three environments. Use the options below to learn more about how Truv integrations work for your customers.
+
+* **Sandbox** - For general development, gives access to predefined sample data from payroll providers
+* **Development** - For testing integrations with live credentials, *NOTE: The number of successful Tasks is limited to 50 and not billed.*
+* **Production** - For your production environment, *NOTE: Each successful Task is billed.*
+
+All API requests use the `https://prod.truv.com/v1/` base, regardless of the environment. Your Access secret determines the environment for each request.
+
+# Authentication
+
+The Truv API requires valid credentials to authenticate. Each call uses [API Keys](https://dashboard.truv.com/app/development/keys), consisting of the Client ID and Access secret values.
+
+For all three environments, the `Client ID` value is the same. However, the Access secret value is different for the three environments. View the prefixes below for the Access secret. The table also provides examples for the values.
+
+* `sandbox`, `dev`, `prod`
+
+| Value           | Description                                         | Example                                            |
+| --------------- | --------------------------------------------------- | -------------------------------------------------- |
+| `client_id`     | Private identifier for your team                    | `dd21ca23c12142b6a0970b1e0afedf16`                 |
+| `access_secret` | Private key, one for each of the three environments | `sandbox-a57b3109f1f4a8b3f2ebbc1c526950f1795464af` |
+
+## Headers
+
+Every API request requires both `X-Access-Client-ID` and `X-Access-Secret` header values. These two contain the Client ID and the Access secret, respectively.
+
+<Warning>
+  Keep the Client ID and Access secret values safe and protected. Store these values in a secure location within your application.
+</Warning>
+
+# Protocols
+
+Truv protocols use REST API frameworks. This leverages HTTP requests for communication and response codes for sharing statuses and errors. View the points below for additional information.
+
+* Responses are in standard JSON
+* Uses HTTPS TLS v1.2+, *NOTE: HTTP and HTTPS with TLS versions below 1.2 are not supported.*
+* Requests must include `Content-Type` of `application/json`, only valid JSON in request body
+
+# Security
+
+Manage identifier values from Truv Bridge and API endpoints to maximize security and safety. Truv identifier values allow you to associate API and provider events with your requests.
+
+If contacting the support team, include these values for streamlined solutions.
+
+<Warning>
+  ️Confirm all access\_token values are never exposed on the client-side. Store these tokens securely on the backend and associate them with users of your application.
+</Warning>
+
+## Additional access tokens
+
+Users can create multiple access\_tokens if they have accounts with multiple data providers and Links.
+
+# Errors
+
+Truv API responses use standard HTTP status codes. View the points below for additional patterns.
+
+* `2xx` - Successful requests
+* `4xx` - Invalid inputs or invalid actions in the current state
+* `5xx` - Rare error on Truv's servers
+
+### HTTP responses
+
+The table below covers responses code values and descriptions.
+
+| Code | Title                  | Description                                                                                                                                                                                                                 |
+| ---- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 200  | OK                     | Request successful                                                                                                                                                                                                          |
+| 201  | Created                | Request successful and resource created                                                                                                                                                                                     |
+| 400  | Bad Request            | Request unacceptable                                                                                                                                                                                                        |
+| 401  | Unauthorized           | Missing or invalid credentials                                                                                                                                                                                              |
+| 403  | Forbidden              | Permission denied                                                                                                                                                                                                           |
+| 404  | Not Found              | Resource does not exist                                                                                                                                                                                                     |
+| 405  | Method Not Allowed     | Request method not supported by target resource                                                                                                                                                                             |
+| 406  | Not Acceptable         | Server cannot produce response matching list of acceptable values defined in request content negotiation headers                                                                                                            |
+| 410  | Gone                   | Bridge token expired                                                                                                                                                                                                        |
+| 415  | Unsupported Media Type | Unsupported request payload format                                                                                                                                                                                          |
+| 429  | Too Many Requests      | Request limit exceeded in given period of time, *NOTE: `access_token` limit only allows an initial request and three refresh requests in a 24-hour period, error results in `Refresh limit for the access_token exceeded`.* |
+| 50x  | Internal server error  | Error occurred with our API                                                                                                                                                                                                 |
+
+### Error message format
+
+The response body contains the following fields.
+
+* `code` - Passes the source of the error
+* `message` - Communicates issue to the end-user
+* `invalid-params` - List of form fields and related errors to display to the end user, `field` parameter indicates form field error in UI
+
+<CodeGroup>
+  ```text 400
+  Response
+      application/json
+
+      400 Bad request
+      {
+          "error":
+          {
+              "code": "validation_error",
+              "message": "Validation error",
+              "extra":
+              {
+                  "invalid-params":
+                  [
+                      {
+                          "field": "first_name",
+                          "message": "First name is required"
+                      },
+                      {
+                          "field": "last_name",
+                          "message": "Last name is required"
+                      }
+                  ]
+              }
+          }
+      }
+  ```
+
+  ```text 401
+  Response
+      application/json
+
+      401 Unauthorized
+      {
+          "error":
+          {
+              "code": "expired_token",
+              "message": "Public token expired: 48427a36d43c4d5aa6324bc06c692456"
+          }
+      }
+  ```
+
+  ```text 403
+  Response
+      application/json
+
+      403 Forbidden
+      {
+          "error":
+          {
+              "code": "incorrect_token",
+              "message": "Token is invalid"
+          }
+      }
+  ```
+</CodeGroup>
+
+### Error codes
+
+View more information about the error codes below.
+
+* `validation_error`- Any type of invalid input to the API, includes incorrect data format or missing fields
+* `expired_token`- For a public token expired after 6 hours
+* `incorrect_token` - Any public or access token cannot be matched with internal storage
+
+# Rate limiting
+
+Rate limits safeguard our API's stability. Our rate limiter allows up to 300 requests per minute per Access secret key. For inquiries to increase this limit, [contact us](/cdn-cgi/l/email-protection#04777174746b767044707671722a676b69).
+
+Requests over the limit return a `429 Too Many Requests` error.

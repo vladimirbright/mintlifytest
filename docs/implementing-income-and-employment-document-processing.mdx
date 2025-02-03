@@ -1,0 +1,306 @@
+---
+title: "Document Processing Income"
+description: "This guide covers adding document processing for income and employment verification."
+---
+
+[Suggest Edits](/edit/implementing-income-and-employment-document-processing)
+
+# Overview
+
+Truv's document processing solution helps you collect user documents. These files are then processed to extract structured data and analysed for fraud. The two points below cover common reasons for using document processing:
+
+* Back up plan for unsuccessful payroll connection attempts or user data isn't processed
+  * Refer to [Designing the Income and Employment UX](/docs/ux-design-income-and-employment) guide for more on [uploading documents](/docs/ux-design-income-and-employment#uploading-documents) as a fallback solution.
+* Standalone solution to process collect user documents and parse those into structured data schema.
+
+# Configuring your document processing
+
+The points below cover user information to collect when integrating your document processing solution.
+
+* Document type required, such as `paystubs`, `W2`, and `1099`
+
+<Info>
+  For 1099 tax documents, Truv supports parsing for formatting from any year after 2021. This includes the following 1099 forms.
+
+  * 1099-DIV, 1099-G, 1099-INT, 1099-MISC, 1099-NEC, 1099-R
+</Info>
+
+* Number of documents required for each type
+* Applicant `first_name` and `last_name`
+
+![](/images/docs/eb76c4b-small-113.png)
+
+In addition, you can add a specific message for your users displayed in Truv Bridge. [Contact Truv](/cdn-cgi/l/email-protection#02717772726d707642767077742c616d6f) for additional configuration settings.
+
+![](/images/docs/a148432-small-52f7f4d-7.png)
+
+## Bridge Token specifications
+
+When creating a [Bridge Token](/reference/bridge-token) for the User, document upload requires additional values in the request. Include the `product_type = income` and `data_sources = ["docs"]` in the configuration from the cURL sample below.
+
+<CodeGroup>
+  ```curl curl
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "income",
+       "data_sources": ["docs"],
+       "tracking_info": "any data for tracking current transaction"
+  }
+  '
+  ```
+</CodeGroup>
+
+## Example response
+
+The JSON data below contains a sample report payload when including document uploads.
+
+<CodeGroup>
+  ```json json
+  {
+    "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "status": "new",
+    "finished_at": "2021-04-06T11:30:00Z",
+    "completed_at": "2021-04-06 11:30:00+00:00",
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "tracking_info": "user123456",
+    "refresh_status": null,
+    "employments": [
+      {
+        "income": null,
+        "income_unit": null,
+        "pay_frequency": null,
+        "statements": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "check_number": null,
+            "pay_date": "2018-05-15",
+            "net_pay": "11500.32",
+            "net_pay_ytd": "31980.64",
+            "gross_pay": "13900.11",
+            "gross_pay_ytd": "49200.00",
+            "bonus": "100.00",
+            "commission": "12000.00",
+            "hours": "40.00",
+            "basis_of_pay": "S",
+            "period_start": "2018-05-01",
+            "period_end": "2018-05-15",
+            "regular": "1695.11",
+            "regular_ytd": "23000.00",
+            "other_pay_ytd": "700.00",
+            "bonus_ytd": "1000.00",
+            "commission_ytd": "24000.00",
+            "overtime": "45.00",
+            "overtime_ytd": "500.00",
+            "other_pay": "60.00",
+            "earnings": [
+              {
+                "name": "Regular",
+                "amount": "1935.77",
+                "category": "regular",
+                "rate": null,
+                "units": null
+              },
+              {
+                "name": "Overtime",
+                "amount": "60.58",
+                "category": "overtime",
+                "rate": "30.29",
+                "units": "2"
+              }
+            ],
+            "earnings_ytd": [
+              {
+                "name": "Regular",
+                "amount": "1935.77",
+                "category": "regular",
+                "rate": null,
+                "units": null
+              },
+              {
+                "name": "Overtime",
+                "amount": "60.58",
+                "category": "overtime",
+                "rate": "30.29",
+                "units": "2"
+              }
+            ],
+            "deductions": [
+              {
+                "amount": "127.01",
+                "category": "socialsec",
+                "name": "Social Security Tax"
+              },
+              {
+                "amount": "46.23",
+                "category": "state",
+                "name": "VA State Income Tax"
+              },
+              {
+                "amount": "29.7",
+                "category": "medicare",
+                "name": "Medicare Tax"
+              }
+            ],
+            "deductions_ytd": [
+              {
+                "amount": "127.01",
+                "category": "socialsec",
+                "name": "Social Security Tax"
+              },
+              {
+                "amount": "46.23",
+                "category": "state",
+                "name": "VA State Income Tax"
+              },
+              {
+                "amount": "29.7",
+                "category": "medicare",
+                "name": "Medicare Tax"
+              }
+            ],
+            "md5sum": "03639d6a6624f69a54a88ea90bd25e9d",
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/paystub_sample.pdf",
+            "derived_fields": [
+              "basis_of_pay"
+            ],
+            "missing_data_fields": [
+              "earnings_ytd"
+            ]
+          }
+        ],
+        "annual_income_summary": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "year": 2018,
+            "regular": "23000.00",
+            "bonus": "1000.00",
+            "commission": "24000.00",
+            "overtime": "500.00",
+            "other_pay": "700.00",
+            "net_pay": "31980.64",
+            "gross_pay": "49200.00"
+          }
+        ],
+        "bank_accounts": [
+        ],
+        "w2s": [
+          {
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/W2_sample.pdf",
+            "md5sum": "f65e30c39124ad707ac4b3aeaee923a7",
+            "year": 2020,
+            "wages": "900.50",
+            "federal_tax": "75.01",
+            "social_security_wages": "900.50",
+            "social_security_tax": "56.30",
+            "medicare_wages": "900.50",
+            "medicare_tax": "13.15"
+          }
+        ],
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "is_active": false,
+        "job_title": null,
+        "job_type": null,
+        "start_date": "2018-01-01",
+        "original_hire_date": null,
+        "end_date": "2022-06-16",
+        "external_last_updated": "2022-06-16",
+        "dates_from_statements": true,
+        "derived_fields": [
+          "is_active"
+        ],
+        "missing_data_fields": [
+        ],
+        "manager_name": "Jenny McDouglas",
+        "profile": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "middle_initials": "K",
+          "email": null,
+          "ssn": "6789",
+          "date_of_birth": null,
+          "home_address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210",
+            "country": "US"
+          }
+        },
+        "company": {
+          "name": "Facebook Demo",
+          "address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210",
+            "country": "US"
+          },
+          "phone": null
+        }
+      }
+    ],
+    "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+    "provider": "doc_upload",
+    "data_source": "docs"
+  }
+  ```
+</CodeGroup>
+
+# Testing document upload solutions
+
+When implementing VOIE in your workflow for document uploads, use the [Testing guide](/docs/testing) to try different scenarios within the sandbox. The sections below and the [Document processing testing page](/docs/implementation-income-and-employment#document-processing-testing) provide PDFs to upload and test various scenarios.
+
+## Document processing testing
+
+When testing for [Integrating Document Processing](/docs/implementing-income-and-employment-document-processing), the PDF downloads in the list below cover different scenarios for sandbox use.
+
+Upload the documents for testing different sandbox response results. Pay statements and tax documents return data when successful. Unsuccessful uploads respond with status updates.
+
+* Successful documents - [Most recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/most.recent.paystub.pdf), [Next recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/next.recent.paystub.pdf), [First paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/first.paystub.pdf), [W2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/w2.pdf)
+* 1099 tax forms - [1099-DIV](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099div.pdf), [1099-G](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099g.pdf), [1099-INT](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099int.pdf), [1099-MISC](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099misc.pdf), [1099-NEC](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099nec.pdf), [1099-R](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/1099r.pdf), [SSA-1099](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssa1099.pdf)
+
+## Suspicious document detection
+
+Documents from uploads may have fraudulent, consistent, or unacceptable data. When encountering these issues, mark specific instances for review. Prevent malicious activity with additional analysis and attention.
+
+View the table below for various scenarios and PDF examples.
+
+| Scenario                                     | Description                                   | Downloads                                                                                                                                                                                                                                                                                         |
+| -------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tampered documents                           | Information is falsified or manipulated       | [Tampered 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f1.paystub.pdf), [Tampered 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f2.paystub.pdf), [Tampered 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f3.paystub.pdf)    |
+| Different Social Security Numbers            | Personal information is inconsistent          | [SSN 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn1.paystub.pdf), [SSN 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn2.paystub.pdf), [SSN 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn3.paystub.pdf)             |
+| Different company names                      | Company information is inconsistent           | [Company 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn1.paystub.pdf), [Company 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn2.paystub.pdf), [Company 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn3.paystub.pdf)    |
+| Different applicant names                    | Personal information is inconsistent          | [Applicant 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p1.paystub.pdf), [Applicant 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p2.paystub.pdf), [Applicant 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p3.paystub.pdf) |
+| Documents without data, or with invalid data | Information is missing or unable to be parsed | [No data 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd1.paystub.pdf), [No data 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd2.paystub.pdf), [No data 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd3.paystub.pdf)    |
+
+<Info>
+  Test scenarios use the file name to return results. Testing ignores the file contents when in the sandbox.
+</Info>
+
+***
+
+What’s Next
+
+Use the guide below to begin implementing Truv VOIE into your workflow.
+
+* [Implementing Income and Employment Verification Solutions](/docs/implementation-income-and-employment)
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Configuring your document processing](#configuring-your-document-processing)
+
+    * [Bridge Token specifications](#bridge-token-specifications)
+    * [Example response](#example-response)
+
+  * [Testing document upload solutions](#testing-document-upload-solutions)
+
+    * [Document processing testing](#document-processing-testing)
+    * [Suspicious document detection](#suspicious-document-detection)

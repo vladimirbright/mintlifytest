@@ -1,0 +1,121 @@
+---
+title: "Designing the Employment History UX"
+description: "Set your users up for success with a streamlined VOE experience."
+---
+
+[Suggest Edits](/edit/ux-design-employment-history)
+
+# Landing page
+
+Create successful experiences for your users with a modern high quality introduction page for VOE. Streamline and emphasize action items with context and incentives.
+
+Users can verify employment and connect to their payroll provider from the start. Provide context for next steps highlighting your users’ privacy and security.
+
+Verification can be instant compared to the wait time for other methods. Improve your conversion rates with this benefit when guiding users connecting their accounts.
+
+Configure your introduction page to your users on top of Truv’s widget templates. Provide additional context and guidance as needed for a successful user experience.
+
+![](/images/docs/344dbb2-77.png "77.png")
+
+## Employer search
+
+Truv simplifies connecting your users to their employers. Use the strategies below for your process.
+
+* With your user’s employer information -> Use Truv’s default search
+* Without user’s company or employer -> [Deeplink](/docs/deeplinking) directly to employee login
+
+## Using Truv's search
+
+Truv Bridge is a new way to verify employment history. This lets users connect to their employer or payroll account for the first time.
+
+Our search experience is always improving. We test connections to millions of payroll providers and employers with machine learning. Truv has intelligent mapping of over two million employers with their respective providers.
+
+![](/images/docs/202938c-Image_7.png)
+
+If you don’t have employer data for a user, Truv Bridge lets users search for current and previous histories. When users may not have payroll providers, Truv makes suggestions through the user experience. This helps users avoid guessing and saves them time.
+
+![1920](/images/docs/e9848dc-3.png "3.png")
+
+<Info>
+  Improve your Conversion rate and Pull through rate by using Truv Bridge in your user’s experience.
+</Info>
+
+## Building your own search with deeplinking
+
+With your user’s employer information, deeplink users directly to the login input screen. Use that data to let users skip the search screen in the widget.
+
+![](/images/docs/f451f92-Image_8.png)
+
+You can also use the [Search companies endpoint](/reference/company_mapping) to find your user’s mapping ID for deeplinking. From there, you can pass the information to Truv Bridge and direct users to the payroll login screen.
+
+![1920](/images/docs/a87b2e8-4.png "4.png")
+
+<Info>
+  Truv Bridge is also helpful for inviting users to search, select, and connect to their employer or payroll provider on their own.
+</Info>
+
+# Routing the user after login
+
+Depending on the connection results, users can be routed to the success screen or return to select other verification options.
+
+## Successful connection
+
+The two points below are common options to direct the user after they successfully log in.
+
+* Show users the status for the successful connection
+
+  * Use Webhooks or poll Truv’s backend API for status
+  * Allow users to close Truv Bridge after logging in
+  * Faster solution for users
+
+* Wait for updates when gathering and parsing basic employment information
+
+  * Show success when completed
+  * Easier solution for developers
+
+![](/images/docs/43e4272-53.png "53.png")
+
+<Info>
+  Show users an application confirmation after successfully connecting an account.
+</Info>
+
+## Unsuccessful connection
+
+If a user isn’t able to connect their account, provide an alternative verification method. You can allow your users to upload documents, for example.
+
+![](/images/docs/220a825-54.png "54.png")
+
+### Native Reset
+
+If a user forgets their credentials or isn't able to login with the correct credentials, we have a reset flow in the widget. This allows them to reset their password.
+
+The reset flow simplifies the experience and lets users quickly reset their password. Improve conversion and pull through rates with this straightforward process.
+
+![](/images/docs/4960df9-6.png "6.png")
+
+### Uploading documents
+
+Truv can direct users to upload paystubs, W-2s, or statements into the widget. This streamlines the end-to-end user experience and uses the same data from the payroll provider connection.
+
+Use document uploads with no additional implementation. This acts as a back-up to Truv's Employment History product if the user can’t login to their payroll provider. To enable document uploads, [reach out to the Truv team](/cdn-cgi/l/email-protection#95e6e0e5e5fae7e1d5e1e7e0e3bbf6faf8) for more information.
+
+![](/images/docs/4012466-7.png "7.png")
+
+<Info>
+  Before prompting your users to the next step in the process, show users the basic employment information from the connection. Build trust with users and allow them to verify and confirm data.
+</Info>
+
+***
+
+* [Table of Contents](#)
+
+* * [Landing page](#landing-page)
+
+    * [Employer search](#employer-search)
+    * [Using Truv's search](#using-truvs-search)
+    * [Building your own search with deeplinking](#building-your-own-search-with-deeplinking)
+
+  * [Routing the user after login](#routing-the-user-after-login)
+
+    * [Successful connection](#successful-connection)
+    * [Unsuccessful connection](#unsuccessful-connection)

@@ -1,0 +1,83 @@
+---
+title: "Wholesale and Correspondent Lender Support"
+description: "Include Encompass® field values in Truv templates to increase personalization of notifications sent to the Borrower."
+---
+
+[Suggest Edits](/edit/wholesale-and-correspondent-lender-support)
+
+# Overview
+
+To support Wholesale and Correspondent lenders, where the Borrower has a relationship with the Loan Officer primarily, Truv allows sending the name of the Loan Officer on file to the Truv custom field. This can then be used in Truv templates to create personalized, borrower-facing notifications via email, sms and in the order landing page.
+
+Beyond this use-case, lenders can adapt this customization to send any Encompass® field value to the Truv custom field in the template, unlocking a huge amount of notification personalization.
+
+# One time setup guide
+
+The steps below cover each part of setting Truv up with Encompass® using administrator privileges.
+
+## Step 1: Setup the custom field mapping
+
+Log into Encompass® as an administrator using [Encompass® Web](https://encompassloconnect.com). Navigate to the **Admin** tab at the top of the screen, select **Services** on the left navigation.
+
+Find the "Truv - Verification of Income/Employment" service, then click the three dots at the bottom right and select "Field Mapping"
+
+![](/images/docs/c71ebf6d2d3f82036a5d8e2e475586c52a1a4b22d0e3cff96cddaccaa5053d8c-image.png)
+
+<Info>
+  We will use the Loan Originator Name (Field ID: 1612) for the below example. To map any other Encompass field, replace "1612" with the Encompass Field ID you would like to map to Truv.
+</Info>
+
+1. On the Field Mapping page, setup the following mapping:
+
+   1. Encompass Field ID (Standard, Custom, LR): **1612**
+   2. Mapping Type: **Maps To**
+   3. Provider Field Name: **custom\_field**
+
+2. Then press "Save"
+
+![](/images/docs/1893f700caab4d23c1f5f1917739e42d9d79a297361b0bfddba3f5a51ec71609-image.png)
+
+## Step 2: Add the custom field to a Truv template
+
+1. As an *Owner* or *Administrator*, navigate to the [Truv Dashboard](https://dashboard.truv.com/app/customization/templates). Open the **Customization** menu and select **Templates**.
+2. On the **Templates** page, select an existing template to edit or create a new template
+
+![](/images/docs/29b5ef70b9caf4c8ef457f241daf12408a2a733c2e2c4014839a4d51e2df8f03-image.png)
+
+3. On the template customization page, open the side menu for each notification type you would like to add the custom field text to. Once a notification type is selected, customize the text and add **\{custom\_field}** wherever you would like the mapped Encompass value to show up. This dynamic field will be replaced by the custom field value from Encompass when the order is created.
+
+   1. To ensure consistent communication, we recommend updating all notification methods for the template if a **\{custom\_field}** is being added (Email First, Email Reminder, SMS First, SMS Reminder, Landing Page Initial, Landing Page Success, Landing Page Expired)
+   2. For a full list of [Dynamic Fields](/docs/customization-templates#dynamic-text)
+
+![](/images/docs/220102da389f7113d6f55168ae28db718911c96271ba295505105e3b626171b7-image.png)
+
+4. Once finished, press **Publish** to ensure your changes have been saved
+
+5. To use the template with the new custom field text when ordering Truv in Encompass:
+
+   1. **For Manual orders:** ensure the template is selected in the Truv Encompass App before pressing **Create orders**
+
+   2. ![](/images/docs/43e52a36c8336bb1ec175964290acc9f817ea391252bc410807799cde7810485-image.png)
+
+      **For Automated Service Ordering (ASO):** copy and paste the template ID from the Truv Dashboard Templates page into the automated option that will be used for ASO. For more information, see [Truv's ASO guide](https://dash.readme.com/project/citadel-api/v1.0/docs/automated-service-ordering-setup-guide)
+
+      ![](/images/docs/970ea720471a7336788d9064ce1a52b308c12c0ae265a30783ab121f611d8e33-image.png)
+
+When an order is created using the template, the Borrower will receive notifications using the custom values on the loan file ("Will Kern" is the Loan Officer in the below example).
+
+![](/images/docs/1b6c3594e61c7470dc1b2ea19c9b4c0af844e9482d49ec7c45e5799df6f2f8da-Screenshot_2024-12-02_at_12.45.52_PM.png)
+
+<Check>
+  You have mapped the Encompass field to the Truv order.
+</Check>
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [One time setup guide](#one-time-setup-guide)
+
+    * [Step 1: Setup the custom field mapping](#step-1-setup-the-custom-field-mapping)
+    * [Step 2: Add the custom field to a Truv template](#step-2-add-the-custom-field-to-a-truv-template)

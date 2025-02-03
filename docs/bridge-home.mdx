@@ -1,0 +1,354 @@
+---
+title: "Bridge SDKs"
+description: "Learn how to get started with Truv Bridge."
+---
+
+[Suggest Edits](/edit/bridge-home)
+
+# Overview
+
+Truv Bridge is a drop-in module for your users. Users can then connect their accounts to Truv and allow you to access their data with Truv's API.
+
+Truv Bridge handles employer searches, validating credentials, multi-factor authentication, and error handling. The module works across all modern browsers and platforms. This includes web, mobile, iOS, and Android, as well as through React Native, Flutter and Expo.
+
+[![Swift SDK](/images/docs/apps/iOS.svg)](#ios)
+
+[![Kotlin SDK](/images/docs/apps/Kotlin.svg)](#android)
+
+[![React Native SDK](/images/docs/apps/react-native.svg)](#react-native)
+
+[![Flutter SDK](/images/docs/apps/flutter.svg)](#flutter)
+
+[![Vanilla JS SDK](/images/docs/apps/Vanilla-JS.svg)](#vanilla-js)
+
+[![React SDK](/images/docs/apps/React-JS.svg)](#react)
+
+# Libraries
+
+The following SDK sections below are overviews on installing and using Truv Bridge. For demo applications, view the [Testing](/docs/testing) page as well as the [Truv GitHub link](https://github.com/truvhq) for additional information.
+
+## iOS
+
+The Swift SDK for iOS is available on [Cocoa Pods](https://cocoapods.org/pods/truvsdk).
+
+### Install
+
+The code below in Ruby lets you add the `TruvSDK` pod.
+
+<CodeGroup>
+  ```ruby ruby
+  use_frameworks!
+
+  target 'MyApp' do
+      pod 'TruvSDK'
+  end
+  ```
+</CodeGroup>
+
+### Usage
+
+The Swift code below helps you get Truv Bridge started.
+
+<CodeGroup>
+  ```swift swift
+  import TruvSDK
+
+  let truvBridgeView = TruvBridgeView(token: token, delegate: self)
+  view.addSubview(truvBridgeView)
+  // add constraints if needed
+  ```
+</CodeGroup>
+
+## Android
+
+The Kotlin SDK for Android is available on [MavenCentral](https://central.sonatype.com/artifact/com.truv.sdk/android_sdk).
+
+### Install
+
+The two steps below cover the installation process for the Kotlin SDK.
+
+1. Add the MavenCentral repository to your project `build.gradle` file.
+
+```
+allprojects {
+		repositories {
+			...
+			mavenCentral()
+		}
+	}
+```
+
+2. Add the dependency to your `build.gradle` file.
+
+```
+implementation 'com.truv.sdk:android-sdk:1.5.0'
+```
+
+### Usage
+
+The `TruvBridgeView` is a `View` for integrating into your app workflow.
+
+<CodeGroup>
+  ```xml xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <com.truv.TruvBridgeView xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/bridgeView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+  ```
+</CodeGroup>
+
+<CodeGroup>
+  ```kotlin kotlin
+  val truvEventsListener = object : TruvEventsListener {
+
+          override fun onClose() {
+              Log.d(TAG, "Bridge Closed")
+          }
+
+          override fun onError() {
+              Log.e(TAG, "Bridge Error")
+          }
+
+          override fun onEvent(event: TruvEventPayload.EventType) {
+              Log.d(TAG, "Event: $event")
+          }
+
+          override fun onLoad() {
+              Log.d(TAG, "Bridge Loaded")
+          }
+
+          override fun onSuccess(payload: TruvSuccessPayload) {
+              Log.d(TAG, "Bridge Success")
+              val token = payload.publicToken
+              // Do something with your token
+          }
+
+      }
+
+  binding.bridgeView.addEventListener(truvEventsListener)
+  ```
+</CodeGroup>
+
+## React Native
+
+The React Native SDK for iOS and Android is available on [npm](https://www.npmjs.com/package/@truv/react-native).
+
+### Install
+
+The two options below allow you to install the Truv Bridge SDK for React Native.
+
+* npm
+
+<CodeGroup>
+  ```shell shell
+  npm install @truv/react-native --save
+  ```
+</CodeGroup>
+
+* yarn
+
+<CodeGroup>
+  ```shell shell
+  yarn add -S @truv/react-native
+  ```
+</CodeGroup>
+
+### Usage
+
+Use the code below to get started with the React Native Truv Bridge SDK.
+
+<CodeGroup>
+  ```javascript javascript
+  import React, { useState } from 'react';
+  import TruvBridge from '@truv/react-native';
+
+  const BridgeElement = () => {
+    return (
+      <TruvBridge
+          bridgeToken={bridgeToken}
+          onClose={() => {
+              console.log('bridge closed');
+          }}
+          onError={() => {
+              console.log('bridge error');
+          }}
+          onEvent={(event) => console.log('event from bridge: ', event)}
+          onLoad={() => {
+              console.log('bridge loaded');
+          }}
+          onSuccess={() => {
+              console.log('bridge succeeded');
+          }}
+      />
+    );
+  }
+  ```
+</CodeGroup>
+
+## Flutter
+
+The Flutter SDK for iOS and Android is available on [pub.dev](https://pub.dev/packages/truv_flutter).
+
+### Install
+
+The code below allows you to add `truv_flutter` as a dependency in your `pubspec.yaml` file.
+
+<CodeGroup>
+  ```yaml yaml
+  dependencies:
+    ...
+    truv_flutter: <version>
+  ```
+</CodeGroup>
+
+### Usage
+
+View the code below to get started with the Flutter SDK.
+
+<CodeGroup>
+  ```text text
+  class MainScreen extends StatelessWidget {
+    final bridgeToken = 'yourbridgetoken';
+
+    Widget build(BuildContext context) {
+      return TruvBridge(
+        bridgeToken: bridgeToken,
+        onEvent: (String event) {
+
+        },
+      );
+    }
+  }
+  ```
+</CodeGroup>
+
+## Vanilla JS
+
+The JavaScript SDK for browsers is available on [npm](https://www.npmjs.com/package/@truv/bridge).
+
+### Install
+
+Use the following options to install the JavaScript SDK.
+
+* npm
+
+<CodeGroup>
+  ```shell shell
+  npm install @truv/bridge --save
+  ```
+</CodeGroup>
+
+* yarn
+
+<CodeGroup>
+  ```shell shell
+  yarn add -S @truv/bridge
+  ```
+</CodeGroup>
+
+### Usage
+
+The code sample below covers getting started with the JavaScript SDK.
+
+<CodeGroup>
+  ```js js
+  import TruvBridge from '@truv/bridge'
+
+  const bridge = TruvBridge.init({
+    bridgeToken: '<previously generated bridge token>', // more info https://docs.truv.com/reference/bridge-tokens_create
+    onSuccess: (publicToken, metaData) => {
+      console.log(publicToken, metaData);
+    },
+  });
+
+  // when widget need to be opened
+  bridge.open();
+  ```
+</CodeGroup>
+
+## React
+
+The React SDK for web is available on [npm](https://www.npmjs.com/package/@truv/react).
+
+### Install
+
+Use the following options to install the React SDK.
+
+* npm
+
+<CodeGroup>
+  ```shell shell
+  npm install @truv/react --save
+  ```
+</CodeGroup>
+
+* yarn
+
+<CodeGroup>
+  ```shell shell
+  yarn add -S @truv/react
+  ```
+</CodeGroup>
+
+### Usage
+
+This example code lets you get started with the React SDK.
+
+<CodeGroup>
+  ```js js
+  import React, { useState } from 'react';
+  import TruvBridge from '@truv/react';
+
+  const BridgeElement = () => {
+    const [isOpened, setOpened] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    return (
+      <>
+        <button onClick={() => setOpened(true)}>Open</button>
+        <TruvBridge
+          bridgeToken="<previously generated bridge token>" // more info https://docs.truv.com/reference/bridge-tokens_create
+          onClose={() => setOpened(false)}
+          onSuccess={(publicToken, metaData) => {
+            setIsSuccess(true);
+            console.log(publicToken, metaData);
+          }}
+          isOpened={isOpened}
+        />
+      </>
+    );
+  }
+  ```
+</CodeGroup>
+
+# Next steps
+
+Work directly with Truv Bridge response data from the [Data Reference for Truv Bridge](/docs/data-reference-for-truv-bridge) page. Navigate next steps for users with information from callbacks, event data, and possible errors.
+
+***
+
+What’s Next
+
+Learn more about creating excellent integrations for your users with Truv Bridge.
+
+* [Implementing Truv Bridge](/docs/bridge-implementation)
+* [Customizing Truv Bridge](/docs/customization)
+* [Deeplinking](/docs/deeplinking)
+* [Data Refresh](/docs/update-mode)
+* [Event Reference for Truv Bridge](/docs/event-reference-for-truv-bridge)
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Libraries](#libraries)
+
+    * [iOS](#ios)
+    * [Android](#android)
+    * [React Native](#react-native)
+    * [Flutter](#flutter)
+    * [Vanilla JS](#vanilla-js)
+    * [React](#react)
+
+  * [Next steps](#next-steps)

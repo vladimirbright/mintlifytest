@@ -1,0 +1,453 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# VOA Reports
+
+View reference information from Verification of Assets (VOA) reports.
+
+Verification of Assets (VOA) reports contain information from the user’s accounts. Learn more below about the data provided from reports.
+
+# Attributes
+
+The tables below have the values, format, and descriptions for the responses.
+
+| Attribute       | Type             | Description                                                                    |
+| --------------- | ---------------- | ------------------------------------------------------------------------------ |
+| report\_id      | string           | Unique identifier of the report                                                |
+| created\_at     | date-time        | Timestamp when report was created                                              |
+| completed\_at   | date-time        | Timestamp when report was completed                                            |
+| days\_requested | int32            | Number of days for requested transactions                                      |
+| borrower        | object           | Borrow information, see [Borrower object](#borrower-object)                    |
+| links           | array of objects | List of employment links, see [Links object](#links-object)                    |
+| summary         | array of objects | Balance summary information for account, see [Summary object](#summary-object) |
+
+## Borrower object
+
+Information in the table below is for the borrower object.
+
+| Attribute          | Type      | Description                          |
+| ------------------ | --------- | ------------------------------------ |
+| id                 | string    | Unique ID of user                    |
+| external\_user\_id | string    | External user ID                     |
+| first\_name        | string    | First name                           |
+| last\_name         | string    | Last name                            |
+| email              | string    | Email address                        |
+| phone              | string    | Phone number                         |
+| ssn                | string    | Social Security Number               |
+| created\_at        | date-time | Timestamp when user was created      |
+| updated\_at        | date-time | Timestamp when user was last updated |
+
+## Links object
+
+The information in this table is for values in the Links object.
+
+| Attribute      | Type             | Description                                                                        |
+| -------------- | ---------------- | ---------------------------------------------------------------------------------- |
+| link\_id       | string           | Unique identifier of the link                                                      |
+| tracking\_info | string           | Additional optional identifier passed by user                                      |
+| provider       | string           | ID of the financial institution                                                    |
+| provider\_name | string           | Name of the financial institution                                                  |
+| identities     | array of objects | List of person's identity information, see [Identities object](#identities-object) |
+| accounts       | array of objects | List of assets accounts, see [Accounts object](#accounts-object)                   |
+
+### Identities object
+
+The values below are references for the identities object.
+
+| Attribute        | Type   | Description                                                     |
+| ---------------- | ------ | --------------------------------------------------------------- |
+| id               | string | ID of object                                                    |
+| created\_at      | string | ISO 8601 value for first time retrieving person's identity info |
+| updated\_at      | string | ISO 8601 value for last time retrieving person's identity info  |
+| first\_name      | string | First name                                                      |
+| last\_name       | string | Last name                                                       |
+| full\_name       | string | Full name                                                       |
+| middle\_initials | string | Middle initials                                                 |
+| email            | string | Email address                                                   |
+| ssn              | string | Social Security Number, full or last 4 digits                   |
+| date\_of\_birth  | date   | Date of birth                                                   |
+| home\_address    | object | Home address, see [Address object](#address-object)             |
+
+#### Address object
+
+The values in this table are for the address object of the company.
+
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| street    | string | Street      |
+| city      | string | City        |
+| state     | string | State       |
+| zip       | string | Zip         |
+| country   | string | Country     |
+
+### Accounts object
+
+The table below covers values in the accounts object.
+
+| Attribute       | Type             | Description                                                                       |
+| --------------- | ---------------- | --------------------------------------------------------------------------------- |
+| id              | string           | Unique identifier of account                                                      |
+| created\_at     | date-time        | Date and time account was created                                                 |
+| updated\_at     | date-time        | Date and time account was most recently updated                                   |
+| type            | string           | Parent type of the account, example `CHECKING` or `SAVINGS`                       |
+| subtype         | string           | Account’s subtype, example `PLAN_401_K`, `MONEY_MARKET`, or `HOME_EQUITY`         |
+| mask            | string           | Masked banking account number associated with account                             |
+| nickname        | string           | Alternate name for account                                                        |
+| days\_available | integer          | Available number of days for transactions from `days_requested`                   |
+| balances        | object           | List of balance information from account, see [Balances object](#balances-object) |
+| transactions    | array of objects | List of transactions for account, see [Transactions object](#transactions-object) |
+| owners          | array of objects | List of owners for account, see [Owners object](#owners-object)                   |
+| summary         | array of objects | Balance summary information for account, see [Summary object](#summary-object)    |
+
+#### Balances object
+
+The information in the table below refers to values in the balances object.
+
+| Attribute          | Type   | Description                                                                                                                |
+| ------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------- |
+| currency\_code     | string | Three-character ISO 4217 currency code                                                                                     |
+| balance            | string | Current account balance                                                                                                    |
+| available\_balance | string | Available balance for use in checking and savings asset accounts, `PENDING` transactions may not reflect available balance |
+| credit\_limit      | string | Credit limit associated with account                                                                                       |
+
+#### Transactions object
+
+The values for the transactions object are in the table below.
+
+| Attribute                | Type             | Description#                                        |
+| ------------------------ | ---------------- | --------------------------------------------------- |
+| id                       | string           | Unique identifier of transaction                    |
+| external\_id             | string           | External system transaction identifier              |
+| amount                   | string           | Monetary amount of transaction                      |
+| currency\_code           | string           | Three-character ISO 4217 currency code              |
+| check\_number            | string           | Check number for transaction                        |
+| categories               | array of strings | List of categories assigned to this transaction     |
+| description              | string           | Human-readable transaction description              |
+| status                   | string           | Status of transaction, either `POSTED` or `PENDING` |
+| type                     | string           | Type of transaction, either `CREDIT` or `DEBIT`     |
+| transacted\_at           | date-time        | Timestamp when transaction took place               |
+| merchant\_category\_code | int32            | ISO 18245 category code for transaction             |
+
+#### Owners object
+
+The values in this table are for the address object of the company.
+
+| Attribute  | Type   | Description                                    |
+| ---------- | ------ | ---------------------------------------------- |
+| id         | string | ID of owner                                    |
+| full\_name | string | Full name                                      |
+| email      | string | Email address                                  |
+| phone      | string | Phone number                                   |
+| address    | object | Address, see [Address object](#address-object) |
+
+#### Summary object
+
+Information in the table below are for the summary object.
+
+| Attribute      | Type   | Description                            |
+| -------------- | ------ | -------------------------------------- |
+| avg\_30        | string | Average balance for 30 days            |
+| avg\_60        | string | Average balance for 60 days            |
+| avg\_90        | string | Average balance for 90 days            |
+| currency\_code | string | Three-character ISO 4217 currency code |
+
+# Endpoints
+
+View more information about the available endpoints for VOA reports below.
+
+* [Create an assets report](/reference/assets-report-create)
+* [Retrieve an assets report](/reference/assets-report-retrieve)
+
+# Example response
+
+The JSON below is a sample response for the endpoint.
+
+<CodeGroup>
+  ```json JSON
+  {
+    "report_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "created_at": "2022-05-04T11:30:00Z",
+    "completed_at": "2022-05-04T12:00:00Z",
+    "days_requested": 61,
+    "borrower": {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "external_user_id": "12345",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "[email protected]",
+      "phone": "+14155554193",
+      "ssn": "222233333",
+      "created_at": "2022-05-04T11:30:00Z",
+      "updated_at": "2022-05-04T12:00:00Z"
+    },
+    "links": [
+      {
+        "link_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "tracking_info": "string",
+        "provider": "string",
+        "identities": [
+          {
+            "id": "48427a36d43c4d5aa6324bc06c692456",
+            "created_at": "2022-06-07T15:00:00Z",
+            "updated_at": "2022-06-31T15:00:00Z",
+            "first_name": "John",
+            "last_name": "Doe",
+            "full_name": "John Doe",
+            "middle_initials": "K",
+            "email": "[email protected]",
+            "ssn": "123456789",
+            "date_of_birth": "1992-03-03",
+            "home_address": {
+              "street": "1 Morgan Ave",
+              "city": "Los Angeles",
+              "state": "CA",
+              "zip": "90210",
+              "country": "US"
+            }
+          }
+        ],
+        "accounts": [
+          {
+            "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "created_at": "2022-05-04T11:30:00Z",
+            "updated_at": "2022-05-04T12:00:00Z",
+            "type": "string",
+            "subtype": "string",
+            "mask": "string",
+            "routing_number": "55999876",
+            "nickname": "string",
+            "days_available": 0,
+            "balances": {
+              "currency_code": "string",
+              "balance": "string",
+              "available_balance": "string",
+              "credit_limit": "string"
+            },
+            "transactions": [
+              {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "external_id": "string",
+                "amount": "string",
+                "currency_code": "string",
+                "check_number": "string",
+                "categories": [
+                  "string"
+                ],
+                "description": "string",
+                "status": "POSTED",
+                "type": "DEBIT",
+                "transacted_at": "2022-05-04T12:00:00Z",
+                "merchant_category_code": 0,
+                "ending_daily_balance": "string"
+              }
+            ],
+            "owners": [
+              {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                "full_name": "string",
+                "email": "[email protected]",
+                "phone": "string",
+                "address": {
+                  "street": "1 Morgan Ave",
+                  "city": "Los Angeles",
+                  "state": "CA",
+                  "zip": "90210",
+                  "country": "US"
+                }
+              }
+            ],
+            "summary": {
+              "avg_30": "string",
+              "avg_60": "string",
+              "avg_90": "string",
+              "currency_code": "string"
+            }
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "avg_30": "string",
+      "avg_60": "string",
+      "avg_90": "string",
+      "currency_code": "string"
+    }
+  }
+  ```
+</CodeGroup>

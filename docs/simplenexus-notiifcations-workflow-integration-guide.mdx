@@ -1,0 +1,76 @@
+---
+title: "Truv Notifications flow in nCino(fka SimpleNexus)"
+description: "Truv integrates with SimpleNexus to streamline income verification process for borrowers and loan officers."
+---
+
+[Suggest Edits](/edit/simplenexus-notiifcations-workflow-integration-guide)
+
+# Overview
+
+SimpleNexus is a point of sale (POS) mortgage software and technology for modern lenders. Truv’s integration with SimpleNexus lets borrowers quickly connect their payroll account information. Customers can seamlessly share income reports as well as pay statements with loan officers.
+
+# Setup Guides
+
+## Configuring SimpleNexus with Truv
+
+Configure your SimpleNexus integration with Truv using the steps below.
+
+1. Generate a new API token from the SimpleNexus platform's Open API Token tool. This value is specific to Truv for the integration.
+2. Enable the following methods and path permissions. `GET` - `/loan_applications` `GET` - `/loan_applications/:loan_application_guid` `GET` - `/loan_applications/:loan_application_guid/documents` `POST` - `/loan_applications/:loan_application_guid/documents` `GET` - `/loan_officers/:loan_officer_guid` `GET` - `/borrowers/:borrower_guid` `POST` - `/borrowers`
+3. Copy the API token value from Step 1 and paste the value into the API token field on your Truv integration page in the dashboard.
+
+![](/images/docs/bcc8e77-133.png)
+
+## Customizing for each branch
+
+Configure the borrower experience with customizations for each branch of your organization. Truv templates work to provide an individualized experience for borrowers in SimpleNexus.
+
+In the Truv Dashboard, create customization templates for the branches with the same name as the branch cost center in SimpleNexus. In SimpleNexus, set the cost center for a branch to the same name as the customizable template from Truv. Follow the steps below.
+
+1. In your SimpleNexus login, navigate to **Regions**. Create or change an existing region.
+2. Navigate to **Region Details**, then **Region Info**.
+3. Select a specific branch under the **Branches** section to proceed to that branch page.
+4. Navigate to **Branch Settings**, **Branch Info**, and then the **Cost Centers** section.
+5. Input a name for the cost center and save.
+6. From the [Truv Dashboard](https://dashboard.truv.com/app/home), navigate to the **Templates** section. Templates with the same name as the branch cost center apply the template customizations. See [Customization Templates](/docs/customization-templates) for more information.
+
+# Borrower workflow
+
+The steps below summarize the process for your end users. Integrate with Truv and use Orders to connect user accounts from providers and collect any necessary documents. See the [Orders section](#orders) below for more information.
+
+1. In SimpleNexus, end users submit their loan application information.
+2. End users receive the email or SMS notification with the Order landing page link.
+3. The end user proceeds through the verification steps to complete the Order.
+4. When complete, Truv shares the end user’s relevant income documents with SimpleNexus, such as pay stubs, W2 forms, and Truv PDF reports.
+
+For a brief overview of the Truv Notifications workflow within nCino, watch the video below:
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FZl6pr_GBTLE%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DZl6pr_GBTLE\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FZl6pr_GBTLE%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+<Info>
+  Personalized emails and SMS messages for landing pages are available through [Customizations](/docs/orders-guide#customization). Use the [Customization templates](/reference/customization-templates#order-flow-customization-templates) in the Truv dashboard or [Create a customization template](/reference/v1_templates_create) endpoint for additional options.
+</Info>
+
+# Additional Reference on Orders
+
+![](/images/docs/e7229ce-132.png)
+
+With Orders, SimpleNexus can connect to payroll providers and collect the necessary documents from users. Orders use phone numbers and email addresses to prompt users to connect to their providers. For more, see the guides below.
+
+* [Orders guide](/docs/orders-guide)
+* [Orders API reference](/reference/orders-api)
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Setup Guides](#setup-guides)
+
+    * [Configuring SimpleNexus with Truv](#configuring-simplenexus-with-truv)
+    * [Customizing for each branch](#customizing-for-each-branch)
+
+  * [Borrower workflow](#borrower-workflow)
+
+  * [Additional Reference on Orders](#additional-reference-on-orders)

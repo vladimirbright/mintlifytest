@@ -1,0 +1,171 @@
+---
+title: "Custom Loan Origination System (LOS) Implementation"
+description: "Integrate your Loan Origination system with Truv's Verification of Income and Employment (VOIE) solution."
+---
+
+[Suggest Edits](/edit/implementation-with-a-custom-loan-origination-system-guide)
+
+# Overview
+
+The Order is a custom landing page for your users. Users connect their accounts to their providers when they use Orders. Send personalized invitations to your users through email or phone. Orders are a simple process for contacting your borrowers for next steps.
+
+# Positioning of the Truv Order
+
+To integrate Truv's Order functionality, it is recommended to use the existing verification flow while adding Truv as the provider to trigger the verification. This approach minimizes change management for loan processors, thereby enhancing the user experience and reducing friction.
+
+# Integration Process
+
+## Create an Order
+
+Call [`/orders/`](/reference/orders_create) to create a new order with the following parameters:
+
+1. **Required fields**
+
+   1. `products`: Insert the product(s) desired. For income specify `["income"]`, and add additional products to the list, if any.
+   2. `first_name` & `last_name`: Enter the first and last name of the borrower
+   3. `email` and/or `phone`: Enter either email and/or mobile phone number for Truv to send the Truv notification to the borrower. If you leave this section blank, you would need to retrieve the Truv verification link from the JSON response under `"share_url"`.
+      <Info>
+        Truv will not be able to send any notifications if both email and phone number are left blank.
+      </Info>
+
+2. **Recommended fields**
+
+   1. `loan`: The loan object has several fields that allow to identify the loan.
+
+      1. `loan_number`: The loan number identifying the loan
+      2. `originator_name`: The first and last name of the loan originator
+      3. `originator_email`: The email of the loan originator
+      4. `loan_processor_name`: The first and last name of the loan processor
+      5. `loan_processor_email`: The email of the loan processor
+
+   2. `ssn`: Borrower's social security number. Should be either 4 or 9 digits in length. Truv compares the SSN entered against the one provided by the payroll system and returns a `config_error` if there is a mismatch.
+
+   3. `manager`: The manager object identifies the Truv Order creator
+
+      1. `email`: The email of the Order creator
+      2. `name`: The first and last name of the Order creator
+
+<Info>
+  Truv will send a notification to the provided email address(es) when the Truv Order is created as well as when they are completed/expired/cancelled.
+</Info>
+
+1. **Optional fields**
+
+   1. `employers`: The employers object allows you to enter the employment information for the borrower to verify. Truv supports up to 5 employers per single Truv Order.
+
+      1. `start_date`: The start date of employment
+      2. `company_name`: The name of the employer
+
+   2. `data_sources`: Specify `["payroll"]` to connect exclusively to payroll. To enable fallback options, include additional `data_sources` such as `"docs"` and/or `"financial_accounts"` in the list.
+
+   3. `template_id`: Call `/templates/` to [list all custom templates](/reference/v1_templates_list) created by the lender. And allow them to select the desired template into the Order.
+
+<Info>
+  Ensure the `order_id` is visible to the lender as it serves as an identifier to contact the Truv Support staff.
+</Info>
+
+## Retrieve an Order
+
+Call [`/orders/{id}/`](/reference/orders_read) to fetch the details of a completed order. This ensures access to the latest order information. The `employers` object contains, but is not limited to, the following information:
+
+* `status`: The status of the Order
+* `pdf_report`: A URL to the employer-specific PDF report
+* `employments`: The employments object provides income information for each verified employment. It also includes a `"file"` field within the `statements` and `w2s` objects, which allows retrieval of the corresponding income documents.
+* `voie_report_id`: The `report_id` must be passed to the corresponding government-sponsored enterprise (GSE) - Fannie Mae’s DU Validation Service and Freddie Mac's AIM. More information [here](/docs/gse-certification-for-voie-with-truv).
+
+Please review Truv’s [Data Reference for Income and Employment documentation](/docs/data-scoping-income-and-employment), which includes JSON responses and document samples, including Truv’s Income and Employment PDF Report.
+
+<Info>
+  The `data_source` field indicates whether the borrower directly connected to the payroll system (`"payroll"`) or used an alternate fallback such as manual document upload (`"doc_upload"`).
+</Info>
+
+## Refresh Order Data
+
+Call [`/orders/{id}/`](/reference/orders_create_refresh_order) with the original `order_id` to trigger a re-verification. This allows the order data to be refreshed and kept up-to-date.
+
+Truv recommends allowing the lender to choose the product type and employers for re-verification prior to triggering the Order Refresh:
+
+* `products`: Enter `["employment"]` or `["income"]` to the data refresh order endpoint. Most re-verifications require `employment`only.
+* `employers`: The employer ID to be refreshed. The employer ID is located in the original JSON response when retrieving the successful Truv Order
+* `include_recent_paystub`: Set to `true` to refresh employment-only data and include the most recent paystub.
+
+<Info>
+  Truv recommends having the lender select the options for re-verification, as shown in the image below.
+
+  ![](/images/docs/98b67b9-Screenshot_2024-06-28_at_4.20.06_PM.png)
+</Info>
+
+## Update an Order
+
+Call [`/orders/{id}/`](/reference/orders_partial_update) to update of a Truv Order. This endpoint allows to modify the **first** or **last name**, or the **SSN** (Social Security Number) of the order. This action is only available while the Truv Order is pending.
+
+## Cancel an Order
+
+Call [`/orders/{id}/cancel/`](/reference/orders_cancel_create) to cancel a pending Truv Order. If the order is partially completed, completed verification data can be retrieved using the [Retrieve an Order](/reference/orders_read) endpoint. Once canceled, the order cannot be reopened by the borrower.
+
+## Webhooks
+
+Listen for the `order-status-updated` webhooks, which provide the status of the Truv Order and indicate when the data is ready to be retrieved once the `status` is set to `completed`. The `data_source` specifies the income source of the Order. Use the `order_id`, `user_id`, and `link_id` to trigger the corresponding income information retrieval. More info [here](/reference/orders-1#order-status-change).
+
+**Webhook Setup** Subscribe to Truv webhooks by navigating to the [Webhooks section](https://dashboard.truv.com/app/development/webhooks) of the dashboard and entering the URL endpoint for receiving updates.
+
+### Order status
+
+The bullet points below cover the user’s Order status.
+
+* **pending** - Truv is processing the borrower's information
+* **sent** - Order email or SMS is on its way to borrower
+* **completed** - Borrower has completed request for action
+* **error** - Notification issue
+* **canceled** - Order is no longer requested
+* **expired** - Order is past expiration date, no longer valid
+* **skipped** - Borrower has exited Order before completing request for action
+* **no data** - Provider has no data
+
+## Testing
+
+Income can be tested in Sandbox using Truv's [Testing](/docs/testing#all) credentials. Here are some login examples:
+
+* **Happy path:** username: `goodlogin`, password: `goodpassword`, SSN: `991-91-9991`
+* **Multiple employers:** username: `multiple.employments`, password: `goodpassword`
+
+# Best Practices
+
+## Customization
+
+Personalize the text users receive via email and SMS. Customizations are available for landing pages. Use the [Customization templates in the Truv dashboard](/reference/customization-templates#order-flow-customization-templates) or the [Create a customization template endpoint](/reference/v1_templates_create) for additional options.
+
+## Notifications
+
+Order links are available within the dashboard or through the API for integration with notification systems.
+
+<Info>
+  Combining email and SMS messaging improves order success rates from opening to completion. High-intent borrowers complete over 50% of verifications within 2 hours.
+</Info>
+
+### Reminders
+
+The default reminder setting is 72 hours, with three reminders sent at equal intervals. For example, if the link expiration is 72 hours, reminders are sent every 24 hours. If the link expiration period is different, the reminder intervals adjust accordingly to ensure three reminders are sent. Customize expiration times and reminder schedules within the dashboard.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Positioning of the Truv Order](#positioning-of-the-truv-order)
+
+  * [Integration Process](#integration-process)
+
+    * [Create an Order](#create-an-order)
+    * [Retrieve an Order](#retrieve-an-order)
+    * [Refresh Order Data](#refresh-order-data)
+    * [Update an Order](#update-an-order)
+    * [Cancel an Order](#cancel-an-order)
+    * [Webhooks](#webhooks)
+    * [Testing](#testing)
+
+  * [Best Practices](#best-practices)
+
+    * [Customization](#customization)
+    * [Notifications](#notifications)

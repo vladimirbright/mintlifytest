@@ -1,0 +1,437 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# Income Report
+
+Find more information about bank income reports.
+
+# Attributes
+
+The table below has the values and descriptions of the bank income report responses.
+
+| Attribute       | Type             | Description                                                                                                                       |
+| --------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| status          | string           | Status of report, possible values `success`, ` processing`                                                                        |
+| completed\_at   | date-time        | Time when report was completed                                                                                                    |
+| days\_requested | int32            | Requested number of days for specified transactions                                                                               |
+| tracking\_info  | string           | Additional optional identifier passed by user                                                                                     |
+| provider        | string           | Data provider identifier                                                                                                          |
+| access\_token   | string           | Access token of existing Link                                                                                                     |
+| companies       | array of strings | List of companies person works for                                                                                                |
+| accounts        | array of objects | List of bank accounts, see [Accounts object](#accounts-object)                                                                    |
+| income          | array of objects | List of bank income sources, see [Income object](#income-object)                                                                  |
+| summary         | array of objects | Bank account information summary, see [Summary object](#summary-object)                                                           |
+| is\_suspicious  | Boolean          | Status of data from source marked as suspicious, such as if detecting fraud in uploaded documents or user SSN does not match data |
+
+## Accounts object
+
+The values in this table are for the Accounts object.
+
+| Attribute   | Type             | Description                                                             |
+| ----------- | ---------------- | ----------------------------------------------------------------------- |
+| id          | string           | Unique identifier of account                                            |
+| created\_at | date-time        | Date and time when account was created in Truv                          |
+| updated\_at | date-time        | Date and time when account was last updated in Truv                     |
+| type        | string           | Parent type of account, example `CHECKING` or `SAVINGS`                 |
+| subtype     | string           | Account subtype, example `PLAN_401_K`, `MONEY_MARKET`, or `HOME_EQUITY` |
+| mask        | string           | Masked banking account number associated with specific account          |
+| nickname    | string           | Alternate account name                                                  |
+| owners      | array of objects | List of account's owners                                                |
+
+## Owner object
+
+The values in this table are for the Accounts object.
+
+| Attribute      | Type   | Description                          |
+| -------------- | ------ | ------------------------------------ |
+| id             | string | Unique identifier of the owner       |
+| full\_name     | string | Full name of the owner               |
+| email          | string | Email of the owner                   |
+| phone          | string | Phone of the owner                   |
+| address        | object | Address of the owner                 |
+| relation\_type | string | Relation of the owner to the account |
+
+## Income object
+
+This table contains the attributes in the Income object.
+
+| Attribute                   | Type             | Description                                                                                                                                                                          |
+| --------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| start\_date                 | date             | Minimum of all dates within specific income sources in user bank accounts for days requested by client                                                                               |
+| end\_date                   | date             | Maximum of all dates within specific income sources in user bank accounts for days requested by client                                                                               |
+| account\_id                 | string           | Unique identifier of account                                                                                                                                                         |
+| income\_description         | string           | Original description for underlying income transactions                                                                                                                              |
+| income\_category            | string           | Income category                                                                                                                                                                      |
+| avg\_deposit\_amount        | number           | The average amount received per deposit, typically net of taxes and deductions                                                                                                       |
+| avg\_gross\_deposit\_amount | number           | The average gross payment per deposit. Gross pay is predicted based on the transaction data                                                                                          |
+| pay\_frequency              | string           | Frequency of direct deposit posted into bank account, see values below `M` - Monthly`SM` - Semi-monthly`W` - Weekly`BW` - Bi-weekly`A` - Annually`SA` - Semi-annually`C`- Commission |
+| total\_amount               | number           | Total amount of earnings for the income source of the user in the summary                                                                                                            |
+| iso\_currency\_code         | string           | The ISO 4217 currency code of the amount or balance                                                                                                                                  |
+| transaction\_count          | integer          | Number of income transactions per end user for specific source                                                                                                                       |
+| historical\_summary         | array of objects | List of bank statements for each period, see [Historical summary object](#historical-summary-object)                                                                                 |
+
+### Historical summary object
+
+The table below contains the attributes from the Historical summary object.
+
+| Attribute           | Type             | Description                                                                                                                                                                                                                                                                  |
+| ------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start\_date         | date             | Start date of period covered in specific monthly summary, value is set to first day of month unless covered month is partial*NOTE: Partial months are the first month included in the summary when the requested date range does not begin with the first day of the month.* |
+| end\_date           | date             | End date of period included in specific monthly summary, value is set to last day of the month unless covered month is partial*NOTE: Partial months are the last month included in the summary when the requested date range does not end with the last day of the month.*   |
+| total\_amount       | number           | Total amount of earnings for the income source of the user for the month in the summary                                                                                                                                                                                      |
+| iso\_currency\_code | string           | The ISO 4217 currency code of the amount or balance                                                                                                                                                                                                                          |
+| transactions        | array of objects | List of transactions, see [Transactions object](#transactions-object)                                                                                                                                                                                                        |
+
+### Transactions object
+
+View information about the attributes in the Income object below.
+
+| Attribute           | Type    | Description                                                                                                                                                                 |
+| ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| amount              | string  | Settled value of transaction, denominated in transactions currency as stated in `iso_currency_code`, positive value when money moves out of account and negative otherwise. |
+| iso\_currency\_code | string  | ISO 4217 currency code of amount or balance                                                                                                                                 |
+| date                | date    | Date transaction occurred                                                                                                                                                   |
+| check\_number       | string  | Check number for transaction                                                                                                                                                |
+| description         | string  | Human-readable transaction description                                                                                                                                      |
+| pending             | Boolean | Status of transaction as pending or not set                                                                                                                                 |
+| transaction\_id     | string  | Unique identifier of transaction                                                                                                                                            |
+
+## Summary object
+
+View information about the attributes in the Summary object below.
+
+| Attribute                   | Type    | Description                                                                                    |
+| --------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
+| start\_date                 | date    | Minimum of all dates between income sources in user bank accounts for days requested by client |
+| end\_date                   | date    | Maximum of all dates between income sources in user bank accounts for days requested by client |
+| income\_sources\_count      | integer | Number of income sources per end user                                                          |
+| income\_categories\_count   | integer | Number of income categories per end user                                                       |
+| income\_transactions\_count | integer | Number of income transactions per end user                                                     |
+| total\_amount               | string  | Total amount of earnings for user income in summary                                            |
+| iso\_currency\_code         | string  | ISO 4217 currency code of amount or balance                                                    |
+
+# Endpoints
+
+View more information about the available endpoints below.
+
+* [Creates a bank income report](/reference/bank-income-report-create)
+* [Retrieves a bank income report](/reference/bank-income-report-retrieve)
+
+# Example response
+
+The JSON sample below is from the bank income response.
+
+<CodeGroup>
+  ```json json
+  {
+      "access_token": "a1685cadf2fe4e179cf883d2c166efd0",
+      "accounts": [
+          {
+              "created_at": "2024-11-25T15:46:30.668062Z",
+              "id": "3aed25abdbc246138b84a2afd46cb05b",
+              "mask": "******0685",
+              "nickname": null,
+              "owners": [
+                  {
+                      "address": {
+                          "city": "Redwood City",
+                          "country": null,
+                          "state": "CA",
+                          "street": "35 Dry Ridge Rd",
+                          "zip": "94062"
+                      },
+                      "email": "[email protected]",
+                      "full_name": "John Doe",
+                      "id": "a43909f402f84f2392257d1e6eaf715b",
+                      "phone": "14155554193",
+                      "relation_type": null
+                  }
+              ],
+              "subtype": null,
+              "type": "CHECKING",
+              "updated_at": "2024-11-25T15:46:30.668073Z"
+          }
+      ],
+      "companies": [
+          "string"
+      ],
+      "completed_at": "2024-11-25T15:46:47.498456Z",
+      "days_requested": 61,
+      "income": [
+          {
+              "account_id": "3aed25abdbc246138b84a2afd46cb05b",
+              "avg_deposit_amount": "1327.84",
+              "avg_gross_deposit_amount": "1765.19",
+              "end_date": "2024-11-24",
+              "historical_summary": [
+                  {
+                      "end_date": "2024-09-30",
+                      "iso_currency_code": "USD",
+                      "start_date": "2024-09-25",
+                      "total_amount": "1327.84",
+                      "transactions": [
+                          {
+                              "amount": "1327.84",
+                              "check_number": null,
+                              "date": "2024-09-27",
+                              "description": "string",
+                              "iso_currency_code": "USD",
+                              "pending": false,
+                              "transaction_id": "c08230e3b20c4cd0b319bc5c3062ae1d"
+                          }
+                      ]
+                  },
+                  {
+                      "end_date": "2024-10-31",
+                      "iso_currency_code": "USD",
+                      "start_date": "2024-10-01",
+                      "total_amount": "2655.68",
+                      "transactions": [
+                          {
+                              "amount": "1327.84",
+                              "check_number": null,
+                              "date": "2024-10-11",
+                              "description": "string",
+                              "iso_currency_code": "USD",
+                              "pending": false,
+                              "transaction_id": "a9b3aee936e04e6788af36c467206d29"
+                          },
+                          {
+                              "amount": "1327.84",
+                              "check_number": null,
+                              "date": "2024-10-25",
+                              "description": "string",
+                              "iso_currency_code": "USD",
+                              "pending": false,
+                              "transaction_id": "4c262810f0534067b4f86fa76873a5f8"
+                          }
+                      ]
+                  },
+                  {
+                      "end_date": "2024-11-24",
+                      "iso_currency_code": "USD",
+                      "start_date": "2024-11-01",
+                      "total_amount": "2655.68",
+                      "transactions": [
+                          {
+                              "amount": "1327.84",
+                              "check_number": null,
+                              "date": "2024-11-08",
+                              "description": "string",
+                              "iso_currency_code": "USD",
+                              "pending": false,
+                              "transaction_id": "1d1c70529fb940918bcabbb235216679"
+                          },
+                          {
+                              "amount": "1327.84",
+                              "check_number": null,
+                              "date": "2024-11-22",
+                              "description": "string",
+                              "iso_currency_code": "USD",
+                              "pending": false,
+                              "transaction_id": "67e88c96515c40d29e454bb27d407406"
+                          }
+                      ]
+                  }
+              ],
+              "income_category": "Income: Paycheck",
+              "income_description": "string",
+              "iso_currency_code": "USD",
+              "pay_frequency": "BW",
+              "start_date": "2024-09-25",
+              "total_amount": "6639.20",
+              "transaction_count": 5
+          }
+      ],
+      "is_suspicious": false,
+      "provider": "9f732f7a-b6e2-4c60-81eb-af6274f411dc",
+      "status": "success",
+      "summary": {
+          "end_date": "2024-11-24",
+          "income_categories_count": 1,
+          "income_sources_count": 1,
+          "income_transactions_count": 5,
+          "iso_currency_code": "USD",
+          "start_date": "2024-09-25",
+          "total_amount": "6639.20"
+      },
+      "tracking_info": null
+  }
+  ```
+</CodeGroup>

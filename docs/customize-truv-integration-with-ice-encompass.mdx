@@ -1,0 +1,145 @@
+---
+title: "Customize Truv Integration with ICE Encompass®"
+description: "Streamline Branding, Borrower Notifications, Status update recipients, eFolder and more with Truv Encompass Integration"
+---
+
+[Suggest Edits](/edit/customize-truv-integration-with-ice-encompass)
+
+# Overview
+
+Truv's integration with Encompass® comes with a number customization capabilities that can help streamline workflows, saving loan officers and processors time and effort. By default, when a Truv order is successfully completed, all of the returned documents (Reports, Paystubs, W-2s, 1099s, Invoices) go to a *Verifications* eFolder within Encompass®.
+
+# Key Benefits
+
+* White labeled experience using Truv Templates
+* Customize borrower facing notifications
+* Customize status notification recipients
+* Customize documents returned using document mapping or send documents to unassigned folder
+
+# White labeling using Truv Templates
+
+Set up templates in Truv Dashboard to white label and customize the Encompass® experience weather its relevant to your business subsidiary or branches. This is a one time set up and can be used to customize the below options -
+
+* **Branding** - logo, colors, buttons, text, privacy policy etc
+* **Notification verbiage** - Verbiage in all of your borrower facing notifications including email, text, landing, success and expired pages.
+* **Truv Bridge customizations** - upload your popular employer list catered to your traffic, customize categories in Truv Bridge, custom success screens
+* **Returned documents** - select custom document types to be returned to Encompass® eFolder. Truv returns a default of 6 paystubs, 3 W2's and 3 YTD paystubs. Customize these documents returned based on your business needs.
+* **Enable or disable fallback solutions** - enable document upload solution within the Encompass® experience in case your borrower decides to not connect their payroll accounts.
+
+Choose the template of your choice while placing the Truv order within Encompass®. This is available for selection with both ASO and Manual orders.
+
+Refer to the [detailed step-by-step guide for your customizations](/docs/customization-templates), a one time setup for Truv within Encompass®.
+
+# Encompass® Status updates customization
+
+Truv allows for customize who receives updates on the loan application every step of the way. Encompass® lenders have an option to configure from the below default options:
+
+* **Loan originator and loan processor on the loan** - Truv reads the loan originator and processor names associated with every loan application to ensure the right loan personnel gets notified of the updates.
+* **Order creator** - Truv recognizes that every organization functions differently and notifications are completely customizable based on your needs. Truv provides you with the optionality to send status updates to the personnel creating the order.
+* **Static distribution list** - Truv provides you with additional customization and the optionality to send status updates to a static distribution list. Clients have the opportunity to update and maintain this in their Account settings in Truv Dashboard.
+
+**cc fields** - In addition to defaults set as per above, before placing every order, the order creator has the ability to add/update/delete the default status updates set for every order.
+
+# Encompass® eFolder (Document Mapping)
+
+Take control of your Encompass® eFolder experience and customize who can view various documents retrieved in your organization with Document Mapping functionality within Encompass®.
+
+With this feature, customize all the below documents retrieved within Encompass®
+
+* **Truv Borrower Report** - used to submit to Fannie Mae D1Certainity and Freddie Mac AIM.
+* **Order Invoices** - in case you pass the $$ to the end consumer, Truv helps you with order invoices so every branch can own their P\&L.
+* **Paystubs, 1099 & W2's** - create standalone custom folders for paystubs, 1099 & W2's based on your business needs.
+* **Unassigned e-Folder** - send documents to unassigned e-Folder.
+
+To setup a specific routing of the returned Truv documents in Encompass®, Lenders can customize which eFolder each Truv document type should go to via the *Document Mapping* page. Alternatively, lenders can also chose to send all documents to the *Unassigned* eFolder to be sorted later.
+
+## Document Mapping Customization Set up Guide
+
+Each Truv document has a document type associated with it. To configure which eFolder each document should go to, first navigate to the Truv **Document Mapping** page.
+
+1. Log into Encompass as an administrator using [Encompass Web](https://encompassloconnect.com).
+2. Navigate to the **Admin** tab at the top of the screen, select **Services** on the left navigation.
+3. Under **Services Management**, ensure Truv is configured following the [Encompass Admin User Guide](/docs/encompass-admin-user-guide).
+4. Within the Truv Service tile, select the **Document Mapping** option
+
+![](/images/docs/571db8c5e8a4f9715b06d4564f239c48eadcc43216e879e57cdd660047a58f0f-image.png)
+
+### Adding Document Mappings Manually
+
+On the left side under **Document Types**, enter the Truv document type (see the table below for supported Document Types). On the right side under **eFolder Document Folder**, select the name of the eFolder you would like this document to go to.
+
+* If the Document Type or eFolder Document Folder doesn't exist yet, entering the text will create the new value
+* After creating a mapping, select **ADD ANOTHER** to create a new row
+* After adding all the desired mappings, click the **Save** button on the bottom right
+
+| Document Type     | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| `paystub`         | Paystubs documents retrieved by Truv in the order                                                       |
+| `w2`              | W-2 documents retrieved by Truv in the order                                                            |
+| `1099`            | 1099 tax statement documents retrieved by Truv in the order                                             |
+| `employer_report` | Report summarizing employment and/or income for a specific employer or benefit source                   |
+| `borrower_report` | Report summarizing all employments and/or incomes for a borrower, includes Report ID for GSE submission |
+| `invoice`         | Invoice itemizing costs for the Truv services used                                                      |
+
+![](/images/docs/6bb87dca80b9db6949f390590d6f23580a3d851419f2439e6f7730f14bbdd1a3-image.png)
+
+<Info>
+  Document Type name must match the above table exactly, while the eFolder Document Folder can be customized however the lender wants
+</Info>
+
+### Uploading Document Mappings using a Template
+
+Encompass® also supports uploading a .csv file with the **Document Types** to **eFolder Document Folder** mapping in two columns.
+
+* Download the document mapping template within Encompass
+* Enter the Truv **Document Types** in Column A (using the same naming convention as above)
+* Enter the Encompass **eFolder Document Folders** in Column B
+* Save the file and then upload to Encompass® to import the mapping directly into Encompass
+* Click the **Save** button on the bottom right to save the mapping
+
+![](/images/docs/646b52b8f5d3e31cda92cf9dd0c878d834a05156a91fd998cc1f0a5c49ded322-image.png)
+
+## Sending Documents to Unassigned eFolder
+
+As an additional option, lenders can request for all returned documents to be sent to the *Unassigned* eFolder, instead of the default *Verifications* eFolder or any custom mapped options. This gives lenders the ability to route documents manually to folders as they appear.
+
+Reach out to the Truv Implementation team for assistance in configuring this option.
+
+# Additional Configuration Settings in Encompass®
+
+Truv allows for you to configure additional configurations within the Encompass® platform to override some configurations.
+
+* Service Management -> Select Truv instance -> options -> Select Credentials
+
+![](/images/docs/4225fc35e1d4c2a3b61103278cfebe99faa4d427a8f5d1f571d619f8082d3e7f-image.png)
+
+![](/images/docs/db344d30d96bbd9b88b71aa509bc2f9b0f32cae9f0c91ac91c6200a2876d457f-image.png)
+
+* **Don't update employment data**: When checked, this feature allows the Truv verification to be uploaded into Encompass® without overwriting the existing employment information in Form 1003. For some customers, it is important to upload the Truv report, paystubs, and W-2s without modifying the existing data in Encompass®.
+* **Don't send SMS**: When checked, Truv will not send any SMS notifications to the borrower.
+* **Hide VOE/VOIE report for doc upload**: When a Truv verification is successful, the Truv report, along with the paystubs and W-2s, is uploaded into Encompass®. However, for some customers, if the connection to the payroll provider is unsuccessful, manual document uploads require additional checks. In such cases, they prefer not to upload the Truv report, as it may give a false sense of verification. Instead, they only want the manually uploaded documents to be added to Encompass® for the lender's review.
+* **Don't upload paystubs**: When checked, PDF paystubs will not be uploaded to Encompass®.
+* **Don't upload W2**: When checked, PDF W2s will not be uploaded to Encompass®.
+* **Don't upload 1099**: When checked, PDF 1099s will not be uploaded to Encompass®.
+* **Don't upload Truv's report**: When checked, the PDF Truv report will not be uploaded to Encompass®.
+
+For further assistance, please reach out to [\[email protected\]](/cdn-cgi/l/email-protection#c7b4b2b7b7a8b5b387b3b5b2b1e9a4a8aa) or your Customer Success Manager.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Key Benefits](#key-benefits)
+
+  * [White labeling using Truv Templates](#white-labeling-using-truv-templates)
+
+  * [Encompass® Status updates customization](#encompass-status-updates-customization)
+
+  * [Encompass® eFolder (Document Mapping)](#encompass-efolder-document-mapping)
+
+    * [Document Mapping Customization Set up Guide](#document-mapping-customization-set-up-guide)
+    * [Sending Documents to Unassigned eFolder](#sending-documents-to-unassigned-efolder)
+
+  * [Additional Configuration Settings in Encompass®](#additional-configuration-settings-in-encompass)

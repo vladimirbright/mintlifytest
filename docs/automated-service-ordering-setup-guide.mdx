@@ -1,0 +1,213 @@
+---
+title: "Automated Service Ordering(ASO) Admin setup in ICE Encompass"
+description: "Automate VOIE ordering Setup Guide within Encompass® (SmartClient/Desktop and web editions) using ASO"
+---
+
+[Suggest Edits](/edit/automated-service-ordering-setup-guide)
+
+# Overview
+
+Encompass® (desktop and web editions) offers support for automatic service orders (ASO) when a loan fulfills certain conditions. This is referred to as Automated Service Ordering or ASO.
+
+Any Encompass® Partner Connect, EPC integration can be configured by a lender administrator to submit automated orders. This powerful feature is designed to reduce the manual workload for lenders' personnel.
+
+![](/images/docs/dca44c734eed4c11ef33f35185bc3547d1501ac17ba52161b64381899e7114d9-Screenshot_2024-09-04_at_12.22.42_AM.png)
+
+## Key Benefits
+
+* Enhanced Productivity
+* Cost Efficiency
+* Increase Underwriting efficiency
+* Eliminate duplicate or unnecessary verification orders
+* Reduce operations burden
+
+# Best Practices for ASO Triggers
+
+ASO can be setup to be triggered in one of the 2-ways
+
+* Milestone or Event based - when an event occurs in the loan process
+
+  * Trigger ASO when a role is assigned,
+  * Trigger ASO when Loan is created,
+  * Trigger ASO when a file is attached.
+
+* Condition or Scenario based - when a certain condition is met
+
+  * All loan applications where borrower lives in `Texas`,
+  * All loan applications with greater than 620 credit score,
+  * All loan applications where borrower worked at the same employer for over 2years.
+
+![](/images/docs/e916e1774f9a0eeb9242dcb6fe33467c748a246a983cdd08d87a924d5502f688-Screenshot_2024-09-11_at_6.32.04_PM.png)
+
+# Borrower touchpoints with Truv ASO Automation
+
+Below are the key touchpoints with Truv ASO Automation
+
+![](/images/docs/3415ea0158797087253a2bbbd5b754de1e472009c3b891ba4818ae8a56d9f9eb-Screenshot_2024-09-11_at_6.31.34_PM.png)
+
+# Set up Guide (Encompass® Web/LOConnect)
+
+## Step1: One-Time Admin Setup:
+
+1. Log into Encompass® as an administrator using [Encompass Web](https://encompassloconnect.com).
+2. Navigate to the **Admin** tab at the top of the screen, select **Services** on the left navigation.
+3. Under **Services Management**, ensure Truv is configured.
+4. On the top right side of the screen, click the **Automation Rules** button
+5. Expand the **Verifications** category and click the **Add** button.
+
+This step enables the definition of rules for automated verifications.
+
+![](/images/docs/c02e499f14c97b4aa1ce890b0305aca5faf1e24e272dbb2907053d0e8cf32e52-image.png)
+
+![](/images/docs/f2c00a0aa883ac9508f7be8984a73a5122c7e86db65ffca2f1a0c554943cafa7-image.png)
+
+<Info>
+  Establish a single rule to trigger Truv automatically. Once the set up is done, this applies to all Borrower and co-borrower pairs within the loan.
+</Info>
+
+## Step 2: Adding a new Rule
+
+The following steps guide the creation of rules for (multiple) employments for both borrowers and co-borrowers.
+
+1. Select the **Rule Type** as **Workflow Engine**.
+
+2. Add a **Rule Name** and **Description** to uniquely identify your ASO rule.
+
+   1. **NOTE**: Conditions for when the Workflow Engine rule should be executed are defined later in the Process Automation tab.
+
+3. Select the **Add** button under the **Service Order** section, then choose Truv as the Provider in the *Add New Automated Setup* pop-up, and click **Create**.
+
+![](/images/docs/29d01f0a6b8b2ce7e98194685fb4956339ce8fe831f1979d3a635e818a728f0d-image.png)
+
+![](/images/docs/cd06522036166207bba413b5e6752b335139d9a707dde84c06f0d74803174170-image.png)
+
+## Step 3: Adding a Service Order
+
+1. You should see the **Add Service Order** window open up
+
+   1. Under **Evaluation Level** field, select **Individual Level**
+   2. Enter the **Service Order Name** and **Service Order Description**,
+   3. Under Borrower Settings, in **Automated Readiness Conditions**, pick **Condition Editor** paste the below condition and click 'Validate'
+      1. (\[4000] \<> “” AND \[4002] \<> “” AND (\[1240] \<> “” OR \[1178] \<> “”) AND \[FE0102] \<> “”)
+         1. Co-borrower has a different query as it relates to different fields
+   4. Click on the **Add** next to **Automated Options** under **Borrower Settings**
+
+   ![](/images/docs/af2938ff04c8950344955b1f4f3c8e807bbb560efd0f7ba1a45558563e6f2ca7-image.png)
+
+2. This now opens up the page to create a **Truv Automated Option**
+
+   1. Enter an ***Automated option name***
+
+   2. Select the ***Product type***
+
+      1. Note: the **Income Analysis** product types is to enable Freddie Mac AIM Check product and requires additional setup
+
+   3. Add a ***Truv template ID*** (optional)
+
+      1. Navigate to the Truv Dashboard to the **Templates** tab, copy the desired **Template ID** and paste it into this field. If no template ID is specified, the automation will use whatever template is present in the Truv Encompass App at the time of triggering.
+
+   4. Specify a ***Borrower notification*** method
+
+      1. We recommend selecting **Email & SMS**, which sees the shortest order completion turnaround time. When the automation triggers, it will try to use whatever Borrower notification methods are selected. If a method is not present, it will be skipped.
+
+   5. Press ***Save***
+
+   ![](/images/docs/bc7ab593e40cab0c96f3b7b52099643be53683098347773f64f033ae1a999cb7-Screenshot_2024-11-01_at_6.13.45_PM.png)
+
+3. Select the **Truv Template** in **Automated Options**that you just created for Borrower
+
+4. ![](/images/docs/1a0e18ba7911c484202c80be662c07c6d97d9c2a6ae535b9846a1c8ef91b257c-image.png)
+
+   Scroll to the **Co-Borrower Settings** and **repeat Steps 1 - 3** for the Co-Borrower.
+
+5. Please NOTE the Condition Editor query for the Co-Borrower is different from the Borrower
+
+   1. (\[4004] \<> “” AND \[4006] \<> “” AND (\[1268] \<> “” OR \[1179] \<> “”) AND \[FE0202] \<> “”)
+
+6. You can skip Step 2 if you plan to use the same template for the Borrower and Co-Borrower, but you'll still need to select the template for the Co-Borrower in the corresponding **Automated Options**
+
+7. If you want to create a different template, see Step 2 and select that template for the Co-Borrower
+
+![](/images/docs/b5e8186a69edb339c30d77881121ad38b2cfb88ca05bd4c0402b97ef5a44f71e-image.png)
+
+1. Click on the **Continue** button at the right bottom corner to proceed after selecting the template for both the Borrower and Co-borrower.
+
+   1. Ensure you see Truv with the newly created Service order under the **Service Order**
+   2. As a final step ensure you have the Service order as **Active** and click on the **Save** button
+
+## Step 4: Creating Workflow Rules
+
+Create a Workflow Rule to set when an automated Truv order should be placed.
+
+1. Go to the **Workflow Rules** tab under **Process Automation** in Encompass Admin, then select **New Rule**
+
+![](/images/docs/bb71a943e6d68269e1f2c7f34a7560807e0c03da71b1e9ccf5c1abd10b1def0a-image.png)
+
+2. Add the Rule Name, Rule Effective Date, Triggering Event, and Conditions
+
+   1. The Rule Effective Date allows you to specify loan or application cutoff dates when this rule should apply
+
+   2. The Triggering Event determines when this rule will run.
+
+      1. For example, if Triggering Event is Loan Created, it will attempt to run the rule at Loan Creation
+      2. For example, if Triggering Event is Field Value Modified - Field ID 317 - Any Change, it will attempt to run the rule anytime there is a change to Field 317 (LO Name)
+      3. If there are Conditions set, it will evaluate against those to decide if it should execute or not.
+
+   3. Conditions allow users to specify more granular scenarios where the rule should execute. In addition to the conditions, select any loan Channels where this rule should apply.
+
+   4. By combining the right Triggering Event and Conditions, users can setup advanced scenarios for when to automatically order Truv.
+
+![](/images/docs/faf72f8efc0c62e43b0114d7875fabfbd717ec5a072df8be4283898f9093664a-image.png)
+
+![](/images/docs/46c8cb3856c80418de1e55ab16d236cc95230dc105532daf5f9f6b7df75ff6ba-image.png)
+
+3. Set the Result action
+
+   1. Under **Resulting action** search and select *Order Service*
+   2. Select the **Service Order** we setup earlier in the guide and Save
+
+![](/images/docs/7678792b4846b97aefb23d544263959576c11da96c2234e52a0b6fbbd23aaacc-image.png)
+
+4. Ensure your rule has *Active* mode switched **ON**
+
+![](/images/docs/419d7a3004d06a3948e0658f8205769cea50b9239932cc352123d53818ab9d5f-image.png)
+
+<Info>
+  Please ensure that each Rule is enabled by setting the *Active* mode to **ON**.
+
+  If you are using Encompass® SmartClient, please ensure to get out of the loan for ASO to work. If you are in the loan while trying to automatically trigger Truv, the order creation fails and has to be manually created.
+</Info>
+
+# Encompass® ASO Setup Walkthrough
+
+For a quick overview of the Truv ASO Setup Guide within Encompass® workflow, watch the video below.
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FFDHbKCYnHbo%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DFDHbKCYnHbo\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FFDHbKCYnHbo%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+# Conclusion
+
+The automatic triggering of Truv Orders within Encompass® is a game-changer for mortgage professionals seeking to optimize their workflow. By leveraging this integration, lenders can achieve remarkable time savings, enhance borrower satisfaction, and accelerate loan processing. As the mortgage industry continues to evolve, embracing automated solutions like this not only meets current demands but also sets the stage for a more efficient and competitive future.
+
+For further assistance, please reach out to [\[email protected\]](/cdn-cgi/l/email-protection#a7d4d2d7d7c8d5d3e7d3d5d2d189c4c8ca) or your Customer Success Manager.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+    * [Key Benefits](#key-benefits)
+
+  * [Best Practices for ASO Triggers](#best-practices-for-aso-triggers)
+
+  * [Borrower touchpoints with Truv ASO Automation](#borrower-touchpoints-with-truv-aso-automation)
+
+  * [Set up Guide (Encompass® Web/LOConnect)](#set-up-guide-encompass-webloconnect)
+
+    * [Step1: One-Time Admin Setup:](#step1-one-time-admin-setup)
+    * [Step 2: Adding a new Rule](#step-2-adding-a-new-rule)
+    * [Step 3: Adding a Service Order](#step-3-adding-a-service-order)
+    * [Step 4: Creating Workflow Rules](#step-4-creating-workflow-rules)
+
+  * [Encompass® ASO Setup Walkthrough](#encompass-aso-setup-walkthrough)
+
+  * [Conclusion](#conclusion)

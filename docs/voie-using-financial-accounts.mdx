@@ -1,0 +1,163 @@
+---
+title: "Financial Accounts Income and Employment"
+description: "Collecting information about financial accounts to verify income and employment."
+---
+
+[Suggest Edits](/edit/voie-using-financial-accounts)
+
+# Overview
+
+Income and employment verification through financial account data is a modern and efficient method to validate financial and employment status. Leverage digital records from banks, credit unions, or other financial institutions, to view real-time insights into a person's income streams, transaction history, and employment deposits. Traditional methods involving manual document submissions may be cumbersome and prone to errors or falsification.
+
+Use financial data for verification for multiple use cases like the examples below.
+
+* Lenders quickly assessing loan eligibility
+* Landlords evaluating tenant applications
+* Employers confirming a potential hire's employment history
+* Social service agencies determining benefits or assistance eligibility
+
+These data-driven verifications are immediate and accurate. They streamline processes, reduce fraud, and ensure better decision making across sectors.
+
+# Configuring using Financial Accounts as VOIE
+
+Truv simplifies connecting your users to their financial institution. Users can select their bank or credit union in Truv Bridge from the list of most popular financial institutions. They can also look for their financial institution in the search field at the top of the screen.
+
+![](/images/docs/f3f6d89-109.png)
+
+## Bridge token specifications
+
+When creating a [Bridge Token](/reference/bridge-token) for the User, additional values in the request are required. Include the `product_type = income` and `data_sources = ["financial_accounts"]` in the configuration from the cURL sample below.
+
+<CodeGroup>
+  ```curl cURL
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "income",
+       "data_source": ["financial_accounts"],
+       "tracking_info": "any data for tracking current transaction"
+  }
+  '
+  ```
+</CodeGroup>
+
+# Income Reports
+
+Truv income reports share a comprehensive view of the user’s financial account. This information is an overview and includes historical information. This gives decision makers as much information as possible about a user’s financial account.
+
+## Endpoints
+
+These endpoints provide a comprehensive collection of financial account information from a user. View detailed information on the attributes and responses using the [Income Report](/reference/income-report) API reference page.
+
+* [Creates a bank income report](/reference/bank-income-report-create)
+* [Retrieves a bank income report](/reference/bank-income-report-retrieve)
+
+## Example response
+
+The JSON example below contains payload information from income reports.
+
+<CodeGroup>
+  ```json Income Report
+  {
+    "status": "success",
+    "completed_at": "2022-05-04T11:30:00Z",
+    "days_requested": 61,
+    "tracking_info": "any string",
+    "provider": "bank_of_america",
+    "access_token": "99dd17074ac94aa9ace2621d657c7610",
+    "companies": [
+      "my employer"
+    ],
+    "accounts": [
+      {
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "created_at": "2022-05-04T11:30:00Z",
+        "updated_at": "2022-05-04T12:00:00Z",
+        "type": "CHECKING",
+        "subtype": "MONEY_MARKET",
+        "mask": "string",
+        "nickname": "My account",
+        "owners": [
+          {
+            "id": "2b623fa2fa9e49cea17d9692caa884c5",
+            "full_name": "string",
+            "email": "[email protected]",
+            "phone": "string",
+            "address": {
+              "street": "1 Morgan Ave",
+              "city": "Los Angeles",
+              "state": "CA",
+              "zip": "90210",
+              "country": "US"
+            },
+            "relation_type": "AUTHORIZED_USER"
+          }
+        ]
+      }
+    ],
+    "income": [
+      {
+        "start_date": "2022-05-04",
+        "end_date": "2022-05-04",
+        "account_id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "income_description": "My Employer direct deposit",
+        "income_category": "Income: Paycheck",
+        "avg_deposit_amount": 0,
+        "avg_gross_deposit_amount": 0,
+        "pay_frequency": "M",
+        "total_amount": "200.31",
+        "iso_currency_code": "USD",
+        "transaction_count": 1,
+        "historical_summary": [
+          {
+            "start_date": "2022-05-04",
+            "end_date": "2022-05-04",
+            "total_amount": "200.31",
+            "iso_currency_code": "USD",
+            "transactions": [
+              {
+                "amount": "200.31",
+                "iso_currency_code": "USD",
+                "date": "2022-05-04",
+                "check_number": "string",
+                "description": "string",
+                "pending": true,
+                "transaction_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "summary": {
+      "start_date": "2022-05-04",
+      "end_date": "2022-05-04",
+      "income_sources_count": 1,
+      "income_categories_count": 1,
+      "income_transactions_count": 1,
+      "total_amount": "200.31",
+      "iso_currency_code": "USD"
+    },
+    "is_suspicious": false
+  }
+  ```
+</CodeGroup>
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Configuring using Financial Accounts as VOIE](#configuring-using-financial-accounts-as-voie)
+    * [Bridge token specifications](#bridge-token-specifications)
+
+  * [Income Reports](#income-reports)
+
+    * [Endpoints](#endpoints)
+    * [Example response](#example-response)

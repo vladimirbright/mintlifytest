@@ -1,0 +1,103 @@
+---
+title: "Enable Truv in ICE Encompass®"
+description: "Setup Truv within ICE Encompass® (SmartClient/Desktop and web editions)"
+---
+
+[Suggest Edits](/edit/enable-truv-in-ice-encompass)
+
+# Overview
+
+Truv helps loan officers and processors submit income and employment verification requests on behalf of borrowers. Now with Encompass® integrations, customers retrieve and refresh aggregate reports and store them in the Encompass® eFolder during the mortgage loan origination process.
+
+# One time Set up Guide
+
+The steps below cover each part of setting Truv up with Encompass® using administrator privileges.
+
+## Step 1 : Add Truv as a Service
+
+Log into Encompass® as an administrator using [Encompass® Web](https://encompassloconnect.com). Navigate to the **Admin** tab at the top of the screen, select **Services** on the left navigation. Select **Services Management** and then **Add Service** on the right.
+
+![](/images/docs/28d01016728e20d7925dae5ef50dfb17d6536d249979d82f71b140d6c3469133-image.png)
+
+## Step 2: Select Truv - VOIE as a Service within Encompass®
+
+* Select **Verifications** in the **Category** dropdown on the right.
+
+![](/images/docs/6db7195b8ca00478045865ac7d9bbe75dd0f52b4f2db684c0917d722d986d6d3-image.png)
+
+* Select the **Truv** tile for your integration. Select **Manual** for triggering Truv verifications manually.
+
+![](/images/docs/07fd155cb1b5b7fc1c8a3a8d9be1820f39b0db3d96e9f06f42d4d99dce70bbc9-image.png)
+
+## Step 3: User Set-up
+
+On the **Add Manual Setup** page, complete the Service Setup Name field. Add any **Authorized Users** to the configuration in the section below. Select **Save** to continue.
+
+![](/images/docs/8bf587c046d65ee4283223fb93d9023e1b47835b1ecd7a935574490c84fba5a0-image.png)
+
+## Step 4: Copy Credentials from Truv Dashboard
+
+Visit [Truv’s API Dashboard](https://dashboard.truv.com/app/home) and select **API Keys**. Copy the credential values from your environment using the **Copy** icon.
+
+![](/images/docs/e473201-124.png)
+
+<Info>
+  Truv has three environments, sandbox, development, and production. Each requires an associated Access secret for their respective uses. *Sandbox* is for checking structure and getting sample data, *Development* is a production-like environment for end to end testing. Confirm your configurations in these environments before moving to Production. Test verifications in the development environment are not billed or limited. For sandbox data, please refer to Truv's [Testing](/docs/testing) page.
+</Info>
+
+## Step 5: Enter Truv Credentials into Encompass®
+
+Navigate back to the Encompass® platform for the **Services Management** section. Select your Truv integration, then select **Credentials** on the right.
+
+![](/images/docs/730207330e0643084acef5b04d6b43bcfdbd8b8915d8d6de1c33901b3971d92e-image.png)
+
+For the **Add Company Credentials** pop-up, input the Client ID and Access secret for the associated environment and select **Save**.
+
+![](/images/docs/4e353735fe40d27c8b5b5a0348c0a397001628277b343b80c2a554102d248b50-image.png)
+
+#### **Additional Configuration Settings**
+
+* **Don't update employment data**: When checked, this feature allows the Truv verification to be uploaded into Encompass® without overwriting the existing employment information in Form 1003. For some customers, it is important to upload the Truv report, paystubs, and W-2s without modifying the existing data in Encompass®.
+* **Don't send SMS**: When checked, Truv will not send any SMS notifications to the borrower.
+* **Hide VOE/VOIE report for doc upload**: When a Truv verification is successful, the Truv report, along with the paystubs and W-2s, is uploaded into Encompass®. However, for some customers, if the connection to the payroll provider is unsuccessful, manual document uploads require additional checks. In such cases, they prefer not to upload the Truv report, as it may give a false sense of verification. Instead, they only want the manually uploaded documents to be added to Encompass® for the lender's review.
+* **Don't upload paystubs**: When checked, PDF paystubs will not be uploaded to Encompass®.
+* **Don't upload W2**: When checked, PDF W2s will not be uploaded to Encompass®.
+* **Don't upload 1099**: When checked, PDF 1099s will not be uploaded to Encompass®.
+* **Don't upload Truv's report**: When checked, the PDF Truv report will not be uploaded to Encompass®.
+
+## Step 6: Toggle to go-live
+
+Activate the Truv Verification by toggling the **Status** button for the service setup. If the `client_id` and `access_secret` are incorrect, an error message appears when creating an Order.
+
+![](/images/docs/3b1f8848ca946d98c1e9a59dfe76b835959e7c1fb3db09adda6a896597636afa-image.png)
+
+<Check>
+  You've activated Truv for Encompass®!
+</Check>
+
+# Set-up Guide for Manual Ordering with Encompass®
+
+[YouTube embed](//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FADTSyfYEshU%3Ffeature%3Doembed\&display_name=YouTube\&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DADTSyfYEshU\&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FADTSyfYEshU%2Fhqdefault.jpg\&key=7788cb384c9f4d5dbbdbeffd9fe4b92f\&type=text%2Fhtml\&schema=youtube)
+
+# Support
+
+Need help? Email [\[email protected\]](/cdn-cgi/l/email-protection#a9dadcd9d9c6dbdde9dddbdcdf87cac6c4) or contact your Truv Customer Success Manager.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [One time Set up Guide](#one-time-set-up-guide)
+
+    * [Step 1 : Add Truv as a Service](#step-1--add-truv-as-a-service)
+    * [Step 2: Select Truv - VOIE as a Service within Encompass®](#step-2-select-truv---voie-as-a-service-within-encompass)
+    * [Step 3: User Set-up](#step-3-user-set-up)
+    * [Step 4: Copy Credentials from Truv Dashboard](#step-4-copy-credentials-from-truv-dashboard)
+    * [Step 5: Enter Truv Credentials into Encompass®](#step-5-enter-truv-credentials-into-encompass)
+    * [Step 6: Toggle to go-live](#step-6-toggle-to-go-live)
+
+  * [Set-up Guide for Manual Ordering with Encompass®](#set-up-guide-for-manual-ordering-with-encompass)
+
+  * [Support](#support)

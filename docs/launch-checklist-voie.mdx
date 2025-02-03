@@ -1,0 +1,106 @@
+---
+title: "Launch in Production Checklist"
+description: "Suggest Edits"
+---
+
+Below is a list of recommended steps to take before launching a Truv integration in production. While not all steps may be required for the minimal operation of an application, following these recommendations will help make the Truv integration more robust, secure, efficient, and maintainable.
+
+## Production Setup
+
+1. **Schedule UX Review**
+
+   * Email [\[email protected\]](/cdn-cgi/l/email-protection#2a595f5a5a45585e6a5e585f5c04494547) to schedule a UX review session and get tips on implementing Truv Bridge to increase conversion.
+
+2. **Test in Development**
+
+   * Request a "Development" Access key by heading to the [API Keys](https://dashboard.truv.com/app/development/keys) page and clicking "Request keys." Once approved, use this key to test with live credentials for up to 50 connections.
+
+3. **Update Branding**
+
+   * Ensure Truv Bridge matches the application's branding. Visit [Branding](https://dashboard.truv.com/app/customization/account/branding) to update colors, application logo, and Link expiration limit for Orders.
+   * Fill out the company profile in [Settings](https://dashboard.truv.com/app/settings) > Company.
+
+4. **Setup Production Environment**
+
+   * Request Production keys via the [API Keys](https://dashboard.truv.com/app/development/keys) page.
+   * Configure Truv Bridge and the backend to use the Production environment.
+   * Use Production keys found under API Keys.
+   * If migrating from Sandbox, remove Sandbox credentials and update unit tests to use the Sandbox environment only.
+
+5. **Invite Team Members**
+
+   * Add teammates to the dashboard for shared access. See [Truv Teams](https://dashboard.truv.com/app/settings/team) for more details.
+
+## Bridge Setup
+
+6. **Assign Unique Identifier**
+
+   * Assign a unique identifier for `tracking_info` to make connections easy to track.
+
+7. **Review UX Best Practices**
+
+   * Review UX best practices for the product of choice.
+
+8. **Setup Deep Linking**
+
+   * Setup deep linking if user data is available beforehand to skip unnecessary screens in Bridge by providing certain fields when requesting a bridge\_token.
+
+9. **Handle onEvent**
+
+   * Handle `onEvent` to provide a better UX if the user closes Bridge or encounters an error.
+   * Handle `onEvent` events to track conversion metrics.
+
+## Webhook Configuration
+
+11. **Set Up Webhooks**
+
+    * Subscribe to Truv webhooks by navigating to the Webhooks section of the dashboard and entering the URL endpoint for receiving updates.
+    * Confirm that the application meets HTTP request timeouts: 1 second for connection timeout and 1 second for read timeout. Ensure the receiving API respects these timeouts to successfully receive webhook events.
+
+## Error Handling
+
+12. **Implement Retry Logic**
+    * Implement retry logic or error handling for product API calls, handling intermittent outages or connectivity errors at supported institutions.
+
+## Storage & Logging
+
+13. **Log Identifiers Securely**
+
+    * Log Truv identifiers and IDs properly for security, support requests, and activity log searches. For more details, see [Dashboard Logs and Troubleshooting](/docs/dashboard#development).
+    * Store access tokens, Link IDs, and other product-specific tokens securely. Ensure these identifiers are never exposed client-side.
+
+## Delays in Data
+
+14. **Handle Data Refresh Tasks**
+    * For Tasks, wait until the `status = done` to pull all available data, as many fields are not available when `status = full_parse`. See more in [Data Processing Stages](/reference/connection-lifecycle#data-processing-stages).
+
+## Update Mode
+
+15. **Implement Update Mode Logic**
+    * Implement logic to handle errors for data refresh tasks. See more in [Refresh Mode](/docs/update-mode).
+
+## Delete Data
+
+16. **Remove Unneeded Data**
+    * If the contract allows, use [delete endpoint](/reference/delete_link_by_link_id) to remove a Link and all associated data.
+
+## Post Launch
+
+17. **Schedule a meeting with your Customer Success Manager (CSM)**
+
+    * Reach out to [\[email protected\]](/cdn-cgi/l/email-protection#ef9c9a9f9f809d9baf9b9d9a99c18c8082) to schedule a session with the dedicated customer success manager.
+    * Please inform the CSM of the expected volume so we can monitor the traffic for a seamless experience.
+
+***
+
+* [Table of Contents](#)
+
+* * [Production Setup](#production-setup)
+  * [Bridge Setup](#bridge-setup)
+  * [Webhook Configuration](#webhook-configuration)
+  * [Error Handling](#error-handling)
+  * [Storage & Logging](#storage--logging)
+  * [Delays in Data](#delays-in-data)
+  * [Update Mode](#update-mode)
+  * [Delete Data](#delete-data)
+  * [Post Launch](#post-launch)

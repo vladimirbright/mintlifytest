@@ -1,0 +1,173 @@
+---
+title: "Customization Templates"
+description: "Use customizable templates to build a more compelling experience for your users."
+---
+
+[Suggest Edits](/edit/customization-templates)
+
+# Overview
+
+Find Truv **Templates** within the Customization section of your Dashboard. Configure Truv Bridge and your order flow for your specific product types when creating a customization template. For example, you can apply different branding and language according to your specific client needs.
+
+Your template configurations take priority over other settings, such universal branding or those from Truv Bridge and Order.
+
+# Viewing templates
+
+On the Templates menu, you can view your company’s template lists. Click *Create a template* to add and configure a new template. Click on existing templates to edit their configuration. Also, the icons on the right side let you duplicate and delete templates, respectively.
+
+![](/images/docs/29e096f-133.png)
+
+# Creating templates
+
+Find **Create a template** at the top right corner. The template settings page has options for naming and assigning product types. With Orders enabled, you can also designate primary templates.
+
+![](/images/docs/07df0fa-NEW_-_Creating_Template.png)
+
+# Primary templates
+
+With Truv Orders enabled, you can configure primary templates. Use primary templates for multiple product types, such as income and employment verification, insurance verification, and more.
+
+For groups of products, primary templates also work for creating orders. These can reference specific groups and let you create default configurations for a product type order.
+
+# Branding
+
+You can add your company’s branding within the customization template. Create a more compelling experience for users with a seamless branding experience. The Branding section lets you add and change the items below to fit your company.
+
+* Company name and logo
+
+* Background color
+
+* Buttons and graphics colors
+
+* Custom text fields
+
+* Toggling additional items
+
+  * Success screen confetti
+  * End-user agreement
+  * Privacy policy
+
+* Notifying the order creator of any status changes
+
+Preview the changes for the Bridge, Email, and Landing pages through the tabs on the preview screen.
+
+![](/images/docs/776a122-NEW_-_Preview_Template.png)
+
+When you’ve finished with your changes, click Publish at the top right to go live. The Cancel button resets the template and returns it to the previous saved state.
+
+# Customizing templates with Truv Bridge embedded
+
+You can customize Truv Bridge when embedded in your workflows.
+
+## Bridge
+
+The four sections below cover how you can customize Truv Bridge.
+
+* **Document upload** - If document upload capabilities are enabled, you can customize which document types users can upload and the request text associated with them.
+* **Search** - Specify search header text, shown Bridge categories, and whether the default popular companies are shown or a customizable list uploaded by the user.
+* **Success** - Edit the success text and call-to-action button text.
+
+![](/images/docs/6bbefd8-NEW_-_Embedded_doc_upload.png) ![](/images/docs/cd5bd82-NEW_-_Embedded_search.png)
+
+# Order flow customization templates
+
+Configure Orders to give your users seamless transitions throughout the process.
+
+## Email
+
+With an email address in the order form, Truv has custom configurations available below.
+
+* Custom text elements
+* Link expiration times
+* Reminder emails
+
+Truv sends an email to recipients and can also follow up with a reminder email. These have the option for continuing the custom configurations or having different settings for each.
+
+![](/images/docs/2c7fe24-NEW_-_Email_Template.png)
+
+### Dynamic text
+
+Use custom dynamic text to populate values within the order form. You use each field within Email, SMS, and Landing page sections. These can come from customer input or from previous information within Branding.
+
+Dynamic fields use the curly brace formatting below. The list covers possible options for your workflow.
+
+* **\{first\_name}** - First name of the order recipient from the order form
+* **\{last\_name}** - Last name of the order recipient from the order form
+* **\{prospective\_employer\_name}** - Prospective employer name from the order form
+  * Only applies to verification of employment orders
+* **\{my\_company\_name}** - Company name from the Branding section of the customization template
+* **\{custom\_field}** - Order form input field value when using a custom field in the Branding section
+* **\{target\_bank\_name}** - Destination bank account the direct deposit routes to, information is from the order form, Truv always uses your company's name for previews **\{target\_account\_type}** - Destination bank account type the direct deposit routes to, for example Savings or Checking, information is from the order form, Truv always uses Checking account for previews
+  * Both only apply to Direct Deposit Switch products
+* **\{order\_number}** - Tracking number from within the order form, Truv uses 123456789 for previews
+* **\{link}** - Unique URL sent to the client to invoke Truv Bridge
+
+## SMS
+
+Truv sends SMS text messages to recipients when including a phone number in the order form. Edit the messaging with your own customizations and specifications within the 120 character limit. Similar to email, these can also have the follow up texts use the same configuration.
+
+![](/images/docs/392840a-NEW_-_SMS.png)
+
+## Landing page
+
+Configure the landing pages for your users after specific Truv actions. Specify text on the pages for the Header and Body throughout.
+
+* **Initial** - This page is after clicking the call-to-action within an email or SMS text message
+
+  * Toggle visibility of frequently asked questions on the right hand side of the page
+  * Add an end-user agreement or privacy policy above the call-to-action button at the bottom of the page
+
+* **Expired** - This page is from a user attempt to access a expired link from an email or SMS text message that has expired
+  * Uses expiration parameters configured in the Branding section of the template
+
+* **Success** - The success page is for users successfully connecting to their data source with the Truv Bridge
+
+![](/images/docs/b0cc7b9-NEW_-_Landing_Page_Initial.png)
+
+## Results (Verification of Income and Employment)
+
+Customize which sections are included in the Truv Borrower Report and the number of returned income documents.
+
+* **Truv report** - Show or hide the *Deposit data* and *Historical pay period summary* sections of the Truv Borrower Report for orders placed with this template.
+
+![](/images/docs/3782db6-NEW_-_Results_-_Truv_report_copy.png)
+
+* **Returned documents** - Users can decide whether to include *Year-end paystubs* and/or reduce the number of *Most recent paystubs* and *W-2s* that are returned in the verification order.
+
+  * Including *Year-end paystubs* will add the last paystub of the year for the last three years if available.
+  * Limiting the number of *Most recent paystubs* and *W-2s* will reduce the number of returned income document files and the remove the associated data from the API responses.
+
+![](/images/docs/d17d9a0-NEW_-_Results_-_Returned_documents_copy.png)
+
+## Specifying a template in the Order form
+
+Apply published customization templates to orders. The *Template* field appears after creating an order in your Dashboard from the menu.
+
+When a primary template is set for a product type, that template is automatically pre-selected and acts as the default. You can also select a separate template to use.
+
+![](/images/docs/1f315e2-NEW_-_Create_order.png)
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Viewing templates](#viewing-templates)
+
+  * [Creating templates](#creating-templates)
+
+  * [Primary templates](#primary-templates)
+
+  * [Branding](#branding)
+
+  * [Customizing templates with Truv Bridge embedded](#customizing-templates-with-truv-bridge-embedded)
+    * [Bridge](#bridge)
+
+  * [Order flow customization templates](#order-flow-customization-templates)
+
+    * [Email](#email)
+    * [SMS](#sms)
+    * [Landing page](#landing-page)
+    * [Results (Verification of Income and Employment)](#results-verification-of-income-and-employment)
+    * [Specifying a template in the Order form](#specifying-a-template-in-the-order-form)

@@ -1,0 +1,789 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# Orders
+
+Manage personal landing pages for users to connect accounts with Orders.
+
+# Overview
+
+An Order is a personal landing page created for a user to connect their account. These are personalized invites sent to a user's email or phone number. Create Orders with the [Truv Dashboard](https://dashboard.truv.com/app/orders) or programmatically using [API endpoints](#endpoints).
+
+Orders are customizable for these three components.
+
+* Landing page
+* Text message
+* Email
+
+Invite users to their personalized landing pages using text message, email, or both. Users proceed to a personalized landing page when clicking on an invite link.
+
+# Attributes
+
+The attributes of Orders are below.
+
+| Attribute              | Type             | Description                                                                                                                                                       |
+| ---------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                     | string           | Unique ID of order                                                                                                                                                |
+| products               | array            | List of products selected for Order                                                                                                                               |
+| source                 | string           | Type of platform, `internal`, `accio`, `tazworks`, `encompass`, `simplenexus`, `external_webpage`                                                                 |
+| order\_number          | string           | External ID from client                                                                                                                                           |
+| custom\_field          | string           | Client-provided custom field, can be used in email, SMS, or landing page*NOTE: This field is only available when enabled in the dashboard customization section.* |
+| client\_name           | string           | Verification agency name                                                                                                                                          |
+| first\_name            | string           | First name                                                                                                                                                        |
+| last\_name             | string           | Last name                                                                                                                                                         |
+| user\_id               | string           | Unique ID of user                                                                                                                                                 |
+| share\_url             | string           | Landing page URL to share                                                                                                                                         |
+| created\_at            | string           | ISO 8601 value for when Order was created                                                                                                                         |
+| updated\_at            | string           | ISO 8601 value for when Order was last updated                                                                                                                    |
+| canceled\_at           | string           | ISO 8601 value for when Order was canceled                                                                                                                        |
+| expired\_at            | string           | ISO 8601 value for Order expiration                                                                                                                               |
+| is\_expired            | bool             | Status of Order expiration                                                                                                                                        |
+| initial\_order         | string           | ID of origin Order, from Order data refresh action                                                                                                                |
+| refresh\_order         | string           | ID of last refresh Order created by Order data refresh action                                                                                                     |
+| employers              | array of objects | List of user employers, see [Employers object](#employers-object)                                                                                                 |
+| insurance              | array of objects | Insurance verification metadata, see [Insurance object](#insurance-object)                                                                                        |
+| bank                   | array of objects | Bank transactions metadata, see [Bank object](#bank-object)                                                                                                       |
+| manager                | array of objects | Associated Order manager info, see [Manager object](#manager-object)                                                                                              |
+| loan                   | array of objects | Loan information, see [Loan object](#loan-object)                                                                                                                 |
+| template\_id           | string           | ID of template                                                                                                                                                    |
+| voie\_report\_id       | string           | Income and employment verification report ID (accepted by Fannie Mae DU and Freddie Mac LPA)                                                                      |
+| voa\_report\_id        | string           | Asset verification report ID                                                                                                                                      |
+| aim\_check\_report\_id | string           | AIM check report ID for income calculation based on uploaded documents                                                                                            |
+
+## Company address object
+
+The values in this table are for the address object of the company.
+
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| street    | string | Street      |
+| city      | string | City        |
+| state     | string | State       |
+| zip       | string | Zip         |
+| country   | string | Country     |
+
+## Employers object
+
+View information for employer object field data below.
+
+| Attribute        | Type             | Description                                                                                                                                                                                                                                         |
+| ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id               | string           | Unique ID                                                                                                                                                                                                                                           |
+| product\_type    | string           | Type of product, see values below `income`, `employment`, `deposit_switch`, `pll`                                                                                                                                                                   |
+| status           | string           | Order status, see values below `pending`, `sent`, `completed`, `error`, `canceled`, `expired`, `no_data`, `skipped`                                                                                                                                 |
+| suborder\_number | string           | External ID                                                                                                                                                                                                                                         |
+| created\_at      | string           | Date and time when Order was created                                                                                                                                                                                                                |
+| bridge\_token    | string           | UUID value of bridge\_token                                                                                                                                                                                                                         |
+| link\_id         | string           | Link ID for connected account                                                                                                                                                                                                                       |
+| access\_token    | string           | Access token to perform data refresh                                                                                                                                                                                                                |
+| pdf\_report      | uri              | Verification report in PDF format                                                                                                                                                                                                                   |
+| data\_source     | string           | Source of data, see values below `payroll` - Payroll provider parsing`docs` - User uploaded documents`insurance` - Insurance data`financial_accounts` - Bank data`tax` - Tax documents`scoring_attributes` - Transactions scoring attributes report |
+| provider         | array of objects | Payroll or insurance provider, see [Provider object](#provider-object)                                                                                                                                                                              |
+| is\_suspicious   | Boolean          | Status of data from source marked as suspicious, such as if detecting fraud in uploaded documents or user SSN does not match data                                                                                                                   |
+| start\_date      | string           | Employment start date                                                                                                                                                                                                                               |
+| end\_date        | string           | Employment end date                                                                                                                                                                                                                                 |
+| company\_name    | string           | Company name                                                                                                                                                                                                                                        |
+| company\_address | array of objects | Company address, see [Company address object](#company-address-object)                                                                                                                                                                              |
+| company\_domain  | string           | Company website domain                                                                                                                                                                                                                              |
+| employments      | array of objects | List of employments, see [Employments object](#employments-object)                                                                                                                                                                                  |
+
+### Provider object
+
+This table contains data for the provider object.
+
+| Attribute | Type   | Description        |
+| --------- | ------ | ------------------ |
+| id        | string | Provider unique ID |
+| name      | string | Provider name      |
+| logo\_url | uri    | Provider logo url  |
+
+### Employments object
+
+The Employments object contains the values and descriptions below.
+
+| Attribute               | Type             | Description                                                                                                                                                                                                |
+| ----------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| income                  | string           | Income amount not including commission or bonuses, only for income product Null for employment product                                                                                                     |
+| income\_unit            | string           | Pay interval for income field, only for income product`YEARLY` - Annual income`MONTHLY` - Monthly income`WEEKLY` - Weekly income`DAILY` - Daily income`HOURLY` - Hourly income Null for employment product |
+| pay\_rate               | string           | Payment rate per pay cycle, only for income product Null for employment product                                                                                                                            |
+| pay\_frequency          | string           | Pay frequency, only for income product`M` - Monthly`SM` - Semi-Monthly`W` - Weekly`BW` - Bi-Weekly`A` - Annually`SA` - Semiannually`C` - Commission Null for employment product                            |
+| statements              | array of objects | List of paystubs received from a payroll provider, only for income product, see [Statements object](#statements-object) Null for employment product                                                        |
+| annual\_income\_summary | array of objects | Annual income summary by years, only for income product, see [Annual income summary object](#annual-income-summary-object) Null for employment product                                                     |
+| bank\_accounts          | array of objects | List of bank accounts linked to employment, only for income product, see [Bank accounts object](#bank-accounts-object) Null for employment product                                                         |
+| w2s                     | array of objects | List of W-2 forms linked to employment, only for income product, see [W2s object](#w2s-object) Null for employment product                                                                                 |
+| id                      | string           | Unique ID                                                                                                                                                                                                  |
+| is\_active              | Boolean          | Status of active employment                                                                                                                                                                                |
+| job\_title              | string           | Employee's job title                                                                                                                                                                                       |
+| job\_type               | string           | Employee's job type`F` - Full Time`P` - Part Time`S` - Seasonal`D` - Daily (per diem)`C` - Contract                                                                                                        |
+| start\_date             | date             | Employee's hire date                                                                                                                                                                                       |
+| original\_hire\_date    | date             | Original hire date                                                                                                                                                                                         |
+| end\_date               | date             | Employee's end date                                                                                                                                                                                        |
+| external\_last\_update  | date             | Indicates date of last updated employment data from Payroll Provider                                                                                                                                       |
+| derived\_fields         | array of strings | Array of derived fields                                                                                                                                                                                    |
+| missing\_data\_fields   | array of strings | List of missing data fields from payroll response                                                                                                                                                          |
+| manager\_name           | string           | Supervisor's name                                                                                                                                                                                          |
+| profile                 | object           | Person's identity information                                                                                                                                                                              |
+| company                 | object           | [Company object](#company-object)                                                                                                                                                                          |
+| gse\_accepted           | Boolean          | Status of provider eligibility from Fannie Mae Desktop Underwriter                                                                                                                                         |
+
+#### Statements object
+
+View the table below for information from the Statements object.
+
+| Attribute             | Type             | Description                                                    |
+| --------------------- | ---------------- | -------------------------------------------------------------- |
+| id                    | string           | Unique ID                                                      |
+| check\_number         | string           | External ID of pay stub from payroll provider                  |
+| pay\_date             | date             | Pay date                                                       |
+| net\_pay              | string           | Net pay                                                        |
+| net\_pay\_ytd         | string           | Net pay year to date                                           |
+| gross\_pay            | string           | Gross pay                                                      |
+| gross\_pay\_ytd       | string           | Gross pay year to date                                         |
+| bonus                 | string           | Bonus                                                          |
+| commission            | string           | Commission                                                     |
+| hours                 | string           | Work hours during pay period                                   |
+| basis\_of\_pay        | string           | Basis of pay`S` - Salary`H` - Hourly`D` - Daily`W` - Weekly    |
+| period\_start         | date             | Period start                                                   |
+| period\_end           | date             | Period end                                                     |
+| regular               | string           | Regular pay                                                    |
+| regular\_ytd          | string           | Regular salary year to date                                    |
+| other\_pay\_ytd       | string           | All other payment year to date                                 |
+| bonus\_ytd            | string           | Bonus year to date                                             |
+| commission\_ytd       | string           | Commission year to date                                        |
+| overtime              | string           | Overtime pay                                                   |
+| overtime\_ytd         | string           | Overtime pay year to date                                      |
+| other\_pay            | string           | All other payment                                              |
+| earnings              | array of objects | Earnings for this pay cycle by type                            |
+| earnings\_ytd         | array of objects | Earnings year to date by type                                  |
+| deductions            | array of objects | Deductions for pay cycle by type                               |
+| deductions\_ytd       | array of objects | Deductions year to date by type                                |
+| md5sum                | string           | MD5 hash value computed based on file content                  |
+| file                  | uri              | Link to pay stub file, format is specified in the content-type |
+| derived\_fields       | array of strings | Array of derived fields                                        |
+| missing\_data\_fields | array of strings | List of missing data fields from payroll response              |
+
+#### Annual income summary object
+
+Find information for the attributes and values of the annual income summary object.
+
+| Attribute  | Type    | Description             |
+| ---------- | ------- | ----------------------- |
+| id         | string  | Unique ID               |
+| year       | integer | Income report year      |
+| regular    | string  | Regular salary          |
+| bonus      | string  | Bonus                   |
+| commission | string  | Commission              |
+| overtime   | string  | Overtime pay            |
+| other\_pay | string  | All other payment forms |
+| net\_pay   | string  | Net pay                 |
+| gross\_pay | string  | Gross pay               |
+
+#### Bank accounts object
+
+The table below covers the attributes within the bank accounts object.
+
+| Attribute       | Type   | Description                                                                                           |
+| --------------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| account\_number | string | Account number                                                                                        |
+| routing\_number | string | Routing number                                                                                        |
+| account\_name   | string | User friendly account name                                                                            |
+| account\_type   | string | Account type`C` - Checking account`S` - Savings account                                               |
+| deposit\_type   | string | Deposit type`E` - Entire paycheck`P` - Percentage of the paycheck`A` - Fixed amount from the paycheck |
+| deposit\_value  | string | Deposit value                                                                                         |
+| bank\_name      | string | Bank name                                                                                             |
+
+#### W2s object
+
+The values in this table are for the W-2s object field.
+
+| Attribute               | Type    | Description                                                     |
+| ----------------------- | ------- | --------------------------------------------------------------- |
+| file                    | uri     | Link to W2 report file, format is specified in the content-type |
+| md5sum                  | string  | MD5 hash value computed based on file content                   |
+| year                    | integer | Year                                                            |
+| wages                   | string  | Wages, tips, other compensation (Section 1)                     |
+| federal\_tax            | string  | Federal income tax withheld (Section 2)                         |
+| social\_security\_wages | string  | Social security wages (Section 3)                               |
+| social\_security\_tax   | string  | Social security tax withheld (Section 4)                        |
+| medicare\_wages         | string  | Medicare wages (Section 5)                                      |
+| medicare\_tax           | string  | Medicare tax withheld (Section 6)                               |
+| gross\_pay              | string  | Gross pay                                                       |
+
+#### Company object
+
+This table covers values within the company object.
+
+| Attribute | Type   | Description                       |
+| --------- | ------ | --------------------------------- |
+| name      | string | Company name                      |
+| address   | object | [Address object](#address-object) |
+| phone     | string | Company phone number              |
+| ein       | string | Employer Identification Number    |
+
+##### Address object
+
+The values in this table are for the address object of the company.
+
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| street    | string | Street      |
+| city      | string | City        |
+| state     | string | State       |
+| zip       | string | Zip         |
+| country   | string | Country     |
+
+## Insurance object
+
+This table's values contain information for the insurance object.
+
+| Attribute        | Type             | Description                                                                                                                                                                                                                                         |
+| ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id               | string           | Unique ID                                                                                                                                                                                                                                           |
+| product\_type    | string           | Type of product                                                                                                                                                                                                                                     |
+| status           | string           | Order status                                                                                                                                                                                                                                        |
+| suborder\_number | string           | External ID                                                                                                                                                                                                                                         |
+| created\_at      | string           | Date and time when Order was created                                                                                                                                                                                                                |
+| bridge\_token    | string           | UUID value of bridge\_token                                                                                                                                                                                                                         |
+| link\_id         | string           | Link ID for connected account                                                                                                                                                                                                                       |
+| access\_token    | string           | Access token to perform data refresh                                                                                                                                                                                                                |
+| pdf\_report      | uri              | Verification report file as a PDF                                                                                                                                                                                                                   |
+| data\_source     | string           | Source of data, see values below `payroll` - Payroll provider parsing`docs` - User uploaded documents`insurance` - Insurance data`financial_accounts` - Bank data`tax` - Tax documents`scoring_attributes` - Transactions scoring attributes report |
+| provider         | array of objects | Payroll or insurance provider, see [Provider object](#provider-object)                                                                                                                                                                              |
+| is\_suspicious   | Boolean          | Status of data from source marked as suspicious, such as if detecting fraud in uploaded documents or user SSN does not match data                                                                                                                   |
+| provider\_id     | string           | Pre-selected ID of insurance provider                                                                                                                                                                                                               |
+
+## Bank object
+
+The bank object attributes below have type information and descriptions.
+
+| Attribute        | Type             | Description                                                                                                                                                                                                                                         |
+| ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id               | string           | Unique ID                                                                                                                                                                                                                                           |
+| product\_type    | string           | Type of product                                                                                                                                                                                                                                     |
+| status           | string           | Order status                                                                                                                                                                                                                                        |
+| suborder\_number | string           | External ID                                                                                                                                                                                                                                         |
+| created\_at      | string           | Date and time when Order was created                                                                                                                                                                                                                |
+| bridge\_token    | string           | UUID value of bridge\_token                                                                                                                                                                                                                         |
+| link\_id         | string           | Link ID for connected account                                                                                                                                                                                                                       |
+| access\_token    | string           | Access token to perform data refresh                                                                                                                                                                                                                |
+| pdf\_report      | uri              | Verification report file as a PDF                                                                                                                                                                                                                   |
+| data\_source     | string           | Source of data, see values below `payroll` - Payroll provider parsing`docs` - User uploaded documents`insurance` - Insurance data`financial_accounts` - Bank data`tax` - Tax documents`scoring_attributes` - Transactions scoring attributes report |
+| provider         | array of objects | Payroll or insurance provider, see [Provider object](#provider-object)                                                                                                                                                                              |
+| is\_suspicious   | Boolean          | Status of data from source marked as suspicious, such as if detecting fraud in uploaded documents or user SSN does not match data                                                                                                                   |
+
+## Manager object
+
+The manager object attributes below have information on type and description.
+
+| Attribute | Type   | Description            |
+| --------- | ------ | ---------------------- |
+| email     | string | Email or Order manager |
+| name      | string | Name of Order manager  |
+
+## Loan object
+
+View the table below for type and description of the attributes in the loan object.
+
+| Attribute              | Type   | Description                      |
+| ---------------------- | ------ | -------------------------------- |
+| loan\_number           | string | Loan identifier                  |
+| external\_id           | string | External loan ID (e.g. from POS) |
+| originator\_name       | string | Name of loan originator          |
+| originator\_email      | string | Email of loan originator         |
+| loan\_processor\_name  | string | Name of the loan processor       |
+| loan\_processor\_email | string | Email of the loan processor      |
+
+# Endpoints
+
+The list below are the available endpoints for Orders.
+
+* [Create an order](/reference/orders_create)
+* [Retrieve an order](/reference/orders_read)
+* [Create a data refresh order](/reference/orders_create_refresh_order)
+* [Update an order](/reference/orders_partial_update)
+* [Cancel an order](/reference/orders_cancel_create)
+
+# Example response
+
+The JSON object below is a sample response.
+
+<CodeGroup>
+  ```json JSON
+  {
+    "id": "39aa1486ccca4bc19cda071ffc1ba392",
+    "products": [
+      "income"
+    ],
+    "source": "accio",
+    "order_number": "1534332",
+    "loan_number": "MUUT220700012",
+    "company_name": "Facebook Demo",
+    "company_address": {
+      "street": "1 Hacker Way",
+      "city": "Menlo Park",
+      "state": "CA",
+      "zip": "94025"
+    },
+    "company_domain": "facebook.com",
+    "custom_field": "string",
+    "client_name": "Unnamed Verifications Inc.",
+    "first_name": "John",
+    "last_name": "Doe",
+    "user_id": "99dd17074ac94aa9ace2621d657c7610",
+    "share_url": "https://cdn.truv.com/employment.html?bridge_token=63b4af88facb40e48f517c1e8c7abdf4&order_group_id=39aa1486ccca4bc19cda071ffc1ba392",
+    "created_at": "2021-04-21T21:45:14.418542Z",
+    "updated_at": "2021-04-21T21:45:14.418542Z",
+    "canceled_at": "2021-04-22T21:45:14.418542Z",
+    "expired_at": "2021-04-24T21:45:14.418542Z",
+    "is_expired": true,
+    "initial_order": "f5dc0239e2094dbc90ab2edc1918a9df",
+    "refresh_order": "9b96606355b94e8abff8ed8d75aa2027",
+    "employers": [
+      {
+        "id": "ad9f14440d624ec3b0f66e81e44518c7",
+        "product_type": "income",
+        "status": "pending",
+        "suborder_number": "133982343355",
+        "created_at": "2021-04-21T22:12:59.346109Z",
+        "bridge_token": "e4100fccdae94691b4414c7306220c06",
+        "link_id": "e4100fccdae94691b4414c7306220c06",
+        "access_token": "e4100fccdae94691b4414c7306220c06",
+        "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+        "data_source": "payroll",
+        "provider": {
+          "id": "truv_api",
+          "name": "Sandbox Provider",
+          "logo_url": "https://citadelid-resources.s3.us-west-2.amazonaws.com/providers/truv-blue.svg"
+        },
+        "is_suspicious": true,
+        "start_date": "2019-08-24",
+        "end_date": "2019-11-27",
+        "company_name": "Facebook Demo",
+        "company_address": {
+          "street": "1 Hacker Way",
+          "city": "Menlo Park",
+          "state": "CA",
+          "zip": "94025"
+        },
+        "company_domain": "facebook.com",
+        "employments": [
+          {
+            "income": "70000.00",
+            "income_unit": "YEARLY",
+            "pay_rate": "6500.00",
+            "pay_frequency": "M",
+            "statements": [
+              {
+                "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+                "check_number": "29205182",
+                "pay_date": "2018-05-15",
+                "net_pay": "11500.32",
+                "net_pay_ytd": "31980.64",
+                "gross_pay": "13900.11",
+                "gross_pay_ytd": "49200.00",
+                "bonus": "100.00",
+                "commission": "12000.00",
+                "hours": "40.00",
+                "basis_of_pay": "S",
+                "period_start": "2018-05-01",
+                "period_end": "2018-05-15",
+                "regular": "1695.11",
+                "regular_ytd": "23000.00",
+                "other_pay_ytd": "700.00",
+                "bonus_ytd": "1000.00",
+                "commission_ytd": "24000.00",
+                "overtime": "45.00",
+                "overtime_ytd": "500.00",
+                "other_pay": "60.00",
+                "earnings": [
+                  {
+                    "name": "Regular",
+                    "amount": "1935.77",
+                    "category": "regular",
+                    "rate": null,
+                    "units": null
+                  },
+                  {
+                    "name": "Overtime",
+                    "amount": "60.58",
+                    "category": "overtime",
+                    "rate": "30.29",
+                    "units": "2"
+                  }
+                ],
+                "earnings_ytd": [
+                  {
+                    "name": "Regular",
+                    "amount": "1935.77",
+                    "category": "regular",
+                    "rate": null,
+                    "units": null
+                  },
+                  {
+                    "name": "Overtime",
+                    "amount": "60.58",
+                    "category": "overtime",
+                    "rate": "30.29",
+                    "units": "2"
+                  }
+                ],
+                "deductions": [
+                  {
+                    "amount": "127.01",
+                    "category": "socialsec",
+                    "name": "Social Security Tax"
+                  },
+                  {
+                    "amount": "46.23",
+                    "category": "state",
+                    "name": "VA State Income Tax"
+                  },
+                  {
+                    "amount": "29.7",
+                    "category": "medicare",
+                    "name": "Medicare Tax"
+                  }
+                ],
+                "deductions_ytd": [
+                  {
+                    "amount": "127.01",
+                    "category": "socialsec",
+                    "name": "Social Security Tax"
+                  },
+                  {
+                    "amount": "46.23",
+                    "category": "state",
+                    "name": "VA State Income Tax"
+                  },
+                  {
+                    "amount": "29.7",
+                    "category": "medicare",
+                    "name": "Medicare Tax"
+                  }
+                ],
+                "md5sum": "03639d6a6624f69a54a88ea90bd25e9d",
+                "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/paystub_sample.pdf",
+                "derived_fields": [
+                  "basis_of_pay"
+                ],
+                "missing_data_fields": [
+                  "earnings_ytd"
+                ]
+              }
+            ],
+            "annual_income_summary": [
+              {
+                "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+                "year": 2018,
+                "regular": "23000.00",
+                "bonus": "1000.00",
+                "commission": "24000.00",
+                "overtime": "500.00",
+                "other_pay": "700.00",
+                "net_pay": "31980.64",
+                "gross_pay": "49200.00"
+              }
+            ],
+            "bank_accounts": [
+              {
+                "account_number": "1234567890",
+                "routing_number": "123456789",
+                "account_name": "My Bank",
+                "account_type": "C",
+                "deposit_type": "A",
+                "deposit_value": "200.00",
+                "bank_name": "TD Bank"
+              }
+            ],
+            "w2s": [
+              {
+                "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/W2_sample.pdf",
+                "md5sum": "f65e30c39124ad707ac4b3aeaee923a7",
+                "year": 2020,
+                "wages": "900.50",
+                "federal_tax": "75.01",
+                "social_security_wages": "900.50",
+                "social_security_tax": "56.30",
+                "medicare_wages": "900.50",
+                "medicare_tax": "13.15",
+                "gross_pay": "18211.48"
+              }
+            ],
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "is_active": false,
+            "job_title": "PR associate",
+            "job_type": "F",
+            "start_date": "2018-01-01",
+            "original_hire_date": "2017-06-21",
+            "end_date": "2023-10-06",
+            "external_last_updated": "2023-10-06",
+            "dates_from_statements": false,
+            "derived_fields": [
+              "is_active"
+            ],
+            "missing_data_fields": [
+              "w2s"
+            ],
+            "manager_name": "Jenny McDouglas",
+            "profile": {
+              "id": "48427a36d43c4d5aa6324bc06c692456",
+              "created_at": "2022-06-07T15:00:00Z",
+              "updated_at": "2022-06-31T15:00:00Z",
+              "first_name": "John",
+              "last_name": "Doe",
+              "full_name": "John Doe",
+              "middle_initials": "K",
+              "email": "[email protected]",
+              "ssn": "123456789",
+              "date_of_birth": "1992-03-03",
+              "home_address": {
+                "street": "1 Morgan Ave",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip": "90210",
+                "country": "US"
+              }
+            },
+            "company": {
+              "name": "Facebook Demo",
+              "address": {
+                "street": "1 Morgan Ave",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip": "90210",
+                "country": "US"
+              },
+              "phone": "6503087300",
+              "ein": "12-345678"
+            }
+          }
+        ]
+      }
+    ],
+    "insurance": {
+      "id": "ad9f14440d624ec3b0f66e81e44518c7",
+      "product_type": "insurance",
+      "status": "pending",
+      "suborder_number": "133982343355",
+      "created_at": "2021-04-21T22:12:59.346109Z",
+      "bridge_token": "e4100fccdae94691b4414c7306220c06",
+      "link_id": "e4100fccdae94691b4414c7306220c06",
+      "access_token": "e4100fccdae94691b4414c7306220c06",
+      "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+      "data_source": "insurance",
+      "provider": {
+        "id": "truv_api",
+        "name": "Sandbox Provider",
+        "logo_url": "https://citadelid-resources.s3.us-west-2.amazonaws.com/providers/truv-blue.svg"
+      },
+      "is_suspicious": true,
+      "provider_id": "geico"
+    },
+    "bank": {
+      "id": "ad9f14440d624ec3b0f66e81e44518c7",
+      "product_type": "transactions",
+      "status": "pending",
+      "suborder_number": "133982343355",
+      "created_at": "2021-04-21T22:12:59.346109Z",
+      "bridge_token": "e4100fccdae94691b4414c7306220c06",
+      "link_id": "e4100fccdae94691b4414c7306220c06",
+      "access_token": "e4100fccdae94691b4414c7306220c06",
+      "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+      "data_source": "financial_accounts",
+      "provider": {
+        "id": "truv_api",
+        "name": "Sandbox Provider",
+        "logo_url": "https://citadelid-resources.s3.us-west-2.amazonaws.com/providers/truv-blue.svg"
+      },
+      "is_suspicious": true
+    },
+    "manager": {
+      "email": "[email protected]",
+      "name": "John Doe"
+    },
+    "loan": {
+      "loan_number": "MUUT220700012",
+      "originator_name": "John Doe",
+      "originator_email": "[email protected]"
+    },
+    "template_id": "9b96606355b94e8abff8ed8d75aa2027",
+    "fannie_voie_report_id": "b19c454a98594b4084b71e3b62873d29"
+  }
+  ```
+</CodeGroup>

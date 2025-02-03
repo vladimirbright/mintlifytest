@@ -1,0 +1,414 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# Webhooks
+
+Learn how to use webhooks to automate actions based on specified events.
+
+# Overview
+
+Webhooks are automated messages sent by Truv. These notifications are HTTP POST requests to a predefined URL when an event occurs on the platform.
+
+Use webhooks to track Task status changes during processing stages. Successful payroll connections take time to process data and PDF documents from the payroll provider. Webhooks provide updates for status changes and maintain transparency for the user experience.
+
+# Subscribing
+
+Visit the Truv Dashboard [Development > Webhooks](https://dashboard.truv.com/app/development/webhooks) and add a URL for your environment. Each environment requires a specific and separate URL.
+
+# Testing
+
+Test webhooks with the Truv Bridge in [the Truv Emulator](/docs/testing#truv-emulator). For immediate use, [ngrok](https://ngrok.com/) and [MockBin](https://www.mockbin.org/) provide testing for payloads in either your local environment or your browser, respectively.
+
+# Payload response
+
+Truv sends requests to webhook endpoints and the responses depend on the sent event. The table below contains common fields in calls, regardless of the event.
+
+| Name           | Location | Description                                             |
+| -------------- | -------- | ------------------------------------------------------- |
+| user-agent     | header   | Always set to `Truv-Webhook-Service/2.0`                |
+| x-webhook-sign | header   | Hash of created request body created with Access secret |
+| webhook\_id    | body     | Unique ID for specific webhook request                  |
+| event\_type    | body     | ID of sent webhook event request                        |
+| updated\_at    | body     | Time event occurred                                     |
+| user\_id       | body     | Unique ID of user                                       |
+| template\_id   | body     | Unique ID of template                                   |
+
+<Info>
+  All header field names are case-insensitive. For more information, refer to [HTTP/1.1 Specifications, Section 3.2](https://datatracker.ietf.org/doc/html/rfc7230#section-3.2).
+</Info>
+
+# Originating IP addresses
+
+The list below is the collection of IP addresses for Truv webhook calls and communication. Secure your integration and verify events originate from these IP addresses.
+
+* `34.212.57.93`
+* `44.224.243.166`
+* `52.25.14.79`
+
+# Timing
+
+Truv processes webhooks requests for Task statuses in their updated order. For example, `full_parse` events must happen before `done` events. Webhook request deliveries may experience delays due to things outside of Truv, such as network latency, outages, and other external issues.
+
+Configure your webhook integrations to track the `updated_at` field for monitoring events in sequence.
+
+# Security
+
+Webhook signatures confirm and verify Truv data for you. Each request contains the `X-WEBHOOK-SIGN` value within the header. This hash-based message authentication code (HMAC) uses the Access secret as the key and `SHA-256` as the function.
+
+## Verification steps
+
+The steps in the section below guide you through verifying requests from Truv.
+
+1. Use a hash library to create an HMAC hash of the raw request body received by Truv. Use the Access secret or access\_token from the `X-Access-Secret` header as the hashing key. Confirm the `SHA-256` as the hash function and the final hash has hexadecimal conversion.
+
+2. Compare the hash to the value in the `X-WEBHOOK-SIGN` header from the webhook request. Truv sends requests for matching values, and you can continue to process the webhook.
+
+<CodeGroup>
+  ```python Python
+  import hashlib
+  import hmac
+
+  def generate_webhook_sign(payload: str, key: str) -> str:
+      generated_hash = hmac.new(
+          key=key.encode('utf-8'),
+          msg=payload.encode('utf-8'),
+          digestmod=hashlib.sha256,
+      ).hexdigest()
+      return f'v1={generated_hash}'
+
+  @app.route('/webhook', methods=['POST'])
+  def webhook():
+      return generate_webhook_sign(request.data.decode('UTF-8'), secret)
+  ```
+
+  ```go Go
+  import (
+    "crypto/hmac"
+    "crypto/sha256"
+    "encoding/hex"
+    "fmt"
+    "strings"
+  )
+
+  func generate_webhook_sign(body string, key string) string {
+
+    mac := hmac.New(sha256.New, []byte(key))
+    mac.Write([]byte(body))
+    return hex.EncodeToString(mac.Sum(nil))
+  }
+
+  func webhook(w http.ResponseWriter, r *http.Request) {
+    b, _ := ioutil.ReadAll(r.Body)
+    convertedBody := string(b)
+    signature := generate_webhook_sign(convertedBody, os.Getenv("API_SECRET"))
+    fullSignature := fmt.Sprintf("v1=%s", signature)
+
+    fmt.Fprintf(w, fullSignature)
+  }
+  ```
+
+  ```javascript NodeJS
+  const crypto = require("crypto")
+
+  // ensure all request bodies are parsed to JSON. Callback function
+  // keeps a copy of the raw body for webhooks.
+  app.use(bodyParser.json({
+    verify: (req, res, buf) => {
+      req.rawBody = buf
+    }
+  }))
+
+  const generate_webhook_sign = (body, key) => {
+    return crypto.createHmac("sha256", key)
+    .update(body)
+    .digest("hex")
+  }
+
+  app.post("/webhook", async (req, res) => {
+
+    const body = req.rawBody.toString()
+    const webhook_sign = generate_webhook_sign(body, API_SECRET)
+
+    res.send(`v1=${webhook_sign}`).end()
+  })
+  ```
+
+  ```ruby Ruby
+  class Webhook
+    def self.generate_webhook_sign(body, key)
+      digest = OpenSSL::Digest.new('sha256')
+      return "v1=" + OpenSSL::HMAC.hexdigest(digest, key, body)
+    end
+
+    def self.post(body)
+      return self.generate_webhook_sign(body, Citadel.client_secret)
+    end
+  end
+  ```
+
+  ```csharp C#
+  using System.Threading.Tasks;
+  using System.IO;
+  using Microsoft.AspNetCore.Mvc;
+  using System.Text;
+  using System.Security.Cryptography;
+  using System;
+
+  namespace c_sharp.Controllers
+  {
+    [ApiController]
+    [Route("webhook")]
+    public class WebhookController : ControllerBase
+    {
+
+      [HttpPost]
+      public async Task<string> Post()
+      {
+        using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+        {
+          string body = await reader.ReadToEndAsync();
+          return generateWebhookSign(body, Environment.GetEnvironmentVariable("API_SECRET"));
+        }
+      }
+
+      private string generateWebhookSign(string body, string key)
+      {
+        using (HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(key)))
+        {
+          // Compute the hash of the input file.
+          byte[] hashValue = hmac.ComputeHash(Encoding.UTF8.GetBytes(body));
+
+          return "v1=" + BitConverter.ToString(hashValue).Replace("-", "").ToLower();
+
+        }
+      }
+    }
+  }
+  ```
+</CodeGroup>
+
+# HTTP timeouts and retries
+
+HTTP request timeout have strict limits. Unsuccessful requests are limited to three attempts and a 30 second window between each retry. Additional unsuccessful retries results in failed requests and further attempts are blocked.
+
+## Status codes
+
+The list below contains information for webhook status codes.
+
+* Endpoints must return a successful `2xx` status code within 10 seconds of a request
+* Redirects signaled with `3xx` status codes are valid with Truv
+* Any `4xx` and `5xx` response status codes result as an error
+
+# Webhook event descriptions
+
+Find all of the webhooks reference information on the [Webhook Event Descriptions](/reference/webhook-event-descriptions) page. The sample content below covers payloads from changes to Tasks.
+
+## Task status change
+
+This sample webhook is the payload for `task-status-updated`.
+
+<CodeGroup>
+  ```json json
+  {
+     "webhook_id":"488f424096d3461aa0e4cf11a985f6df",
+     "task_id":"521442a087604e599c637db310d07402",
+     "link_id":"d39d86dcc20c46e0ae75ba9ab1311a21",
+     "product":"income",
+     "data_source": "payroll",
+     "tracking_info":null,
+     "event_type":"task-status-updated",
+     "event_created_at":"2022-08-24T13:55:12.845645Z",
+     "updated_at":"2022-08-24T13:55:12.845666+00:00",
+     "status":"parse",
+     "user_id": "88fef4cea64c40b5ad6727cc9b0b9fdc",
+     "template_id": null
+  }
+  ```
+</CodeGroup>
+
+The `task-status-updated` event occurs when the `status` of a Task changes. When receiving a `task-status-updated`event with a `status` of `done`, all data from the Task is downloaded and document processing is complete.
+
+Use the `link_id` value to locate the access\_token in your system. This allow you to retrieve the latest payroll data from the respective endpoint. View more information about the fields in the list below.
+
+* `task_id` - ID of Task associated with event
+* `link_id` - ID of Link associated to Task
+* `product` - Product specified for Task, `employment`, `income` or `admin`
+* `data_source` - source of data. `payroll`, `docs`, `insurance`, `financial_accounts`, `tax`
+* `tracking_info` - Info passed to bridge\_token for Link , nullable
+* `status` - [Connection Lifecycle](/reference/connection-lifecycle) status update

@@ -1,0 +1,79 @@
+---
+title: "Designing the Financial Account Aggregation UX"
+description: "Give your users a frictionless experience when connecting bank accounts and verifying income and assets"
+---
+
+[Suggest Edits](/edit/designing-the-bank-aggregation-ux)
+
+# Landing page
+
+Create successful experiences for your users with a high quality introduction page for Financial Account Aggregation. Users can easily connect to their financial institution and verify income and assets. Provide context for next steps highlighting your users’ privacy and security.
+
+Verification can be instant compared to the wait time for other methods. Truv Financial Account Aggregation lets your users skip manually uploading bank statements for income and asset verification.
+
+Configure your introduction page to your users on top of Truv’s widget templates. Provide additional context and guidance as needed for a successful user experience.
+
+![](/images/docs/3d970d3-108.png)
+
+# Financial institution search
+
+Truv simplifies connecting your users to their financial institution. Users can select their bank or credit union in Truv Bridge from the list of most popular financial institutions. They can also look for their financial institution in the search field at the top of the screen.
+
+![](/images/docs/f90c45f-109.png)
+
+<Info>
+  Truv primarily uses OAuth connections within search. Use Truv's default financial institution search list for a more optimized user experience.
+</Info>
+
+## Building your own search with deeplinking
+
+With your user’s financial institution information, [deeplink](/docs/deeplinking) users directly to the login page. That data helps you let users skip the search page. To find the list of all supported financial institutions use the [List all data providers endpoint](/reference/providers-list) and filter for the `transactions` product type.
+
+![](/images/docs/ab2c490-110.png)
+
+# Routing the user after login
+
+Depending on the connection results, users can be routed to the success screen or return to select other verification options.
+
+## Successful connection
+
+The two points below are common options to update the user after they successfully log in.
+
+* Use [Webhooks](/docs/webhooks) or poll Truv’s backend API for status
+* Design the handoff experience after the Truv Bridge is closed
+
+<Info>
+  Users may require revisiting the widget for additional multi-factor authentication.
+</Info>
+
+![](/images/docs/6fe0e88-111.png)
+
+<Info>
+  Show users an application confirmation after successfully connecting an account.
+</Info>
+
+## Unsuccessful connection
+
+If a user isn’t able to connect their account, provide an alternative verification method. You can allow your users to upload documents, for example.
+
+![](/images/docs/08e9332-112.png)
+
+### Uploading documents
+
+Truv can direct users to upload bank statements into the widget. This streamlined experience uses the same data response schema from financial institution connections.
+
+Document uploads are included within your Truv experience. This acts as a back-up to Bank Aggregation if the user can’t login to their financial data provider. [Contact Truv](/cdn-cgi/l/email-protection#bac9cfcacad5c8cefacec8cfcc94d9d5d7) for more information on document uploads for your integration.
+
+***
+
+* [Table of Contents](#)
+
+* * [Landing page](#landing-page)
+
+  * [Financial institution search](#financial-institution-search)
+    * [Building your own search with deeplinking](#building-your-own-search-with-deeplinking)
+
+  * [Routing the user after login](#routing-the-user-after-login)
+
+    * [Successful connection](#successful-connection)
+    * [Unsuccessful connection](#unsuccessful-connection)

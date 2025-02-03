@@ -1,0 +1,793 @@
+---
+title: "Data Reference for Insurance Verification"
+description: "View the data reference for insurance verification reports."
+---
+
+[Suggest Edits](/edit/data-scoping-insurance-verification)
+
+# Overview
+
+The sections below cover each of the data values and configurations for an insurance history report. Use the [Retrieve an insurance report endpoint](/reference/insurance_report) to collect the data.
+
+# Data Structure
+
+* [Verification data](#verification-data)
+
+  * [Insurance](#insurance)
+
+    * [Policies](#policies)
+
+      * [Dwellings](#dwellings)
+
+        * [Dwellings: Coverages](#dwellings-coverages)
+        * [Dwellings: Mortgagees](#dwellings-mortgagees)
+        * [Address](#address)
+
+      * [Vehicles](#vehicles)
+
+        * [Vehicles: Coverages](#vehicles-coverages)
+        * [Vehicles: Drivers](#vehicles-drivers)
+
+      * [Commercial Named Insured](#commercial-named-insured)
+
+      * [Claims](#claims)
+
+      * [Loss events](#loss-events)
+
+      * [Documents](#documents)
+
+    * [Drivers](#drivers)
+
+    * [Driving records](#driving-records)
+
+* [Identity](#identity)
+  * [Home address](#home-address)
+
+* [Provider](#provider)
+
+# Example report
+
+The JSON sample below contains a comprehensive response.
+
+<CodeGroup>
+  ```json json
+  {
+      "id": "6f996030fcf24cae8aabc322ed72ab13",
+      "status": "done",
+      "finished_at": "2022-10-06T18:19:00.847179Z",
+      "access_token": "412dfe130abb4f3da4a869330f7b7d04",
+      "tracking_info": "dcbfdb9a-07da-4342-94cf-419be12b2cfc",
+      "insurance": {
+          "policies": [
+              {
+                  "id": "53c5ce0d-fb79-4f1c-bc27-32181b368fc7",
+                  "policy_type": "HOMEOWNERS",
+                  "name": "HOME HO132483",
+                  "description": "Effective 11/03/2021 - 11/03/2022",
+                  "carrier_policy_number": "HO132483",
+                  "effective_date": "2021-11-03T00:00:00Z",
+                  "expiry_date": "2022-11-03T00:00:00Z",
+                  "renewal_date": null,
+                  "canceled_date": null,
+                  "total_premium_cents": 150319,
+                  "deductible_cents": null,
+                  "carrier_name": "progressive",
+                  "status": "ACTIVE",
+                  "dwellings": [
+                      {
+                          "id": "b7a53a67-7266-42b6-a20e-97e8fc723bbc",
+                          "address": {
+                              "id": "fb3e81ee-bf1b-4e0b-9047-bc74b9cb1358",
+                              "country": null,
+                              "street": "344 Clinton St, Apartment 3D",
+                              "city": "Brooklyn",
+                              "state": "NY",
+                              "zip": "11231"
+                          },
+                          "coverages": [
+                              {
+                                  "name": "DWELLING",
+                                  "premium_cents": 112682,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": 28838000,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "b9087b71-c1b1-482d-be9f-92a2cf81fbb3"
+                              },
+                              {
+                                  "name": "OTHER_STRUCTURES",
+                                  "premium_cents": 5976,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": 2883800,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "c8a52c7c-46d4-4a66-bbe5-3c16322c37f8"
+                              },
+                              {
+                                  "name": "PERSONAL_PROPERTY",
+                                  "premium_cents": 24326,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": 14419000,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "c4280446-7723-4046-9b1d-ad936cf5490b"
+                              },
+                              {
+                                  "name": "LOSS_OF_USE",
+                                  "premium_cents": 4110,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": 5767600,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "73be1b3a-3582-4770-8f19-ae1e2ab2a3a7"
+                              },
+                              {
+                                  "name": "PERSONAL_LIABILITY",
+                                  "premium_cents": 2193,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": 10000000,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "21296eac-cf90-4be1-9401-8e8659a4e7bf"
+                              },
+                              {
+                                  "name": "MEDICAL_PAYMENTS",
+                                  "premium_cents": 1032,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": 100000,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "20843701-bc3d-499a-ba38-4f80abaeeccd"
+                              },
+                              {
+                                  "name": "ALL_OTHER_PERILS",
+                                  "premium_cents": null,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": null,
+                                  "deductible_cents": 288380,
+                                  "is_declined": false,
+                                  "id": "a40990f9-8d61-40d9-801f-b5ead61d6b79"
+                              },
+                              {
+                                  "name": "WINDSTORM_OR_HAIL",
+                                  "premium_cents": null,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": null,
+                                  "deductible_cents": 576760,
+                                  "is_declined": false,
+                                  "id": "864af4be-8890-4efc-923d-dfaa56ca0486"
+                              }
+                          ],
+                          "mortgagees": [
+                              {
+                                  "id": "26a4ce3a-0b9f-4c3d-96c0-1c76529e3b52",
+                                  "name": "string",
+                                  "type": "FIRST",
+                                  "loan_number": "string",
+                                  "address": {
+                                      "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                                      "address_nature": "MAILING",
+                                      "country": "US",
+                                      "street": "344 Clinton St, Apartment 3D",
+                                      "city": "Brooklyn",
+                                      "state": "NY",
+                                      "zip": "11231"
+                                  }
+                              }
+                          ]
+                      }
+                  ],
+                  "vehicles": [],
+                  "commercial_named_insureds": [],
+                  "claims": [
+                      {
+                          "id": "aeca8a7e-af90-4133-92c3-81fc9b0f6bae",
+                          "dwelling_id": "b7a53a67-7266-42b6-a20e-97e8fc723bbc",
+                          "vehicle_id": null,
+                          "driver_id": null,
+                          "carrier_claim_identifier": "HO-12345",
+                          "date_occurred": "2020-10-07T00:00:00.000Z",
+                          "type": "WIND_AND_HAIL_DAMAGE",
+                          "status": "OPEN",
+                          "date_closed": null,
+                          "payout_cents": null,
+                          "representative_name": "Jane Doe",
+                          "representative_phone": "8885553333",
+                          "representative_email": "[email protected]",
+                          "address": {
+                              "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                              "country": null,
+                              "street": "344 Clinton St, Apartment 3D",
+                              "city": "Brooklyn",
+                              "state": "NY",
+                              "zip": "11231"
+                          }
+                      }
+                  ],
+                  "loss_events": [
+                      {
+                          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                          "date_of_occurrence": "2022-10-05T19:00:27.567Z",
+                          "date_of_claim": "2022-10-05T19:00:27.567Z",
+                          "type": "BURGLARY_AND_THEFT",
+                          "amount_paid_cents": 0,
+                          "amount_reserved_cents": 0,
+                          "is_subrogation": true,
+                          "is_claim_open": true
+                      }
+                  ],
+                  "documents": [
+                      {
+                          "id": "76e7c90e-c976-414f-bf8d-0ac78f55fd28",
+                          "title": "11-03-2021 - Homeowners Renewal Declarations",
+                          "document_type": "DECLARATIONS",
+                          "date_added": "2021-11-03T00:00:00Z",
+                          "file": "https://truv-statements.s3.amazonaws.com/insurance/cdb3ab22-34ca-4e5d-aca5-7594f24ce9c2.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWHJR5UGJ7X67RWO%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T181936Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=1309b543cd7822004f000105626e49d744c49e941e2ad1e5d36ffaff1edd7d29"
+                      },
+                      {
+                          "id": "761d55b1-4de9-496b-9850-021e19963aa1",
+                          "title": "11-03-2020 - Homeowners Renewal Declarations",
+                          "document_type": "DECLARATIONS",
+                          "date_added": "2020-11-03T00:00:00Z",
+                          "file": "https://truv-statements.s3.amazonaws.com/insurance/11bbfa1e-9af4-4acd-8fec-1c752b037f39.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWHJR5UGJ7X67RWO%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T181936Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=493de1e2aa3411122d2891f0635d0ee79328038a5ea8b9f4e7efe4e8f724ef19"
+                      }
+                  ]
+              },
+              {
+                  "id": "e22ab6be-a3b7-4c09-8032-d3286112b504",
+                  "policy_type": "AUTO",
+                  "name": "AUTO AU192837",
+                  "description": "Effective 05/03/2022  -  11/03/2022",
+                  "carrier_policy_number": "AU192837",
+                  "effective_date": "2022-05-03T00:00:00Z",
+                  "expiry_date": "2022-11-03T00:00:00Z",
+                  "renewal_date": null,
+                  "canceled_date": null,
+                  "total_premium_cents": 53857,
+                  "deductible_cents": null,
+                  "carrier_name": "progressive",
+                  "status": "ACTIVE",
+                  "dwellings": [],
+                  "vehicles": [
+                      {
+                          "id": "26a4ce3a-0b9f-4c3d-96c0-1c76529e3b52",
+                          "year": 2018,
+                          "make": "CHEVROLET",
+                          "model": "Camaro",
+                          "series": "ZL1",
+                          "series2": null,
+                          "type": "PASSENGER CAR",
+                          "annual_mileage": null,
+                          "vin": "1G1FK1R62J0158884",
+                          "purchase_date": null,
+                          "is_removed": false,
+                          "lien_holder": "Metropolis Bank",
+                          "garaging_address": {
+                              "id": "4172d323-4987-4351-bcd6-842d35a2603f",
+                              "country": null,
+                              "street": "344 Clinton St, Apartment 3D",
+                              "city": "Brooklyn",
+                              "state": "NY",
+                              "zip": "11231"
+                          },
+                          "lien_holder_address": {
+                              "id": "d0e0b754-8d59-4d76-b4c6-4e8367fd31c4",
+                              "country": null,
+                              "street": "620 Atlantic Ave",
+                              "city": "Brooklyn",
+                              "state": "NY",
+                              "zip": "11217"
+                          },
+                          "coverages": [
+                              {
+                                  "name": "COLLISION",
+                                  "premium_cents": 18514,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": null,
+                                  "deductible_cents": 50000,
+                                  "is_declined": false,
+                                  "id": "111da3f8-20b0-4839-81d7-6473437e493e",
+                                  "per_day_limit_cents": null,
+                                  "per_mile_premium_tenth_of_cents": null
+                              },
+                              {
+                                  "name": "COMPREHENSIVE",
+                                  "premium_cents": 9777,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": null,
+                                  "deductible_cents": 50000,
+                                  "is_declined": false,
+                                  "id": "b8c60dbc-33f9-4c69-b850-47f14ad9537e",
+                                  "per_day_limit_cents": null,
+                                  "per_mile_premium_tenth_of_cents": null
+                              },
+                              {
+                                  "name": "BODILY_INJURY_LIABILITY",
+                                  "premium_cents": 11355,
+                                  "per_person_limit_cents": 10000000,
+                                  "per_incident_limit_cents": 30000000,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "e032c4f2-44ff-41dc-99a2-6bcfe0ce8b2c",
+                                  "per_day_limit_cents": null,
+                                  "per_mile_premium_tenth_of_cents": null
+                              },
+                              {
+                                  "name": "PROPERTY_DAMAGE_LIABILITY",
+                                  "premium_cents": 11758,
+                                  "per_person_limit_cents": null,
+                                  "per_incident_limit_cents": 5000000,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "f8564035-115f-4d42-8ca8-1fab0f8e502e",
+                                  "per_day_limit_cents": null,
+                                  "per_mile_premium_tenth_of_cents": null
+                              },
+                              {
+                                  "name": "UNINSURED_MOTORISTS",
+                                  "premium_cents": 2453,
+                                  "per_person_limit_cents": 1500000,
+                                  "per_incident_limit_cents": 3000000,
+                                  "deductible_cents": null,
+                                  "is_declined": false,
+                                  "id": "34d363b6-add1-4e2a-80e8-adac84578a47",
+                                  "per_day_limit_cents": null,
+                                  "per_mile_premium_tenth_of_cents": null
+                              }
+                          ],
+                          "drivers": [
+                              {
+                                  "id": "8857f648-c6ce-44df-8fa4-78eee16e9bb4",
+                                  "first_name": "John",
+                                  "middle_name": "Joseph",
+                                  "last_name": "Doe",
+                                  "drivers_license": "SUP1234017",
+                                  "drivers_license_state": "DC",
+                                  "date_of_birth_str": "05/03/1987",
+                                  "gender": "MALE",
+                                  "marital_status": "SINGLE",
+                                  "relationship_to_insured": "INSURED",
+                                  "is_excluded": false
+                              }
+                          ]
+                      }
+                  ],
+                  "commercial_named_insureds": [
+                      {
+                          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                          "name": "Sample Business LLC",
+                          "form_of_business": "LIMITED_LIABILITY_COMPANY",
+                          "gl_code": "10010",
+                          "sic_code": "6411",
+                          "naics_code": "524210",
+                          "fein": "123456789",
+                          "ssn": "123456789",
+                          "is_primary": true,
+                          "address": {
+                              "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                              "country": null,
+                              "street": "344 Clinton St, Apartment 3D",
+                              "city": "Brooklyn",
+                              "state": "NY",
+                              "zip": "11231"
+                          }
+                      }
+                  ],
+                  "claims": [
+                      {
+                          "id": "c032178d-2837-442e-9e37-c4b3d59ec06d",
+                          "dwelling_id": null,
+                          "vehicle_id": "26a4ce3a-0b9f-4c3d-96c0-1c76529e3b52",
+                          "driver_id": "8857f648-c6ce-44df-8fa4-78eee16e9bb4",
+                          "carrier_claim_identifier": "AU-54321",
+                          "date_occurred": "2019-08-23T00:00:00.000Z",
+                          "type": "THEFT",
+                          "status": "CLOSED",
+                          "date_closed": "2019-10-02T00:00:00.000Z",
+                          "payout_cents": 2750000,
+                          "representative_name": "Jane Doe",
+                          "representative_phone": "8885554444",
+                          "representative_email": "[email protected]",
+                          "address": {
+                              "id": "a497f96b-94be-443e-88bb-c8289085c922",
+                              "country": null,
+                              "street": "344 Clinton St, Apartment 3D",
+                              "city": "Brooklyn",
+                              "state": "NY",
+                              "zip": "11231"
+                          }
+                      }
+                  ],
+                  "loss_events": [],
+                  "documents": [
+                      {
+                          "id": "8c5193a1-3f51-4c4b-ac48-d8857f388496",
+                          "title": "05-03-2022 - Auto - Automobile Policy Renewal Declarations",
+                          "document_type": "DECLARATIONS",
+                          "date_added": "2022-05-03T00:00:00Z",
+                          "file": "https://truv-statements.s3.amazonaws.com/insurance/27ad52ec-0695-44d0-b736-b1897febc75f.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWHJR5UGJ7X67RWO%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T181936Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=e8c8d9ee230fd51392aa498d0af1fde06bb535cb8c3b029558597fa51caaa8a0"
+                      },
+                      {
+                          "id": "55ad7bb6-f5a3-4ebf-91fb-2802391eb261",
+                          "title": "11-03-2021 - Auto - Automobile Policy Renewal Declarations",
+                          "document_type": "DECLARATIONS",
+                          "date_added": "2021-11-03T00:00:00Z",
+                          "file": "https://truv-statements.s3.amazonaws.com/insurance/5df057b0-0a2e-4721-8eb2-719690a5b23e.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWHJR5UGJ7X67RWO%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T181936Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=1f1bb3760a9efd1d9eb5bb0f21b22da7ae572f795bf8c6d6b6f6ab709f2e1893"
+                      },
+                      {
+                          "id": "257b0624-bb13-40ac-ad08-1e468411a9b5",
+                          "title": "05-03-2022 - Auto - Auto ID Cards",
+                          "document_type": "INSURANCE_ID_CARD",
+                          "date_added": "2022-05-03T00:00:00Z",
+                          "file": "https://truv-statements.s3.amazonaws.com/insurance/ff5560cd-8d0b-4996-97ce-886479a1dbc0.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWHJR5UGJ7X67RWO%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T181936Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=11b94ca118c9c765e971fa917debeb5bd6ff4df4352e04470ded6ff8594247db"
+                      },
+                      {
+                          "id": "bdc85400-563d-4b71-b7b6-dd2f01faf3ca",
+                          "title": "05-03-2021 - Auto - Automobile Policy Renewal Declarations",
+                          "document_type": "DECLARATIONS",
+                          "date_added": "2021-05-03T00:00:00Z",
+                          "file": "https://truv-statements.s3.amazonaws.com/insurance/58c80d49-2fca-4c56-8aac-fd21e4369773.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWHJR5UGJ7X67RWO%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T181936Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=ceaa335366e0c8111e92c547ef50dcad2ba1d76683ed8606c678df9a1324c5dd"
+                      },
+                      {
+                          "id": "12a6012a-a5d7-46a0-b78c-5bd15fcd3870",
+                          "title": "11-03-2020 - Auto - Auto ID Cards",
+                          "document_type": "INSURANCE_ID_CARD",
+                          "date_added": "2020-11-03T00:00:00Z",
+                          "file": "https://truv-statements.s3.amazonaws.com/insurance/66841b4d-b1b1-444b-a969-6349fd732769.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZWHJR5UGJ7X67RWO%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T181936Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=d7b52f450eaa7f04e7b43959dc52ff46b25c9d291fe63fe726eaf37abb355419"
+                      }
+                  ]
+              }
+          ],
+          "drivers": [
+              {
+                  "id": "8857f648-c6ce-44df-8fa4-78eee16e9bb4",
+                  "first_name": "John",
+                  "middle_name": "Joseph",
+                  "last_name": "Due",
+                  "drivers_license": "SUP1234017",
+                  "drivers_license_state": "DC",
+                  "date_of_birth_str": "05/03/1987",
+                  "gender": "MALE",
+                  "marital_status": "SINGLE",
+                  "relationship_to_insured": "INSURED"
+              }
+          ],
+          "driving_records": [
+              {
+                  "id": "da9d46ad-8ddb-4b4b-bc7e-7a381a738f7c",
+                  "driver_id": "8857f648-c6ce-44df-8fa4-78eee16e9bb4",
+                  "incident_date": "2021-04-23T00:00:00.000Z",
+                  "incident_type": "ACCIDENT",
+                  "violation_type": null,
+                  "is_at_fault": false
+              },
+              {
+                  "id": "cc70e062-8393-481d-ad05-d402e1cbaa05",
+                  "driver_id": "8857f648-c6ce-44df-8fa4-78eee16e9bb4",
+                  "incident_date": "2018-09-14T00:00:00.000Z",
+                  "incident_type": "VIOLATION",
+                  "violation_type": "SPEEDING",
+                  "is_at_fault": null
+              }
+          ]
+      },
+      "identity": {
+          "id": "3487aa87c31f4a1e92ef404156bc5952",
+          "first_name": "John",
+          "last_name": "Doe",
+          "full_name": "John Joseph Doe",
+          "middle_initials": "J",
+          "email": "[email protected]",
+          "ssn": null,
+          "date_of_birth": "1987-05-03",
+          "home_address": {
+              "zip": "11231",
+              "city": "BROOKLYN",
+              "state": "NY",
+              "street": "344 CLINTON ST",
+              "country": "US"
+          }
+      },
+      "provider": "progressive"
+  }
+  ```
+</CodeGroup>
+
+# Verification data
+
+The data below refers to insurance information verification.
+
+| Name                    | Type   | Description                                                                  |
+| ----------------------- | ------ | ---------------------------------------------------------------------------- |
+| id                      | string | Unique ID of the report                                                      |
+| status                  | string | Task status from the [Connection Lifecycle](/reference/connection-lifecycle) |
+| finished\_at            | string | Time when report was finished                                                |
+| access\_token           | string | Payroll provider Link access\_token                                          |
+| tracking\_info          | string | String value provided when generating `bridge_token`                         |
+| [insurance](#insurance) | object | Insurance policy information                                                 |
+
+## Insurance
+
+This table covers high-level insurance information from the insurance provider records.
+
+| Name                                 | Type  | Description                    |
+| ------------------------------------ | ----- | ------------------------------ |
+| [policies](#policies)                | array | List of policy objects         |
+| [drivers](#drivers)                  | array | List of vehicle objects        |
+| [driving\_records](#driving-records) | array | List of driving record objects |
+
+### Policies
+
+This covers Insurance policy information from insurance provider records.
+
+| Name                                                      | Type              | Description                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------------------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                                                        | string(uuid)      | Unique ID for policy                                                                                                                                                                                                                                                                                                                                                                            |
+| policy\_type                                              | string (enum)     | Type of insurance policy Possible values:`AUTO`, `BOAT`, `CONDO`, `FARMOWNER`, `FLOOD`, `HOMEOWNERS`, `LANDLORD`, `LIFE`, `MOTORCYCLE`, `TERM_LIFE`, `UNIVERSAL_LIFE`, `WHOLE_LIFE`, `RENTERS`, `SNOWMOBILE`, `UMBRELLA`, `RECREATIONAL_VEHICLE`, `FIRE`, `TRAILER`, `PERSONAL_ARTICLES`, `EARTHQUAKE`, `BUSINESS_OWNERS`, `COMMERCIAL_UMBRELLA`, `COMMERCIAL_AUTO`, `COMMERCIAL_FIRE`, `COMBO` |
+| name                                                      | string            | Name of policy                                                                                                                                                                                                                                                                                                                                                                                  |
+| description                                               | string            | Description of policy                                                                                                                                                                                                                                                                                                                                                                           |
+| carrier\_policy\_number                                   | string            | Carrier's policy identifier number                                                                                                                                                                                                                                                                                                                                                              |
+| effective\_date                                           | string(date-time) | Policy effective date                                                                                                                                                                                                                                                                                                                                                                           |
+| expiry\_date                                              | string(date-time) | Policy expiration date                                                                                                                                                                                                                                                                                                                                                                          |
+| renewal\_date                                             | string(date-time) | Policy renewal date                                                                                                                                                                                                                                                                                                                                                                             |
+| canceled\_date                                            | string(date-time) | Policy canceled date                                                                                                                                                                                                                                                                                                                                                                            |
+| total\_premium\_cents                                     | integer           | Total policy premium in cents                                                                                                                                                                                                                                                                                                                                                                   |
+| deductible\_cents                                         | integer           | Commercial policy deductible in cents                                                                                                                                                                                                                                                                                                                                                           |
+| carrier\_name                                             | string            | Insurance carrier name                                                                                                                                                                                                                                                                                                                                                                          |
+| status                                                    | string (enum)     | Insurance policy status Possible values:`ACTIVE`, `CANCELLED`, `EXPIRED`, `UNVERIFIED`, `PENDING_ACTIVATION`, `PENDING_CANCELLATION`                                                                                                                                                                                                                                                            |
+| [dwellings](#dwellings)                                   | array             | List of dwelling objects                                                                                                                                                                                                                                                                                                                                                                        |
+| [vehicles](#vehicles)                                     | array             | List of vehicle objects                                                                                                                                                                                                                                                                                                                                                                         |
+| [commercial\_named\_insureds](#commercial-named-insureds) | array             | List of commercial named insureds                                                                                                                                                                                                                                                                                                                                                               |
+| [claims](#claims)                                         | array             | List of claim objects                                                                                                                                                                                                                                                                                                                                                                           |
+| [loss\_events](#loss-events)                              | array             | List of commercial loss events objects                                                                                                                                                                                                                                                                                                                                                          |
+| [documents](#documents)                                   | array             | List of document objects                                                                                                                                                                                                                                                                                                                                                                        |
+
+#### Dwellings
+
+This table is for dwelling information from insurance information verification.
+
+| Name                              | Type         | Description                       |
+| --------------------------------- | ------------ | --------------------------------- |
+| id                                | string(uuid) | Unique ID of the dwelling         |
+| [address](#address)               | object       | Addresses of dwellings            |
+| [coverages](#dwellings-coverages) | array        | List of dwelling coverage objects |
+
+##### Address
+
+This table covers addresses associated with the insurance information from the insurance provider.
+
+| Name    | Type         | Description                                           |
+| ------- | ------------ | ----------------------------------------------------- |
+| id      | string(uuid) | ID of the dwelling                                    |
+| country | string       | Country of address                                    |
+| street  | string       | Address street number, name, and unit (if applicable) |
+| city    | string       | City of address                                       |
+| state   | string       | State of address                                      |
+| zip     | string       | Zip code of address                                   |
+
+##### Dwellings: Coverages
+
+The information below is for insurance coverage data for specific dwellings. These dwellings are associated with the insurance information verification.
+
+| Name                        | Type         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                        | string(enum) | Name of coverage item Possible values:`BASE`, `DWELLING`, `OTHER_STRUCTURES`, `PERSONAL_PROPERTY`, `LOSS_OF_USE`, `PERSONAL_LIABILITY`, `REPLACEMENT_COST_FULL_VALUE`, `REPLACEMENT_COST_DWELLING`, `REPLACEMENT_COST_CONTENTS`, `GUEST_MEDICAL_PROTECTION`, `SINGLE_LIMIT_LIABILITY`, `BODILY_INJURY_LIABILITY`, `PROPERTY_DAMAGE_LIABILITY`, `SUPPLEMENTAL_SPOUSAL_LIABILITY`, `PERSONAL_INJURY_PROTECTION`, `COMPREHENSIVE`, `FULL_GLASS`, `COLLISION_DEDUCTIBLE_WAIVER`, `COLLISION`, `UNINSURED_MOTORIST_BODILY_INJURY_LIABILITY`, `UNDERINSURED_MOTORIST_BODILY_INJURY_LIABILITY`, `UNINSURED_MOTORIST_PROPERTY_DAMAGE_LIABILITY`, `UNDERINSURED_MOTORIST_PROPERTY_DAMAGE_LIABILITY`, `UNINSURED_MOTORISTS`, `UNDERINSURED_MOTORISTS`, `UNINSURED_AND_UNDERINSURED_MOTORISTS`, `TOWING_AND_LABOR`, `MECHANICAL_BREAKDOWN`, `RENTAL_REIMBURSEMENT`, `CAR_RENTAL_AND_TRAVEL_EXPENSES`, `LOAN_OR_LEASE_ASSISTANCE`, `RIDESHARE_GAP_PROTECTION`, `MEDICAL_PAYMENTS`, `ADDITIONAL_LIVING_EXPENSE`, `FAMILY_LIABILITY_PROTECTION`, `BUILDING_CODES`, `EMERGENCY_ROAD_SERVICE`, `SUPPLEMENTAL_UNINSURED_AND_UNDERINSURED_MOTORISTS`, `EMERGENCY_EXPENSE`, `REPLACEMENT_COST_PERSONAL_EFFECTS`, `VACATION_LIABILITY_COVERAGE`, `RV_MEDICAL`, `EXTENDED_BENEFITS`, `WAGE_EARNER_DISABILITY_BENEFITS`, `ESSENTIAL_SERVICES_DISABILITY_BENEFITS`, `DEATH_BENEFIT`, `CAR_REPLACEMENT_ASSISTANCE`, `COMBINED_SINGLE_LIMIT`, `FULL_TORT`, `WINDSTORM_OR_HAIL`, `ALL_OTHER_PERILS` |
+| premium\_cents              | integer      | Premium paid for coverage item in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| per\_person\_limit\_cents   | integer      | Per-person limit in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| per\_incident\_limit\_cents | integer      | Per-incident limit in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| deductible\_cents           | integer      | Deductible in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| is\_declined                | boolean      | Status of coverage item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| id                          | string(uuid) | Unique ID of the dwelling coverage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+
+##### Dwellings: Mortgagees
+
+The information below is for insurance mortgagee data for specific dwellings. These mortgagees are associated with the insurance information verification.
+
+| Name         | Type   | Description                               |
+| ------------ | ------ | ----------------------------------------- |
+| id           | string | ID of mortgagee                           |
+| name         | string | Name of mortgagee                         |
+| type         | string | Type of mortgagee`FIRST` `SECOND` `THIRD` |
+| loan\_number | string | Mortgage loan number                      |
+| address      | object | Address object                            |
+
+#### Vehicles
+
+The table is for vehicle information from the insurance verification.
+
+| Name                             | Type              | Description                                                           |
+| -------------------------------- | ----------------- | --------------------------------------------------------------------- |
+| id                               | string(uuid)      | Unique ID of the vehicle                                              |
+| year                             | integer           | Vehicle year                                                          |
+| make                             | string            | Vehicle make                                                          |
+| model                            | string            | Vehicle model                                                         |
+| series                           | string            | Vehicle series                                                        |
+| series2                          | string            | Vehicle series 2                                                      |
+| type                             | string            | Vehicle type                                                          |
+| annual\_mileage                  | integer           | Vehicle annual mileage                                                |
+| vin                              | string            | Vehicle identification number                                         |
+| purchase\_date                   | string(date-time) | Vehicle purchase date                                                 |
+| is\_removed                      | boolean           | Status of vehicle policy                                              |
+| lien\_holder                     | string            | Vehicle lien holder name                                              |
+| garaging\_address                | object            | Address where vehicle is garaged (see [Address](#address))            |
+| lien\_holder\_address            | object            | Address of lien holder (see [Address](#address))                      |
+| [coverages](#vehicles-coverages) | array             | List of vehicle coverage objects (see [Coverages](#VehicleCoverages)) |
+| [drivers](#vehicles-drivers)     | array             | List of driver objects (see [Drivers](#VehicleDrivers))               |
+
+##### Vehicles: Coverages
+
+The information below covers insurance coverage data for specific vehicles from the insurance verification.
+
+| Name                                 | Type         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                                 | string(enum) | Name of coverage item Possible values:`BASE`, `DWELLING`, `OTHER_STRUCTURES`, `PERSONAL_PROPERTY`, `LOSS_OF_USE`, `PERSONAL_LIABILITY`, `REPLACEMENT_COST_FULL_VALUE`, `REPLACEMENT_COST_DWELLING`, `REPLACEMENT_COST_CONTENTS`, `GUEST_MEDICAL_PROTECTION`, `SINGLE_LIMIT_LIABILITY`, `BODILY_INJURY_LIABILITY`, `PROPERTY_DAMAGE_LIABILITY`, `SUPPLEMENTAL_SPOUSAL_LIABILITY`, `PERSONAL_INJURY_PROTECTION`, `COMPREHENSIVE`, `FULL_GLASS`, `COLLISION_DEDUCTIBLE_WAIVER`, `COLLISION`, `UNINSURED_MOTORIST_BODILY_INJURY_LIABILITY`, `UNDERINSURED_MOTORIST_BODILY_INJURY_LIABILITY`, `UNINSURED_MOTORIST_PROPERTY_DAMAGE_LIABILITY`, `UNDERINSURED_MOTORIST_PROPERTY_DAMAGE_LIABILITY`, `UNINSURED_MOTORISTS`, `UNDERINSURED_MOTORISTS`, `UNINSURED_AND_UNDERINSURED_MOTORISTS`, `TOWING_AND_LABOR`, `MECHANICAL_BREAKDOWN`, `RENTAL_REIMBURSEMENT`, `CAR_RENTAL_AND_TRAVEL_EXPENSES`, `LOAN_OR_LEASE_ASSISTANCE`, `RIDESHARE_GAP_PROTECTION`, `MEDICAL_PAYMENTS`, `ADDITIONAL_LIVING_EXPENSE`, `FAMILY_LIABILITY_PROTECTION`, `BUILDING_CODES`, `EMERGENCY_ROAD_SERVICE`, `SUPPLEMENTAL_UNINSURED_AND_UNDERINSURED_MOTORISTS`, `EMERGENCY_EXPENSE`, `REPLACEMENT_COST_PERSONAL_EFFECTS`, `VACATION_LIABILITY_COVERAGE`, `RV_MEDICAL`, `EXTENDED_BENEFITS`, `WAGE_EARNER_DISABILITY_BENEFITS`, `ESSENTIAL_SERVICES_DISABILITY_BENEFITS`, `DEATH_BENEFIT`, `CAR_REPLACEMENT_ASSISTANCE`, `COMBINED_SINGLE_LIMIT`, `FULL_TORT`, `WINDSTORM_OR_HAIL`, `ALL_OTHER_PERILS` |
+| premium\_cents                       | integer      | Premium paid for coverage item in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| per\_person\_limit\_cents            | integer      | Per-person limit in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| per\_incident\_limit\_cents          | integer      | Per-incident limit in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| deductible\_cents                    | integer      | Deductible in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| is\_declined                         | boolean      | Status of coverage item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| id                                   | string(uuid) | Unique ID of the vehicle coverage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| per\_day\_limit\_cents               | integer      | Per-day limit in cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| per\_mile\_premium\_tenth\_of\_cents | integer      | Premium per mile in tenth of cents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+
+##### Vehicles: Drivers
+
+The table below covers similar data to [Drivers](#drivers) with an additional boolean field.
+
+| Name                      | Type         | Description                                                                                                                 |
+| ------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| id                        | string(uuid) | Unique ID of the driver                                                                                                     |
+| first\_name               | string       | First name of driver                                                                                                        |
+| middle\_name              | string       | Middle name of driver                                                                                                       |
+| last\_name                | string       | Last name of driver                                                                                                         |
+| drivers\_license          | string       | Driver's license number                                                                                                     |
+| drivers\_license\_state   | string       | State of Driver's license                                                                                                   |
+| date\_of\_birth\_str      | string       | Driver's date of birth                                                                                                      |
+| gender                    | string(enum) | Driver's gender Possible values:`MALE`, `FEMALE`, `NONBINARY`                                                               |
+| marital\_status           | string(enum) | Driver's marital status Possible values:`SINGLE`, `MARRIED`, `DIVORCED`, `WIDOWED`                                          |
+| relationship\_to\_insured | string(enum) | Relationship to the insured Possible values:`INSURED`, `SPOUSE`, `BROTHER`, `SISTER`, `FATHER`, `MOTHER`, `DAUGHTER`, `SON` |
+| is\_excluded              | boolean      | Status of Driver excluded from Policy or Vehicle                                                                            |
+
+#### Commercial named insureds
+
+The table below is for information about commercial insurance policies from the insurance verification.
+
+| Name                        | Type         | Description                                                                                                                                                                                           |
+| --------------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                          | string(uuid) | Unique ID of the commercial named insured                                                                                                                                                             |
+| name                        | string       | Name of the insured                                                                                                                                                                                   |
+| form\_of\_business          | string(enum) | The form of business of the insured Possible values:`INDIVIDUAL`, `PARTNERSHIP`, `LIMITED_LIABILITY_COMPANY`, `S_CORPORATION`, `CORPORATION`, `JOINT_VENTURE`, `NOT_FOR_PROFIT_ORGANIZATION`, `TRUST` |
+| gl\_code                    | string       | General liability class code                                                                                                                                                                          |
+| sic\_code                   | string       | Standard industrial classification code                                                                                                                                                               |
+| naics\_code                 | string       | North American Industry Classification System code                                                                                                                                                    |
+| fein                        | string       | Federal Employer Identification number                                                                                                                                                                |
+| ssn                         | string       | Social Security Number                                                                                                                                                                                |
+| is\_primary\_named\_insured | boolean      | Status of the insured as the primary                                                                                                                                                                  |
+| [address](#address)         | object       | Address of the insured                                                                                                                                                                                |
+
+#### Claims
+
+The info below is for insurance claim data from the insurance verification.
+
+| Name                       | Type              | Description                                                                                                                                                                                                                                                                                                               |
+| -------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                         | string(uuid)      | Unique ID of the claim                                                                                                                                                                                                                                                                                                    |
+| dwelling\_id               | string(uuid)      | Unique ID of the dwelling for the related claim                                                                                                                                                                                                                                                                           |
+| vehicle\_id                | string(uuid)      | Unique ID of the vehicle for the related claim                                                                                                                                                                                                                                                                            |
+| driver\_id                 | string(uuid)      | Unique ID of the driver for the related claim                                                                                                                                                                                                                                                                             |
+| carrier\_claim\_identifier | string            | The carrier's identifier for the claim                                                                                                                                                                                                                                                                                    |
+| date\_occurred             | string(date-time) | Date the claim occurred                                                                                                                                                                                                                                                                                                   |
+| type                       | string(enum)      | Claim type Possible values:`WIND_AND_HAIL_DAMAGE`, `WATER_DAMAGE_AND_FREEZING`, `FIRE_AND_LIGHTNING_DAMAGE`, `OTHER_PROPERTY_DAMAGE`, `PERSONAL_LIABILITY`, `POWER_OUTAGE_OR_SURGE`, `THEFT`, `CAR_ACCIDENT`, `WINDSHIELD_DAMAGE`, `ANIMAL_COLLISION`, `VANDALISM`, `WEATHER`, `EMERGENCY_ROADSIDE_ASSISTANCE`, `MEDICAL` |
+| status                     | string(enum)      | Claim status Possible values:`OPEN`, `CLOSED`                                                                                                                                                                                                                                                                             |
+| date\_closed               | string(date-time) | Date the claim was closed                                                                                                                                                                                                                                                                                                 |
+| payout\_cents              | integer           | Payout of the claim in cents                                                                                                                                                                                                                                                                                              |
+| representative\_name       | string            | Full name of the claim representative                                                                                                                                                                                                                                                                                     |
+| representative\_phone      | string            | Phone number of the claim representative                                                                                                                                                                                                                                                                                  |
+| representative\_email      | string            | Email address of the claim representative                                                                                                                                                                                                                                                                                 |
+| [address](#address)        | object            | Address for the claim location                                                                                                                                                                                                                                                                                            |
+
+#### Loss events
+
+The table below covers loss event information from the insurance verification.
+
+| Name                    | Type              | Description                                                                                                                                                                                                                                                                                    |
+| ----------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                      | string(uuid)      | Unique ID of the loss event                                                                                                                                                                                                                                                                    |
+| date\_of\_occurrence    | string(date-time) | Date the loss event occurred                                                                                                                                                                                                                                                                   |
+| date\_of\_claim         | string            | Date of the claim                                                                                                                                                                                                                                                                              |
+| type                    | string(enum)      | Loss event type Possible values:`BURGLARY_AND_THEFT`, `WATER_DAMAGE_AND_FREEZING_DAMAGE`, `WIND_AND_HAIL_DAMAGE`, `FIRE`, `CUSTOMER_SLIPS_AND_FALLS`, `CUSTOMER_INJURY_AND_DAMAGE`, `PRODUCT_LIABILITY`, `STRUCK_BY_AN_OBJECT`, `REPUTATIONAL_HARM`, `VEHICULAR_ACCIDENT`, `WINDSHIELD_DAMAGE` |
+| amount\_paid\_cents     | integer           | Amount paid in cents                                                                                                                                                                                                                                                                           |
+| amount\_reserved\_cents | integer           | Amount reserved in cents                                                                                                                                                                                                                                                                       |
+| is\_subrogation         | boolean           | Status of subrogation success                                                                                                                                                                                                                                                                  |
+| is\_claim\_open         | boolean           | Status of open claim                                                                                                                                                                                                                                                                           |
+
+#### Documents
+
+This information below is for insurance document data from the insurance provider.
+
+| Name           | Type              | Description                                                                                                                                                   |
+| -------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id             | string(uuid)      | Unique ID of the document                                                                                                                                     |
+| title          | string            | Title of Document                                                                                                                                             |
+| document\_type | string(enum)      | Type of Document Possible values:`INSURANCE_APPLICATION`, `INSURANCE_BINDER`, `DECLARATIONS`, `ENDORSEMENT`, `INSURANCE_ID_CARD`, `VERIFICATION_OF_INSURANCE` |
+| date\_added    | string(date-time) | Effective date of Document                                                                                                                                    |
+| file           | string            | URL of the document file                                                                                                                                      |
+
+### Drivers
+
+The items below are automotive driver information from insurance provider records.
+
+| Name                      | Type         | Description                                                                                                                 |
+| ------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| id                        | string(uuid) | Unique ID of the driver                                                                                                     |
+| first\_name               | string       | First name of driver                                                                                                        |
+| middle\_name              | string       | Middle name of driver                                                                                                       |
+| last\_name                | string       | Last name of driver                                                                                                         |
+| drivers\_license          | string       | Driver's license number                                                                                                     |
+| drivers\_license\_state   | string       | State of Driver's license                                                                                                   |
+| date\_of\_birth\_str      | string       | Driver's date of birth                                                                                                      |
+| gender                    | string(enum) | Driver's gender Possible values:`MALE`, `FEMALE`, `NONBINARY`                                                               |
+| marital\_status           | string(enum) | Driver's marital status Possible values:`SINGLE`, `MARRIED`, `DIVORCED`, `WIDOWED`                                          |
+| relationship\_to\_insured | string(enum) | Relationship to the insured Possible values:`INSURED`, `SPOUSE`, `BROTHER`, `SISTER`, `FATHER`, `MOTHER`, `DAUGHTER`, `SON` |
+
+### Driving records
+
+This data is for automotive driving records from the insurance verification.
+
+| Name            | Type                    | Description                                                                                                                                                                                                                     |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | string(uuid)            | Unique ID of the driving record                                                                                                                                                                                                 |
+| driver\_id      | string(uuid)            | Unique ID of the driver connected to driving record                                                                                                                                                                             |
+| incident\_date  | string(date-time)       | Date the incident occurred                                                                                                                                                                                                      |
+| incident\_type  | string(enum)            | Incident type Possible values:`ACCIDENT`, `VIOLATION`                                                                                                                                                                           |
+| violation\_type | string(enum) (nullable) | The `violation_type` is only available if `incident_type = VIOLATION` Possible values:`MOVING`, `SPEEDING`, `RECKLESS_DRIVING`, `DRIVING_WITHOUT_VALID_LICENSE`, `HIT_AND_RUN`, `DISTRACTED_DRIVING`, `DRIVING_UNDER_INFLUENCE` |
+| is\_at\_fault   | boolean (nullable)      | Status of driver at fault                                                                                                                                                                                                       |
+
+# Identity
+
+This data is for policy holder identification information.
+
+| Name                           | Type         | Description                             |
+| ------------------------------ | ------------ | --------------------------------------- |
+| id                             | string(uuid) | Unique ID of the policy holder          |
+| first\_name                    | string       | First name of policy holder             |
+| last\_name                     | string       | Last name of policy holder              |
+| full\_name                     | string       | Full name of policy holder              |
+| middle\_initials               | string       | Middle initials of policy holder        |
+| email                          | string       | Email address of policy holder          |
+| ssn                            | string       | Social Security Number of policy holder |
+| date\_of\_birth                | string       | Date of birth of policy holder          |
+| [home\_address](#home-address) | object       | Home address of policy holder           |
+
+## Home address
+
+The information below is for the home address from the insurance provider information.
+
+| Name    | Type   | Description                                                |
+| ------- | ------ | ---------------------------------------------------------- |
+| zip     | string | Zip code of home address                                   |
+| city    | string | City of home address                                       |
+| state   | string | State of home address                                      |
+| street  | string | Home address street number, name, and unit (if applicable) |
+| country | string | Country of home address                                    |
+
+# Provider
+
+This field contains the name of the insurance provider.
+
+| Name     | Type   | Description             |
+| -------- | ------ | ----------------------- |
+| provider | string | Insurance provider name |
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+  * [Data Structure](#data-structure)
+  * [Example report](#example-report)
+  * [Verification data](#verification-data)
+    * [Insurance](#insurance)
+  * [Identity](#identity)
+    * [Home address](#home-address)
+  * [Provider](#provider)

@@ -1,0 +1,98 @@
+---
+title: "Using Multiple Data Sources for VOIE"
+description: "Options for blending different data sources"
+---
+
+[Suggest Edits](/edit/using-multiple-data-sources-for-voie)
+
+# Overview
+
+When using Truv Bridge to verify a user’s employment and income, you have three main approaches:
+
+1. Single data source
+2. Waterfall / Fallbacks
+3. Smart Routing
+
+Read on to learn about each option and how to implement it.
+
+# Single data source
+
+Choose a **single data source** if:
+
+* Your program only permits one method of verification, or
+* You want to let users pick a verification source and handle that selection in your own application.
+
+Refer to one of the following guides to launch the corresponding Truv Bridge:
+
+* [Payroll Income Verification](./payroll-income-verification#integration-process)
+* [Financial Accounts Income Verification](./voie-using-financial-accounts#bridge-token-specifications)
+* [Document Processing](./implementing-income-and-employment-document-processing#bridge-token-specifications)
+
+# Waterfall / Fallbacks
+
+A **waterfall** approach presents multiple data sources in a preferred order, ensuring users always have a fallback if one method fails or isn’t applicable. This is highly recommended because it improves conversion rates by increasing the likelihood of a successful verification.
+
+For instance, you might prompt users to try payroll first, but if that fails or is unavailable, prompt them to connect a financial account or upload documents instead.
+
+![](/images/docs/68b609d08c6a94b6fb69358a532be6033201821e0284bdbecddecbcebf49c16e-fallbacks.png)
+
+## Waterfall Implementation
+
+1. When creating a `bridge_token`, add the `data_sources` array.
+2. List your desired data sources, choosing from `payroll`, `financial_accounts`, and `docs`. The order of the elements determines the waterfall ordering.
+3. You can include any or all of these in your array.
+
+Example:
+
+<CodeGroup>
+  ```Text cURL
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "income",
+       "data_source": ["financial_accounts","payroll", "docs"],
+       "tracking_info": "any data for tracking current transaction"
+  }
+  '
+  ```
+</CodeGroup>
+
+# Smart Routing
+
+**Smart Routing** uses Truv’s routing engine to automatically choose the data source most likely to succeed for each user. For example, it might route some users to payroll and others to financial\_accounts based on historical performance and employer policies.
+
+## Why Use Smart Routing?
+
+* Higher Conversion Rates: Avoid prompting users for data sources with low success rates.
+* Better User Experience: Users are less likely to struggle with credentials they don’t know.
+* Ongoing Optimization: Truv continuously monitors success metrics across thousands of employers and updates its routing logic accordingly.
+
+## How It Works with a Waterfall
+
+Smart Routing determines the first data source a user sees. If that source fails or is unavailable, the user still follows your configured waterfall sequence for any remaining sources.
+
+## Getting Started with Smart Routing
+
+Reach out to [Truv Support](/cdn-cgi/l/email-protection#ef9c9a9f9f809d9baf9b9d9a99c18c8082) to enable Smart Routing for your account.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Single data source](#single-data-source)
+
+  * [Waterfall / Fallbacks](#waterfall--fallbacks)
+    * [Waterfall Implementation](#waterfall-implementation)
+
+  * [Smart Routing](#smart-routing)
+
+    * [Why Use Smart Routing?](#why-use-smart-routing)
+    * [How It Works with a Waterfall](#how-it-works-with-a-waterfall)
+    * [Getting Started with Smart Routing](#getting-started-with-smart-routing)

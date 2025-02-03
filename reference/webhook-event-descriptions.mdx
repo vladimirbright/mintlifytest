@@ -1,0 +1,512 @@
+---
+title: "Overview"
+description: "JUMP TO"
+---
+
+* [Introduction](/reference/introduction)
+* [Postman Collection](/reference/postman-1)
+* [Bridge SDK](https://docs.truv.com/docs/bridge-home)
+* [API Keys Rotation](/reference/api-keys-rotation)
+
+## Platform Management
+
+* [Data Structure](/reference/data-structure)
+* [Connection Lifecycle](/reference/connection-lifecycle)
+* [Webhooks](/reference/webhooks-api)
+  * [Webhook Event Descriptions](/reference/webhook-event-descriptions)
+
+## User Flow Endpoints
+
+* [Users](/reference/users)
+
+  * [List all usersget](/reference/users_list)
+  * [Create a userpost](/reference/users_create)
+  * [Retrieve a userget](/reference/users_read)
+  * [Update a userpatch](/reference/users_partial_update)
+  * [Delete a userdelete](/reference/users_delete)
+
+* [Bridge Token](/reference/bridge-token)
+  * [Create a bridge tokenpost](/reference/users_tokens)
+
+* [Companies and Data Providers](/reference/companies-and-data-providers)
+
+  * [List all companiesget](/reference/company_mapping_list)
+  * [Search companiespost](/reference/company_mapping)
+  * [Search companies with autocompleteget](/reference/company_autocomplete_search)
+  * [List all data providersget](/reference/providers-list)
+  * [Retrieve a data providerget](/reference/providers-detail)
+
+* [Account Links](/reference/account-links)
+
+  * [Retrieve a link tokenpost](/reference/link_exchange_token_flow)
+  * [List all linksget](/reference/links-list)
+  * [Retrieve a linkget](/reference/links-item)
+  * [Delete a linkdelete](/reference/delete_link_by_link_id)
+  * [Webhooks](/reference/links)
+
+* [Orders](/reference/orders-api)
+
+  * [Create an orderpost](/reference/orders_create)
+  * [Get list of orders by SSNpost](/reference/orders_list_lookup)
+  * [Retrieve an orderget](/reference/orders_read)
+  * [Create a data refresh orderpost](/reference/orders_create_refresh_order)
+  * [Update an orderpatch](/reference/orders_partial_update)
+  * [Cancel an orderpost](/reference/orders_cancel_create)
+  * [Add new employer to the existing orderpost](/reference/order-add-new-employer)
+  * [Webhooks](/reference/orders-1)
+
+* [Data Refresh](/reference/data-refresh)
+
+  * [Create a data refresh taskpost](/reference/refresh_task_create)
+  * [Retrieve a data refresh statusget](/reference/refresh_task)
+
+* [Customization Templates](/reference/customization-templates-api)
+
+  * [List all customization templatesget](/reference/v1_templates_list)
+  * [Create a customization templatepost](/reference/v1_templates_create)
+  * [Retrieve a customization templateget](/reference/v1_templates_read)
+  * [Update a customization templatepatch](/reference/v1_templates_partial_update)
+  * [Delete a customization templatedelete](/reference/v1_templates_delete)
+
+* [Webhooks](/reference/webhooks-1)
+
+  * [List all webhooksget](/reference/webhooks_list)
+  * [Create a webhookpost](/reference/webhooks_create)
+  * [Retrieve a webhookget](/reference/webhooks_read)
+  * [Update a webhookpatch](/reference/webhooks_partial_update)
+  * [Delete a webhookdelete](/reference/webhooks_delete)
+
+## User reports
+
+* [VOIE Reports](/reference/voie-reports)
+
+  * [Create a reportpost](/reference/users_reports)
+  * [Retrieve a reportget](/reference/users_get_report)
+
+* [VOA Reports](/reference/voa-reports)
+
+  * [Create an assets reportpost](/reference/assets-report-create)
+  * [Retrieve an assets reportget](/reference/assets-report-retrieve)
+
+* [Income Insights Reports](/reference/income-insights-reports)
+
+  * [Create a user bank income insights reportpost](/reference/income-insights-report-create)
+  * [Retrieve a user bank income insights reportget](/reference/income-insights-report-retrieve)
+
+* [DDS Reports](/reference/dds-reports)
+  * [Retrieve a deposit switch reportget](/reference/dds-report-retrieve)
+
+## income and Employment
+
+* [Employment](/reference/employment)
+
+  * [Retrieve an employmentget](/reference/link-last-employment)
+  * [List all employmentsget](/reference/link-employments)
+  * [Webhooks](/reference/employment-1)
+
+* [Identity](/reference/identity)
+
+  * [Retrieve an identityget](/reference/link-identity)
+  * [Webhooks](/reference/identity-1)
+
+* [Shifts](/reference/shifts)
+
+  * [List all shiftsget](/reference/link-shifts)
+  * [Webhooks](/reference/webhooks-3)
+
+* [Pay Statements](/reference/pay-statements)
+
+  * [List all statementsget](/reference/link-statements)
+  * [Retrieve a statementget](/reference/retrieve-statement)
+  * [Webhooks](/reference/pay-statements-webhook)
+
+* [Tax Documents](/reference/tax-documents)
+
+  * [List all tax documentsget](/reference/tax-documents-list)
+  * [Retrieve tax documentget](/reference/tax-document)
+
+* [Reports](/reference/reports)
+
+  * [Retrieve an employment history report for a linkget](/reference/employment_verification)
+  * [Retrieve an income and employment report for a linkget](/reference/income_verification)
+
+* [Uploaded Documents](/reference/uploaded-documents)
+
+  * [List all documentsget](/reference/list-documents)
+  * [Retrieve documentget](/reference/retrieve-document)
+
+## Direct Deposit Switching
+
+* [Bank Accounts](/reference/bank-accounts)
+
+  * [List all bank accountsget](/reference/link-bank-accounts)
+  * [Webhooks](/reference/bank-accounts-1)
+
+* [Deposit Switch Reports](/reference/deposit-switch-reports)
+
+  * [Retrieve a direct deposit switch report for a linkget](/reference/dds_report)
+  * [Retrieve a paycheck linked loan reportget](/reference/pll_report)
+
+## Insurance
+
+* [Insurance Reports](/reference/insurance-reports)
+
+  * [Retrieve an insurance reportget](/reference/insurance_report)
+  * [Retrieve an auto insurance reportget](/reference/link_detail_reports_insurance_auto)
+  * [Retrieve an home insurance reportget](/reference/link_detail_reports_insurance_home)
+
+## Financial Accounts
+
+* [Accounts](/reference/accounts)
+
+  * [List all balancesget](/reference/balances-list)
+  * [List financial accountsget](/reference/user-financial-accounts-list)
+
+* [Transactions](/reference/transactions)
+  * [List all bank transactionsget](/reference/link-bank-data-transactions)
+
+* [Income Report](/reference/income-report)
+
+  * [Creates a bank income reportpost](/reference/bank-income-report-create)
+  * [Retrieves a bank income reportget](/reference/bank-income-report-retrieve)
+
+## Scoring Attributes
+
+* [Report](/reference/scoring-attributes-report)
+
+  * [Retrieve a scoring attributes reportget](/reference/get_v1-scoring-attributes-reports-report-id)
+  * [Create a scoring attributes reportpost](/reference/post_v1-scoring-attributes-reports)
+
+# Webhook Event Descriptions
+
+View information about webhook events from Truv.
+
+# Overview
+
+Learn more about webhook events within Truv. Each section covers specific webhook events and provides an example payload.
+
+## Task status updated
+
+Truv responds with this webhook for each Task [status](/reference/connection-lifecycle#task-statuses) change. View the event type and sample below.
+
+* `task-status-updated`
+
+<CodeGroup>
+  ```json task-status-updated
+  {
+    "webhook_id": "17a80437ce23411dbfd656694d19a8c6",
+    "event_type": "task-status-updated",
+    "event_created_at": "2024-07-11T21:43:08.073930Z",
+    "product": "income",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "data_source": "payroll",
+    "task_id": "871fef2e79ea444ea2019c8845305d31",
+    "tracking_info": null,
+    "status": "parse",
+    "template_id": null,
+    "updated_at": "2024-07-11T21:43:08.075540+00:00"
+  }
+  ```
+</CodeGroup>
+
+## Order status updated
+
+This webhook occurs for each change to Order [status](/docs/orders-guide#order-status) when related to a Task. See the section below for the event type and example response.
+
+* `order-status-updated`
+
+<CodeGroup>
+  ```json order-status-updated
+  {
+    "webhook_id": "0aac461e7b774a38a72fd9c7c0eef8ee",
+    "event_type": "order-status-updated",
+    "event_created_at": "2024-07-11T21:40:48.424610Z",
+    "product": "income",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "data_source": "payroll",
+    "order_id": "ddd192646b3c48be96651a0ff25cef85",
+    "order_number": "4138538",
+    "employer_id": "d7166cffbfef4bd6a9e830cf5508e615",
+    "status": "completed",
+    "template_id": null,
+    "updated_at": "2024-07-11T21:40:48.424655+00:00"
+  }
+  ```
+</CodeGroup>
+
+## Link connected
+
+Truv responds with this webhook when a Link connection is successful. View the event type and sample below.
+
+* `link-connected`
+
+<CodeGroup>
+  ```json link-connected
+  {
+    "webhook_id": "db6b400ff9ca4d4a9f9fbbd02a8d986d",
+    "event_type": "link-connected",
+    "event_created_at": "2024-07-11T21:40:44.868433Z",
+    "product": "income",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "data_source": "payroll",
+    "tracking_info": null
+  }
+  ```
+</CodeGroup>
+
+## Link disconnected
+
+This webhook occurs as a Link connection error when a refresh task fails. See the section below for the event type and example response.
+
+* `link-disconnected`
+
+<CodeGroup>
+  ```json link-disconnected
+  {
+    "webhook_id": "7cd639e5db084e96bf0615ff35bf55a2",
+    "event_type": "link-disconnected",
+    "event_created_at": "2024-07-11T21:49:46.415518Z",
+    "product": "income",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "data_source": "payroll",
+    "tracking_info": null
+  }
+  ```
+</CodeGroup>
+
+## Link deleted
+
+Truv responds with this webhook when removing personal data and credentials from a Link. View the event type and sample below.
+
+* `link-deleted`
+
+<CodeGroup>
+  ```json link-deleted
+  {
+    "webhook_id": "6bb22aac115648a780cca95a6aef5845",
+    "event_type": "link-deleted",
+    "event_created_at": "2024-07-11T21:50:50.334120Z",
+    "product": "income",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "data_source": "payroll",
+    "tracking_info": null
+  }
+  ```
+</CodeGroup>
+
+## Employment and profile created
+
+These webhooks occur when successfully creating an employment, a profile, or both. They occur once per Link for each non-refresh Task completion. Multiple responses are available when finding additional employments. See the sections below for the event types and example responses.
+
+* `employment-created`
+
+<CodeGroup>
+  ```json employment-created
+  {
+    "webhook_id": "0439fbb7c28849eda51e7b8318792db2",
+    "event_type": "employment-created",
+    "event_created_at": "2024-07-11T21:40:44.946313Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "tracking_info": null,
+    "object_id": "20c6e88545eb4b32acd8bd21439f62a9"
+  }
+  ```
+</CodeGroup>
+
+* `profile-created`
+
+<CodeGroup>
+  ```json profile-created
+  {
+    "webhook_id": "479735bbe1d94acfbe8fa3e2b214fea9",
+    "event_type": "profile-created",
+    "event_created_at": "2024-07-11T21:40:45.037221Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "tracking_info": null,
+    "object_id": "3324b631ee86449b928367fd55b853c5"
+  }
+  ```
+</CodeGroup>
+
+## Employment and profile updated
+
+Truv responds with these webhooks for employment and profile after completing refresh Tasks. View the event types and samples below.
+
+* `employment-updated`
+
+<CodeGroup>
+  ```json employment-updated
+  {
+    "webhook_id": "0439fbb7c28849eda51e7b8318792db2",
+    "event_type": "employment-updated",
+    "event_created_at": "2024-07-11T21:40:44.946313Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "tracking_info": null,
+    "object_id": "20c6e88545eb4b32acd8bd21439f62a9"
+  }
+  ```
+</CodeGroup>
+
+* `profile-updated`
+
+<CodeGroup>
+  ```json profile-updated
+  {
+    "webhook_id": "479735bbe1d94acfbe8fa3e2b214fea9",
+    "event_type": "profile-updated",
+    "event_created_at": "2024-07-11T21:40:45.037221Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "tracking_info": null,
+    "object_id": "3324b631ee86449b928367fd55b853c5"
+  }
+  ```
+</CodeGroup>
+
+## Statements, shifts, and bank accounts created
+
+These webhooks occur when successfully creating statements, shifts, or bank accounts. They occur once per Link for each non-refresh Task completion. Multiple responses are available when finding additional employments. See the sections below for the event types and example responses. The `object_count` value indicates the number of objects associated with the event. For example, for a `statements-created` event, an `object_count` of 24 indicates that 24 statements were created.
+
+* `statements-created`
+
+<CodeGroup>
+  ```json statements-created
+  {
+    "webhook_id": "1c9ec888e93549c1982e93cfd8e2409e",
+    "event_type": "statements-created",
+    "event_created_at": "2024-07-11T21:40:44.947844Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "employment_id": "20c6e88545eb4b32acd8bd21439f62a9",
+    "tracking_info": null,
+    "objects_count": 24
+  }
+  ```
+</CodeGroup>
+
+* `shifts-created`
+
+<CodeGroup>
+  ```json shifts-created
+  {
+    "webhook_id": "ecc5e9a9eadf45dc8ff74d9a5042648e",
+    "event_type": "shifts-created",
+    "event_created_at": "2024-07-11T22:04:28.180035Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "23be02858a5547528b21d5c1879a85af",
+    "employment_id": "642206a4cde44aca80f8dc3fda50fb8f",
+    "tracking_info": null,
+    "objects_count": 40
+  }
+  ```
+</CodeGroup>
+
+* `bank-accounts-created`
+
+<CodeGroup>
+  ```json bank-accounts-created
+  {
+    "webhook_id": "80f9fdd863c8444a8a99b90cd9b0e03b",
+    "event_type": "bank-accounts-created",
+    "event_created_at": "2024-07-11T21:40:44.959211Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "employment_id": "20c6e88545eb4b32acd8bd21439f62a9",
+    "tracking_info": null,
+    "objects_count": 2
+  }
+  ```
+</CodeGroup>
+
+## Statements, shifts, and bank accounts updated
+
+Truv responds with these webhooks for statements, shifts, and bank accounts after completing refresh Tasks. Notifications only occur when the `objects_count` value changes from the previous refresh. View the event types and samples below.
+
+* `statements-updated`
+
+<CodeGroup>
+  ```json statements-updated
+  {
+    "webhook_id": "1c9ec888e93549c1982e93cfd8e2409e",
+    "event_type": "statements-updated",
+    "event_created_at": "2024-07-11T21:40:44.947844Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "employment_id": "20c6e88545eb4b32acd8bd21439f62a9",
+    "tracking_info": null,
+    "objects_count": 9
+  }
+  ```
+</CodeGroup>
+
+* `shifts-updated`
+
+<CodeGroup>
+  ```json shifts-updated
+  {
+    "webhook_id": "ecc5e9a9eadf45dc8ff74d9a5042648e",
+    "event_type": "shifts-updated",
+    "event_created_at": "2024-07-11T22:04:28.180035Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "23be02858a5547528b21d5c1879a85af",
+    "employment_id": "642206a4cde44aca80f8dc3fda50fb8f",
+    "tracking_info": null,
+    "objects_count": 5
+  }
+  ```
+</CodeGroup>
+
+* `bank-accounts-updated`
+
+<CodeGroup>
+  ```json bank-accounts-updated
+  {
+    "webhook_id": "80f9fdd863c8444a8a99b90cd9b0e03b",
+    "event_type": "bank-accounts-updated",
+    "event_created_at": "2024-07-11T21:40:44.959211Z",
+    "link_id": "d8a8945ee2b049b193110cfba643f5df",
+    "user_id": "adbe707dddee4334bffaeb5866272740",
+    "product": "income",
+    "data_source": "payroll",
+    "task_id": "e9af065bf799471c835774d43c7791e4",
+    "employment_id": "20c6e88545eb4b32acd8bd21439f62a9",
+    "tracking_info": null,
+    "objects_count": 2
+  }
+  ```
+</CodeGroup>

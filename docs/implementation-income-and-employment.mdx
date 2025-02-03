@@ -1,0 +1,638 @@
+---
+title: "Implementing Income and Employment Verification Solutions"
+description: "Use this guide to configure and connect your users in your Truv workflow."
+---
+
+[Suggest Edits](/edit/implementation-income-and-employment)
+
+# Overview
+
+Follow the step-by-step guide below to use Truv in your application for income and employment verification.
+
+# Summary of sequence diagram
+
+The diagram below shows the overview of token and data exchanges. The sequence covers your application, Truv Bridge, your server and backend, as well as the Truv API. View [the Steps section](#steps) to get started.
+
+1. Request a `bridge_token` value from your backend.
+2. On your backend server, create a user and request a bridge token from Truv's API.
+3. Initialize Truv Bridge in your application and pass the `bridge_token` to **TruvBridge.init**.
+4. When a user successfully connects their account, it generates a `public_token`. Truv Bridge hands off the `public_token` to the client through the **onSuccess** callback.
+5. After the connection status changes, webhook events begin to arrive.
+6. Exchange the temporary `public_token` for a permanent `access_token`.
+7. Make an API request to Truv to get the data.
+
+![](/images/docs/ca6ebf9-Image_103_1.png)
+
+<Info />
+
+**User level report**
+
+Once the user completes the connection of all accounts (one by one, each requires a new bridge token), and all the webhooks with status updates are received, the report can be generated.
+
+See the diagram flow below to create the user level report:
+
+![](/images/docs/2f8318d-image_53.png)
+
+## Authentication
+
+<Info>
+  Requests to Truv APIs *must use HTTPS with TLS 1.2v encryption or higher*.
+</Info>
+
+All API requests require the `X-Access-Client-Id` and `X-Access-Secret` headers. These contain your **Client ID** and **Access secret**. These values are in your [Truv Dashboard](https://dashboard.truv.com/app/development/keys).
+
+<Warning>
+  The **Client ID** and **Access secret** may allow access to sensitive information. Store these in a secure and private place.
+</Warning>
+
+For API requests, the base URL `https://prod.truv.com/v1/` is the same in each environment. Update the access key with the prefixes below for use with their respective environments.
+
+* `sandbox`
+* `dev`
+* `prod`
+
+## Steps
+
+The steps below cover each action for setting up your Truv workflow.
+
+### 1. Create a User and request a Bridge Token
+
+Create a [User](/reference/users) in the Truv backend to link different data providers. See the sample cURL request below.
+
+<CodeGroup>
+  ```curl cURL
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "external_user_id": "12345",
+       "first_name": "John",
+       "last_name": "Doe",
+       "email": "[email protected]",
+       "phone": "+14155554193",
+       "ssn": "222233333"
+  }
+  '
+  ```
+</CodeGroup>
+
+<Warning>
+  The Truv backend only allows a single user for each account in your system. However, a User may have connected with multiple Bridge Tokens and data providers. Store Truv’s User ID and related information in your database.
+</Warning>
+
+Create a [Bridge Token](/reference/bridge-token) for the User and include `product_type = income` in the configuration. View the cURL sample below.
+
+<CodeGroup>
+  ```curl curl
+  curl --request POST \
+       --url https://prod.truv.com/v1/users/{user_id}/tokens/ \
+       --header 'X-Access-Client-Id: {{client_id}}' \
+       --header 'X-Access-Secret: {{access_key}}	' \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+       "product_type": "income",
+       "tracking_info": "any data for tracking current connection"
+  }
+  '
+  ```
+</CodeGroup>
+
+### 2. Initiate Truv Bridge
+
+Using the Bridge Token, initialize the Truv Bridge in your user interface. Follow the example below and pass the [Bridge Token](/reference/bridge-token) to **TruvBridge.init**.
+
+<CodeGroup>
+  ```html html
+  <script src="https://cdn.truv.com/bridge.js"></script>
+  <script>
+    // Step 2 - Call backend to retrieve a bridge_token from Truv
+    const bridgeToken = <%= Value returned by API call to acquire bridge_token %>
+
+    // Step 3 - Initialize Bridge
+    const bridge = TruvBridge.init({
+          bridgeToken: bridgeToken.bridge_token,
+      })
+  </script>
+  ```
+</CodeGroup>
+
+### 3. Test Credentials
+
+Test your implementation using sample credentials. Refer to [Testing](/docs/testing) or view the sample usernames and passwords below.
+
+| Username             | Password     | Description                                   |
+| -------------------- | ------------ | --------------------------------------------- |
+| goodlogin            | goodpassword | Full time current employment                  |
+| hourly.part-time     | goodpassword | Hourly part-time worker                       |
+| multiple.employments | goodpassword | Multiple employments with different employers |
+
+#### Document processing testing
+
+When testing for [Integrating Document Processing](/docs/implementing-income-and-employment-document-processing), the PDF downloads in the list below cover different scenarios for sandbox use. Upload the documents for testing different sandbox response results.
+
+* Successful documents- [Most recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/most.recent.paystub.pdf), [Next recent paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/next.recent.paystub.pdf), [First paystub](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/first.paystub.pdf), [W2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/w2.pdf)
+
+* Fraud detection documents
+
+  * Tampered documents - [Tampered 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f1.paystub.pdf), [Tampered 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f2.paystub.pdf), [Tampered 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/f3.paystub.pdf)
+  * Various Social Security Numbers - [SSN 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn1.paystub.pdf), [SSN 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn2.paystub.pdf), [SSN 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/ssn3.paystub.pdf)
+  * Various company names - [Company 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn1.paystub.pdf), [Company 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn2.paystub.pdf), [Company 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/cn3.paystub.pdf)
+  * Various applicant names - [Applicant 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p1.paystub.pdf), [Applicant 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p2.paystub.pdf), [Applicant 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/p3.paystub.pdf)
+
+* Documents without data, unable to parse specific critical information - [No data 1](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd1.paystub.pdf), [No data 2](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd2.paystub.pdf), [No data 3](https://citadelid-resources.s3.us-west-2.amazonaws.com/doc_upload/nd3.paystub.pdf)
+
+<Info>
+  Test scenarios use the file name to return results. Testing ignores the file contents when in the sandbox.
+</Info>
+
+### 4. Exchange tokens
+
+When Users connect their accounts successfully, it creates a `public_token`. The Bridge hands off the `public_token` to the client. This uses the **onSuccess** callback after a user has successfully created a Link.
+
+<Info>
+  The `public_token` expires after six hours.
+</Info>
+
+Exchange the temporary` public_token` for a permanent `link_id` with the [Exchange Tokens endpoint](/reference/link_exchange_token_flow). The `public_token` is invalidated after exchanging for a `link_id`. View the sample JSON values below.
+
+<CodeGroup>
+  ```json json
+  {
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "link_id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "link_hash": "bc917458a3da4b2c8cc8282aa1707aaa"
+  }
+  ```
+</CodeGroup>
+
+### 5. Monitor webhooks
+
+[Webhooks](/docs/webhooks) to your server can help monitor and notify you of Task status changes. Use `link_id` or `task_id` to match the webhook events with Link connections.
+
+<CodeGroup>
+  ```json json
+  {
+      "webhook_id": "609a82aab21e4d9ba2569f35e9e8f26a",
+      "event_type": "task-status-updated",
+      "updated_at": "2021-04-26T13:02:20.369267+00:00",
+      "task_id": "67f2924530564282bbaf6d27655e94a4",
+      "link_id": "64f8e374949c4b769706028022626bf1",
+      "product": "income",
+      "tracking_info": "27266f35-bb54-44c3-8905-070641a0c0aa",
+      "status": "login"
+  }
+  ```
+</CodeGroup>
+
+### 6. Retrieve data
+
+Use the permanent `link_id` to generate an [Income and Employment report](/reference/income_verification). You can also use Link ID to pull data from the [Employment Data endpoints](/reference/data-structure).
+
+Alternatively, you can generate [user level report](/reference/voie-reports) which will contain the data from *all linked accounts* and have a specific report ID which is [accepted by GSE](/docs/voie-for-fanniemae-and-freddiemac) (Fannie Mae and Freddie Mac)
+
+The JSON data below contains a sample payload.
+
+<CodeGroup>
+  ```json Link Income Report
+  {
+    "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+    "status": "new",
+    "finished_at": "2021-04-06T11:30:00Z",
+    "completed_at": "2021-04-06 11:30:00+00:00",
+    "access_token": "48427a36d43c4d5aa6324bc06c692456",
+    "tracking_info": "user123456",
+    "refresh_status": "new",
+    "employments": [
+      {
+        "income": "70000.00",
+        "income_unit": "YEARLY",
+        "pay_frequency": "M",
+        "statements": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "check_number": "29205182",
+            "pay_date": "2018-05-15",
+            "net_pay": "11500.32",
+            "net_pay_ytd": "31980.64",
+            "gross_pay": "13900.11",
+            "gross_pay_ytd": "49200.00",
+            "bonus": "100.00",
+            "commission": "12000.00",
+            "hours": "40.00",
+            "basis_of_pay": "S",
+            "period_start": "2018-05-01",
+            "period_end": "2018-05-15",
+            "regular": "1695.11",
+            "regular_ytd": "23000.00",
+            "other_pay_ytd": "700.00",
+            "bonus_ytd": "1000.00",
+            "commission_ytd": "24000.00",
+            "overtime": "45.00",
+            "overtime_ytd": "500.00",
+            "other_pay": "60.00",
+            "earnings": [
+              {
+                "name": "Regular",
+                "amount": "1935.77",
+                "category": "regular",
+                "rate": null,
+                "units": null
+              },
+              {
+                "name": "Overtime",
+                "amount": "60.58",
+                "category": "overtime",
+                "rate": "30.29",
+                "units": "2"
+              }
+            ],
+            "earnings_ytd": [
+              {
+                "name": "Regular",
+                "amount": "1935.77",
+                "category": "regular",
+                "rate": null,
+                "units": null
+              },
+              {
+                "name": "Overtime",
+                "amount": "60.58",
+                "category": "overtime",
+                "rate": "30.29",
+                "units": "2"
+              }
+            ],
+            "deductions": [
+              {
+                "amount": "127.01",
+                "category": "socialsec",
+                "name": "Social Security Tax"
+              },
+              {
+                "amount": "46.23",
+                "category": "state",
+                "name": "VA State Income Tax"
+              },
+              {
+                "amount": "29.7",
+                "category": "medicare",
+                "name": "Medicare Tax"
+              }
+            ],
+            "deductions_ytd": [
+              {
+                "amount": "127.01",
+                "category": "socialsec",
+                "name": "Social Security Tax"
+              },
+              {
+                "amount": "46.23",
+                "category": "state",
+                "name": "VA State Income Tax"
+              },
+              {
+                "amount": "29.7",
+                "category": "medicare",
+                "name": "Medicare Tax"
+              }
+            ],
+            "md5sum": "03639d6a6624f69a54a88ea90bd25e9d",
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/paystub_sample.pdf",
+            "derived_fields": [
+              "basis_of_pay"
+            ],
+            "missing_data_fields": [
+              "earnings_ytd"
+            ]
+          }
+        ],
+        "annual_income_summary": [
+          {
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "year": 2018,
+            "regular": "23000.00",
+            "bonus": "1000.00",
+            "commission": "24000.00",
+            "overtime": "500.00",
+            "other_pay": "700.00",
+            "net_pay": "31980.64",
+            "gross_pay": "49200.00"
+          }
+        ],
+        "bank_accounts": [
+          {
+            "account_number": "1234567890",
+            "routing_number": "123456789",
+            "account_name": "My Bank",
+            "account_type": "C",
+            "deposit_type": "A",
+            "deposit_value": "200.00",
+            "bank_name": "TD Bank"
+          }
+        ],
+        "annual_salary": "70000.00",
+        "hourly_salary": "36.40",
+        "w2s": [
+          {
+            "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/W2_sample.pdf",
+            "md5sum": "f65e30c39124ad707ac4b3aeaee923a7",
+            "year": 2020,
+            "wages": "900.50",
+            "federal_tax": "75.01",
+            "social_security_wages": "900.50",
+            "social_security_tax": "56.30",
+            "medicare_wages": "900.50",
+            "medicare_tax": "13.15"
+          }
+        ],
+        "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+        "is_active": false,
+        "job_title": "PR associate",
+        "job_type": "F",
+        "start_date": "2018-01-01",
+        "original_hire_date": "2017-06-21",
+        "end_date": "2022-06-16",
+        "external_last_updated": "2022-06-16",
+        "dates_from_statements": false,
+        "derived_fields": [
+          "is_active"
+        ],
+        "missing_data_fields": [
+          "w2s"
+        ],
+        "manager_name": "Jenny McDouglas",
+        "profile": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "middle_initials": "K",
+          "email": "[email protected]",
+          "ssn": "123456789",
+          "date_of_birth": "1992-03-03",
+          "home_address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210",
+            "country": "US"
+          }
+        },
+        "company": {
+          "name": "Facebook Demo",
+          "address": {
+            "street": "1 Morgan Ave",
+            "city": "Los Angeles",
+            "state": "CA",
+            "zip": "90210",
+            "country": "US"
+          },
+          "phone": "6503087300"
+        }
+      }
+    ],
+    "pdf_report": "https://citadelid-resources.s3-us-west-2.amazonaws.com/report.pdf",
+    "provider": "adp",
+    "data_source": "payroll"
+  }
+  ```
+
+  ```json User Report
+  {
+    "report_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "created_at": "2022-05-04T11:30:00Z",
+    "completed_at": "2022-05-04T12:00:00Z",
+    "links": [
+      {
+        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "link_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "tracking_info": "string",
+        "provider": "string",
+        "employments": [
+          {
+            "income": "70000.00",
+            "income_unit": "YEARLY",
+            "pay_rate": "6500.00",
+            "pay_frequency": "M",
+            "statements": [
+              {
+                "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+                "check_number": "29205182",
+                "pay_date": "2018-05-15",
+                "net_pay": "11500.32",
+                "net_pay_ytd": "31980.64",
+                "gross_pay": "13900.11",
+                "gross_pay_ytd": "49200.00",
+                "bonus": "100.00",
+                "commission": "12000.00",
+                "hours": "40.00",
+                "basis_of_pay": "S",
+                "period_start": "2018-05-01",
+                "period_end": "2018-05-15",
+                "regular": "1695.11",
+                "regular_ytd": "23000.00",
+                "other_pay_ytd": "700.00",
+                "bonus_ytd": "1000.00",
+                "commission_ytd": "24000.00",
+                "overtime": "45.00",
+                "overtime_ytd": "500.00",
+                "other_pay": "60.00",
+                "earnings": [
+                  {
+                    "name": "Regular",
+                    "amount": "1935.77",
+                    "category": "regular",
+                    "rate": null,
+                    "units": null
+                  },
+                  {
+                    "name": "Overtime",
+                    "amount": "60.58",
+                    "category": "overtime",
+                    "rate": "30.29",
+                    "units": "2"
+                  }
+                ],
+                "earnings_ytd": [
+                  {
+                    "name": "Regular",
+                    "amount": "1935.77",
+                    "category": "regular",
+                    "rate": null,
+                    "units": null
+                  },
+                  {
+                    "name": "Overtime",
+                    "amount": "60.58",
+                    "category": "overtime",
+                    "rate": "30.29",
+                    "units": "2"
+                  }
+                ],
+                "deductions": [
+                  {
+                    "amount": "127.01",
+                    "category": "socialsec",
+                    "name": "Social Security Tax"
+                  },
+                  {
+                    "amount": "46.23",
+                    "category": "state",
+                    "name": "VA State Income Tax"
+                  },
+                  {
+                    "amount": "29.7",
+                    "category": "medicare",
+                    "name": "Medicare Tax"
+                  }
+                ],
+                "deductions_ytd": [
+                  {
+                    "amount": "127.01",
+                    "category": "socialsec",
+                    "name": "Social Security Tax"
+                  },
+                  {
+                    "amount": "46.23",
+                    "category": "state",
+                    "name": "VA State Income Tax"
+                  },
+                  {
+                    "amount": "29.7",
+                    "category": "medicare",
+                    "name": "Medicare Tax"
+                  }
+                ],
+                "md5sum": "03639d6a6624f69a54a88ea90bd25e9d",
+                "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/paystub_sample.pdf",
+                "derived_fields": [
+                  "basis_of_pay"
+                ],
+                "missing_data_fields": [
+                  "earnings_ytd"
+                ]
+              }
+            ],
+            "annual_income_summary": [
+              {
+                "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+                "year": 2018,
+                "regular": "23000.00",
+                "bonus": "1000.00",
+                "commission": "24000.00",
+                "overtime": "500.00",
+                "other_pay": "700.00",
+                "net_pay": "31980.64",
+                "gross_pay": "49200.00"
+              }
+            ],
+            "bank_accounts": [
+              {
+                "account_number": "1234567890",
+                "routing_number": "123456789",
+                "account_name": "My Bank",
+                "account_type": "C",
+                "deposit_type": "A",
+                "deposit_value": "200.00",
+                "bank_name": "TD Bank"
+              }
+            ],
+            "w2s": [
+              {
+                "file": "https://citadelid-resources.s3-us-west-2.amazonaws.com/W2_sample.pdf",
+                "md5sum": "f65e30c39124ad707ac4b3aeaee923a7",
+                "year": 2020,
+                "wages": "900.50",
+                "federal_tax": "75.01",
+                "social_security_wages": "900.50",
+                "social_security_tax": "56.30",
+                "medicare_wages": "900.50",
+                "medicare_tax": "13.15",
+                "gross_pay": "18211.48"
+              }
+            ],
+            "id": "24d7e80942ce4ad58a93f70ce4115f5c",
+            "is_active": false,
+            "job_title": "PR associate",
+            "job_type": "F",
+            "start_date": "2018-01-01",
+            "original_hire_date": "2017-06-21",
+            "end_date": "2024-02-26",
+            "external_last_updated": "2024-02-26",
+            "derived_fields": [
+              "is_active"
+            ],
+            "missing_data_fields": [
+              "w2s"
+            ],
+            "manager_name": "Jenny McDouglas",
+            "profile": {
+              "id": "48427a36d43c4d5aa6324bc06c692456",
+              "created_at": "2022-06-07T15:00:00Z",
+              "updated_at": "2022-06-31T15:00:00Z",
+              "first_name": "John",
+              "last_name": "Doe",
+              "full_name": "John Doe",
+              "middle_initials": "K",
+              "email": "[email protected]",
+              "ssn": "123456789",
+              "date_of_birth": "1992-03-03",
+              "home_address": {
+                "street": "1 Morgan Ave",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip": "90210",
+                "country": "US"
+              }
+            },
+            "company": {
+              "name": "Facebook Demo",
+              "address": {
+                "street": "1 Morgan Ave",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip": "90210",
+                "country": "US"
+              },
+              "phone": "6503087300",
+              "ein": "12-345678"
+            },
+            "gse_accepted": true
+          }
+        ]
+      }
+    ]
+  }
+  ```
+</CodeGroup>
+
+# Refresh or Continuous Access
+
+Continuous Access allows you to refresh data on a fixed schedule. This reduces the need for users to re-authenticate. When new or updated data is available, Truv sends [webhook](/docs/webhooks) events on updated information. This can include changes in bank accounts, direct deposit account allocations, employment status, income, shifts, as well as statement data.
+
+To use continuous access for your account, [contact Truv Support to get started](/cdn-cgi/l/email-protection#dcafa9acacb3aea89ca8aea9aaf2bfb3b1).
+
+<Info>
+  Depending on the payroll system, user authentication may expire. For multi-factor authentication or one-time passcode (OTP) configurations, [users may need to re-authenticate ](/docs/update-mode#handling-data-refresh-authentication-issues)before data monitoring can continue.
+</Info>
+
+Trigger data refreshes from the backend with the [Data Refresh endpoint](/reference/data-refresh). Use the [Data Refresh Mode guide](/docs/update-mode) for more information on incomplete refreshes.
+
+[Deleting the Link](/reference/delete_link_by_link_id) also removes all associated data for a specific user when disconnecting.
+
+***
+
+* [Table of Contents](#)
+
+* * [Overview](#overview)
+
+  * [Summary of sequence diagram](#summary-of-sequence-diagram)
+
+    * [Authentication](#authentication)
+    * [Steps](#steps)
+
+  * [Refresh or Continuous Access](#refresh-or-continuous-access)
