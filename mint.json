@@ -212,208 +212,393 @@
       ]
     },
     {
-      "group": "User Flow Endpoints",
+      "group": "Bridge Token",
       "pages": [
-        "reference/users",
-        {
-          "group": "Users",
-          "pages": [
-            "reference/users"
-          ]
-        },
-        {
-          "group": "Bridge Token",
-          "pages": [
-            "reference/bridge-token"
-          ]
-        },
-        {
-          "group": "Companies and Data Providers",
-          "pages": [
-            "reference/companies-and-data-providers"
-          ]
-        },
-        {
-          "group": "Account Links",
-          "pages": [
-            "reference/account-links",
-            "reference/links"
-          ]
-        },
-        {
-          "group": "Orders",
-          "pages": [
-            "reference/orders-api",
-            "reference/orders-1"
-          ]
-        },
-        {
-          "group": "Data Refresh",
-          "pages": [
-            "reference/data-refresh"
-          ]
-        },
-        {
-          "group": "Customization Templates",
-          "pages": [
-            "reference/customization-templates-api"
-          ]
-        },
-        {
-          "group": "Webhooks",
-          "pages": [
-            "reference/webhooks-1"
-          ]
-        }
+        "bridge-token/create-a-bridge-token",
+        "bridge-token/create-a-bridge-token-1"
       ]
     },
     {
-      "group": "User reports",
+      "group": "Companies and Data Providers",
       "pages": [
-        "reference/voie-reports",
-        {
-          "group": "VOIE Reports",
-          "pages": [
-            "reference/voie-reports"
-          ]
-        },
-        {
-          "group": "VOA Reports",
-          "pages": [
-            "reference/voa-reports"
-          ]
-        },
-        {
-          "group": "Income Insights Reports",
-          "pages": [
-            "reference/income-insights-reports"
-          ]
-        },
-        {
-          "group": "DDS Reports",
-          "pages": [
-            "reference/dds-reports"
-          ]
-        }
+        "companies-and-data-providers/list-all-companies",
+        "companies-and-data-providers/search-companies",
+        "companies-and-data-providers/search-companies-with-autocomplete",
+        "companies-and-data-providers/list-all-data-providers",
+        "companies-and-data-providers/retrieve-a-data-provider"
       ]
     },
     {
-      "group": "income and Employment",
+      "group": "Document upload",
       "pages": [
-        "reference/employment",
-        {
-          "group": "Employment",
-          "pages": [
-            "reference/employment",
-            "reference/employment-1"
-          ]
-        },
-        {
-          "group": "Identity",
-          "pages": [
-            "reference/identity",
-            "reference/identity-1"
-          ]
-        },
-        {
-          "group": "Shifts",
-          "pages": [
-            "reference/shifts",
-            "reference/webhooks-3"
-          ]
-        },
-        {
-          "group": "Pay Statements",
-          "pages": [
-            "reference/pay-statements",
-            "reference/pay-statements-webhook"
-          ]
-        },
-        {
-          "group": "Tax Documents",
-          "pages": [
-            "reference/tax-documents"
-          ]
-        },
-        {
-          "group": "Reports",
-          "pages": [
-            "reference/reports"
-          ]
-        },
-        {
-          "group": "Uploaded Documents",
-          "pages": [
-            "reference/uploaded-documents"
-          ]
-        }
+        "document-upload/create-document-credentials-for-uploading-to-aws-s3-storage",
+        "document-upload/create-a-new-document-parsing-task",
+        "document-upload/get-document-parsing-task-status"
       ]
     },
     {
-      "group": "Direct Deposit Switching",
+      "group": "Invoices",
       "pages": [
-        "reference/bank-accounts",
-        {
-          "group": "Bank Accounts",
-          "pages": [
-            "reference/bank-accounts",
-            "reference/bank-accounts-1"
-          ]
-        },
-        {
-          "group": "Deposit Switch Reports",
-          "pages": [
-            "reference/deposit-switch-reports"
-          ]
-        }
+        "invoices/list-all-invoices",
+        "invoices/retrieve-an-invoice"
       ]
     },
     {
-      "group": "Insurance",
+      "group": "Account Links",
       "pages": [
-        "reference/insurance-reports",
-        {
-          "group": "Insurance Reports",
-          "pages": [
-            "reference/insurance-reports"
-          ]
-        }
+        "account-links/retrieve-a-link-token",
+        "account-links/list-all-links",
+        "account-links/retrieve-a-link",
+        "account-links/delete-a-link"
       ]
     },
     {
-      "group": "Financial Accounts",
+      "group": "Insurance Reports",
       "pages": [
-        "reference/accounts",
-        {
-          "group": "Accounts",
-          "pages": [
-            "reference/accounts"
-          ]
-        },
-        {
-          "group": "Transactions",
-          "pages": [
-            "reference/transactions"
-          ]
-        },
-        {
-          "group": "Income Report",
-          "pages": [
-            "reference/income-report"
-          ]
-        }
+        "insurance-reports/retrieve-an-insurance-report",
+        "insurance-reports/retrieve-an-insurance-report-1",
+        "insurance-reports/retrieve-an-auto-insurance-report",
+        "insurance-reports/retrieve-an-home-insurance-report"
       ]
     },
     {
-      "group": "Scoring Attributes",
+      "group": "Transactions",
       "pages": [
-        "reference/scoring-attributes-report",
-        {
-          "group": "Report",
-          "pages": [
-            "reference/scoring-attributes-report"
-          ]
-        }
+        "transactions/list-all-balances",
+        "transactions/creates-a-bank-income-report",
+        "transactions/retrieves-a-bank-income-report",
+        "transactions/list-all-bank-transactions"
+      ]
+    },
+    {
+      "group": "Bank Accounts",
+      "pages": [
+        "bank-accounts/list-all-bank-accounts"
+      ]
+    },
+    {
+      "group": "Deposit Switch Reports",
+      "pages": [
+        "deposit-switch-reports/retrieve-a-direct-deposit-switch-report-for-a-link",
+        "deposit-switch-reports/retrieve-a-paycheck-linked-loan-report",
+        "deposit-switch-reports/retrieve-a-direct-deposit-switch-report",
+        "deposit-switch-reports/retrieve-a-paycheck-linked-lending-report"
+      ]
+    },
+    {
+      "group": "Uploaded Documents",
+      "pages": [
+        "uploaded-documents/list-all-documents",
+        "uploaded-documents/retrieve-document"
+      ]
+    },
+    {
+      "group": "Employment",
+      "pages": [
+        "employment/retrieve-an-employment",
+        "employment/list-all-employments"
+      ]
+    },
+    {
+      "group": "Reports",
+      "pages": [
+        "reports/retrieve-an-employment-history-report-for-a-link",
+        "reports/retrieve-an-income-and-employment-report-for-a-link",
+        "reports/retrieve-an-income-and-employment-report",
+        "reports/retrieve-an-employment-history-report"
+      ]
+    },
+    {
+      "group": "Identity",
+      "pages": [
+        "identity/retrieve-an-identity"
+      ]
+    },
+    {
+      "group": "Shifts",
+      "pages": [
+        "shifts/list-all-shifts"
+      ]
+    },
+    {
+      "group": "Pay Statements",
+      "pages": [
+        "pay-statements/list-all-statements",
+        "pay-statements/retrieve-a-statement"
+      ]
+    },
+    {
+      "group": "Tax Documents",
+      "pages": [
+        "tax-documents/list-all-tax-documents",
+        "tax-documents/retrieve-tax-document"
+      ]
+    },
+    {
+      "group": "Orders",
+      "pages": [
+        "orders/create-an-order",
+        "orders/get-list-of-orders-by-ssn",
+        "orders/retrieve-an-order",
+        "orders/create-a-data-refresh-order",
+        "orders/update-an-order",
+        "orders/cancel-an-order",
+        "orders/add-new-employer-to-the-existing-order"
+      ]
+    },
+    {
+      "group": "Data Refresh",
+      "pages": [
+        "data-refresh/create-a-data-refresh-task",
+        "data-refresh/retrieve-a-data-refresh-status"
+      ]
+    },
+    {
+      "group": "Customization Templates",
+      "pages": [
+        "customization-templates/list-all-customization-templates",
+        "customization-templates/create-a-customization-template",
+        "customization-templates/retrieve-a-customization-template",
+        "customization-templates/delete-a-customization-template",
+        "customization-templates/update-a-customization-template"
+      ]
+    },
+    {
+      "group": "Users",
+      "pages": [
+        "users/list-all-users",
+        "users/create-a-user",
+        "users/retrieve-a-user",
+        "users/delete-a-user",
+        "users/update-a-user",
+        "users/retrieve-a-deposit-switch-report",
+        "users/list-financial-accounts",
+        "users/retrieve-a-report"
+      ]
+    },
+    {
+      "group": "VOA Reports",
+      "pages": [
+        "voa-reports/create-an-assets-report",
+        "voa-reports/retrieve-an-assets-report"
+      ]
+    },
+    {
+      "group": "Income Insights Reports",
+      "pages": [
+        "income-insights-reports/create-a-user-bank-income-insights-report",
+        "income-insights-reports/retrieve-a-user-bank-income-insights-report"
+      ]
+    },
+    {
+      "group": "VOIE Reports",
+      "pages": [
+        "voie-reports/create-a-report"
+      ]
+    },
+    {
+      "group": "Webhooks",
+      "pages": [
+        "webhooks/list-all-webhooks",
+        "webhooks/create-a-webhook",
+        "webhooks/retrieve-a-webhook",
+        "webhooks/delete-a-webhook",
+        "webhooks/update-a-webhook"
+      ]
+    },
+    {
+      "group": "Bridge Token",
+      "pages": [
+        "bridge-token/create-a-bridge-token",
+        "bridge-token/create-a-bridge-token-1"
+      ]
+    },
+    {
+      "group": "Companies and Data Providers",
+      "pages": [
+        "companies-and-data-providers/list-all-companies",
+        "companies-and-data-providers/search-companies",
+        "companies-and-data-providers/search-companies-with-autocomplete",
+        "companies-and-data-providers/list-all-data-providers",
+        "companies-and-data-providers/retrieve-a-data-provider"
+      ]
+    },
+    {
+      "group": "Document upload",
+      "pages": [
+        "document-upload/create-document-credentials-for-uploading-to-aws-s3-storage",
+        "document-upload/create-a-new-document-parsing-task",
+        "document-upload/get-document-parsing-task-status"
+      ]
+    },
+    {
+      "group": "Invoices",
+      "pages": [
+        "invoices/list-all-invoices",
+        "invoices/retrieve-an-invoice"
+      ]
+    },
+    {
+      "group": "Account Links",
+      "pages": [
+        "account-links/retrieve-a-link-token",
+        "account-links/list-all-links",
+        "account-links/retrieve-a-link",
+        "account-links/delete-a-link"
+      ]
+    },
+    {
+      "group": "Insurance Reports",
+      "pages": [
+        "insurance-reports/retrieve-an-insurance-report",
+        "insurance-reports/retrieve-an-insurance-report-1",
+        "insurance-reports/retrieve-an-auto-insurance-report",
+        "insurance-reports/retrieve-an-home-insurance-report"
+      ]
+    },
+    {
+      "group": "Transactions",
+      "pages": [
+        "transactions/list-all-balances",
+        "transactions/creates-a-bank-income-report",
+        "transactions/retrieves-a-bank-income-report",
+        "transactions/list-all-bank-transactions"
+      ]
+    },
+    {
+      "group": "Bank Accounts",
+      "pages": [
+        "bank-accounts/list-all-bank-accounts"
+      ]
+    },
+    {
+      "group": "Deposit Switch Reports",
+      "pages": [
+        "deposit-switch-reports/retrieve-a-direct-deposit-switch-report-for-a-link",
+        "deposit-switch-reports/retrieve-a-paycheck-linked-loan-report",
+        "deposit-switch-reports/retrieve-a-direct-deposit-switch-report",
+        "deposit-switch-reports/retrieve-a-paycheck-linked-lending-report"
+      ]
+    },
+    {
+      "group": "Uploaded Documents",
+      "pages": [
+        "uploaded-documents/list-all-documents",
+        "uploaded-documents/retrieve-document"
+      ]
+    },
+    {
+      "group": "Employment",
+      "pages": [
+        "employment/retrieve-an-employment",
+        "employment/list-all-employments"
+      ]
+    },
+    {
+      "group": "Reports",
+      "pages": [
+        "reports/retrieve-an-employment-history-report-for-a-link",
+        "reports/retrieve-an-income-and-employment-report-for-a-link",
+        "reports/retrieve-an-income-and-employment-report",
+        "reports/retrieve-an-employment-history-report"
+      ]
+    },
+    {
+      "group": "Identity",
+      "pages": [
+        "identity/retrieve-an-identity"
+      ]
+    },
+    {
+      "group": "Shifts",
+      "pages": [
+        "shifts/list-all-shifts"
+      ]
+    },
+    {
+      "group": "Pay Statements",
+      "pages": [
+        "pay-statements/list-all-statements",
+        "pay-statements/retrieve-a-statement"
+      ]
+    },
+    {
+      "group": "Tax Documents",
+      "pages": [
+        "tax-documents/list-all-tax-documents",
+        "tax-documents/retrieve-tax-document"
+      ]
+    },
+    {
+      "group": "Orders",
+      "pages": [
+        "orders/create-an-order",
+        "orders/get-list-of-orders-by-ssn",
+        "orders/retrieve-an-order",
+        "orders/create-a-data-refresh-order",
+        "orders/update-an-order",
+        "orders/cancel-an-order",
+        "orders/add-new-employer-to-the-existing-order"
+      ]
+    },
+    {
+      "group": "Data Refresh",
+      "pages": [
+        "data-refresh/create-a-data-refresh-task",
+        "data-refresh/retrieve-a-data-refresh-status"
+      ]
+    },
+    {
+      "group": "Customization Templates",
+      "pages": [
+        "customization-templates/list-all-customization-templates",
+        "customization-templates/create-a-customization-template",
+        "customization-templates/retrieve-a-customization-template",
+        "customization-templates/delete-a-customization-template",
+        "customization-templates/update-a-customization-template"
+      ]
+    },
+    {
+      "group": "Users",
+      "pages": [
+        "users/list-all-users",
+        "users/create-a-user",
+        "users/retrieve-a-user",
+        "users/delete-a-user",
+        "users/update-a-user",
+        "users/retrieve-a-deposit-switch-report",
+        "users/list-financial-accounts",
+        "users/retrieve-a-report"
+      ]
+    },
+    {
+      "group": "VOA Reports",
+      "pages": [
+        "voa-reports/create-an-assets-report",
+        "voa-reports/retrieve-an-assets-report"
+      ]
+    },
+    {
+      "group": "Income Insights Reports",
+      "pages": [
+        "income-insights-reports/create-a-user-bank-income-insights-report",
+        "income-insights-reports/retrieve-a-user-bank-income-insights-report"
+      ]
+    },
+    {
+      "group": "VOIE Reports",
+      "pages": [
+        "voie-reports/create-a-report"
+      ]
+    },
+    {
+      "group": "Webhooks",
+      "pages": [
+        "webhooks/list-all-webhooks",
+        "webhooks/create-a-webhook",
+        "webhooks/retrieve-a-webhook",
+        "webhooks/delete-a-webhook",
+        "webhooks/update-a-webhook"
       ]
     }
   ],
