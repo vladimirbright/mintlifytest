@@ -2,10 +2,10 @@
   "$schema": "https://truv.com/swagger.json",
   "name": "Truv docs",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "https://files.readme.io/6dcc4ae-Truv_Docs.svg",
+    "light": "https://files.readme.io/6dcc4ae-Truv_Docs.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://files.readme.io/e81bf23-favicon.ico",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
