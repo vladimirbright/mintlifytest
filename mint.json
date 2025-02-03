@@ -22,6 +22,10 @@
       "url": "mailto:hi@mintlify.com"
     }
   ],
+  "api": {
+    "baseUrl": "https://prod.truv.com/"
+  },
+  "openapi": "https://prod.truv.com/swagger.json",
   "topbarCtaButton": {
     "name": "Dashboard",
     "url": "https://dashboard.truv.com"
