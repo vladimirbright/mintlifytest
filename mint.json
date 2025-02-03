@@ -610,6 +610,11 @@
     {
       "name": "API Reference",
       "url": "/reference"
+    },
+    {
+      "name": "API Reference from swagger",
+      "url": "api-reference-swagger",
+      "openapi": "/openapi.json"
     }
   ]
 }
