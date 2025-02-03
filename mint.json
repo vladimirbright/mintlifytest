@@ -600,6 +600,12 @@
         "webhooks/delete-a-webhook",
         "webhooks/update-a-webhook"
       ]
+    },
+    {
+      "group": "Objects",
+      "pages": [
+        "objects/user"
+      ]
     }
   ],
   "tabs": [
@@ -615,6 +621,10 @@
       "name": "API Reference from swagger",
       "url": "api-reference-swagger",
       "openapi": "/openapi.json"
+    },
+    {
+      "name": "Objects Reference",
+      "url": "/objects"
     }
   ]
 }
